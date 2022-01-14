@@ -148,7 +148,7 @@
             this.listBox_debugInfo.FormattingEnabled = true;
             this.listBox_debugInfo.Location = new System.Drawing.Point(149, 57);
             this.listBox_debugInfo.Name = "listBox_debugInfo";
-            this.listBox_debugInfo.Size = new System.Drawing.Size(195, 368);
+            this.listBox_debugInfo.Size = new System.Drawing.Size(287, 368);
             this.listBox_debugInfo.TabIndex = 18;
             // 
             // lbl_resolution
@@ -177,7 +177,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(365, 492);
+            this.ClientSize = new System.Drawing.Size(459, 492);
             this.Controls.Add(this.btn_einstellungen);
             this.Controls.Add(this.lbl_resolution);
             this.Controls.Add(this.listBox_debugInfo);

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,6 +42,12 @@ namespace TSW2_Controller
             }
 
             Properties.Settings.Default.Save();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Keyboard.HoldKey((byte)Keys.A,1000);
         }
     }
 }

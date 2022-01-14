@@ -48,21 +48,21 @@ namespace TSW2_Controller
         int schubSoll = 0;
 
         public int bremseIst = 0;
-        int bremseSoll = 0
-        
+        int bremseSoll = 0;
+
 
 
         public MainForm()
         {
             InitializeComponent();
 
-            //loadSettings();
-            //comboBox_JoystickNumber.SelectedIndex = 0;
-            //MainSticks = getSticks();
-            //ReadTrainConfig();
-            //ReadTrainNamesFromTrainconfig();
-            //
-            //timer_CheckSticks.Start();
+            loadSettings();
+            comboBox_JoystickNumber.SelectedIndex = 0;
+            MainSticks = getSticks();
+            ReadTrainConfig();
+            ReadTrainNamesFromTrainconfig();
+
+            timer_CheckSticks.Start();
         }
 
         public void loadSettings()
@@ -77,7 +77,7 @@ namespace TSW2_Controller
                 res = Properties.Settings.Default.res;
             }
 
-            if(Properties.Settings.Default.showDebug)
+            if (Properties.Settings.Default.showDebug)
             {
                 listBox_debugInfo.Show();
                 lbl_bremse.Show();
@@ -350,7 +350,7 @@ namespace TSW2_Controller
 
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i].Contains("Schub"))
+                if (activeTrain[i][Tcfg.aktion].Contains("Schub")|| activeTrain[i][Tcfg.aktion].Contains("Kombihebel"))
                 {
                     if (throttleConfig[1] == "Stufen")
                     {
@@ -446,13 +446,13 @@ namespace TSW2_Controller
                         {
                             //weniger d
                             Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(throttleConfig[4]));
-                            Thread.Sleep(80);
+                            Thread.Sleep(30);
                         }
                         else if (diffSchub < 0)
                         {
                             //mehr a
                             Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(throttleConfig[4]));
-                            Thread.Sleep(80);
+                            Thread.Sleep(30);
                         }
                     }
                     schubIst = schubSoll;
@@ -479,7 +479,7 @@ namespace TSW2_Controller
                                 if (diffSchub >= -1)
                                 {
                                     Keyboard.HoldKey(Keyboard.increaseThrottle, 200);
-                                    Thread.Sleep(100);
+                                    Thread.Sleep(30);
                                     rawData.Add("Halte mehr gedrückt");
                                     schubIst = obere_grenze;
                                 }
@@ -491,7 +491,7 @@ namespace TSW2_Controller
                                 if (diffSchub <= 1)
                                 {
                                     Keyboard.HoldKey(Keyboard.decreaseThrottle, 200);
-                                    Thread.Sleep(100);
+                                    Thread.Sleep(30);
                                     rawData.Add("Halte weniger gedrückt");
                                     schubIst = untere_grenze;
                                 }
@@ -504,14 +504,14 @@ namespace TSW2_Controller
                     {
                         //weniger d
                         Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(throttleConfig[4]))));
-                        Thread.Sleep(80);
+                        Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
                     else if (diffSchub < 1)
                     {
                         //mehr a
                         Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(throttleConfig[4]))));
-                        Thread.Sleep(80);
+                        Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
                 }
@@ -520,39 +520,66 @@ namespace TSW2_Controller
             {
                 if (brakeConfig[1] == "Stufen")
                 {
-                    int diffbrake = bremseIst - bremseSoll;
+                    int diffBremse = bremseIst - bremseSoll;
 
-
-                    if (bremseSoll < 0 && false)
+                    if (brakeConfig[5].Length > 0)
                     {
-                        Keyboard.KeyDown(Keyboard.decreaseBrake);
-                        heldDown = true;
-                    }
-                    else
-                    {
-                        if (heldDown)
+                        foreach (string single in brakeConfig[5].Remove(brakeConfig[5].Length - 1).Replace("[", "").Split(']'))
                         {
-                            Keyboard.KeyUp(Keyboard.decreaseBrake);
-                        }
+                            int index_minus = single.IndexOf("|");
+                            int index_doppelpnkt = single.IndexOf(":");
 
-                        for (int i = 0; i < Math.Abs(diffbrake); i++)
-                        {
-                            if (diffbrake > 0)
+                            int untere_grenze = Convert.ToInt32(single.Remove(index_minus, single.Length - index_minus));
+                            int obere_grenze = Convert.ToInt32(single.Remove(0, index_minus + 1).Remove(single.Remove(0, index_minus + 1).IndexOf(":"), single.Remove(0, index_minus + 1).Length - single.Remove(0, index_minus + 1).IndexOf(":")));
+                            int dauer = Convert.ToInt32(single.Remove(0, single.IndexOf(":") + 1));
+
+                            if (bremseIst <= untere_grenze && obere_grenze <= bremseSoll)
                             {
-                                //weniger ö
-                                Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(brakeConfig[4]));
-                                Thread.Sleep(80);
+                                rawData.Add("passe die Schubzunahme an");
+                                diffBremse = bremseIst - untere_grenze;
+                                if (diffBremse >= -1)
+                                {
+                                    Keyboard.HoldKey(Keyboard.increaseBrake, 200);
+                                    Thread.Sleep(30);
+                                    rawData.Add("Halte mehr gedrückt");
+                                    bremseIst = obere_grenze;
+                                }
                             }
-                            else if (diffbrake < 0)
+                            else if (bremseSoll <= untere_grenze && obere_grenze <= bremseIst)
                             {
-                                //mehr ä
-                                Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(brakeConfig[4]));
-                                Thread.Sleep(80);
+                                diffBremse = bremseIst - obere_grenze;
+                                rawData.Add("passe die Schubabnahme an");
+                                if (diffBremse <= 1)
+                                {
+                                    Keyboard.HoldKey(Keyboard.decreaseBrake, 200);
+                                    Thread.Sleep(30);
+                                    rawData.Add("Halte weniger gedrückt");
+                                    bremseIst = untere_grenze;
+                                }
                             }
-                            Thread.Sleep(70);
                         }
-                        bremseIst = bremseSoll;
                     }
+
+
+                    for (int i = 0; i < Math.Abs(diffBremse); i++)
+                    {
+                        if (diffBremse > 0)
+                        {
+                            //weniger ö
+                            Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(brakeConfig[4]));
+                            Thread.Sleep(30);
+                            bremseIst = bremseSoll;
+                        }
+                        else if (diffBremse < 0)
+                        {
+                            //mehr ä
+                            Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(brakeConfig[4]));
+                            Thread.Sleep(30);
+                            bremseIst = bremseSoll;
+                        }
+                        Thread.Sleep(70);
+                    }
+                    
                 }
                 else if (brakeConfig[1] == "Stufenlos")
                 {
@@ -576,7 +603,7 @@ namespace TSW2_Controller
                                 if (diffBremse >= -1)
                                 {
                                     Keyboard.HoldKey(Keyboard.increaseBrake, 200);
-                                    Thread.Sleep(100);
+                                    Thread.Sleep(30);
                                     rawData.Add("Halte mehr gedrückt");
                                     bremseIst = obere_grenze;
                                 }
@@ -588,7 +615,7 @@ namespace TSW2_Controller
                                 if (diffBremse <= 1)
                                 {
                                     Keyboard.HoldKey(Keyboard.decreaseBrake, 200);
-                                    Thread.Sleep(100);
+                                    Thread.Sleep(30);
                                     rawData.Add("Halte weniger gedrückt");
                                     bremseIst = untere_grenze;
                                 }
@@ -601,14 +628,14 @@ namespace TSW2_Controller
                     {
                         //weniger d
                         Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(brakeConfig[4]))));
-                        Thread.Sleep(80);
+                        Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
                     else if (diffBremse < 1)
                     {
                         //mehr a
                         Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(brakeConfig[4]))));
-                        Thread.Sleep(80);
+                        Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
                 }
