@@ -26,6 +26,7 @@ namespace TSW2_Controller
         List<string[]> activeTrain = new List<string[]>();
         List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
+        List<string> rawData = new List<string>();
 
         bool[] currentlyPressedButtons = new bool[128];
         bool[] previouslyPressedButtons = new bool[128];
@@ -47,9 +48,8 @@ namespace TSW2_Controller
         int schubSoll = 0;
 
         public int bremseIst = 0;
-        int bremseSoll = 0;
-
-        List<string> rawData = new List<string>();
+        int bremseSoll = 0
+        
 
 
         public MainForm()
