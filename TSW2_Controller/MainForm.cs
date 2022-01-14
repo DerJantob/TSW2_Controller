@@ -56,13 +56,13 @@ namespace TSW2_Controller
         {
             InitializeComponent();
 
-            loadSettings();
-            comboBox_JoystickNumber.SelectedIndex = 0;
-            MainSticks = getSticks();
-            ReadTrainConfig();
-            ReadTrainNamesFromTrainconfig();
-            
-            timer_CheckSticks.Start();
+            //loadSettings();
+            //comboBox_JoystickNumber.SelectedIndex = 0;
+            //MainSticks = getSticks();
+            //ReadTrainConfig();
+            //ReadTrainNamesFromTrainconfig();
+            //
+            //timer_CheckSticks.Start();
         }
 
         public void loadSettings()
