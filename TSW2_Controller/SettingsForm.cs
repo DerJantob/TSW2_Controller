@@ -16,18 +16,16 @@ namespace TSW2_Controller
         public SettingsForm()
         {
             InitializeComponent();
+            lbl_version.Text = "v" + this.ProductVersion.Remove(ProductVersion.Length - 2, 2);
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             check_showDebug.Checked = Properties.Settings.Default.showDebug;
+            check_ShowScan.Checked = Properties.Settings.Default.showScanResult;
+
             txt_resHeight.Text = Properties.Settings.Default.res.Height.ToString();
             txt_resWidth.Text = Properties.Settings.Default.res.Width.ToString();
-        }
-
-        private void check_showDebug_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.showDebug = check_showDebug.Checked;
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,6 +39,8 @@ namespace TSW2_Controller
                 MessageBox.Show("Fehler bei Auflösung!");
             }
 
+            Properties.Settings.Default.showDebug = check_showDebug.Checked;
+            Properties.Settings.Default.showScanResult = check_ShowScan.Checked;
             Properties.Settings.Default.Save();
         }
 

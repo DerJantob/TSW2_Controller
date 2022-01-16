@@ -24,5 +24,7 @@ namespace TSW2_Controller
         public static int specials = 13;
         public static int zeitumrechnung = 14;
         public static int laengerDruecken = 15;
+
+        public static string nameForGlobal = "_Global";
     }
 }
