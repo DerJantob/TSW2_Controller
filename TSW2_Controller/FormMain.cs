@@ -14,10 +14,14 @@ using System.IO;
 
 namespace TSW2_Controller
 {
-    public partial class MainForm : Form
+    public partial class FormMain : Form
     {
+        //Todo: Überprufe das "Länger drücken" nochmal
+        //                                                        vllt erledigt aber nicht schön ^^      (Kombihebel hat 2 verschiedene Zeiten beim Bremsen und beim Beschleunigen -_-)
+        //Tastenkombinationen hinzufügen
+
         DirectInput input = new DirectInput();
-        SlimDX.DirectInput.Joystick mainStick;
+        Joystick mainStick;
         Joystick[] MainSticks;
 
         public Rectangle res = Screen.PrimaryScreen.Bounds;
@@ -37,7 +41,6 @@ namespace TSW2_Controller
         string[] kombihebel = { "", "" };
 
         bool isKombihebel = false;
-        bool heldDown = false;
         bool cancelThrottleRequest = false;
         bool cancelBrakeRequest = false;
 
@@ -52,13 +55,14 @@ namespace TSW2_Controller
 
 
 
-        public MainForm()
+        public FormMain()
         {
             InitializeComponent();
 
             loadSettings();
             comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
+
             ReadTrainConfig();
             ReadTrainNamesFromTrainconfig();
 
@@ -67,30 +71,51 @@ namespace TSW2_Controller
 
         public void loadSettings()
         {
-            if (Properties.Settings.Default.res.IsEmpty)
+            try
             {
-                Properties.Settings.Default.res = res;
-                Properties.Settings.Default.Save();
-            }
-            else
-            {
-                res = Properties.Settings.Default.res;
-            }
+                #region Auflösung
+                if (Properties.Settings.Default.res.IsEmpty)
+                {
+                    Properties.Settings.Default.res = res;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    res = Properties.Settings.Default.res;
+                    lbl_resolution.Text = res.Width.ToString() + "x" + res.Height.ToString();
+                }
 
-            if (Properties.Settings.Default.showDebug)
-            {
-                listBox_debugInfo.Show();
-                lbl_bremse.Show();
-                lbl_schub.Show();
-            }
-            else
-            {
-                listBox_debugInfo.Hide();
-                lbl_bremse.Hide();
-                lbl_schub.Hide();
-            }
+                #endregion
 
-            lbl_resolution.Text = res.Width.ToString() + "x" + res.Height.ToString();
+                #region Zeige Debug-Infos
+                if (Properties.Settings.Default.showDebug)
+                {
+                    listBox_debugInfo.Show();
+                    lbl_bremse.Show();
+                    lbl_schub.Show();
+                }
+                else
+                {
+                    listBox_debugInfo.Hide();
+                    lbl_bremse.Hide();
+                    lbl_schub.Hide();
+                }
+                #endregion
+
+                #region Zeige Scan Ergebnis
+                if (Properties.Settings.Default.showScanResult)
+                {
+                    pictureBox_Screenshot_original.Show();
+                    pictureBox_Screenshot_alternativ.Show();
+                }
+                else
+                {
+                    pictureBox_Screenshot_original.Hide();
+                    pictureBox_Screenshot_alternativ.Hide();
+                }
+                #endregion
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); Close(); }
         }
 
 
@@ -116,7 +141,7 @@ namespace TSW2_Controller
 
             foreach (string[] str in trainConfig)
             {
-                if (!trainNames.Any(str[0].Contains) && str[0] != "Zug" && str[0] != "Global")
+                if (!trainNames.Any(str[0].Contains) && str[0] != "Zug" && str[0] != Tcfg.nameForGlobal)
                 {
                     trainNames.Add(str[0]);
                 }
@@ -126,15 +151,19 @@ namespace TSW2_Controller
 
         public void getActiveTrain()
         {
+            //Reset Infos
             throttleConfig = new string[6];
             brakeConfig = new string[6];
             activeTrain.Clear();
+
+            //Was wurde ausgewählt
             string selection = comboBox_Zugauswahl.Text;
 
             foreach (string[] str in trainConfig)
             {
-                if (str[0] == selection || str[0] == "Global")
+                if (str[0] == selection || str[0] == Tcfg.nameForGlobal)
                 {
+                    //Alle Infos zum Ausgewählten Zug speichern
                     activeTrain.Add(str);
                 }
             }
@@ -144,6 +173,7 @@ namespace TSW2_Controller
                 isKombihebel = false;
                 if (str[Tcfg.aktion].Contains("Schub"))
                 {
+                    //Infos über den Schubhebel
                     throttleConfig[0] = str[Tcfg.textIndex];
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
@@ -153,6 +183,7 @@ namespace TSW2_Controller
                 }
                 else if (str[Tcfg.aktion].Contains("Kombihebel"))
                 {
+                    //Infos über den Kombihebel
                     isKombihebel = true;
                     throttleConfig[0] = str[Tcfg.textIndex].Remove(str[Tcfg.textIndex].IndexOf("["), str[Tcfg.textIndex].Length - str[Tcfg.textIndex].IndexOf("["));
                     throttleConfig[1] = str[Tcfg.art];
@@ -168,6 +199,7 @@ namespace TSW2_Controller
 
                 if (str[Tcfg.aktion].Contains("Bremse"))
                 {
+                    //Infos über die Bremse
                     brakeConfig[0] = str[Tcfg.textIndex];
                     brakeConfig[1] = str[Tcfg.art];
                     brakeConfig[2] = str[Tcfg.schritte];
@@ -181,6 +213,7 @@ namespace TSW2_Controller
 
         public Joystick[] getSticks()
         {
+            //strg+c strg+v
             List<SlimDX.DirectInput.Joystick> sticks = new List<SlimDX.DirectInput.Joystick>();
             foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
             {
@@ -196,15 +229,12 @@ namespace TSW2_Controller
                             mainStick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-100, 100);
                         }
                     }
-
                     sticks.Add(mainStick);
-
                 }
                 catch (DirectInputException)
                 {
                     throw;
                 }
-
             }
 
             return sticks.ToArray();
@@ -217,6 +247,8 @@ namespace TSW2_Controller
             int[] joyInputs = new int[8];
 
             JoystickState state = new JoystickState();
+
+            //Bekomme alle Infos über den mit id ausgewählten Stick
             state = stick.GetCurrentState();
 
             joyInputs[0] = state.X;
@@ -228,22 +260,27 @@ namespace TSW2_Controller
             joyInputs[6] = state.RotationZ;
             joyInputs[7] = state.GetSliders()[0];
 
+
             for (int i = 0; i < inputNames.Length; i++)
             {
                 foreach (string[] strActiveTrain in activeTrain)
                 {
+                    //In der Trainconfig kommt ein bekannter Achsen-Name vor
                     if (strActiveTrain[Tcfg.joystickInput] == inputNames[i])
                     {
                         if (strActiveTrain[Tcfg.invert] == "1")
                         {
+                            //Soll Invertiert werden
                             joyInputs[i] = joyInputs[i] * (-1);
                         }
                         if (strActiveTrain[Tcfg.inputTyp] == "1")
                         {
+                            //Soll von (0<>100) in (-100<>0<>100) geändert werden
                             joyInputs[i] = (joyInputs[i] / (-2)) + 50;
                         }
 
 
+                        //Bestimmt Inputwerte sollen in andere Umgerechnet werden
                         if (strActiveTrain[Tcfg.inputUmrechnen].Length > 5)
                         {
                             string[] umrechnen = strActiveTrain[Tcfg.inputUmrechnen].Remove(strActiveTrain[Tcfg.inputUmrechnen].Length - 1).Replace("[", "").Split(']');
@@ -265,8 +302,10 @@ namespace TSW2_Controller
                 }
             }
 
+            //Alle Knopf states bekommen
             buttons = state.GetButtons();
 
+            //Alle wichtigen Infos über den Joystick in Liste speichern
             joystickStates.Add(new object[] { id, joyInputs, inputNames, buttons });
         }
 
@@ -292,29 +331,40 @@ namespace TSW2_Controller
 
         private void CheckSticks()
         {
+            //Lösche alle Infos über die Joysticks
             joystickStates.Clear();
+
             for (int i = 0; i < MainSticks.Length; i++)
             {
+                //Speichere die Infos von jedem einzelnen Joystick
                 stickHandle(MainSticks[i], i);
             }
+
+            //Zeige Infos über den Joystick dem Nutzer an
             ShowJoystickData();
 
+
+            //Wenn Aktiv
             if (check_active.Checked)
             {
+                //Wenn es einen Schubregler gibt und der BGW nicht beschäftigt ist dann starte ihn
                 if (!bgw_Throttle.IsBusy && throttleConfig[0] != null)
                 {
                     bgw_Throttle.RunWorkerAsync();
                 }
 
+                //Wenn es einen Bremsregler gibt und der BGW nicht beschäftigt ist dann starte ihn
                 if (!bgw_Brake.IsBusy && !isKombihebel && brakeConfig[0] != null)
                 {
                     bgw_Brake.RunWorkerAsync();
                 }
 
+                //Überprüfe die einzelnen Joystick knöpfe
                 HandleButtons();
             }
             else
             {
+                //Wenn nicht Aktiv entferne die Anfrage an den bgw_readScreen
                 requestBrake = 0;
                 requestThrottle = 0;
             }
@@ -322,6 +372,7 @@ namespace TSW2_Controller
 
             if (requestBrake > 0 || requestThrottle > 0)
             {
+                //Wenn der Schub-Wert oder Brems-Wert angefordert wird
                 if (!bgw_readScreen.IsBusy)
                 {
                     bgw_readScreen.RunWorkerAsync();
@@ -337,49 +388,50 @@ namespace TSW2_Controller
                 listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
                 rawData.Clear();
             }
-            catch
-            {
-
-            }
+            catch { }
         }
 
         private void bgw_Throttle_DoWork(object sender, DoWorkEventArgs e)
         {
             int currentThrottleJoystickState = 0;
-            int tolerace = 100;
+            int toleranz = 0;
 
+            //Bekomme den Wert vom Joystick-Schubregler
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i][Tcfg.aktion].Contains("Schub")|| activeTrain[i][Tcfg.aktion].Contains("Kombihebel"))
+                if (activeTrain[i][Tcfg.aktion].Contains("Schub") || activeTrain[i][Tcfg.aktion].Contains("Kombihebel"))
                 {
                     if (throttleConfig[1] == "Stufen")
                     {
-                        tolerace = 0;
+                        toleranz = 0;
                         currentThrottleJoystickState = GetJoystickStateByName(((string[])activeTrain[i])[Tcfg.joystickNummer], ((string[])activeTrain[i])[Tcfg.joystickInput]);
                         currentThrottleJoystickState = Convert.ToInt32(Math.Round(currentThrottleJoystickState * (Convert.ToDouble(throttleConfig[2]) / 100), 0));
                         break;
                     }
                     else if (throttleConfig[1] == "Stufenlos")
                     {
-                        tolerace = 1;
+                        toleranz = 1;
                         currentThrottleJoystickState = GetJoystickStateByName(((string[])activeTrain[i])[Tcfg.joystickNummer], ((string[])activeTrain[i])[Tcfg.joystickInput]);
                         break;
                     }
                 }
             }
 
-            if (schubSoll != currentThrottleJoystickState || Math.Abs(schubSoll - schubIst) > tolerace)
+
+            //Erlaube keine Joystick-Werte unter 0, wenn es kein Kombihebel ist 
+            if (currentThrottleJoystickState < 0 && !isKombihebel)
             {
-                if (currentThrottleJoystickState < 0 && !isKombihebel)
-                {
-                    currentThrottleJoystickState = 0;
-                }
+                currentThrottleJoystickState = 0;
+            }
+
+            //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
+            if (schubSoll != currentThrottleJoystickState || Math.Abs(schubSoll - schubIst) > toleranz)
+            {
+                cancelThrottleRequest = true;
+                schubSoll = currentThrottleJoystickState;
                 requestThrottle = 5;
 
-                schubSoll = currentThrottleJoystickState;
-                ChangeGameState(true); ;
-
-                cancelThrottleRequest = true;
+                ChangeGameState(true);
             }
 
         }
@@ -387,19 +439,23 @@ namespace TSW2_Controller
         private void bgw_Brake_DoWork(object sender, DoWorkEventArgs e)
         {
             int currentBrakeJoystickState = 0;
+            int toleranz = 0;
 
+            //Bekomme den Wert vom Joystick-Bremsregler
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i].Contains("Bremse"))
+                if (activeTrain[i][Tcfg.aktion].Contains("Bremse"))
                 {
                     if (brakeConfig[1] == "Stufen")
                     {
+                        toleranz = 0;
                         currentBrakeJoystickState = GetJoystickStateByName(((string[])activeTrain[i])[Tcfg.joystickNummer], ((string[])activeTrain[i])[Tcfg.joystickInput]);
                         currentBrakeJoystickState = Convert.ToInt32(Math.Round(currentBrakeJoystickState * (Convert.ToDouble(brakeConfig[2]) / 100), 0));
                         break;
                     }
-                    else
+                    else if (brakeConfig[1] == "Stufenlos")
                     {
+                        toleranz = 1;
                         currentBrakeJoystickState = GetJoystickStateByName(((string[])activeTrain[i])[Tcfg.joystickNummer], ((string[])activeTrain[i])[Tcfg.joystickInput]);
                         break;
                     }
@@ -407,51 +463,70 @@ namespace TSW2_Controller
 
             }
 
+            //Erlaube keine Joystick-Werte unter 0
             if (currentBrakeJoystickState < 0)
             {
                 currentBrakeJoystickState = 0;
             }
 
-            if (bremseSoll != currentBrakeJoystickState || (bremseSoll - bremseIst) != 0)
+            //Wenn sich der Wert vom Joystick-Bremsregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
+            if (bremseSoll != currentBrakeJoystickState || Math.Abs(bremseSoll - bremseIst) > toleranz)
             {
+                cancelBrakeRequest = true;
+                bremseSoll = currentBrakeJoystickState;
                 requestBrake = 5;
 
-                bremseSoll = currentBrakeJoystickState;
-
                 ChangeGameState(false);
-
-                cancelBrakeRequest = true;
-
-                bremseIst = bremseSoll;
             }
         }
 
         private void ChangeGameState(bool isThrottle)
         {
-            //typ = 1 Stufenlos
-            //typ = 2 Stufen
-            //difference < 0 => schub zunehmen
-            //difference > 0 => schub abnehmen
+            //Differenz < 0 -> schub zunehmen
+            //Differenz > 0 -> schub abnehmen
 
             if (isThrottle)
             {
+                int delay = 0;
+                if (throttleConfig[4].Contains("|"))
+                {
+                    if (schubIst < 0 || schubSoll < 0)
+                    {
+                        delay = Convert.ToInt32(throttleConfig[4].Remove(0, throttleConfig[4].IndexOf("|") + 1));
+                    }
+                    else
+                    {
+                        delay = Convert.ToInt32(throttleConfig[4].Remove(throttleConfig[4].IndexOf("|"), throttleConfig[4].Length - throttleConfig[4].IndexOf("|")));
+                    }
+                    rawData.Add(delay.ToString());
+                }
+                else
+                {
+                    delay = Convert.ToInt32(throttleConfig[4]);
+                }
+
+
                 if (throttleConfig[1] == "Stufen")
                 {
                     int diffSchub = schubIst - schubSoll;
 
+                    //Wenn man an manchen Stellen länger gedrückthalten muss
+                    diffSchub = ThrottleLongPress(diffSchub);
+
 
                     for (int i = 0; i < Math.Abs(diffSchub); i++)
                     {
+                        //Schalte durch die einzelnen Stufen durch
                         if (diffSchub > 0)
                         {
                             //weniger d
-                            Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(throttleConfig[4]));
+                            Keyboard.HoldKey(Keyboard.decreaseThrottle, delay);
                             Thread.Sleep(30);
                         }
                         else if (diffSchub < 0)
                         {
                             //mehr a
-                            Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(throttleConfig[4]));
+                            Keyboard.HoldKey(Keyboard.increaseThrottle, delay);
                             Thread.Sleep(30);
                         }
                     }
@@ -461,56 +536,21 @@ namespace TSW2_Controller
                 {
                     int diffSchub = schubIst - schubSoll;
 
-                    if (throttleConfig[5].Length > 0)
-                    {
-                        foreach (string single in throttleConfig[5].Remove(throttleConfig[5].Length - 1).Replace("[", "").Split(']'))
-                        {
-                            int index_minus = single.IndexOf("|");
-                            int index_doppelpnkt = single.IndexOf(":");
-
-                            int untere_grenze = Convert.ToInt32(single.Remove(index_minus, single.Length - index_minus));
-                            int obere_grenze = Convert.ToInt32(single.Remove(0, index_minus + 1).Remove(single.Remove(0, index_minus + 1).IndexOf(":"), single.Remove(0, index_minus + 1).Length - single.Remove(0, index_minus + 1).IndexOf(":")));
-                            int dauer = Convert.ToInt32(single.Remove(0, single.IndexOf(":") + 1));
-
-                            if (schubIst <= untere_grenze && obere_grenze <= schubSoll)
-                            {
-                                rawData.Add("passe die Schubzunahme an");
-                                diffSchub = schubIst - untere_grenze;
-                                if (diffSchub >= -1)
-                                {
-                                    Keyboard.HoldKey(Keyboard.increaseThrottle, 200);
-                                    Thread.Sleep(30);
-                                    rawData.Add("Halte mehr gedrückt");
-                                    schubIst = obere_grenze;
-                                }
-                            }
-                            else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
-                            {
-                                diffSchub = schubIst - obere_grenze;
-                                rawData.Add("passe die Schubabnahme an");
-                                if (diffSchub <= 1)
-                                {
-                                    Keyboard.HoldKey(Keyboard.decreaseThrottle, 200);
-                                    Thread.Sleep(30);
-                                    rawData.Add("Halte weniger gedrückt");
-                                    schubIst = untere_grenze;
-                                }
-                            }
-                        }
-                    }
+                    //Wenn man an manchen Stellen länger gedrückthalten muss
+                    diffSchub = ThrottleLongPress(diffSchub);
 
 
                     if (diffSchub > 1)
                     {
                         //weniger d
-                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(throttleConfig[4]))));
+                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
                         Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
                     else if (diffSchub < 1)
                     {
                         //mehr a
-                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(throttleConfig[4]))));
+                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
                         Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
@@ -522,6 +562,8 @@ namespace TSW2_Controller
                 {
                     int diffBremse = bremseIst - bremseSoll;
 
+                    //Wenn man an manchen Stellen länger gedrückthalten muss
+                    #region Lange drücken
                     if (brakeConfig[5].Length > 0)
                     {
                         foreach (string single in brakeConfig[5].Remove(brakeConfig[5].Length - 1).Replace("[", "").Split(']'))
@@ -535,7 +577,7 @@ namespace TSW2_Controller
 
                             if (bremseIst <= untere_grenze && obere_grenze <= bremseSoll)
                             {
-                                rawData.Add("passe die Schubzunahme an");
+                                rawData.Add("passe die Bremszunahme an");
                                 diffBremse = bremseIst - untere_grenze;
                                 if (diffBremse >= -1)
                                 {
@@ -548,7 +590,7 @@ namespace TSW2_Controller
                             else if (bremseSoll <= untere_grenze && obere_grenze <= bremseIst)
                             {
                                 diffBremse = bremseIst - obere_grenze;
-                                rawData.Add("passe die Schubabnahme an");
+                                rawData.Add("passe die Bremsabnahme an");
                                 if (diffBremse <= 1)
                                 {
                                     Keyboard.HoldKey(Keyboard.decreaseBrake, 200);
@@ -559,10 +601,12 @@ namespace TSW2_Controller
                             }
                         }
                     }
+                    #endregion
 
 
                     for (int i = 0; i < Math.Abs(diffBremse); i++)
                     {
+                        //Schalte durch die einzelnen Stufen
                         if (diffBremse > 0)
                         {
                             //weniger ö
@@ -579,12 +623,14 @@ namespace TSW2_Controller
                         }
                         Thread.Sleep(70);
                     }
-                    
+
                 }
                 else if (brakeConfig[1] == "Stufenlos")
                 {
                     int diffBremse = bremseIst - bremseSoll;
 
+                    //Wenn man an manchen Stellen länger gedrückthalten muss
+                    #region Lange drücken
                     if (brakeConfig[5].Length > 0)
                     {
                         foreach (string single in brakeConfig[5].Remove(brakeConfig[5].Length - 1).Replace("[", "").Split(']'))
@@ -612,7 +658,7 @@ namespace TSW2_Controller
                             {
                                 diffBremse = bremseIst - obere_grenze;
                                 rawData.Add("passe die Schubabnahme an");
-                                if (diffBremse <= 1)
+                                if (diffBremse >= 1)
                                 {
                                     Keyboard.HoldKey(Keyboard.decreaseBrake, 200);
                                     Thread.Sleep(30);
@@ -622,6 +668,7 @@ namespace TSW2_Controller
                             }
                         }
                     }
+                    #endregion
 
 
                     if (diffBremse > 1)
@@ -642,10 +689,53 @@ namespace TSW2_Controller
             }
         }
 
+        public int ThrottleLongPress(int diffSchub)
+        {
+            if (throttleConfig[5].Length > 0)
+            {
+                foreach (string single in throttleConfig[5].Remove(throttleConfig[5].Length - 1).Replace("[", "").Split(']'))
+                {
+                    int index_minus = single.IndexOf("|");
+                    int index_doppelpnkt = single.IndexOf(":");
+
+                    int untere_grenze = Convert.ToInt32(single.Remove(index_minus, single.Length - index_minus));
+                    int obere_grenze = Convert.ToInt32(single.Remove(0, index_minus + 1).Remove(single.Remove(0, index_minus + 1).IndexOf(":"), single.Remove(0, index_minus + 1).Length - single.Remove(0, index_minus + 1).IndexOf(":")));
+                    int dauer = Convert.ToInt32(single.Remove(0, single.IndexOf(":") + 1));
+
+                    if (schubIst <= untere_grenze && obere_grenze <= schubSoll)
+                    {
+                        rawData.Add("passe die Schubzunahme an");
+                        diffSchub = schubIst - untere_grenze;
+                        if (diffSchub >= -1)
+                        {
+                            Keyboard.HoldKey(Keyboard.increaseThrottle, 200);
+                            Thread.Sleep(30);
+                            rawData.Add("Halte mehr gedrückt");
+                            schubIst = obere_grenze;
+                        }
+                    }
+                    else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
+                    {
+                        diffSchub = schubIst - obere_grenze;
+                        rawData.Add("passe die Schubabnahme an");
+                        if (diffSchub <= 1)
+                        {
+                            Keyboard.HoldKey(Keyboard.decreaseThrottle, 200);
+                            Thread.Sleep(30);
+                            rawData.Add("Halte weniger gedrückt");
+                            schubIst = untere_grenze;
+                        }
+                    }
+                }
+            }
+            return diffSchub;
+        }
+
         public void HandleButtons()
         {
             for (int i = 0; i < activeTrain.Count; i++)
             {
+                //Wenn es ein Normaler Knopf vom Joystick ist
                 if (activeTrain[i][Tcfg.inputTyp] == "Button")
                 {
                     int buttonNumber = Convert.ToInt32(activeTrain[i][Tcfg.joystickInput].Replace("B", ""));
@@ -653,6 +743,7 @@ namespace TSW2_Controller
                 }
                 else if (activeTrain[i][Tcfg.inputTyp].Contains("Button"))
                 {
+                    //Wenn ein Analoger Input zum Knopf werden soll
                     for (int o = 0; o < inputNames.Count(); o++)
                     {
                         if (activeTrain[i][Tcfg.joystickInput] == inputNames[o])
@@ -669,11 +760,11 @@ namespace TSW2_Controller
                                     if (joyButtonValue == Convert.ToInt32(single_convert.Remove(0, 1)))
                                     {
                                         currentlyPressedButtons[i] = true;
+                                        break;
                                     }
                                     else
                                     {
                                         currentlyPressedButtons[i] = false;
-                                        break;
                                     }
                                 }
                                 else if (single_convert.Contains(">"))
@@ -733,7 +824,10 @@ namespace TSW2_Controller
 
         private void ShowJoystickData()
         {
+            //Anzeigeliste leeren
             lst_inputs.Items.Clear();
+
+            //Welcher Joystick wurde ausgewählt
             int selectedJoystickIndex = Convert.ToInt32(comboBox_JoystickNumber.SelectedItem);
 
             //Wähle von allen Joysticks nur den ausgewählten aus
@@ -752,6 +846,7 @@ namespace TSW2_Controller
                 {
                     if (((int[])selectedJoystick[1])[i] != 0)
                     {
+                        //Zeige den Joystick-Wert nur, wenn er != 0 ist
                         lst_inputs.Items.Add(((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i]);
                     }
                 }
@@ -759,25 +854,29 @@ namespace TSW2_Controller
         }
 
 
-        private Bitmap Screenshot(bool normal)
+        public Bitmap Screenshot(bool normal)
         {
+            //Breite und Höhe des ScanFensters
             int width = ConvertWidth(411);
             int height = ConvertHeight(30);
+            //Startposition vom oberen Fenster
             int x1 = ConvertWidth(2022);
             int y1 = ConvertHeight(458);
+            //Angepasste Höhe fürs untere Fenster
             int y2 = ConvertHeight(530);
+
 
             Bitmap bmpScreenshot = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(bmpScreenshot);
 
-
-
             if (normal)
             {
+                //oberes Fenster
                 g.CopyFromScreen(x1, y1, 0, 0, new Size(width, height));
             }
             else
             {
+                //unteres Fenster
                 g.CopyFromScreen(x1, y2, 0, 0, new Size(width, height));
             }
 
@@ -790,10 +889,14 @@ namespace TSW2_Controller
                     {
                         inv = Color.FromArgb(0, 0, 0, 0);
                     }
+
+                    //invertier das Bild
                     inv = Color.FromArgb(255, (255 - inv.R), (255 - inv.G), (255 - inv.B));
                     bmpScreenshot.SetPixel(x, y, inv);
                 }
             }
+
+            if (Properties.Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1) }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot }); } }
 
             return bmpScreenshot;
         }
@@ -812,6 +915,7 @@ namespace TSW2_Controller
                 }
             }
 
+            ocrtext = ocrtext.Replace(",", ".");
             return ocrtext;
         }
 
@@ -837,15 +941,18 @@ namespace TSW2_Controller
                 if (original_result == "")
                 {
                     alternative_result = GetText(Screenshot(false));
-                    rawData.Add("alt:" + alternative_result);
                 }
                 else if (throttleConfig[0] != null && brakeConfig[0] != null)
                 {
                     if ((!original_result.Contains(throttleConfig[0]) && !original_result.Contains(brakeConfig[0])) || (requestBrake > 0 && requestThrottle > 0))
                     {
                         alternative_result = GetText(Screenshot(false));
-                        rawData.Add("alt:" + alternative_result);
                     }
+                }
+
+                if (alternative_result != "")
+                {
+                    rawData.Add("alt:" + alternative_result);
                 }
 
 
@@ -1086,7 +1193,7 @@ namespace TSW2_Controller
 
         private void bgw_readScreen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            lbl_schub.Text = "Schub ist " + schubIst.ToString() + " und soll" + schubSoll.ToString();
+            lbl_schub.Text = "Schub ist " + schubIst.ToString() + " und soll " + schubSoll.ToString();
             lbl_bremse.Text = "Bremse ist " + bremseIst.ToString() + " und soll " + bremseSoll.ToString();
         }
 
@@ -1123,15 +1230,22 @@ namespace TSW2_Controller
 
         private void bgw_readScreen_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            if (((Bitmap)((object[])e.UserState)[0]).Height != 1) { pictureBox_Screenshot_original.Image = (Bitmap)((object[])e.UserState)[0]; }
+            if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
         }
 
         private void btn_einstellungen_Click(object sender, EventArgs e)
         {
             check_active.Checked = false;
-            SettingsForm settingsForm = new SettingsForm();
+            FormSettings settingsForm = new FormSettings();
+            settingsForm.Location = this.Location;
             settingsForm.ShowDialog();
             loadSettings();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

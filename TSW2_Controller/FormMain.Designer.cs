@@ -1,6 +1,6 @@
 ﻿namespace TSW2_Controller
 {
-    partial class MainForm
+    partial class FormMain
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -43,6 +43,10 @@
             this.listBox_debugInfo = new System.Windows.Forms.ListBox();
             this.lbl_resolution = new System.Windows.Forms.Label();
             this.btn_einstellungen = new System.Windows.Forms.Button();
+            this.pictureBox_Screenshot_original = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Screenshot_alternativ = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.SuspendLayout();
             // 
             // lst_inputs
@@ -146,9 +150,10 @@
             // listBox_debugInfo
             // 
             this.listBox_debugInfo.FormattingEnabled = true;
+            this.listBox_debugInfo.HorizontalScrollbar = true;
             this.listBox_debugInfo.Location = new System.Drawing.Point(149, 57);
             this.listBox_debugInfo.Name = "listBox_debugInfo";
-            this.listBox_debugInfo.Size = new System.Drawing.Size(287, 368);
+            this.listBox_debugInfo.Size = new System.Drawing.Size(195, 368);
             this.listBox_debugInfo.TabIndex = 18;
             // 
             // lbl_resolution
@@ -170,14 +175,32 @@
             this.btn_einstellungen.UseVisualStyleBackColor = true;
             this.btn_einstellungen.Click += new System.EventHandler(this.btn_einstellungen_Click);
             // 
-            // MainForm
+            // pictureBox_Screenshot_original
+            // 
+            this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(15, 474);
+            this.pictureBox_Screenshot_original.Name = "pictureBox_Screenshot_original";
+            this.pictureBox_Screenshot_original.Size = new System.Drawing.Size(329, 24);
+            this.pictureBox_Screenshot_original.TabIndex = 23;
+            this.pictureBox_Screenshot_original.TabStop = false;
+            // 
+            // pictureBox_Screenshot_alternativ
+            // 
+            this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(15, 504);
+            this.pictureBox_Screenshot_alternativ.Name = "pictureBox_Screenshot_alternativ";
+            this.pictureBox_Screenshot_alternativ.Size = new System.Drawing.Size(329, 24);
+            this.pictureBox_Screenshot_alternativ.TabIndex = 24;
+            this.pictureBox_Screenshot_alternativ.TabStop = false;
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(459, 492);
+            this.ClientSize = new System.Drawing.Size(362, 549);
+            this.Controls.Add(this.pictureBox_Screenshot_alternativ);
+            this.Controls.Add(this.pictureBox_Screenshot_original);
             this.Controls.Add(this.btn_einstellungen);
             this.Controls.Add(this.lbl_resolution);
             this.Controls.Add(this.listBox_debugInfo);
@@ -188,9 +211,12 @@
             this.Controls.Add(this.btn_reloadConfig);
             this.Controls.Add(this.check_active);
             this.Controls.Add(this.lst_inputs);
-            this.Name = "MainForm";
+            this.Name = "FormMain";
             this.Padding = new System.Windows.Forms.Padding(12);
             this.Text = "TSW2_Controller";
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,6 +237,8 @@
         private System.Windows.Forms.ListBox listBox_debugInfo;
         private System.Windows.Forms.Label lbl_resolution;
         private System.Windows.Forms.Button btn_einstellungen;
+        private System.Windows.Forms.PictureBox pictureBox_Screenshot_original;
+        private System.Windows.Forms.PictureBox pictureBox_Screenshot_alternativ;
     }
 }
 

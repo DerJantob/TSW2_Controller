@@ -11,23 +11,21 @@ using System.Windows.Forms;
 
 namespace TSW2_Controller
 {
-    public partial class SettingsForm : Form
+    public partial class FormSettings : Form
     {
-        public SettingsForm()
+        public FormSettings()
         {
             InitializeComponent();
+            lbl_version.Text = "v" + this.ProductVersion.Remove(ProductVersion.Length - 2, 2);
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             check_showDebug.Checked = Properties.Settings.Default.showDebug;
+            check_ShowScan.Checked = Properties.Settings.Default.showScanResult;
+
             txt_resHeight.Text = Properties.Settings.Default.res.Height.ToString();
             txt_resWidth.Text = Properties.Settings.Default.res.Width.ToString();
-        }
-
-        private void check_showDebug_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.showDebug = check_showDebug.Checked;
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,13 +39,19 @@ namespace TSW2_Controller
                 MessageBox.Show("Fehler bei Auflösung!");
             }
 
+            Properties.Settings.Default.showDebug = check_showDebug.Checked;
+            Properties.Settings.Default.showScanResult = check_ShowScan.Checked;
             Properties.Settings.Default.Save();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+
+        private void btn_Zeitumrechnungshilfe_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(5000);
-            Keyboard.HoldKey((byte)Keys.A,1000);
+            FormZeitumrechnung formZeitumrechnung = new FormZeitumrechnung();
+            formZeitumrechnung.Location = this.Location;
+            formZeitumrechnung.ShowDialog();
         }
     }
 }
