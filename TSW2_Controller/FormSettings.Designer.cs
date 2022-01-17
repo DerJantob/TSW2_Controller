@@ -1,6 +1,6 @@
 ﻿namespace TSW2_Controller
 {
-    partial class SettingsForm
+    partial class FormSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             this.txt_resHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.check_showDebug = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Zeitumrechnungshilfe = new System.Windows.Forms.Button();
             this.lbl_version = new System.Windows.Forms.Label();
             this.check_ShowScan = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -72,21 +72,21 @@
             this.check_showDebug.Text = "Debug Informationen";
             this.check_showDebug.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btn_Zeitumrechnungshilfe
             // 
-            this.button1.Location = new System.Drawing.Point(12, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Zeitumrechnungshilfe.Location = new System.Drawing.Point(162, 12);
+            this.btn_Zeitumrechnungshilfe.Name = "btn_Zeitumrechnungshilfe";
+            this.btn_Zeitumrechnungshilfe.Size = new System.Drawing.Size(119, 24);
+            this.btn_Zeitumrechnungshilfe.TabIndex = 5;
+            this.btn_Zeitumrechnungshilfe.Text = "Zeitumrechnungshilfe";
+            this.btn_Zeitumrechnungshilfe.UseVisualStyleBackColor = true;
+            this.btn_Zeitumrechnungshilfe.Click += new System.EventHandler(this.btn_Zeitumrechnungshilfe_Click);
             // 
             // lbl_version
             // 
             this.lbl_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(139, 150);
+            this.lbl_version.Location = new System.Drawing.Point(241, 88);
             this.lbl_version.Name = "lbl_version";
             this.lbl_version.Size = new System.Drawing.Size(40, 13);
             this.lbl_version.TabIndex = 6;
@@ -102,21 +102,22 @@
             this.check_ShowScan.Text = "Scan-Ergebnis anzeigen";
             this.check_ShowScan.UseVisualStyleBackColor = true;
             // 
-            // SettingsForm
+            // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(191, 172);
+            this.ClientSize = new System.Drawing.Size(293, 110);
             this.Controls.Add(this.check_ShowScan);
             this.Controls.Add(this.lbl_version);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_Zeitumrechnungshilfe);
             this.Controls.Add(this.check_showDebug);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_resHeight);
             this.Controls.Add(this.txt_resWidth);
-            this.Name = "SettingsForm";
+            this.Name = "FormSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Einstellungen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.Load += new System.EventHandler(this.SettingsForm_Load);
@@ -131,7 +132,7 @@
         private System.Windows.Forms.TextBox txt_resHeight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox check_showDebug;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Zeitumrechnungshilfe;
         private System.Windows.Forms.Label lbl_version;
         private System.Windows.Forms.CheckBox check_ShowScan;
     }

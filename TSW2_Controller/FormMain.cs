@@ -14,8 +14,12 @@ using System.IO;
 
 namespace TSW2_Controller
 {
-    public partial class MainForm : Form
+    public partial class FormMain : Form
     {
+        //Todo: Überprufe das "Länger drücken" nochmal
+        //                                                        vllt erledigt aber nicht schön ^^      (Kombihebel hat 2 verschiedene Zeiten beim Bremsen und beim Beschleunigen -_-)
+        //Tastenkombinationen hinzufügen
+
         DirectInput input = new DirectInput();
         Joystick mainStick;
         Joystick[] MainSticks;
@@ -51,7 +55,7 @@ namespace TSW2_Controller
 
 
 
-        public MainForm()
+        public FormMain()
         {
             InitializeComponent();
 
@@ -483,50 +487,31 @@ namespace TSW2_Controller
 
             if (isThrottle)
             {
+                int delay = 0;
+                if (throttleConfig[4].Contains("|"))
+                {
+                    if (schubIst < 0 || schubSoll < 0)
+                    {
+                        delay = Convert.ToInt32(throttleConfig[4].Remove(0, throttleConfig[4].IndexOf("|") + 1));
+                    }
+                    else
+                    {
+                        delay = Convert.ToInt32(throttleConfig[4].Remove(throttleConfig[4].IndexOf("|"), throttleConfig[4].Length - throttleConfig[4].IndexOf("|")));
+                    }
+                    rawData.Add(delay.ToString());
+                }
+                else
+                {
+                    delay = Convert.ToInt32(throttleConfig[4]);
+                }
+
+
                 if (throttleConfig[1] == "Stufen")
                 {
                     int diffSchub = schubIst - schubSoll;
 
                     //Wenn man an manchen Stellen länger gedrückthalten muss
-                    #region Lange drücken
-                    if (throttleConfig[5].Length > 0)
-                    {
-                        foreach (string single in throttleConfig[5].Remove(throttleConfig[5].Length - 1).Replace("[", "").Split(']'))
-                        {
-                            int index_minus = single.IndexOf("|");
-                            int index_doppelpnkt = single.IndexOf(":");
-
-                            int untere_grenze = Convert.ToInt32(single.Remove(index_minus, single.Length - index_minus));
-                            int obere_grenze = Convert.ToInt32(single.Remove(0, index_minus + 1).Remove(single.Remove(0, index_minus + 1).IndexOf(":"), single.Remove(0, index_minus + 1).Length - single.Remove(0, index_minus + 1).IndexOf(":")));
-                            int dauer = Convert.ToInt32(single.Remove(0, single.IndexOf(":") + 1));
-
-                            if (schubIst <= untere_grenze && obere_grenze <= schubSoll)
-                            {
-                                rawData.Add("passe die Schubzunahme an");
-                                diffSchub = schubIst - untere_grenze;
-                                if (diffSchub <= -1)
-                                {
-                                    Keyboard.HoldKey(Keyboard.increaseThrottle, 200);
-                                    Thread.Sleep(30);
-                                    rawData.Add("Halte mehr gedrückt");
-                                    schubIst = obere_grenze;
-                                }
-                            }
-                            else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
-                            {
-                                diffSchub = schubIst - obere_grenze;
-                                rawData.Add("passe die Schubabnahme an");
-                                if (diffSchub >= 1)
-                                {
-                                    Keyboard.HoldKey(Keyboard.decreaseThrottle, 200);
-                                    Thread.Sleep(30);
-                                    rawData.Add("Halte weniger gedrückt");
-                                    schubIst = untere_grenze;
-                                }
-                            }
-                        }
-                    }
-                    #endregion
+                    diffSchub = ThrottleLongPress(diffSchub);
 
 
                     for (int i = 0; i < Math.Abs(diffSchub); i++)
@@ -535,13 +520,13 @@ namespace TSW2_Controller
                         if (diffSchub > 0)
                         {
                             //weniger d
-                            Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(throttleConfig[4]));
+                            Keyboard.HoldKey(Keyboard.decreaseThrottle, delay);
                             Thread.Sleep(30);
                         }
                         else if (diffSchub < 0)
                         {
                             //mehr a
-                            Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(throttleConfig[4]));
+                            Keyboard.HoldKey(Keyboard.increaseThrottle, delay);
                             Thread.Sleep(30);
                         }
                     }
@@ -552,58 +537,20 @@ namespace TSW2_Controller
                     int diffSchub = schubIst - schubSoll;
 
                     //Wenn man an manchen Stellen länger gedrückthalten muss
-                    #region Lange drücken
-                    if (throttleConfig[5].Length > 0)
-                    {
-                        foreach (string single in throttleConfig[5].Remove(throttleConfig[5].Length - 1).Replace("[", "").Split(']'))
-                        {
-                            int index_minus = single.IndexOf("|");
-                            int index_doppelpnkt = single.IndexOf(":");
-
-                            int untere_grenze = Convert.ToInt32(single.Remove(index_minus, single.Length - index_minus));
-                            int obere_grenze = Convert.ToInt32(single.Remove(0, index_minus + 1).Remove(single.Remove(0, index_minus + 1).IndexOf(":"), single.Remove(0, index_minus + 1).Length - single.Remove(0, index_minus + 1).IndexOf(":")));
-                            int dauer = Convert.ToInt32(single.Remove(0, single.IndexOf(":") + 1));
-
-                            if (schubIst <= untere_grenze && obere_grenze <= schubSoll)
-                            {
-                                rawData.Add("passe die Schubzunahme an");
-                                diffSchub = schubIst - untere_grenze;
-                                if (diffSchub <= -1)
-                                {
-                                    Keyboard.HoldKey(Keyboard.increaseThrottle, 200);
-                                    Thread.Sleep(30);
-                                    rawData.Add("Halte mehr gedrückt");
-                                    schubIst = obere_grenze;
-                                }
-                            }
-                            else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
-                            {
-                                diffSchub = schubIst - obere_grenze;
-                                rawData.Add("passe die Schubabnahme an");
-                                if (diffSchub >= 1)
-                                {
-                                    Keyboard.HoldKey(Keyboard.decreaseThrottle, 200);
-                                    Thread.Sleep(30);
-                                    rawData.Add("Halte weniger gedrückt");
-                                    schubIst = untere_grenze;
-                                }
-                            }
-                        }
-                    }
-                    #endregion
+                    diffSchub = ThrottleLongPress(diffSchub);
 
 
                     if (diffSchub > 1)
                     {
                         //weniger d
-                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(throttleConfig[4]))));
+                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
                         Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
                     else if (diffSchub < 1)
                     {
                         //mehr a
-                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(throttleConfig[4]))));
+                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
                         Thread.Sleep(30);
                         schubIst = schubSoll;
                     }
@@ -632,7 +579,7 @@ namespace TSW2_Controller
                             {
                                 rawData.Add("passe die Bremszunahme an");
                                 diffBremse = bremseIst - untere_grenze;
-                                if (diffBremse <= -1)
+                                if (diffBremse >= -1)
                                 {
                                     Keyboard.HoldKey(Keyboard.increaseBrake, 200);
                                     Thread.Sleep(30);
@@ -644,7 +591,7 @@ namespace TSW2_Controller
                             {
                                 diffBremse = bremseIst - obere_grenze;
                                 rawData.Add("passe die Bremsabnahme an");
-                                if (diffBremse >= 1)
+                                if (diffBremse <= 1)
                                 {
                                     Keyboard.HoldKey(Keyboard.decreaseBrake, 200);
                                     Thread.Sleep(30);
@@ -699,7 +646,7 @@ namespace TSW2_Controller
                             {
                                 rawData.Add("passe die Schubzunahme an");
                                 diffBremse = bremseIst - untere_grenze;
-                                if (diffBremse <= -1)
+                                if (diffBremse >= -1)
                                 {
                                     Keyboard.HoldKey(Keyboard.increaseBrake, 200);
                                     Thread.Sleep(30);
@@ -740,6 +687,48 @@ namespace TSW2_Controller
                     }
                 }
             }
+        }
+
+        public int ThrottleLongPress(int diffSchub)
+        {
+            if (throttleConfig[5].Length > 0)
+            {
+                foreach (string single in throttleConfig[5].Remove(throttleConfig[5].Length - 1).Replace("[", "").Split(']'))
+                {
+                    int index_minus = single.IndexOf("|");
+                    int index_doppelpnkt = single.IndexOf(":");
+
+                    int untere_grenze = Convert.ToInt32(single.Remove(index_minus, single.Length - index_minus));
+                    int obere_grenze = Convert.ToInt32(single.Remove(0, index_minus + 1).Remove(single.Remove(0, index_minus + 1).IndexOf(":"), single.Remove(0, index_minus + 1).Length - single.Remove(0, index_minus + 1).IndexOf(":")));
+                    int dauer = Convert.ToInt32(single.Remove(0, single.IndexOf(":") + 1));
+
+                    if (schubIst <= untere_grenze && obere_grenze <= schubSoll)
+                    {
+                        rawData.Add("passe die Schubzunahme an");
+                        diffSchub = schubIst - untere_grenze;
+                        if (diffSchub >= -1)
+                        {
+                            Keyboard.HoldKey(Keyboard.increaseThrottle, 200);
+                            Thread.Sleep(30);
+                            rawData.Add("Halte mehr gedrückt");
+                            schubIst = obere_grenze;
+                        }
+                    }
+                    else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
+                    {
+                        diffSchub = schubIst - obere_grenze;
+                        rawData.Add("passe die Schubabnahme an");
+                        if (diffSchub <= 1)
+                        {
+                            Keyboard.HoldKey(Keyboard.decreaseThrottle, 200);
+                            Thread.Sleep(30);
+                            rawData.Add("Halte weniger gedrückt");
+                            schubIst = untere_grenze;
+                        }
+                    }
+                }
+            }
+            return diffSchub;
         }
 
         public void HandleButtons()
@@ -865,7 +854,7 @@ namespace TSW2_Controller
         }
 
 
-        private Bitmap Screenshot(bool normal)
+        public Bitmap Screenshot(bool normal)
         {
             //Breite und Höhe des ScanFensters
             int width = ConvertWidth(411);
@@ -907,7 +896,7 @@ namespace TSW2_Controller
                 }
             }
 
-            if (Properties.Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[]{ bmpScreenshot, new Bitmap(1, 1) }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot }); } }
+            if (Properties.Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1) }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot }); } }
 
             return bmpScreenshot;
         }
@@ -926,6 +915,7 @@ namespace TSW2_Controller
                 }
             }
 
+            ocrtext = ocrtext.Replace(",", ".");
             return ocrtext;
         }
 
@@ -1247,9 +1237,15 @@ namespace TSW2_Controller
         private void btn_einstellungen_Click(object sender, EventArgs e)
         {
             check_active.Checked = false;
-            SettingsForm settingsForm = new SettingsForm();
+            FormSettings settingsForm = new FormSettings();
+            settingsForm.Location = this.Location;
             settingsForm.ShowDialog();
             loadSettings();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

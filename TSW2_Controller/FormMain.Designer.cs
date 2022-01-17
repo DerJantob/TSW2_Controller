@@ -1,6 +1,6 @@
 ﻿namespace TSW2_Controller
 {
-    partial class MainForm
+    partial class FormMain
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -191,7 +191,7 @@
             this.pictureBox_Screenshot_alternativ.TabIndex = 24;
             this.pictureBox_Screenshot_alternativ.TabStop = false;
             // 
-            // MainForm
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,9 +211,10 @@
             this.Controls.Add(this.btn_reloadConfig);
             this.Controls.Add(this.check_active);
             this.Controls.Add(this.lst_inputs);
-            this.Name = "MainForm";
+            this.Name = "FormMain";
             this.Padding = new System.Windows.Forms.Padding(12);
             this.Text = "TSW2_Controller";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).EndInit();
             this.ResumeLayout(false);

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace TSW2_Controller
 {
-    public partial class SettingsForm : Form
+    public partial class FormSettings : Form
     {
-        public SettingsForm()
+        public FormSettings()
         {
             InitializeComponent();
             lbl_version.Text = "v" + this.ProductVersion.Remove(ProductVersion.Length - 2, 2);
@@ -44,10 +44,14 @@ namespace TSW2_Controller
             Properties.Settings.Default.Save();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+
+        private void btn_Zeitumrechnungshilfe_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(5000);
-            Keyboard.HoldKey((byte)Keys.A,1000);
+            FormZeitumrechnung formZeitumrechnung = new FormZeitumrechnung();
+            formZeitumrechnung.Location = this.Location;
+            formZeitumrechnung.ShowDialog();
         }
     }
 }
