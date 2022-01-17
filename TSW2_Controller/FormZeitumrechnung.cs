@@ -210,14 +210,12 @@ namespace TSW2_Controller
 
                 if (endNumber - startNumber > 0)
                 {
-                    Keyboard.HoldKey((byte)Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
                     MessageBox.Show("Fertig!\nAls Wert für die Zeitumrechnungkannst du nun " + Math.Round(Convert.ToDouble(endNumber - startNumber) * (1000.0 / delay), 0) + " eintragen");
                 }
                 else if (endNumber != -1)
                 {
-                    Keyboard.HoldKey((byte)Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
                     MessageBox.Show("Hmm da hast du wohl etwas falsch gemacht. Die Startzahl muss größer als die Endzahl sein.");
