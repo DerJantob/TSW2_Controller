@@ -16,9 +16,8 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
-        //Todo: Überprufe das "Länger drücken" nochmal
-        //                                                        vllt erledigt aber nicht schön ^^      (Kombihebel hat 2 verschiedene Zeiten beim Bremsen und beim Beschleunigen -_-)
-        //Tastenkombinationen hinzufügen
+        ///Todo: Überprufe das "Länger drücken" nochmal
+        ///Tastenkombinationen hinzufügen
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -429,9 +428,9 @@ namespace TSW2_Controller
             {
                 cancelThrottleRequest = true;
                 schubSoll = currentThrottleJoystickState;
-                requestThrottle = 5;
 
                 ChangeGameState(true);
+                requestThrottle = 5;
             }
 
         }
