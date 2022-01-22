@@ -140,7 +140,16 @@ namespace TSW2_Controller
 
             foreach (string[] str in trainConfig)
             {
-                if (!trainNames.Any(str[0].Contains) && str[0] != "Zug" && str[0] != Tcfg.nameForGlobal)
+                bool alreadyExists = false;
+                foreach(string tN in trainNames)
+                {
+                    if(str[0] == tN)
+                    {
+                        alreadyExists = true;
+                    }
+                }
+
+                if (!alreadyExists && str[0] != "Zug" && str[0] != Tcfg.nameForGlobal)
                 {
                     trainNames.Add(str[0]);
                 }
@@ -507,11 +516,13 @@ namespace TSW2_Controller
                     {
                         //mehr
                         Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
+                        schubIst = schubSoll;
                         requestThrottle = 2;
                     }
                     else if (diffSchub < -1)
                     {
                         Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        schubIst = schubSoll;
                         requestThrottle = 2;
                     }
 
@@ -535,7 +546,7 @@ namespace TSW2_Controller
                         {
                             Keyboard.HoldKey(Keyboard.decreaseThrottle, delay);
                         }
-                        Thread.Sleep(30);
+                        Thread.Sleep(80);
                     }
                     requestThrottle = 2;
                     schubIst = schubSoll;
@@ -586,7 +597,7 @@ namespace TSW2_Controller
                         {
                             Keyboard.HoldKey(Keyboard.decreaseBrake, delay);
                         }
-                        Thread.Sleep(30);
+                        Thread.Sleep(80);
                     }
                     requestBrake = 2;
                     bremseIst = bremseSoll;
