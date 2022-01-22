@@ -53,5 +53,10 @@ namespace TSW2_Controller
             formZeitumrechnung.Location = this.Location;
             formZeitumrechnung.ShowDialog();
         }
+
+        private void btn_updates_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/DerJantob/TSW2_Controller");
+        }
     }
 }

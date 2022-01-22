@@ -18,6 +18,7 @@ namespace TSW2_Controller
     {
         ///Todo: Überprufe das "Länger drücken" nochmal
         ///Tastenkombinationen hinzufügen
+        ///Bei Zeitumrechnung je nach Auswahl die Beschreibung ändern
 
         DirectInput input = new DirectInput();
         Joystick mainStick;

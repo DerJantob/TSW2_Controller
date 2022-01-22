@@ -35,6 +35,7 @@
             this.btn_Zeitumrechnungshilfe = new System.Windows.Forms.Button();
             this.lbl_version = new System.Windows.Forms.Label();
             this.check_ShowScan = new System.Windows.Forms.CheckBox();
+            this.btn_updates = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_resWidth
@@ -86,7 +87,7 @@
             // 
             this.lbl_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(241, 88);
+            this.lbl_version.Location = new System.Drawing.Point(241, 131);
             this.lbl_version.Name = "lbl_version";
             this.lbl_version.Size = new System.Drawing.Size(40, 13);
             this.lbl_version.TabIndex = 6;
@@ -102,13 +103,25 @@
             this.check_ShowScan.Text = "Scan-Ergebnis anzeigen";
             this.check_ShowScan.UseVisualStyleBackColor = true;
             // 
+            // btn_updates
+            // 
+            this.btn_updates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_updates.Location = new System.Drawing.Point(149, 126);
+            this.btn_updates.Name = "btn_updates";
+            this.btn_updates.Size = new System.Drawing.Size(86, 23);
+            this.btn_updates.TabIndex = 8;
+            this.btn_updates.Text = "check updates";
+            this.btn_updates.UseVisualStyleBackColor = true;
+            this.btn_updates.Click += new System.EventHandler(this.btn_updates_Click);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(293, 110);
+            this.ClientSize = new System.Drawing.Size(293, 153);
+            this.Controls.Add(this.btn_updates);
             this.Controls.Add(this.check_ShowScan);
             this.Controls.Add(this.lbl_version);
             this.Controls.Add(this.btn_Zeitumrechnungshilfe);
@@ -135,5 +148,6 @@
         private System.Windows.Forms.Button btn_Zeitumrechnungshilfe;
         private System.Windows.Forms.Label lbl_version;
         private System.Windows.Forms.CheckBox check_ShowScan;
+        private System.Windows.Forms.Button btn_updates;
     }
 }
