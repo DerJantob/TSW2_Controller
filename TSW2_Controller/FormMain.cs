@@ -16,7 +16,7 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
-        ///Todo:
+        ///Todo: Überprufe das "Länger drücken" nochmal
         ///Tastenkombinationen hinzufügen
 
         DirectInput input = new DirectInput();
@@ -437,7 +437,7 @@ namespace TSW2_Controller
                 schubSoll = currentThrottleJoystickState;
 
                 ChangeGameState(true);
-                //Thread.Sleep(100); //Wenn es zu ungenau wird das hier aktivieren
+                requestThrottle = 5;
             }
 
         }
