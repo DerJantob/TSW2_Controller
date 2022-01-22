@@ -244,7 +244,7 @@ namespace TSW2_Controller
                 if (nextStep_Value != 0)
                 {
                     Thread.Sleep(1000);
-                    for (int i = 30; i < 200; i += 5)
+                    for (int i = 30; i < 1000; i += 5)
                     {
                         Keyboard.HoldKey(taste_weniger, nextStep_Value + i);
                         Thread.Sleep(500);
