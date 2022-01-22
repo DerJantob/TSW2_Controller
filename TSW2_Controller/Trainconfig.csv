@@ -10,13 +10,16 @@ _Global,PZB-Befehl,0,B6,,Button,,,entf,entf,,,,,,
 _Global,Direkte Bremse anlegen,0,B9,,Button,,,+,+,,,,,,
 _Global,Direkte Bremse lösen,0,B8,,Button,,,ü,ü,,,,,,
 _Global,Hupe,0,B0,,Button,,,space,space,,,,,,
+BR101,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Fahrschalter,Stufenlos,,[Aus=0][Min.=5][Max.=100],42,[0|5:200]
+BR101,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Bremse=9],135,
+BR101,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
 BR112,Schub,0,JoyZ,0,1,,Schub,,,Geschwindigkeitswähler,Stufen,17,[Aus=0][Ein=1][100 km/h=11][110 km/h=12][120 km/h=13][130 km/h=14][140 km/h=15][150 km/h=16][160 km/h=17][10 km/h=2][20 km/h=3][30 km/h=4][40 km/h=5][50 km/h=6][60 km/h=7][70 km/h=8][80 km/h=9][90 km/h=10],115,[0|1:400]
 BR112,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,8,[Lösen=0][Fahren=0][Voller Betrieb=8],130,[0|1:300]
 BR112,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
 BR143,Schub,0,JoyZ,0,1,,Schub,,,Geschwindigkeitswähler,Stufen,13,[Aus=0][Ein=1][100 km/h=11][110 km/h=12][120 km/h=13][10 km/h=2][20 km/h=3][30 km/h=4][40 km/h=5][50 km/h=6][60 km/h=7][70 km/h=8][80 km/h=9][90 km/h=10],140,
 BR143,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,10,[Lösen=0][Aus=1][1=2][2=3][3=4][4=5][5=6][6=7][7=8][8=9][Volle Leistung=10],124,
 BR143,Bremse nach Lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR146,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungsregler,Stufenlos,,[Aus=0][Min.=5][Max=100],53,[0|5:200]
+BR146,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungsregler,Stufenlos,,[Aus=0][Min.=5][Max=100],53,[0|5:500]
 BR146,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],152,
 BR146,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
 BR155,Schub,0,JoyZ,0,1,,Schub,,,Fahrstufenschalter,Stufen,30,[Unten=-1][Halten=-2],140,
@@ -40,6 +43,7 @@ BR363,Bremse lösen,0,JoyY,0,Button[<0],,,ö,ö,,,,,,
 BR363,Direkte Bremse anlegen,0,B3,,Button,,,+,+,,,,,,
 BR363,Direkte Bremse lösen,0,B2,,Button,,,ü,ü,,,,,,
 BR422,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Kombihebel[Leistung][Bremsleistung],Stufenlos,,[Min.=10][Min. Bremse=-10],55|83,[0|10:270][-10|0:270]
+BR423,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Kombihebel[Leistung][Bremsleistung],Stufenlos,,[Minimale=10][Minimale Bremse=-10],55|83,[0|10:270][-10|0:270]
 BR425,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Kombihebel[Leistung][Bremsleistung],Stufenlos,,[Minimale=10][Minimale Bremse=-1],55|83,[0|10:250][-1|0:250]
 BR442,Schub,0,JoyZ,1,0,[1=5][2=5][3=5][4=5][-1=-5][-2=-5][-3=-5][-4=-5],Kombihebel,,,Leistung/Bremse[Leistung][Bremsleistung],Stufenlos,,[Max.=100][Max. Bremse=-100],73,[0|5:200][-5|0:200]
 G6,Schub halten,0,JoyY,0,Button[<-10],,,a,a,,,,,,

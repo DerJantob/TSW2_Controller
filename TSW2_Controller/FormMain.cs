@@ -141,9 +141,9 @@ namespace TSW2_Controller
             foreach (string[] str in trainConfig)
             {
                 bool alreadyExists = false;
-                foreach(string tN in trainNames)
+                foreach (string tN in trainNames)
                 {
-                    if(str[0] == tN)
+                    if (str[0] == tN)
                     {
                         alreadyExists = true;
                     }
@@ -437,7 +437,6 @@ namespace TSW2_Controller
                 schubSoll = currentThrottleJoystickState;
 
                 ChangeGameState(true);
-                requestThrottle = 5;
             }
 
         }
@@ -490,43 +489,45 @@ namespace TSW2_Controller
             {
                 if (throttleConfig[1] == "Stufenlos")
                 {
-                    int delay = 0;
-                    ConvertLongPress_Throttle(true);
-                    int diffSchub = schubSoll - schubIst; //x>0 mehr |x<0 weniger
-
-                    if (throttleConfig[4].Contains("|"))
+                    if (Math.Abs(schubSoll - schubIst) > 1)
                     {
-                        if (schubIst < 0 || schubSoll < 0)
+                        int delay = 0;
+                        ConvertLongPress_Throttle(true);
+                        int diffSchub = schubSoll - schubIst; //x>0 mehr |x<0 weniger
+
+                        if (throttleConfig[4].Contains("|"))
                         {
-                            delay = Convert.ToInt32(throttleConfig[4].Remove(0, throttleConfig[4].IndexOf("|") + 1));
+                            if (schubIst < 0 || schubSoll < 0)
+                            {
+                                delay = Convert.ToInt32(throttleConfig[4].Remove(0, throttleConfig[4].IndexOf("|") + 1));
+                            }
+                            else
+                            {
+                                delay = Convert.ToInt32(throttleConfig[4].Remove(throttleConfig[4].IndexOf("|"), throttleConfig[4].Length - throttleConfig[4].IndexOf("|")));
+                            }
                         }
                         else
                         {
-                            delay = Convert.ToInt32(throttleConfig[4].Remove(throttleConfig[4].IndexOf("|"), throttleConfig[4].Length - throttleConfig[4].IndexOf("|")));
+                            delay = Convert.ToInt32(throttleConfig[4]);
+                        }
+
+                        rawData.Add("gehe von " + schubIst + " auf " + schubSoll);
+
+                        if (diffSchub > 0)
+                        {
+                            //mehr
+                            Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
+                            schubIst = schubSoll;
+                            requestThrottle = 3;
+                        }
+                        else if (diffSchub < 0)
+                        {
+                            Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                            schubIst = schubSoll;
+                            requestThrottle = 3;
                         }
                     }
-                    else
-                    {
-                        delay = Convert.ToInt32(throttleConfig[4]);
-                    }
 
-                    rawData.Add("gehe von " + schubIst + " auf " + schubSoll);
-
-                    if (diffSchub > 1)
-                    {
-                        //mehr
-                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
-                        schubIst = schubSoll;
-                        requestThrottle = 2;
-                    }
-                    else if (diffSchub < -1)
-                    {
-                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
-                        schubIst = schubSoll;
-                        requestThrottle = 2;
-                    }
-
-                    schubIst = schubSoll;
                 }
                 else if (throttleConfig[1] == "Stufen")
                 {
@@ -548,7 +549,7 @@ namespace TSW2_Controller
                         }
                         Thread.Sleep(80);
                     }
-                    requestThrottle = 2;
+                    requestThrottle = 3;
                     schubIst = schubSoll;
                 }
             }
@@ -556,28 +557,31 @@ namespace TSW2_Controller
             {
                 if (brakeConfig[1] == "Stufenlos")
                 {
-                    int delay = 0;
-                    ConvertLongPress_Brake(true);
-                    int diffBremse = bremseSoll - bremseIst; //x>0 mehr |x<0 weniger
-
-                    delay = Convert.ToInt32(brakeConfig[4]);
-
-
-                    rawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
-
-                    if (diffBremse > 1)
+                    if (Math.Abs(bremseSoll - bremseIst) > 1)
                     {
-                        //mehr
-                        Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
-                        requestBrake = 2;
-                    }
-                    else if (diffBremse < -1)
-                    {
-                        Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
-                        requestBrake = 2;
-                    }
+                        int delay = 0;
+                        ConvertLongPress_Brake(true);
+                        int diffBremse = bremseSoll - bremseIst; //x>0 mehr |x<0 weniger
 
-                    bremseIst = bremseSoll;
+                        delay = Convert.ToInt32(brakeConfig[4]);
+
+
+                        rawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
+
+                        if (diffBremse > 0)
+                        {
+                            //mehr
+                            Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
+                            requestBrake = 2;
+                            bremseIst = bremseSoll;
+                        }
+                        else if (diffBremse < 0)
+                        {
+                            Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                            requestBrake = 2;
+                            bremseIst = bremseSoll;
+                        }
+                    }
                 }
                 else if (brakeConfig[1] == "Stufen")
                 {
@@ -626,12 +630,12 @@ namespace TSW2_Controller
                             rawData.Add("Halte mehr gedrückt");
                             Keyboard.HoldKey(Keyboard.increaseThrottle, dauer);
                             schubIst = obere_grenze;
-                            requestThrottle = 2;
+                            requestThrottle = 3;
                             Thread.Sleep(100);
                         }
                         else if (schubIst < untere_grenze)
                         {
-                            rawData.Add("Anpassen auf " + untere_grenze);
+                            rawData.Add("Anpassen auf hoch " + untere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.increaseThrottle, 20);
@@ -647,12 +651,12 @@ namespace TSW2_Controller
                             rawData.Add("Halte weniger gedrückt");
                             Keyboard.HoldKey(Keyboard.decreaseThrottle, dauer);
                             schubIst = untere_grenze;
-                            requestThrottle = 2;
+                            requestThrottle = 3;
                             Thread.Sleep(100);
                         }
                         else if (schubIst > obere_grenze)
                         {
-                            rawData.Add("Anpassen auf " + obere_grenze);
+                            rawData.Add("Anpassen auf runter " + obere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 20);
@@ -686,7 +690,7 @@ namespace TSW2_Controller
                             Keyboard.HoldKey(Keyboard.increaseBrake, dauer);
                             bremseIst = obere_grenze;
                             requestBrake = 2;
-                            Thread.Sleep(100);                            
+                            Thread.Sleep(100);
                         }
                         else if (bremseIst < untere_grenze)
                         {
