@@ -17,6 +17,7 @@ namespace TSW2_Controller
         public FormZeitumrechnung()
         {
             InitializeComponent();
+            radioChanged();
         }
 
         FormMain formMain = new FormMain();
@@ -43,9 +44,6 @@ namespace TSW2_Controller
                 radio_Schub.Enabled = true;
                 radio_Stufen.Enabled = true;
                 radio_Stufenlos.Enabled = true;
-                radio_Schub.Checked = true;
-                radio_kombihebel.Checked = true;
-                radio_Stufenlos.Checked = true;
                 btn_start.Text = "Start";
             }
             else
@@ -73,7 +71,7 @@ namespace TSW2_Controller
         private void btn_start_Click(object sender, EventArgs e)
         {
             counter = 7;
-            if (radio_kombihebel.Checked)
+            if (!radio_Stufenlos.Checked)
             {
                 SetUI(false);
                 btn_start.Text = counter.ToString();
@@ -186,7 +184,7 @@ namespace TSW2_Controller
                         if (dialog == DialogResult.Yes)
                         {
                             MessageBox.Show("OK dann Stelle den Regler nochmal auf " + startNumber + "%" + " und bestätige mit OK");
-                            MessageBox.Show("Drücke nochmal auf OK und wechsle innerhalb von 7 Sekunden zum TSW und warte");
+                            MessageBox.Show("Drücke nochmal auf OK, wechsle innerhalb von 7 Sekunden zum TSW und warte");
                             Thread.Sleep(7000);
                             delay = 800;
                             //Versuche es nochmal
@@ -210,6 +208,7 @@ namespace TSW2_Controller
 
                 if (endNumber - startNumber > 0)
                 {
+                    Keyboard.HoldKey((byte)Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
                     MessageBox.Show("Fertig!\nAls Wert für die Zeitumrechnungkannst du nun " + Math.Round(Convert.ToDouble(endNumber - startNumber) * (1000.0 / delay), 0) + " eintragen");
@@ -218,7 +217,7 @@ namespace TSW2_Controller
                 {
                     this.Focus();
                     Interaction.Beep();
-                    MessageBox.Show("Hmm da hast du wohl etwas falsch gemacht. Die Startzahl muss größer als die Endzahl sein.");
+                    MessageBox.Show("Hmm da hast du wohl etwas falsch gemacht. Die Startzahl sollte größer als die Endzahl sein.");
                 }
             }
             else
@@ -264,6 +263,13 @@ namespace TSW2_Controller
                     Interaction.Beep();
                     MessageBox.Show("Fertig!\nAls Wert für die Zeitumrechnungkannst du nun " + Math.Round((Convert.ToDouble(overskip_Value - nextStep_Value) / 2) + nextStep_Value, 0) + " eintragen");
                 }
+                else
+                {
+                    Keyboard.HoldKey((byte)Keys.Escape, 300);
+                    this.Focus();
+                    Interaction.Beep();
+                    MessageBox.Show("Hmm da hat etwas nicht funktioniert. Versuche es doch nochmal.");
+                }
             }
 
             SetUI(true);
@@ -293,6 +299,7 @@ namespace TSW2_Controller
             this.Focus();
             Interaction.Beep();
             MessageBox.Show("Stelle den Regler nun auf den bremswert");
+            MessageBox.Show("Drücke nochmal auf OK, wechsle innerhalb von 7 Sekunden zum TSW und warte");
             Thread.Sleep(7000);
 
             Keyboard.HoldKey(Keyboard.decreaseThrottle, 0);
@@ -317,21 +324,44 @@ namespace TSW2_Controller
         }
 
 
-
-        private void radio_kombihebel_CheckedChanged(object sender, EventArgs e)
+        private void radioChanged()
         {
+            SetUI(true);
+            if (radio_Stufenlos.Checked)
+            {
+                lbl_anleitung.Text = "- Stufenlosen Regler auf kleinen Wert stellen, vondem man mit konstanter Geschwindigkeit bis aufs Maximum kommen kann.\n\n- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n";
+            }
+
+            if (radio_Stufen.Checked)
+            {
+                lbl_anleitung.Text = "- Stufenregler auf Mittelwert stellen (die Stufe drüber und drunter sollten mit normaler Tastendrucklänge zu erreichen sein)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n";
+                txt_Startwert.Text = "";
+                txt_Startwert.Enabled = false;
+            }
+
             if (radio_kombihebel.Checked)
             {
+                lbl_anleitung.Text = "- Kombihebel im Schubbereich auf kleinen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- Start drücken und innerhalb von 7 Sekunden zum TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n\n- Kombihebel im Bremsbereich auf kleinstmöglichen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- OK drücken\n\n- Auf Pause-Bildschirm warten";
                 radio_Schub.Checked = true;
                 radio_Bremse.Enabled = false;
                 txt_Startwert.Text = "";
                 txt_Startwert.Enabled = false;
             }
-            else
-            {
-                radio_Bremse.Enabled = true;
-                txt_Startwert.Enabled = true;
-            }
+        }
+
+        private void radio_kombihebel_CheckedChanged(object sender, EventArgs e)
+        {
+            radioChanged();
+        }
+
+        private void radio_Stufen_CheckedChanged(object sender, EventArgs e)
+        {
+            radioChanged();
+        }
+
+        private void radio_Stufenlos_CheckedChanged(object sender, EventArgs e)
+        {
+            radioChanged();
         }
     }
 }

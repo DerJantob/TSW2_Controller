@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormZeitumrechnung));
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_anleitung = new System.Windows.Forms.Label();
             this.radio_Stufenlos = new System.Windows.Forms.RadioButton();
             this.radio_Stufen = new System.Windows.Forms.RadioButton();
             this.txt_Startwert = new System.Windows.Forms.TextBox();
@@ -39,10 +39,10 @@
             this.btn_start = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radio_kombihebel = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radio_Schub = new System.Windows.Forms.RadioButton();
             this.radio_Bremse = new System.Windows.Forms.RadioButton();
-            this.radio_kombihebel = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,15 +57,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Zeitumrechnungswert finden";
             // 
-            // label2
+            // lbl_anleitung
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(14, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(370, 208);
-            this.label2.TabIndex = 2;
-            this.label2.Text = resources.GetString("label2.Text");
+            this.lbl_anleitung.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_anleitung.Location = new System.Drawing.Point(14, 34);
+            this.lbl_anleitung.Name = "lbl_anleitung";
+            this.lbl_anleitung.Size = new System.Drawing.Size(370, 230);
+            this.lbl_anleitung.TabIndex = 2;
+            this.lbl_anleitung.Text = resources.GetString("lbl_anleitung.Text");
             // 
             // radio_Stufenlos
             // 
@@ -78,6 +77,7 @@
             this.radio_Stufenlos.TabStop = true;
             this.radio_Stufenlos.Text = "Stufenlos";
             this.radio_Stufenlos.UseVisualStyleBackColor = true;
+            this.radio_Stufenlos.CheckedChanged += new System.EventHandler(this.radio_Stufenlos_CheckedChanged);
             // 
             // radio_Stufen
             // 
@@ -88,6 +88,7 @@
             this.radio_Stufen.TabIndex = 4;
             this.radio_Stufen.Text = "Stufen";
             this.radio_Stufen.UseVisualStyleBackColor = true;
+            this.radio_Stufen.CheckedChanged += new System.EventHandler(this.radio_Stufen_CheckedChanged);
             // 
             // txt_Startwert
             // 
@@ -132,6 +133,17 @@
             this.panel1.Size = new System.Drawing.Size(86, 73);
             this.panel1.TabIndex = 9;
             // 
+            // radio_kombihebel
+            // 
+            this.radio_kombihebel.AutoSize = true;
+            this.radio_kombihebel.Location = new System.Drawing.Point(3, 49);
+            this.radio_kombihebel.Name = "radio_kombihebel";
+            this.radio_kombihebel.Size = new System.Drawing.Size(80, 17);
+            this.radio_kombihebel.TabIndex = 5;
+            this.radio_kombihebel.Text = "Kombihebel";
+            this.radio_kombihebel.UseVisualStyleBackColor = true;
+            this.radio_kombihebel.CheckedChanged += new System.EventHandler(this.radio_kombihebel_CheckedChanged);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.radio_Schub);
@@ -163,17 +175,6 @@
             this.radio_Bremse.Text = "Bremse";
             this.radio_Bremse.UseVisualStyleBackColor = true;
             // 
-            // radio_kombihebel
-            // 
-            this.radio_kombihebel.AutoSize = true;
-            this.radio_kombihebel.Location = new System.Drawing.Point(3, 49);
-            this.radio_kombihebel.Name = "radio_kombihebel";
-            this.radio_kombihebel.Size = new System.Drawing.Size(80, 17);
-            this.radio_kombihebel.TabIndex = 5;
-            this.radio_kombihebel.Text = "Kombihebel";
-            this.radio_kombihebel.UseVisualStyleBackColor = true;
-            this.radio_kombihebel.CheckedChanged += new System.EventHandler(this.radio_kombihebel_CheckedChanged);
-            // 
             // FormZeitumrechnung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,7 +185,7 @@
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_Startwert);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbl_anleitung);
             this.Controls.Add(this.label1);
             this.Name = "FormZeitumrechnung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -201,7 +202,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_anleitung;
         private System.Windows.Forms.RadioButton radio_Stufenlos;
         private System.Windows.Forms.RadioButton radio_Stufen;
         private System.Windows.Forms.TextBox txt_Startwert;

@@ -117,20 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Stelle den Stufenlosen Regler so ein, dass man ohne Störung
-bis aufs Maximum kommen kann. Versuch dabei den kleinst
-möglichen Wert zu nehmen.
-Eine Störung ist zum Beispiel die Stelle, wo man die Taste
-länger gedrückt halten muss, um weiter zu kommen.
-Danach drückst du auf Start und wechselst innerhalb von
-7 Sekunden zum TSW2 und wartest.
+  <data name="lbl_anleitung.Text" xml:space="preserve">
+    <value>- Stufenlosen Regler auf kleinen Wert stellen.
 
-Beispiel Br146:
-Ich stelle den Regler auf Min. (5%).
-Ich trage in das Textfeld eine 5 ein.
-Dann drücke ich auf Start und wechsle zum TSW2 und
-warte auf eine Benachrichtigung</value>
+- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)
+
+- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.
+
+- Auf Pause-Bildschirm warten.
+</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

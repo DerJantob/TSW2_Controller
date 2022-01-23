@@ -28,10 +28,10 @@ BR155,Bremse nach Aus und Lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
 BR155,Mehr Bremse,0,B3,,Button,,ä_[hold200]_[50]_ä_[hold200]_[0],,,,,,,,
 BR155,Weniger Bremse,0,B2,,Button,,ö_[hold200]_[50]_ö_[hold200]_[0],,,,,,,,
 BR182,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungshebel,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
-BR182,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],148,
+BR182,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],155,
 BR182,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
 BR182 MRCE,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungsregler,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
-BR182 MRCE,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Voller Betrieb=9],148,
+BR182 MRCE,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Voller Betrieb=9],155,
 BR182 MRCE,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
 BR185,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungshebel,Stufenlos,,[Aus=0][Min=5][Max=100],53,[0|5:200]
 BR185,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],110,
