@@ -16,9 +16,9 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
-        ///Todo: Überprufe das "Länger drücken" nochmal
+        ///Todo:
         ///Tastenkombinationen hinzufügen
-        ///Bei Zeitumrechnung je nach Auswahl die Beschreibung ändern
+        ///Möglichkeit geben _global zu deaktivieren
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -388,6 +388,8 @@ namespace TSW2_Controller
                 }
             }
 
+
+            //Debuginfos anzeigen
             try
             {
                 if (rawData.Count > 0)
@@ -976,7 +978,7 @@ namespace TSW2_Controller
                         {
                             result = alternative_result;
                         }
-                        if (result.Contains(throttleConfig[0]))
+                        if (result.Contains(throttleConfig[0]) && result != "")
                         {
                             int erkannterSchub = -99999;
                             result = result.Remove(0, result.IndexOf(throttleConfig[0]) + throttleConfig[0].Length).Replace("\n", "");
@@ -1033,7 +1035,7 @@ namespace TSW2_Controller
                         {
                             result = alternative_result;
                         }
-                        if (result.Contains(brakeConfig[0]))
+                        if (result.Contains(brakeConfig[0]) && result != "")
                         {
                             int erkannteBremsleistung = -99999;
                             result = result.Remove(0, result.IndexOf(brakeConfig[0]) + brakeConfig[0].Length).Replace("\n", "");
