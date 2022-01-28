@@ -45,6 +45,7 @@
             this.btn_einstellungen = new System.Windows.Forms.Button();
             this.pictureBox_Screenshot_original = new System.Windows.Forms.PictureBox();
             this.pictureBox_Screenshot_alternativ = new System.Windows.Forms.PictureBox();
+            this.check_deactivateGlobal = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,7 @@
             // lst_inputs
             // 
             this.lst_inputs.FormattingEnabled = true;
-            this.lst_inputs.Location = new System.Drawing.Point(15, 86);
+            this.lst_inputs.Location = new System.Drawing.Point(15, 117);
             this.lst_inputs.Name = "lst_inputs";
             this.lst_inputs.Size = new System.Drawing.Size(120, 95);
             this.lst_inputs.TabIndex = 9;
@@ -60,16 +61,19 @@
             // check_active
             // 
             this.check_active.AutoSize = true;
+            this.check_active.BackColor = System.Drawing.Color.Red;
+            this.check_active.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.check_active.Location = new System.Drawing.Point(15, 15);
             this.check_active.Name = "check_active";
             this.check_active.Size = new System.Drawing.Size(50, 17);
             this.check_active.TabIndex = 10;
             this.check_active.Text = "Aktiv";
-            this.check_active.UseVisualStyleBackColor = true;
+            this.check_active.UseVisualStyleBackColor = false;
+            this.check_active.CheckedChanged += new System.EventHandler(this.check_active_CheckedChanged);
             // 
             // btn_reloadConfig
             // 
-            this.btn_reloadConfig.Location = new System.Drawing.Point(15, 57);
+            this.btn_reloadConfig.Location = new System.Drawing.Point(15, 88);
             this.btn_reloadConfig.Name = "btn_reloadConfig";
             this.btn_reloadConfig.Size = new System.Drawing.Size(120, 23);
             this.btn_reloadConfig.TabIndex = 12;
@@ -107,7 +111,7 @@
             "7",
             "8",
             "9"});
-            this.comboBox_JoystickNumber.Location = new System.Drawing.Point(85, 187);
+            this.comboBox_JoystickNumber.Location = new System.Drawing.Point(85, 218);
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
             this.comboBox_JoystickNumber.Size = new System.Drawing.Size(50, 21);
             this.comboBox_JoystickNumber.TabIndex = 14;
@@ -127,7 +131,7 @@
             // lbl_schub
             // 
             this.lbl_schub.AutoSize = true;
-            this.lbl_schub.Location = new System.Drawing.Point(189, 428);
+            this.lbl_schub.Location = new System.Drawing.Point(189, 459);
             this.lbl_schub.Name = "lbl_schub";
             this.lbl_schub.Size = new System.Drawing.Size(110, 13);
             this.lbl_schub.TabIndex = 16;
@@ -141,7 +145,7 @@
             // lbl_bremse
             // 
             this.lbl_bremse.AutoSize = true;
-            this.lbl_bremse.Location = new System.Drawing.Point(189, 441);
+            this.lbl_bremse.Location = new System.Drawing.Point(189, 472);
             this.lbl_bremse.Name = "lbl_bremse";
             this.lbl_bremse.Size = new System.Drawing.Size(114, 13);
             this.lbl_bremse.TabIndex = 17;
@@ -151,7 +155,7 @@
             // 
             this.listBox_debugInfo.FormattingEnabled = true;
             this.listBox_debugInfo.HorizontalScrollbar = true;
-            this.listBox_debugInfo.Location = new System.Drawing.Point(149, 57);
+            this.listBox_debugInfo.Location = new System.Drawing.Point(149, 88);
             this.listBox_debugInfo.Name = "listBox_debugInfo";
             this.listBox_debugInfo.Size = new System.Drawing.Size(195, 368);
             this.listBox_debugInfo.TabIndex = 18;
@@ -177,7 +181,7 @@
             // 
             // pictureBox_Screenshot_original
             // 
-            this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(15, 474);
+            this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(15, 505);
             this.pictureBox_Screenshot_original.Name = "pictureBox_Screenshot_original";
             this.pictureBox_Screenshot_original.Size = new System.Drawing.Size(329, 24);
             this.pictureBox_Screenshot_original.TabIndex = 23;
@@ -185,11 +189,24 @@
             // 
             // pictureBox_Screenshot_alternativ
             // 
-            this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(15, 504);
+            this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(15, 535);
             this.pictureBox_Screenshot_alternativ.Name = "pictureBox_Screenshot_alternativ";
             this.pictureBox_Screenshot_alternativ.Size = new System.Drawing.Size(329, 24);
             this.pictureBox_Screenshot_alternativ.TabIndex = 24;
             this.pictureBox_Screenshot_alternativ.TabStop = false;
+            // 
+            // check_deactivateGlobal
+            // 
+            this.check_deactivateGlobal.AutoSize = true;
+            this.check_deactivateGlobal.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.check_deactivateGlobal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.check_deactivateGlobal.Location = new System.Drawing.Point(71, 40);
+            this.check_deactivateGlobal.Name = "check_deactivateGlobal";
+            this.check_deactivateGlobal.Size = new System.Drawing.Size(113, 17);
+            this.check_deactivateGlobal.TabIndex = 25;
+            this.check_deactivateGlobal.Text = "Deaktiviere Global";
+            this.check_deactivateGlobal.UseVisualStyleBackColor = true;
+            this.check_deactivateGlobal.CheckedChanged += new System.EventHandler(this.check_deactivateGlobal_CheckedChanged);
             // 
             // FormMain
             // 
@@ -198,7 +215,8 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(362, 549);
+            this.ClientSize = new System.Drawing.Size(362, 573);
+            this.Controls.Add(this.check_deactivateGlobal);
             this.Controls.Add(this.pictureBox_Screenshot_alternativ);
             this.Controls.Add(this.pictureBox_Screenshot_original);
             this.Controls.Add(this.btn_einstellungen);
@@ -239,6 +257,7 @@
         private System.Windows.Forms.Button btn_einstellungen;
         private System.Windows.Forms.PictureBox pictureBox_Screenshot_original;
         private System.Windows.Forms.PictureBox pictureBox_Screenshot_alternativ;
+        private System.Windows.Forms.CheckBox check_deactivateGlobal;
     }
 }
 

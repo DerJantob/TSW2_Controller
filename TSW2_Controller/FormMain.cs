@@ -18,7 +18,6 @@ namespace TSW2_Controller
     {
         ///Todo:
         ///Tastenkombinationen hinzufügen
-        ///Möglichkeit geben _global zu deaktivieren
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -43,6 +42,7 @@ namespace TSW2_Controller
         bool isKombihebel = false;
         bool cancelThrottleRequest = false;
         bool cancelBrakeRequest = false;
+        bool globalIsDeactivated = false;
 
         int requestThrottle = 0;
         int requestBrake = 0;
@@ -156,6 +156,15 @@ namespace TSW2_Controller
                 }
             }
             comboBox_Zugauswahl.Items.AddRange(trainNames.ToArray());
+
+            if (trainNames.Any("_Empty".Contains))
+            {
+                comboBox_Zugauswahl.SelectedItem = "_Empty";
+            }
+            else
+            {
+                MessageBox.Show("_Empty fehlt!");
+            }
         }
 
         public void getActiveTrain()
@@ -170,7 +179,7 @@ namespace TSW2_Controller
 
             foreach (string[] str in trainConfig)
             {
-                if (str[0] == selection || str[0] == Tcfg.nameForGlobal)
+                if (str[0] == selection || (str[0] == Tcfg.nameForGlobal && !globalIsDeactivated))
                 {
                     //Alle Infos zum Ausgewählten Zug speichern
                     activeTrain.Add(str);
@@ -1217,6 +1226,27 @@ namespace TSW2_Controller
         private void comboBox_Zugauswahl_SelectedIndexChanged(object sender, EventArgs e)
         {
             check_active.Checked = false;
+
+            if (Properties.Settings.Default.deactivatedGlobals.Count > 0)
+            {
+                if (Properties.Settings.Default.deactivatedGlobals.Contains(comboBox_Zugauswahl.Text))
+                {
+                    check_deactivateGlobal.CheckedChanged -= check_deactivateGlobal_CheckedChanged;
+                    check_deactivateGlobal.Checked = true;
+                    check_deactivateGlobal.CheckedChanged += check_deactivateGlobal_CheckedChanged;
+
+                    globalIsDeactivated = true;
+                }
+                else
+                {
+                    check_deactivateGlobal.CheckedChanged -= check_deactivateGlobal_CheckedChanged;
+                    check_deactivateGlobal.Checked = false;
+                    check_deactivateGlobal.CheckedChanged += check_deactivateGlobal_CheckedChanged;
+
+                    globalIsDeactivated = false;
+                }
+            }
+
             getActiveTrain();
         }
 
@@ -1245,6 +1275,37 @@ namespace TSW2_Controller
         private void FormMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void check_deactivateGlobal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (check_deactivateGlobal.Checked)
+            {
+                Properties.Settings.Default.deactivatedGlobals.Add(comboBox_Zugauswahl.Text);
+                Properties.Settings.Default.Save();
+
+                globalIsDeactivated = true;
+            }
+            else
+            {
+                Properties.Settings.Default.deactivatedGlobals.Remove(comboBox_Zugauswahl.Text);
+                Properties.Settings.Default.Save();
+
+                globalIsDeactivated = false;
+            }
+            getActiveTrain();
+        }
+
+        private void check_active_CheckedChanged(object sender, EventArgs e)
+        {
+            if(check_active.Checked)
+            {
+                check_active.BackColor = Color.Lime;
+            }
+            else
+            {
+                check_active.BackColor = Color.Red;
+            }
         }
     }
 }
