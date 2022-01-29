@@ -230,7 +230,7 @@ namespace TSW2_Controller
                 int nextStep_Value = 0;
                 int overskip_Value = 0;
 
-                for (int i = 0; i < 1000; i += 5)
+                for (int i = 0; i < 2000; i += 5)
                 {
                     Keyboard.HoldKey(taste_mehr, i);
                     Thread.Sleep(80);
@@ -239,11 +239,12 @@ namespace TSW2_Controller
                         nextStep_Value = i;
                         break;
                     }
+                    Thread.Sleep(100);
                 }
                 if (nextStep_Value != 0)
                 {
                     Thread.Sleep(1000);
-                    for (int i = 30; i < 1000; i += 5)
+                    for (int i = 30; i < 2000; i += 5)
                     {
                         Keyboard.HoldKey(taste_weniger, nextStep_Value + i);
                         Thread.Sleep(500);

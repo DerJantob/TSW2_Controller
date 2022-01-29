@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Tesseract;
 using SlimDX.DirectInput;
 using System.IO;
+using TSW2_Controller.Properties;
 
 namespace TSW2_Controller
 {
@@ -71,24 +72,26 @@ namespace TSW2_Controller
 
         public void loadSettings()
         {
+            if (Settings.Default.UpdateErforderlich) { Settings.Default.Upgrade(); Settings.Default.UpdateErforderlich = false; Settings.Default.Save(); }
+
             try
             {
                 #region Auflösung
-                if (Properties.Settings.Default.res.IsEmpty)
+                if (Settings.Default.res.IsEmpty)
                 {
-                    Properties.Settings.Default.res = res;
-                    Properties.Settings.Default.Save();
+                    Settings.Default.res = res;
+                    Settings.Default.Save();
                 }
                 else
                 {
-                    res = Properties.Settings.Default.res;
+                    res = Settings.Default.res;
                     lbl_resolution.Text = res.Width.ToString() + "x" + res.Height.ToString();
                 }
 
                 #endregion
 
                 #region Zeige Debug-Infos
-                if (Properties.Settings.Default.showDebug)
+                if (Settings.Default.showDebug)
                 {
                     listBox_debugInfo.Show();
                     lbl_bremse.Show();
@@ -103,7 +106,7 @@ namespace TSW2_Controller
                 #endregion
 
                 #region Zeige Scan Ergebnis
-                if (Properties.Settings.Default.showScanResult)
+                if (Settings.Default.showScanResult)
                 {
                     pictureBox_Screenshot_original.Show();
                     pictureBox_Screenshot_alternativ.Show();
@@ -650,7 +653,7 @@ namespace TSW2_Controller
                             rawData.Add("Anpassen auf hoch " + untere_grenze);
                             if (isStufenlos)
                             {
-                                Keyboard.HoldKey(Keyboard.increaseThrottle, 20);
+                                Keyboard.HoldKey(Keyboard.increaseThrottle, 10);
                                 schubSoll = untere_grenze;
                             }
                         }
@@ -671,7 +674,7 @@ namespace TSW2_Controller
                             rawData.Add("Anpassen auf runter " + obere_grenze);
                             if (isStufenlos)
                             {
-                                Keyboard.HoldKey(Keyboard.decreaseThrottle, 20);
+                                Keyboard.HoldKey(Keyboard.decreaseThrottle, 10);
                                 schubSoll = obere_grenze;
                             }
                         }
@@ -709,7 +712,7 @@ namespace TSW2_Controller
                             rawData.Add("Bremse anpassen auf " + untere_grenze);
                             if (isStufenlos)
                             {
-                                Keyboard.HoldKey(Keyboard.increaseBrake, 20);
+                                Keyboard.HoldKey(Keyboard.increaseBrake, 10);
                                 bremseSoll = untere_grenze;
                             }
                         }
@@ -730,7 +733,7 @@ namespace TSW2_Controller
                             rawData.Add("Bremse anpassen auf " + obere_grenze);
                             if (isStufenlos)
                             {
-                                Keyboard.HoldKey(Keyboard.decreaseBrake, 20);
+                                Keyboard.HoldKey(Keyboard.decreaseBrake, 10);
                                 bremseSoll = obere_grenze;
                             }
                         }
@@ -893,7 +896,7 @@ namespace TSW2_Controller
                 for (int x = 0; (x <= (bmpScreenshot.Width - 1)); x++)
                 {
                     Color inv = bmpScreenshot.GetPixel(x, y);
-                    if (inv.R + inv.G + inv.B < 500)
+                    if (!(inv.R == 220 && inv.G == 220 && inv.B == 220) && !(inv.R == 255 && inv.G == 255 && inv.B == 255))
                     {
                         inv = Color.FromArgb(0, 0, 0, 0);
                     }
@@ -904,7 +907,7 @@ namespace TSW2_Controller
                 }
             }
 
-            if (Properties.Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1) }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot }); } }
+            if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1) }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot }); } }
 
             return bmpScreenshot;
         }
@@ -992,7 +995,10 @@ namespace TSW2_Controller
                             int erkannterSchub = -99999;
                             result = result.Remove(0, result.IndexOf(throttleConfig[0]) + throttleConfig[0].Length).Replace("\n", "");
                             result = result.Remove(0, 1);
-                            result = result.Replace("%", "");
+                            if (result.Contains("%"))
+                            {
+                                result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
+                            }
 
                             if (throttleConfig[3].Length > 0)
                             {
@@ -1227,9 +1233,9 @@ namespace TSW2_Controller
         {
             check_active.Checked = false;
 
-            if (Properties.Settings.Default.deactivatedGlobals.Count > 0)
+            if (Settings.Default.deactivatedGlobals.Count > 0)
             {
-                if (Properties.Settings.Default.deactivatedGlobals.Contains(comboBox_Zugauswahl.Text))
+                if (Settings.Default.deactivatedGlobals.Contains(comboBox_Zugauswahl.Text))
                 {
                     check_deactivateGlobal.CheckedChanged -= check_deactivateGlobal_CheckedChanged;
                     check_deactivateGlobal.Checked = true;
@@ -1281,15 +1287,15 @@ namespace TSW2_Controller
         {
             if (check_deactivateGlobal.Checked)
             {
-                Properties.Settings.Default.deactivatedGlobals.Add(comboBox_Zugauswahl.Text);
-                Properties.Settings.Default.Save();
+                Settings.Default.deactivatedGlobals.Add(comboBox_Zugauswahl.Text);
+                Settings.Default.Save();
 
                 globalIsDeactivated = true;
             }
             else
             {
-                Properties.Settings.Default.deactivatedGlobals.Remove(comboBox_Zugauswahl.Text);
-                Properties.Settings.Default.Save();
+                Settings.Default.deactivatedGlobals.Remove(comboBox_Zugauswahl.Text);
+                Settings.Default.Save();
 
                 globalIsDeactivated = false;
             }

@@ -71,5 +71,17 @@ namespace TSW2_Controller.Properties {
                 this["deactivatedGlobals"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UpdateErforderlich {
+            get {
+                return ((bool)(this["UpdateErforderlich"]));
+            }
+            set {
+                this["UpdateErforderlich"] = value;
+            }
+        }
     }
 }

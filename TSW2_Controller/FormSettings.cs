@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace TSW2_Controller
         public FormSettings()
         {
             InitializeComponent();
-            lbl_version.Text = "v" + this.ProductVersion.Remove(ProductVersion.Length - 2, 2);
+            lbl_version.Text = "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2);
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)

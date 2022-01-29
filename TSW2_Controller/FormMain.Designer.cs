@@ -184,6 +184,7 @@
             this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(15, 505);
             this.pictureBox_Screenshot_original.Name = "pictureBox_Screenshot_original";
             this.pictureBox_Screenshot_original.Size = new System.Drawing.Size(329, 24);
+            this.pictureBox_Screenshot_original.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Screenshot_original.TabIndex = 23;
             this.pictureBox_Screenshot_original.TabStop = false;
             // 
@@ -192,6 +193,7 @@
             this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(15, 535);
             this.pictureBox_Screenshot_alternativ.Name = "pictureBox_Screenshot_alternativ";
             this.pictureBox_Screenshot_alternativ.Size = new System.Drawing.Size(329, 24);
+            this.pictureBox_Screenshot_alternativ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Screenshot_alternativ.TabIndex = 24;
             this.pictureBox_Screenshot_alternativ.TabStop = false;
             // 
