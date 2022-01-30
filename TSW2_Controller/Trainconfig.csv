@@ -1,5 +1,5 @@
 Zug,Beschreibung,JoystickNummer,JoystickInput,Invert,InputTyp,InputUmrechnen,Aktion,ButtonDown,ButtonUp,Art,Schritte,Specials,Zeitumrechnung,Länger drücken
-_Empty,,,,,,,,,,,,,,
+_Zugauswahl,,,,,,,,,,,,,,
 _Global,Türen links,0,B10,,Button,,y_[press]_[0],,,,,,,
 _Global,Türen rechts,0,B11,,Button,,u_[press]_[0],,,,,,,
 _Global,nach links schauen,0,pov,,Button[=27001],,links_[press]_[0],,,,,,,
@@ -54,3 +54,6 @@ G6,Schub halten,0,JoyY,0,Button[<-10],,,a,a,,,,,
 G6,E-Bremse halten,0,JoyY,0,Button[>10],,,d,d,,,,,
 G6,Bremse,0,JoyZ,0,0,,Bremse,,,Stufen,2,[Lösen=0][Halten=1][Anlegen=2],500,
 G6,Bremse nach lösen drücken,0,JoyZ,0,Button[<0],,,ö,ö,,,,,
+BR766 Dosto,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:600]
+BR766 Dosto,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],148,
+BR766 Dosto,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,

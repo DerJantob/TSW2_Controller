@@ -222,13 +222,13 @@ namespace TSW2_Controller
             }
             comboBox_Zugauswahl.Items.AddRange(trainNames.ToArray());
 
-            if (trainNames.Any("_Empty".Contains))
+            if (trainNames.Any("_Zugauswahl".Contains))
             {
-                comboBox_Zugauswahl.SelectedItem = "_Empty";
+                comboBox_Zugauswahl.SelectedItem = "_Zugauswahl";
             }
             else
             {
-                MessageBox.Show("_Empty fehlt!");
+                MessageBox.Show("_Zugauswahl fehlt!");
             }
         }
 
