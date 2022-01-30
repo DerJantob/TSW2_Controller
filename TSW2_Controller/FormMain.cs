@@ -49,7 +49,7 @@ namespace TSW2_Controller
 
         bool isKombihebel = false;
         int cancelThrottleRequest = 0;//0=false 1=true -1=Warte bis laufender Scan fertig
-        bool cancelBrakeRequest = false;
+        int cancelBrakeRequest = 0;//0=false 1=true -1=Warte bis laufender Scan fertig
         bool globalIsDeactivated = false;
 
         int requestThrottle = 0;
@@ -511,12 +511,12 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Bremsregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (bremseSoll != currentBrakeJoystickState || bremseSoll != bremseIst)
             {
-                cancelBrakeRequest = true;
+                cancelBrakeRequest = 1;
                 requestBrake = 0;
                 bremseSoll = currentBrakeJoystickState;
 
                 ChangeGameState(false);
-                //Thread.Sleep(100); //Wenn es zu ungenau wird das hier aktivieren
+                cancelBrakeRequest = -1;
             }
         }
 
@@ -740,6 +740,7 @@ namespace TSW2_Controller
                                 bremseSoll = untere_grenze;
                             }
                         }
+                        break;
                     }
                     else if (bremseSoll <= untere_grenze && obere_grenze <= bremseIst)
                     {
@@ -761,6 +762,7 @@ namespace TSW2_Controller
                                 bremseSoll = obere_grenze;
                             }
                         }
+                        break;
                     }
                 }
             }
@@ -1133,15 +1135,15 @@ namespace TSW2_Controller
                             }
                             if (erkannteBremsleistung != -99999)
                             {
-                                if (!cancelBrakeRequest)
+                                if (cancelBrakeRequest == 0)
                                 {
                                     requestBrake--;
                                     bremseIst = erkannteBremsleistung;
                                     RawData.Add("bremse:" + erkannteBremsleistung);
                                 }
-                                else
+                                else if(cancelBrakeRequest == -1)
                                 {
-                                    cancelBrakeRequest = false;
+                                    cancelBrakeRequest = 0;
                                 }
                             }
                         }
