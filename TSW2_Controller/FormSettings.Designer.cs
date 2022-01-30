@@ -48,6 +48,7 @@
             this.comboBox_kombiBremse = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_kombiSchub = new System.Windows.Forms.ComboBox();
+            this.btn_changelog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
@@ -258,6 +259,16 @@
             this.comboBox_kombiSchub.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiSchub_SelectedIndexChanged);
             this.comboBox_kombiSchub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_kombiSchub_KeyPress);
             // 
+            // btn_changelog
+            // 
+            this.btn_changelog.Location = new System.Drawing.Point(68, 268);
+            this.btn_changelog.Name = "btn_changelog";
+            this.btn_changelog.Size = new System.Drawing.Size(75, 23);
+            this.btn_changelog.TabIndex = 12;
+            this.btn_changelog.Text = "changeLog";
+            this.btn_changelog.UseVisualStyleBackColor = true;
+            this.btn_changelog.Click += new System.EventHandler(this.btn_changelog_Click);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +276,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(293, 295);
+            this.Controls.Add(this.btn_changelog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_updates);
             this.Controls.Add(this.check_ShowScan);
@@ -312,5 +324,6 @@
         private System.Windows.Forms.ComboBox comboBox_kombiBremse;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox_kombiSchub;
+        private System.Windows.Forms.Button btn_changelog;
     }
 }

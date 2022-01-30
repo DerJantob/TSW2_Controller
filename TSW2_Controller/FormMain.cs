@@ -12,7 +12,7 @@ using Tesseract;
 using SlimDX.DirectInput;
 using System.IO;
 using TSW2_Controller.Properties;
-
+using System.Reflection;
 
 namespace TSW2_Controller
 {
@@ -70,6 +70,7 @@ namespace TSW2_Controller
         {
             InitializeComponent();
 
+            checkVersion();
             loadSettings();
             comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
@@ -80,10 +81,44 @@ namespace TSW2_Controller
             timer_CheckSticks.Start();
         }
 
+        public void checkVersion()
+        {
+            try
+            {
+                if (Settings.Default.UpdateErforderlich)
+                {
+                    object prevVersion = Settings.Default.GetPreviousVersion("Version");
+                    if (prevVersion != null)
+                    {
+                        //Update
+                        FormWasIstNeu formWasIstNeu = new FormWasIstNeu(prevVersion.ToString());
+                        formWasIstNeu.ShowDialog();
+
+                        Settings.Default.Upgrade();
+                    }
+                    else
+                    {
+                        //Neuinstallation
+                        Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save();
+                        Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save();
+                        Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save();
+                        Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save();
+                    }
+
+                    Settings.Default.UpdateErforderlich = false;
+                    Settings.Default.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2);
+
+                    Settings.Default.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         public void loadSettings()
         {
-            if (Settings.Default.UpdateErforderlich) { Settings.Default.Upgrade(); Settings.Default.UpdateErforderlich = false; Settings.Default.Save(); }
-
             try
             {
                 #region Auflösung

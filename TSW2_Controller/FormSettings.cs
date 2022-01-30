@@ -164,5 +164,11 @@ namespace TSW2_Controller
             }
         }
         #endregion
+
+        private void btn_changelog_Click(object sender, EventArgs e)
+        {
+            FormWasIstNeu formWasIstNeu = new FormWasIstNeu("0.0.0");
+            formWasIstNeu.ShowDialog();
+        }
     }
 }

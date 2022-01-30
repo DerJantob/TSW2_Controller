@@ -80,6 +80,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormWasIstNeu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWasIstNeu.Designer.cs">
+      <DependentUpon>FormWasIstNeu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormZeitumrechnung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Tcfg.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWasIstNeu.resx">
+      <DependentUpon>FormWasIstNeu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormZeitumrechnung.resx">
       <DependentUpon>FormZeitumrechnung.cs</DependentUpon>
