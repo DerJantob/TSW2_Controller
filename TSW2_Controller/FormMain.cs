@@ -39,7 +39,6 @@ namespace TSW2_Controller
         string[] throttleConfig; //{Index,Art,Schritte,Specials,Zeit,längerDrücken}
         string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
         string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
-        string[] kombihebel = { "", "" };
 
 
         string[] schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse", "Kombihehel" };
@@ -48,9 +47,10 @@ namespace TSW2_Controller
         string[] kombihebel_bremsIndexe = { "Bremsleistung" };
 
         bool isKombihebel = false;
-        int cancelThrottleRequest = 0;//0=false 1=true -1=Warte bis laufender Scan fertig
-        int cancelBrakeRequest = 0;//0=false 1=true -1=Warte bis laufender Scan fertig
         bool globalIsDeactivated = false;
+
+        int cancelThrottleRequest = 0; //0=false 1=true -1=Warte bis laufender Scan fertig
+        int cancelBrakeRequest = 0; //0=false 1=true -1=Warte bis laufender Scan fertig
 
         int requestThrottle = 0;
         int requestBrake = 0;
@@ -202,7 +202,6 @@ namespace TSW2_Controller
                 if (str[Tcfg.aktion].Contains("Schub"))
                 {
                     //Infos über den Schubhebel
-                    //throttleConfig[0] = str[Tcfg.textIndex];
                     throttleConfig[0] = "empty";
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
@@ -214,23 +213,17 @@ namespace TSW2_Controller
                 {
                     //Infos über den Kombihebel
                     isKombihebel = true;
-                    //throttleConfig[0] = str[Tcfg.textIndex].Remove(str[Tcfg.textIndex].IndexOf("["), str[Tcfg.textIndex].Length - str[Tcfg.textIndex].IndexOf("["));
                     throttleConfig[0] = "empty";
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
                     throttleConfig[4] = str[Tcfg.zeitumrechnung];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
-
-                    //string[] convert = str[Tcfg.textIndex].Remove(str[Tcfg.textIndex].Length - 1).Replace(throttleConfig[0], "").Replace("[", "").Split(']');
-                    //kombihebel[0] = convert[0];
-                    //kombihebel[1] = convert[1];
                 }
 
                 if (str[Tcfg.aktion].Contains("Bremse"))
                 {
                     //Infos über die Bremse
-                    //brakeConfig[0] = str[Tcfg.textIndex];
                     brakeConfig[0] = "empty";
                     brakeConfig[1] = str[Tcfg.art];
                     brakeConfig[2] = str[Tcfg.schritte];
@@ -424,13 +417,6 @@ namespace TSW2_Controller
                     }
                     listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
                 }
-
-                //if (RawData.Count > 0)
-                //{
-                //    listBox_debugInfo.Items.AddRange(RawData.ToArray());
-                //}
-                //listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
-                //RawData.Clear();
             }
             catch { }
         }
