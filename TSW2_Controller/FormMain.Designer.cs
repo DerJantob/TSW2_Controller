@@ -131,7 +131,7 @@
             // lbl_schub
             // 
             this.lbl_schub.AutoSize = true;
-            this.lbl_schub.Location = new System.Drawing.Point(189, 459);
+            this.lbl_schub.Location = new System.Drawing.Point(203, 459);
             this.lbl_schub.Name = "lbl_schub";
             this.lbl_schub.Size = new System.Drawing.Size(110, 13);
             this.lbl_schub.TabIndex = 16;
@@ -145,7 +145,7 @@
             // lbl_bremse
             // 
             this.lbl_bremse.AutoSize = true;
-            this.lbl_bremse.Location = new System.Drawing.Point(189, 472);
+            this.lbl_bremse.Location = new System.Drawing.Point(203, 472);
             this.lbl_bremse.Name = "lbl_bremse";
             this.lbl_bremse.Size = new System.Drawing.Size(114, 13);
             this.lbl_bremse.TabIndex = 17;
@@ -157,13 +157,13 @@
             this.listBox_debugInfo.HorizontalScrollbar = true;
             this.listBox_debugInfo.Location = new System.Drawing.Point(149, 88);
             this.listBox_debugInfo.Name = "listBox_debugInfo";
-            this.listBox_debugInfo.Size = new System.Drawing.Size(195, 368);
+            this.listBox_debugInfo.Size = new System.Drawing.Size(236, 368);
             this.listBox_debugInfo.TabIndex = 18;
             // 
             // lbl_resolution
             // 
             this.lbl_resolution.AutoSize = true;
-            this.lbl_resolution.Location = new System.Drawing.Point(272, 37);
+            this.lbl_resolution.Location = new System.Drawing.Point(313, 37);
             this.lbl_resolution.Name = "lbl_resolution";
             this.lbl_resolution.Size = new System.Drawing.Size(60, 13);
             this.lbl_resolution.TabIndex = 21;
@@ -171,7 +171,7 @@
             // 
             // btn_einstellungen
             // 
-            this.btn_einstellungen.Location = new System.Drawing.Point(262, 13);
+            this.btn_einstellungen.Location = new System.Drawing.Point(303, 13);
             this.btn_einstellungen.Name = "btn_einstellungen";
             this.btn_einstellungen.Size = new System.Drawing.Size(82, 21);
             this.btn_einstellungen.TabIndex = 22;
@@ -181,7 +181,7 @@
             // 
             // pictureBox_Screenshot_original
             // 
-            this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(15, 505);
+            this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(32, 504);
             this.pictureBox_Screenshot_original.Name = "pictureBox_Screenshot_original";
             this.pictureBox_Screenshot_original.Size = new System.Drawing.Size(329, 24);
             this.pictureBox_Screenshot_original.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -190,7 +190,7 @@
             // 
             // pictureBox_Screenshot_alternativ
             // 
-            this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(15, 535);
+            this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(32, 534);
             this.pictureBox_Screenshot_alternativ.Name = "pictureBox_Screenshot_alternativ";
             this.pictureBox_Screenshot_alternativ.Size = new System.Drawing.Size(329, 24);
             this.pictureBox_Screenshot_alternativ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -217,7 +217,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(362, 573);
+            this.ClientSize = new System.Drawing.Size(400, 573);
             this.Controls.Add(this.check_deactivateGlobal);
             this.Controls.Add(this.pictureBox_Screenshot_alternativ);
             this.Controls.Add(this.pictureBox_Screenshot_original);
