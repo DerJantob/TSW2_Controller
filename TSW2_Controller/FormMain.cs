@@ -32,6 +32,10 @@ namespace TSW2_Controller
         List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
         List<string> rawData = new List<string>();
+        List<string> schubIndexe = new List<string>();
+        List<string> bremsIndexe = new List<string>();
+        List<string> kombihebel_schubIndexe = new List<string>();
+        List<string> kombihebel_bremsIndexe = new List<string>();
 
         bool[] currentlyPressedButtons = new bool[128];
         bool[] previouslyPressedButtons = new bool[128];
@@ -40,11 +44,10 @@ namespace TSW2_Controller
         string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
         string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
 
-
-        string[] schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse", "Kombihehel" };
-        string[] bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
-        string[] kombihebel_schubIndexe = { "Leistung" };
-        string[] kombihebel_bremsIndexe = { "Bremsleistung" };
+        string[] default_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
+        string[] default_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
+        string[] default_kombihebel_schubIndexe = { "Leistung" };
+        string[] default_kombihebel_bremsIndexe = { "Bremsleistung" };
 
         bool isKombihebel = false;
         bool globalIsDeactivated = false;
@@ -123,6 +126,23 @@ namespace TSW2_Controller
                     pictureBox_Screenshot_original.Hide();
                     pictureBox_Screenshot_alternativ.Hide();
                 }
+                #endregion
+
+                #region TextIndexe
+                if (Settings.Default.SchubIndexe.Count == 0) { if (MessageBox.Show("Schubindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.BremsIndexe.Count == 0) { if (MessageBox.Show("Bremsindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.Kombihebel_SchubIndexe.Count == 0) { if (MessageBox.Show("Kombihebel_Schubindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.Kombihebel_BremsIndexe.Count == 0) { if (MessageBox.Show("Kombihebel_Bremsindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save(); } }
+
+                schubIndexe.Clear();
+                bremsIndexe.Clear();
+                kombihebel_schubIndexe.Clear();
+                kombihebel_bremsIndexe.Clear();
+
+                schubIndexe.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                bremsIndexe.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
                 #endregion
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); Close(); }
@@ -908,7 +928,7 @@ namespace TSW2_Controller
                 for (int x = 0; (x <= (bmpScreenshot.Width - 1)); x++)
                 {
                     Color inv = bmpScreenshot.GetPixel(x, y);
-                    if (inv.R < 200 || inv.G < 200 || inv.B < 200)
+                    if (inv.R + inv.G + inv.G < 500)
                     {
                         inv = Color.FromArgb(0, 0, 0, 0);
                     }
@@ -929,6 +949,9 @@ namespace TSW2_Controller
             var ocrtext = string.Empty;
             using (var engine = new TesseractEngine(@"./tessdata", "deu", EngineMode.Default))
             {
+                //engine.SetVariable("load_system_dawg", true);
+                //engine.SetVariable("language_model_penalty_non_dict_word", 1);
+                //engine.SetVariable("language_model_penalty_non_freq_dict_word", 1);
                 using (var img = PixConverter.ToPix(imgsource))
                 {
                     using (var page = engine.Process(img))
@@ -1127,7 +1150,7 @@ namespace TSW2_Controller
                                     bremseIst = erkannteBremsleistung;
                                     RawData.Add("bremse:" + erkannteBremsleistung);
                                 }
-                                else if(cancelBrakeRequest == -1)
+                                else if (cancelBrakeRequest == -1)
                                 {
                                     cancelBrakeRequest = 0;
                                 }
