@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_kombiSchub = new System.Windows.Forms.ComboBox();
             this.btn_changelog = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
@@ -92,7 +93,8 @@
             // 
             // btn_Zeitumrechnungshilfe
             // 
-            this.btn_Zeitumrechnungshilfe.Location = new System.Drawing.Point(162, 12);
+            this.btn_Zeitumrechnungshilfe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Zeitumrechnungshilfe.Location = new System.Drawing.Point(126, 12);
             this.btn_Zeitumrechnungshilfe.Name = "btn_Zeitumrechnungshilfe";
             this.btn_Zeitumrechnungshilfe.Size = new System.Drawing.Size(119, 24);
             this.btn_Zeitumrechnungshilfe.TabIndex = 5;
@@ -102,9 +104,9 @@
             // 
             // lbl_version
             // 
-            this.lbl_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(241, 273);
+            this.lbl_version.Location = new System.Drawing.Point(3, 338);
             this.lbl_version.Name = "lbl_version";
             this.lbl_version.Size = new System.Drawing.Size(40, 13);
             this.lbl_version.TabIndex = 6;
@@ -122,8 +124,8 @@
             // 
             // btn_updates
             // 
-            this.btn_updates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_updates.Location = new System.Drawing.Point(149, 268);
+            this.btn_updates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_updates.Location = new System.Drawing.Point(6, 309);
             this.btn_updates.Name = "btn_updates";
             this.btn_updates.Size = new System.Drawing.Size(86, 23);
             this.btn_updates.TabIndex = 8;
@@ -261,13 +263,25 @@
             // 
             // btn_changelog
             // 
-            this.btn_changelog.Location = new System.Drawing.Point(68, 268);
+            this.btn_changelog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_changelog.Location = new System.Drawing.Point(6, 280);
             this.btn_changelog.Name = "btn_changelog";
-            this.btn_changelog.Size = new System.Drawing.Size(75, 23);
+            this.btn_changelog.Size = new System.Drawing.Size(86, 23);
             this.btn_changelog.TabIndex = 12;
-            this.btn_changelog.Text = "changeLog";
+            this.btn_changelog.Text = "Was ist neu?";
             this.btn_changelog.UseVisualStyleBackColor = true;
             this.btn_changelog.Click += new System.EventHandler(this.btn_changelog_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(170, 328);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "speichern";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormSettings
             // 
@@ -275,7 +289,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(293, 295);
+            this.ClientSize = new System.Drawing.Size(257, 360);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_changelog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_updates);
@@ -325,5 +340,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox_kombiSchub;
         private System.Windows.Forms.Button btn_changelog;
+        private System.Windows.Forms.Button button1;
     }
 }

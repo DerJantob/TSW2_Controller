@@ -170,5 +170,10 @@ namespace TSW2_Controller
             FormWasIstNeu formWasIstNeu = new FormWasIstNeu("0.0.0");
             formWasIstNeu.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
