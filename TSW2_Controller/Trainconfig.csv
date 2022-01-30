@@ -1,56 +1,56 @@
-Zug,Beschreibung,JoystickNummer,JoystickInput,Invert,InputTyp,InputUmrechnen,Aktion,ButtonDown,ButtonUp,TextIndex,Art,Schritte,Specials,Zeitumrechnung,Länger drücken
-_Empty,,,,,,,,,,,,,,,
-_Global,Türen links,0,B10,,Button,,y_[press]_[0],,,,,,,,
-_Global,Türen rechts,0,B11,,Button,,u_[press]_[0],,,,,,,,
-_Global,nach links schauen,0,pov,,Button[=27001],,links_[press]_[0],,,,,,,,
-_Global,nach rechts schauen,0,pov,,Button[=9001],,rechts_[press]_[0],,,,,,,,
-_Global,PZB-Wachsam,0,B4,,Button,,,bildab,bildab,,,,,,
-_Global,PZB-Frei,0,B5,,Button,,,ende,ende,,,,,,
-_Global,PZB-Befehl,0,B6,,Button,,,entf,entf,,,,,,
-_Global,Direkte Bremse anlegen,0,B9,,Button,,,+,+,,,,,,
-_Global,Direkte Bremse lösen,0,B8,,Button,,,ü,ü,,,,,,
-_Global,Hupe,0,B0,,Button,,,space,space,,,,,,
-BR101,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Fahrschalter,Stufenlos,,[Aus=0][Min.=5][Max.=100],42,[0|5:200]
-BR101,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Bremse=9],135,
-BR101,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR112,Schub,0,JoyZ,0,1,,Schub,,,Geschwindigkeitswähler,Stufen,17,[Aus=0][Ein=1][100 km/h=11][110 km/h=12][120 km/h=13][130 km/h=14][140 km/h=15][150 km/h=16][160 km/h=17][10 km/h=2][20 km/h=3][30 km/h=4][40 km/h=5][50 km/h=6][60 km/h=7][70 km/h=8][80 km/h=9][90 km/h=10],115,[0|1:400]
-BR112,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,8,[Lösen=0][Fahren=0][Voller Betrieb=8],130,[0|1:300]
-BR112,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR143,Schub,0,JoyZ,0,1,,Schub,,,Geschwindigkeitswähler,Stufen,13,[Aus=0][Ein=1][100 km/h=11][110 km/h=12][120 km/h=13][10 km/h=2][20 km/h=3][30 km/h=4][40 km/h=5][50 km/h=6][60 km/h=7][70 km/h=8][80 km/h=9][90 km/h=10],140,
-BR143,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,10,[Lösen=0][Aus=1][1=2][2=3][3=4][4=5][5=6][6=7][7=8][8=9][Volle Leistung=10],124,
-BR143,Bremse nach Lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR146,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungsregler,Stufenlos,,[Aus=0][Min.=5][Max=100],53,[0|5:500]
-BR146,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],152,
-BR146,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR155,Schub,0,JoyZ,0,1,,Schub,,,Fahrstufenschalter,Stufen,30,[Unten=-1][Halten=-2],140,
-BR155,Bremse,0,JoyY,0,0,,Bremse,,,Fahrerbremsventil,Stufenlos,,[Lösen=0][Fahrend=0][Aus=1][Minimum=2][1=3][2=3][Volle Leistung=100],100,[0|1:200][1|2:200][2|3:200]
-BR155,Bremse nach Aus und Lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR155,Mehr Bremse,0,B3,,Button,,ä_[hold200]_[50]_ä_[hold200]_[0],,,,,,,,
-BR155,Weniger Bremse,0,B2,,Button,,ö_[hold200]_[50]_ö_[hold200]_[0],,,,,,,,
-BR182,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungshebel,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
-BR182,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],155,
-BR182,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR182 MRCE,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungsregler,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
-BR182 MRCE,Bremse,0,JoyY,0,0,,Bremse,,,Führerbremsventil,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Voller Betrieb=9],155,
-BR182 MRCE,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR185,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungshebel,Stufenlos,,[Aus=0][Min=5][Max=100],53,[0|5:200]
-BR185,Bremse,0,JoyY,0,0,,Bremse,,,Zugbremse,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],110,
-BR185,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,,
-BR363,Schub,0,JoyZ,0,1,,Schub,,,Leistungsregler,Stufen,2,[Leerlauf=0][Füllen/Herunterfahren=1][0.00 verringern=1][0.01 verringern=1][0.02 verringern=1][0.03 verringern=1][0.04 verringern=1][0.05 verringern=1][0.06 verringern=1][0.07 verringern=1][0.08 verringern=1][0.09 verringern=1][0.10 verringern=1][0.11 verringern=1][0.12 verringern=1][0.13 verringern=1][0.14 verringern=1][0.15 verringern=1][0.16 verringern=1][0.17 verringern=1][0.18 verringern=1][0.19 verringern=1][0.20 verringern=1][0.21 verringern=1][0.22 verringern=1][0.23 verringern=1][0.24 verringern=1][0.25 verringern=1][0.26 verringern=1][0.27 verringern=1][0.28 verringern=1][0.29 verringern=1][0.30 verringern=1][0.31 verringern=1][0.32 verringern=1][0.33 verringern=1][0.34 verringern=1][0.35 verringern=1][0.36 verringern=1][0.37 verringern=1][0.38 verringern=1][0.39 verringern=1][0.40 verringern=1][0.41 verringern=1][0.42 verringern=1][0.43 verringern=1][0.44 verringern=1][0.45 verringern=1][0.46 verringern=1][0.47 verringern=1][0.48 verringern=1][0.49 verringern=1][0.50 verringern=1][0.51 verringern=1][0.52 verringern=1][0.53 verringern=1][0.54 verringern=1][0.55 verringern=1][0.56 verringern=1][0.57 verringern=1][0.58 verringern=1][0.59 verringern=1][0.60 verringern=1][0.61 verringern=1][0.62 verringern=1][0.63 verringern=1][0.64 verringern=1][0.65 verringern=1][0.66 verringern=1][0.67 verringern=1][0.68 verringern=1][0.69 verringern=1][0.70 verringern=1][0.71 verringern=1][0.72 verringern=1][0.73 verringern=1][0.74 verringern=1][0.75 verringern=1][0.76 verringern=1][0.77 verringern=1][0.78 verringern=1][0.79 verringern=1][0.80 verringern=1][0.81 verringern=1][0.82 verringern=1][0.83 verringern=1][0.84 verringern=1][0.85 verringern=1][0.86 verringern=1][0.87 verringern=1][0.88 verringern=1][0.89 verringern=1][0.90 verringern=1][0.91 verringern=1][0.92 verringern=1][0.93 verringern=1][0.94 verringern=1][0.95 verringern=1][0.96 verringern=1][0.97 verringern=1][0.98 verringern=1][0.99 verringern=1][1.00 verringern=1][halten=2][0.00 halten=2][0.01 halten=2][0.02 halten=2][0.03 halten=2][0.04 halten=2][0.05 halten=2][0.06 halten=2][0.07 halten=2][0.08 halten=2][0.09 halten=2][0.10 halten=2][0.11 halten=2][0.12 halten=2][0.13 halten=2][0.14 halten=2][0.15 halten=2][0.16 halten=2][0.17 halten=2][0.18 halten=2][0.19 halten=2][0.20 halten=2][0.21 halten=2][0.22 halten=2][0.23 halten=2][0.24 halten=2][0.25 halten=2][0.26 halten=2][0.27 halten=2][0.28 halten=2][0.29 halten=2][0.30 halten=2][0.31 halten=2][0.32 halten=2][0.33 halten=2][0.34 halten=2][0.35 halten=2][0.36 halten=2][0.37 halten=2][0.38 halten=2][0.39 halten=2][0.40 halten=2][0.41 halten=2][0.42 halten=2][0.43 halten=2][0.44 halten=2][0.45 halten=2][0.46 halten=2][0.47 halten=2][0.48 halten=2][0.49 halten=2][0.50 halten=2][0.51 halten=2][0.52 halten=2][0.53 halten=2][0.54 halten=2][0.55 halten=2][0.56 halten=2][0.57 halten=2][0.58 halten=2][0.59 halten=2][0.60 halten=2][0.61 halten=2][0.62 halten=2][0.63 halten=2][0.64 halten=2][0.65 halten=2][0.66 halten=2][0.67 halten=2][0.68 halten=2][0.69 halten=2][0.70 halten=2][0.71 halten=2][0.72 halten=2][0.73 halten=2][0.74 halten=2][0.75 halten=2][0.76 halten=2][0.77 halten=2][0.78 halten=2][0.79 halten=2][0.80 halten=2][0.81 halten=2][0.82 halten=2][0.83 halten=2][0.84 halten=2][0.85 halten=2][0.86 halten=2][0.87 halten=2][0.88 halten=2][0.89 halten=2][0.90 halten=2][0.91 halten=2][0.92 halten=2][0.93 halten=2][0.94 halten=2][0.95 halten=2][0.96 halten=2][0.97 halten=2][0.98 halten=2][0.99 halten=2][1.00 halten=2][0.00 erhöhen=2][0.01 erhöhen=2][0.02 erhöhen=2][0.03 erhöhen=2][0.04 erhöhen=2][0.05 erhöhen=2][0.06 erhöhen=2][0.07 erhöhen=2][0.08 erhöhen=2][0.09 erhöhen=2][0.10 erhöhen=2][0.11 erhöhen=2][0.12 erhöhen=2][0.13 erhöhen=2][0.14 erhöhen=2][0.15 erhöhen=2][0.16 erhöhen=2][0.17 erhöhen=2][0.18 erhöhen=2][0.19 erhöhen=2][0.20 erhöhen=2][0.21 erhöhen=2][0.22 erhöhen=2][0.23 erhöhen=2][0.24 erhöhen=2][0.25 erhöhen=2][0.26 erhöhen=2][0.27 erhöhen=2][0.28 erhöhen=2][0.29 erhöhen=2][0.30 erhöhen=2][0.31 erhöhen=2][0.32 erhöhen=2][0.33 erhöhen=2][0.34 erhöhen=2][0.35 erhöhen=2][0.36 erhöhen=2][0.37 erhöhen=2][0.38 erhöhen=2][0.39 erhöhen=2][0.40 erhöhen=2][0.41 erhöhen=2][0.42 erhöhen=2][0.43 erhöhen=2][0.44 erhöhen=2][0.45 erhöhen=2][0.46 erhöhen=2][0.47 erhöhen=2][0.48 erhöhen=2][0.49 erhöhen=2][0.50 erhöhen=2][0.51 erhöhen=2][0.52 erhöhen=2][0.53 erhöhen=2][0.54 erhöhen=2][0.55 erhöhen=2][0.56 erhöhen=2][0.57 erhöhen=2][0.58 erhöhen=2][0.59 erhöhen=2][0.60 erhöhen=2][0.61 erhöhen=2][0.62 erhöhen=2][0.63 erhöhen=2][0.64 erhöhen=2][0.65 erhöhen=2][0.66 erhöhen=2][0.67 erhöhen=2][0.68 erhöhen=2][0.69 erhöhen=2][0.70 erhöhen=2][0.71 erhöhen=2][0.72 erhöhen=2][0.73 erhöhen=2][0.74 erhöhen=2][0.75 erhöhen=2][0.76 erhöhen=2][0.77 erhöhen=2][0.78 erhöhen=2][0.79 erhöhen=2][0.80 erhöhen=2][0.81 erhöhen=2][0.82 erhöhen=2][0.83 erhöhen=2][0.84 erhöhen=2][0.85 erhöhen=2][0.86 erhöhen=2][0.87 erhöhen=2][0.88 erhöhen=2][0.89 erhöhen=2][0.90 erhöhen=2][0.91 erhöhen=2][0.92 erhöhen=2][0.93 erhöhen=2][0.94 erhöhen=2][0.95 erhöhen=2][0.96 erhöhen=2][0.97 erhöhen=2][0.98 erhöhen=2][0.99 erhöhen=2][1.00 erhöhen=2],200,
-BR363,Schub erhöhen,0,JoyZ,0,Button[=100],,,a,a,,,,,,
-BR363,Bremse erhöhen,0,JoyY,0,Button[>0],,,ä,ä,,,,,,
-BR363,Bremse lösen,0,JoyY,0,Button[<0],,,ö,ö,,,,,,
-BR363,Direkte Bremse anlegen,0,B3,,Button,,,+,+,,,,,,
-BR363,Direkte Bremse lösen,0,B2,,Button,,,ü,ü,,,,,,
-BR422,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Kombihebel[Leistung][Bremsleistung],Stufenlos,,[Min.=10][Min. Bremse=-10],55|83,[0|10:270][-10|0:270]
-BR423,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Kombihebel[Leistung][Bremsleistung],Stufenlos,,[Minimale=10][Minimale Bremse=-10],55|83,[0|10:270][-10|0:270]
-BR425,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Kombihebel[Leistung][Bremsleistung],Stufenlos,,[Minimale=10][Minimale Bremse=-1],55|83,[0|10:250][-1|0:250]
-BR442,Schub,0,JoyZ,1,0,[1=5][2=5][3=5][4=5][-1=-5][-2=-5][-3=-5][-4=-5],Kombihebel,,,Leistung/Bremse[Leistung][Bremsleistung],Stufenlos,,[Max.=100][Max. Bremse=-100],73,[0|5:200][-5|0:200]
-G6,Schub halten,0,JoyY,0,Button[<-10],,,a,a,,,,,,
-G6,E-Bremse halten,0,JoyY,0,Button[>10],,,d,d,,,,,,
-G6,Bremse,0,JoyZ,0,0,,Bremse,,,Zugbremse,Stufen,2,[Lösen=0][Halten=1][Anlegen=2],500,
-G6,Bremse nach lösen drücken,0,JoyZ,0,Button[<0],,,ö,ö,,,,,,
-BR406,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Leistungsregler,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:700]
-BR406,Bremse,0,JoyY,0,0,,Bremse,,,Zughremse,Stufen,9,[14=1][Lösen=0][Umgehung=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volles Anlegen=9],335,
-BR406,AFB hoch,0,Sldr,0,Button[>0],,,r,r,,,,,,
-BR406,AFB hoch,0,Sldr,0,Button[<0],,,f,f,,,,,,
+Zug,Beschreibung,JoystickNummer,JoystickInput,Invert,InputTyp,InputUmrechnen,Aktion,ButtonDown,ButtonUp,Art,Schritte,Specials,Zeitumrechnung,Länger drücken
+_Empty,,,,,,,,,,,,,,
+_Global,Türen links,0,B10,,Button,,y_[press]_[0],,,,,,,
+_Global,Türen rechts,0,B11,,Button,,u_[press]_[0],,,,,,,
+_Global,nach links schauen,0,pov,,Button[=27001],,links_[press]_[0],,,,,,,
+_Global,nach rechts schauen,0,pov,,Button[=9001],,rechts_[press]_[0],,,,,,,
+_Global,PZB-Wachsam,0,B4,,Button,,,bildab,bildab,,,,,
+_Global,PZB-Frei,0,B5,,Button,,,ende,ende,,,,,
+_Global,PZB-Befehl,0,B6,,Button,,,entf,entf,,,,,
+_Global,Direkte Bremse anlegen,0,B9,,Button,,,+,+,,,,,
+_Global,Direkte Bremse lösen,0,B8,,Button,,,ü,ü,,,,,
+_Global,Hupe,0,B0,,Button,,,space,space,,,,,
+BR101,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],42,[0|5:200]
+BR101,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Bremse=9],135,
+BR101,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR112,Schub,0,JoyZ,0,1,,Schub,,,Stufen,17,[Aus=0][Ein=1][100 km/h=11][110 km/h=12][120 km/h=13][130 km/h=14][140 km/h=15][150 km/h=16][160 km/h=17][10 km/h=2][20 km/h=3][30 km/h=4][40 km/h=5][50 km/h=6][60 km/h=7][70 km/h=8][80 km/h=9][90 km/h=10],115,[0|1:400]
+BR112,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,8,[Lösen=0][Fahren=0][Voller Betrieb=8],130,[0|1:300]
+BR112,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR143,Schub,0,JoyZ,0,1,,Schub,,,Stufen,13,[Aus=0][Ein=1][100 km/h=11][110 km/h=12][120 km/h=13][10 km/h=2][20 km/h=3][30 km/h=4][40 km/h=5][50 km/h=6][60 km/h=7][70 km/h=8][80 km/h=9][90 km/h=10],140,
+BR143,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,10,[Lösen=0][Aus=1][1=2][2=3][3=4][4=5][5=6][6=7][7=8][8=9][Volle Leistung=10],124,
+BR143,Bremse nach Lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR146,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
+BR146,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],152,
+BR146,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR155,Schub,0,JoyZ,0,1,,Schub,,,Stufen,30,[Unten=-1][Halten=-2],140,
+BR155,Bremse,0,JoyY,0,0,,Bremse,,,Stufenlos,,[Lösen=0][Fahrend=0][Aus=1][Minimum=2][1=3][2=3][Volle Leistung=100],100,[0|1:200][1|2:200][2|3:200]
+BR155,Bremse nach Aus und Lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR155,Mehr Bremse,0,B3,,Button,,ä_[hold200]_[50]_ä_[hold200]_[0],,,,,,,
+BR155,Weniger Bremse,0,B2,,Button,,ö_[hold200]_[50]_ö_[hold200]_[0],,,,,,,
+BR182,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
+BR182,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],155,
+BR182,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR182 MRCE,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:500]
+BR182 MRCE,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Voller Betrieb=9],155,
+BR182 MRCE,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR185,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:600]
+BR185,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],160,
+BR185,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,ö,,,,,
+BR363,Schub,0,JoyZ,0,1,,Schub,,,Stufen,2,[Leerlauf=0][Füllen/Herunterfahren=1][0.00 verringern=1][0.01 verringern=1][0.02 verringern=1][0.03 verringern=1][0.04 verringern=1][0.05 verringern=1][0.06 verringern=1][0.07 verringern=1][0.08 verringern=1][0.09 verringern=1][0.10 verringern=1][0.11 verringern=1][0.12 verringern=1][0.13 verringern=1][0.14 verringern=1][0.15 verringern=1][0.16 verringern=1][0.17 verringern=1][0.18 verringern=1][0.19 verringern=1][0.20 verringern=1][0.21 verringern=1][0.22 verringern=1][0.23 verringern=1][0.24 verringern=1][0.25 verringern=1][0.26 verringern=1][0.27 verringern=1][0.28 verringern=1][0.29 verringern=1][0.30 verringern=1][0.31 verringern=1][0.32 verringern=1][0.33 verringern=1][0.34 verringern=1][0.35 verringern=1][0.36 verringern=1][0.37 verringern=1][0.38 verringern=1][0.39 verringern=1][0.40 verringern=1][0.41 verringern=1][0.42 verringern=1][0.43 verringern=1][0.44 verringern=1][0.45 verringern=1][0.46 verringern=1][0.47 verringern=1][0.48 verringern=1][0.49 verringern=1][0.50 verringern=1][0.51 verringern=1][0.52 verringern=1][0.53 verringern=1][0.54 verringern=1][0.55 verringern=1][0.56 verringern=1][0.57 verringern=1][0.58 verringern=1][0.59 verringern=1][0.60 verringern=1][0.61 verringern=1][0.62 verringern=1][0.63 verringern=1][0.64 verringern=1][0.65 verringern=1][0.66 verringern=1][0.67 verringern=1][0.68 verringern=1][0.69 verringern=1][0.70 verringern=1][0.71 verringern=1][0.72 verringern=1][0.73 verringern=1][0.74 verringern=1][0.75 verringern=1][0.76 verringern=1][0.77 verringern=1][0.78 verringern=1][0.79 verringern=1][0.80 verringern=1][0.81 verringern=1][0.82 verringern=1][0.83 verringern=1][0.84 verringern=1][0.85 verringern=1][0.86 verringern=1][0.87 verringern=1][0.88 verringern=1][0.89 verringern=1][0.90 verringern=1][0.91 verringern=1][0.92 verringern=1][0.93 verringern=1][0.94 verringern=1][0.95 verringern=1][0.96 verringern=1][0.97 verringern=1][0.98 verringern=1][0.99 verringern=1][1.00 verringern=1][halten=2][0.00 halten=2][0.01 halten=2][0.02 halten=2][0.03 halten=2][0.04 halten=2][0.05 halten=2][0.06 halten=2][0.07 halten=2][0.08 halten=2][0.09 halten=2][0.10 halten=2][0.11 halten=2][0.12 halten=2][0.13 halten=2][0.14 halten=2][0.15 halten=2][0.16 halten=2][0.17 halten=2][0.18 halten=2][0.19 halten=2][0.20 halten=2][0.21 halten=2][0.22 halten=2][0.23 halten=2][0.24 halten=2][0.25 halten=2][0.26 halten=2][0.27 halten=2][0.28 halten=2][0.29 halten=2][0.30 halten=2][0.31 halten=2][0.32 halten=2][0.33 halten=2][0.34 halten=2][0.35 halten=2][0.36 halten=2][0.37 halten=2][0.38 halten=2][0.39 halten=2][0.40 halten=2][0.41 halten=2][0.42 halten=2][0.43 halten=2][0.44 halten=2][0.45 halten=2][0.46 halten=2][0.47 halten=2][0.48 halten=2][0.49 halten=2][0.50 halten=2][0.51 halten=2][0.52 halten=2][0.53 halten=2][0.54 halten=2][0.55 halten=2][0.56 halten=2][0.57 halten=2][0.58 halten=2][0.59 halten=2][0.60 halten=2][0.61 halten=2][0.62 halten=2][0.63 halten=2][0.64 halten=2][0.65 halten=2][0.66 halten=2][0.67 halten=2][0.68 halten=2][0.69 halten=2][0.70 halten=2][0.71 halten=2][0.72 halten=2][0.73 halten=2][0.74 halten=2][0.75 halten=2][0.76 halten=2][0.77 halten=2][0.78 halten=2][0.79 halten=2][0.80 halten=2][0.81 halten=2][0.82 halten=2][0.83 halten=2][0.84 halten=2][0.85 halten=2][0.86 halten=2][0.87 halten=2][0.88 halten=2][0.89 halten=2][0.90 halten=2][0.91 halten=2][0.92 halten=2][0.93 halten=2][0.94 halten=2][0.95 halten=2][0.96 halten=2][0.97 halten=2][0.98 halten=2][0.99 halten=2][1.00 halten=2][0.00 erhöhen=2][0.01 erhöhen=2][0.02 erhöhen=2][0.03 erhöhen=2][0.04 erhöhen=2][0.05 erhöhen=2][0.06 erhöhen=2][0.07 erhöhen=2][0.08 erhöhen=2][0.09 erhöhen=2][0.10 erhöhen=2][0.11 erhöhen=2][0.12 erhöhen=2][0.13 erhöhen=2][0.14 erhöhen=2][0.15 erhöhen=2][0.16 erhöhen=2][0.17 erhöhen=2][0.18 erhöhen=2][0.19 erhöhen=2][0.20 erhöhen=2][0.21 erhöhen=2][0.22 erhöhen=2][0.23 erhöhen=2][0.24 erhöhen=2][0.25 erhöhen=2][0.26 erhöhen=2][0.27 erhöhen=2][0.28 erhöhen=2][0.29 erhöhen=2][0.30 erhöhen=2][0.31 erhöhen=2][0.32 erhöhen=2][0.33 erhöhen=2][0.34 erhöhen=2][0.35 erhöhen=2][0.36 erhöhen=2][0.37 erhöhen=2][0.38 erhöhen=2][0.39 erhöhen=2][0.40 erhöhen=2][0.41 erhöhen=2][0.42 erhöhen=2][0.43 erhöhen=2][0.44 erhöhen=2][0.45 erhöhen=2][0.46 erhöhen=2][0.47 erhöhen=2][0.48 erhöhen=2][0.49 erhöhen=2][0.50 erhöhen=2][0.51 erhöhen=2][0.52 erhöhen=2][0.53 erhöhen=2][0.54 erhöhen=2][0.55 erhöhen=2][0.56 erhöhen=2][0.57 erhöhen=2][0.58 erhöhen=2][0.59 erhöhen=2][0.60 erhöhen=2][0.61 erhöhen=2][0.62 erhöhen=2][0.63 erhöhen=2][0.64 erhöhen=2][0.65 erhöhen=2][0.66 erhöhen=2][0.67 erhöhen=2][0.68 erhöhen=2][0.69 erhöhen=2][0.70 erhöhen=2][0.71 erhöhen=2][0.72 erhöhen=2][0.73 erhöhen=2][0.74 erhöhen=2][0.75 erhöhen=2][0.76 erhöhen=2][0.77 erhöhen=2][0.78 erhöhen=2][0.79 erhöhen=2][0.80 erhöhen=2][0.81 erhöhen=2][0.82 erhöhen=2][0.83 erhöhen=2][0.84 erhöhen=2][0.85 erhöhen=2][0.86 erhöhen=2][0.87 erhöhen=2][0.88 erhöhen=2][0.89 erhöhen=2][0.90 erhöhen=2][0.91 erhöhen=2][0.92 erhöhen=2][0.93 erhöhen=2][0.94 erhöhen=2][0.95 erhöhen=2][0.96 erhöhen=2][0.97 erhöhen=2][0.98 erhöhen=2][0.99 erhöhen=2][1.00 erhöhen=2],200,
+BR363,Schub erhöhen,0,JoyZ,0,Button[=100],,,a,a,,,,,
+BR363,Bremse erhöhen,0,JoyY,0,Button[>0],,,ä,ä,,,,,
+BR363,Bremse lösen,0,JoyY,0,Button[<0],,,ö,ö,,,,,
+BR363,Direkte Bremse anlegen,0,B3,,Button,,,+,+,,,,,
+BR363,Direkte Bremse lösen,0,B2,,Button,,,ü,ü,,,,,
+BR406,Schub,0,JoyZ,0,1,[1=5][2=5][3=5][4=5],Schub,,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:700]
+BR406,Bremse,0,JoyY,0,0,,Bremse,,,Stufen,9,[14=1][Lösen=0][Umgehung=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volles Anlegen=9],335,
+BR406,AFB hoch,0,Sldr,0,Button[>0],,,r,r,,,,,
+BR406,AFB hoch,0,Sldr,0,Button[<0],,,f,f,,,,,
+BR422,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Stufenlos,,[Min.=10][Min. Bremse=-10],55|75,[0|10:270][-10|0:270]
+BR423,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Stufenlos,,[Minimale=10][Minimale Bremse=-10],55|83,[0|10:270][-10|0:270]
+BR425,Schub,0,JoyZ,1,0,[1=10][2=10][3=10][4=10][5=10][6=10][7=10][8=10][9=10][-1=-10][-2=-10][-3=-10][-4=-10][-5=-10][-6=-10][-7=-10][-8=-10][-9=-10],Kombihebel,,,Stufenlos,,[Minimale=10][Minimale Bremse=-1],55|83,[0|10:250][-1|0:250]
+BR442,Schub,0,JoyZ,1,0,[1=5][2=5][3=5][4=5][-1=-5][-2=-5][-3=-5][-4=-5],Kombihebel,,,Stufenlos,,[Max.=100][Max. Bremse=-100],73,[0|5:200][-5|0:200]
+G6,Schub halten,0,JoyY,0,Button[<-10],,,a,a,,,,,
+G6,E-Bremse halten,0,JoyY,0,Button[>10],,,d,d,,,,,
+G6,Bremse,0,JoyZ,0,0,,Bremse,,,Stufen,2,[Lösen=0][Halten=1][Anlegen=2],500,
+G6,Bremse nach lösen drücken,0,JoyZ,0,Button[<0],,,ö,ö,,,,,

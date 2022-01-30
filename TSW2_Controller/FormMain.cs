@@ -12,6 +12,7 @@ using Tesseract;
 using SlimDX.DirectInput;
 using System.IO;
 using TSW2_Controller.Properties;
+using System.Reflection;
 
 namespace TSW2_Controller
 {
@@ -31,6 +32,10 @@ namespace TSW2_Controller
         List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
         List<string> rawData = new List<string>();
+        List<string> schubIndexe = new List<string>();
+        List<string> bremsIndexe = new List<string>();
+        List<string> kombihebel_schubIndexe = new List<string>();
+        List<string> kombihebel_bremsIndexe = new List<string>();
 
         bool[] currentlyPressedButtons = new bool[128];
         bool[] previouslyPressedButtons = new bool[128];
@@ -38,12 +43,17 @@ namespace TSW2_Controller
         string[] throttleConfig; //{Index,Art,Schritte,Specials,Zeit,längerDrücken}
         string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
         string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
-        string[] kombihebel = { "", "" };
+
+        string[] default_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
+        string[] default_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
+        string[] default_kombihebel_schubIndexe = { "Leistung" };
+        string[] default_kombihebel_bremsIndexe = { "Bremsleistung" };
 
         bool isKombihebel = false;
-        bool cancelThrottleRequest = false;
-        bool cancelBrakeRequest = false;
         bool globalIsDeactivated = false;
+
+        int cancelThrottleRequest = 0; //0=false 1=true -1=Warte bis laufender Scan fertig
+        int cancelBrakeRequest = 0; //0=false 1=true -1=Warte bis laufender Scan fertig
 
         int requestThrottle = 0;
         int requestBrake = 0;
@@ -51,15 +61,16 @@ namespace TSW2_Controller
         int schubIst = 0;
         int schubSoll = 0;
 
-        public int bremseIst = 0;
+        int bremseIst = 0;
         int bremseSoll = 0;
 
-
+        public List<string> RawData { get => rawData; set => rawData = value; }
 
         public FormMain()
         {
             InitializeComponent();
 
+            checkVersion();
             loadSettings();
             comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
@@ -70,10 +81,44 @@ namespace TSW2_Controller
             timer_CheckSticks.Start();
         }
 
+        public void checkVersion()
+        {
+            try
+            {
+                if (Settings.Default.UpdateErforderlich)
+                {
+                    object prevVersion = Settings.Default.GetPreviousVersion("Version");
+                    if (prevVersion != null)
+                    {
+                        //Update
+                        FormWasIstNeu formWasIstNeu = new FormWasIstNeu(prevVersion.ToString());
+                        formWasIstNeu.ShowDialog();
+
+                        Settings.Default.Upgrade();
+                    }
+                    else
+                    {
+                        //Neuinstallation
+                        Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save();
+                        Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save();
+                        Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save();
+                        Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save();
+                    }
+
+                    Settings.Default.UpdateErforderlich = false;
+                    Settings.Default.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2);
+
+                    Settings.Default.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         public void loadSettings()
         {
-            if (Settings.Default.UpdateErforderlich) { Settings.Default.Upgrade(); Settings.Default.UpdateErforderlich = false; Settings.Default.Save(); }
-
             try
             {
                 #region Auflösung
@@ -116,6 +161,23 @@ namespace TSW2_Controller
                     pictureBox_Screenshot_original.Hide();
                     pictureBox_Screenshot_alternativ.Hide();
                 }
+                #endregion
+
+                #region TextIndexe
+                if (Settings.Default.SchubIndexe.Count == 0) { if (MessageBox.Show("Schubindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.BremsIndexe.Count == 0) { if (MessageBox.Show("Bremsindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.Kombihebel_SchubIndexe.Count == 0) { if (MessageBox.Show("Kombihebel_Schubindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.Kombihebel_BremsIndexe.Count == 0) { if (MessageBox.Show("Kombihebel_Bremsindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save(); } }
+
+                schubIndexe.Clear();
+                bremsIndexe.Clear();
+                kombihebel_schubIndexe.Clear();
+                kombihebel_bremsIndexe.Clear();
+
+                schubIndexe.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                bremsIndexe.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
                 #endregion
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); Close(); }
@@ -195,7 +257,7 @@ namespace TSW2_Controller
                 if (str[Tcfg.aktion].Contains("Schub"))
                 {
                     //Infos über den Schubhebel
-                    throttleConfig[0] = str[Tcfg.textIndex];
+                    throttleConfig[0] = "empty";
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
@@ -206,22 +268,18 @@ namespace TSW2_Controller
                 {
                     //Infos über den Kombihebel
                     isKombihebel = true;
-                    throttleConfig[0] = str[Tcfg.textIndex].Remove(str[Tcfg.textIndex].IndexOf("["), str[Tcfg.textIndex].Length - str[Tcfg.textIndex].IndexOf("["));
+                    throttleConfig[0] = "empty";
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
                     throttleConfig[4] = str[Tcfg.zeitumrechnung];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
-
-                    string[] convert = str[Tcfg.textIndex].Remove(str[Tcfg.textIndex].Length - 1).Replace(throttleConfig[0], "").Replace("[", "").Split(']');
-                    kombihebel[0] = convert[0];
-                    kombihebel[1] = convert[1];
                 }
 
                 if (str[Tcfg.aktion].Contains("Bremse"))
                 {
                     //Infos über die Bremse
-                    brakeConfig[0] = str[Tcfg.textIndex];
+                    brakeConfig[0] = "empty";
                     brakeConfig[1] = str[Tcfg.art];
                     brakeConfig[2] = str[Tcfg.schritte];
                     brakeConfig[3] = str[Tcfg.specials];
@@ -404,12 +462,16 @@ namespace TSW2_Controller
             //Debuginfos anzeigen
             try
             {
-                if (rawData.Count > 0)
+                string[] listArray = listBox_debugInfo.Items.OfType<string>().ToArray();
+                if (listArray.Count() < RawData.Count())
                 {
-                    listBox_debugInfo.Items.AddRange(rawData.ToArray());
+                    int diff = RawData.Count() - listArray.Count();
+                    for (int i = 1; i <= diff; i++)
+                    {
+                        listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + RawData[RawData.Count() - i]);
+                    }
+                    listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
                 }
-                listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
-                rawData.Clear();
             }
             catch { }
         }
@@ -447,11 +509,12 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (schubSoll != currentThrottleJoystickState || schubSoll != schubIst)
             {
-                cancelThrottleRequest = true;
+                cancelThrottleRequest = 1;
                 requestThrottle = 0;
                 schubSoll = currentThrottleJoystickState;
 
                 ChangeGameState(true);
+                cancelThrottleRequest = -1;
             }
 
         }
@@ -489,12 +552,12 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Bremsregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (bremseSoll != currentBrakeJoystickState || bremseSoll != bremseIst)
             {
-                cancelBrakeRequest = true;
+                cancelBrakeRequest = 1;
                 requestBrake = 0;
                 bremseSoll = currentBrakeJoystickState;
 
                 ChangeGameState(false);
-                //Thread.Sleep(100); //Wenn es zu ungenau wird das hier aktivieren
+                cancelBrakeRequest = -1;
             }
         }
 
@@ -526,7 +589,7 @@ namespace TSW2_Controller
                             delay = Convert.ToInt32(throttleConfig[4]);
                         }
 
-                        rawData.Add("gehe von " + schubIst + " auf " + schubSoll);
+                        RawData.Add("gehe von " + schubIst + " auf " + schubSoll);
 
                         if (diffSchub > 0)
                         {
@@ -550,7 +613,7 @@ namespace TSW2_Controller
 
                     ConvertLongPress_Throttle(false);
                     int diffSchub = schubSoll - schubIst;
-                    rawData.Add("gehe von " + schubIst + " auf " + schubSoll);
+                    RawData.Add("gehe von " + schubIst + " auf " + schubSoll);
 
                     for (int i = 0; i < Math.Abs(diffSchub); i++)
                     {
@@ -581,7 +644,7 @@ namespace TSW2_Controller
                         delay = Convert.ToInt32(brakeConfig[4]);
 
 
-                        rawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
+                        RawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
 
                         if (diffBremse > 0)
                         {
@@ -604,7 +667,7 @@ namespace TSW2_Controller
 
                     ConvertLongPress_Brake(false);
                     int diffBremse = bremseSoll - bremseIst;
-                    rawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
+                    RawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
 
                     for (int i = 0; i < Math.Abs(diffBremse); i++)
                     {
@@ -642,7 +705,7 @@ namespace TSW2_Controller
                         //Mehr
                         if (schubIst == untere_grenze)
                         {
-                            rawData.Add("Halte mehr gedrückt");
+                            RawData.Add("Halte mehr gedrückt");
                             Keyboard.HoldKey(Keyboard.increaseThrottle, dauer);
                             schubIst = obere_grenze;
                             requestThrottle = 3;
@@ -650,20 +713,21 @@ namespace TSW2_Controller
                         }
                         else if (schubIst < untere_grenze)
                         {
-                            rawData.Add("Anpassen auf hoch " + untere_grenze);
+                            RawData.Add("Anpassen auf hoch " + untere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.increaseThrottle, 10);
                                 schubSoll = untere_grenze;
                             }
                         }
+                        break;
                     }
                     else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
                     {
                         //Weniger
                         if (schubIst == obere_grenze)
                         {
-                            rawData.Add("Halte weniger gedrückt");
+                            RawData.Add("Halte weniger gedrückt");
                             Keyboard.HoldKey(Keyboard.decreaseThrottle, dauer);
                             schubIst = untere_grenze;
                             requestThrottle = 3;
@@ -671,13 +735,14 @@ namespace TSW2_Controller
                         }
                         else if (schubIst > obere_grenze)
                         {
-                            rawData.Add("Anpassen auf runter " + obere_grenze);
+                            RawData.Add("Anpassen auf runter " + obere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 10);
                                 schubSoll = obere_grenze;
                             }
                         }
+                        break;
                     }
                 }
             }
@@ -701,7 +766,7 @@ namespace TSW2_Controller
                         //Mehr
                         if (bremseIst == untere_grenze)
                         {
-                            rawData.Add("Halte mehr Bremse gedrückt");
+                            RawData.Add("Halte mehr Bremse gedrückt");
                             Keyboard.HoldKey(Keyboard.increaseBrake, dauer);
                             bremseIst = obere_grenze;
                             requestBrake = 2;
@@ -709,20 +774,21 @@ namespace TSW2_Controller
                         }
                         else if (bremseIst < untere_grenze)
                         {
-                            rawData.Add("Bremse anpassen auf " + untere_grenze);
+                            RawData.Add("Bremse anpassen auf " + untere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.increaseBrake, 10);
                                 bremseSoll = untere_grenze;
                             }
                         }
+                        break;
                     }
                     else if (bremseSoll <= untere_grenze && obere_grenze <= bremseIst)
                     {
                         //Weniger
                         if (bremseIst == obere_grenze)
                         {
-                            rawData.Add("Halte weniger Bremse gedrückt");
+                            RawData.Add("Halte weniger Bremse gedrückt");
                             Keyboard.HoldKey(Keyboard.decreaseBrake, dauer);
                             bremseIst = untere_grenze;
                             requestBrake = 2;
@@ -730,13 +796,14 @@ namespace TSW2_Controller
                         }
                         else if (bremseIst > obere_grenze)
                         {
-                            rawData.Add("Bremse anpassen auf " + obere_grenze);
+                            RawData.Add("Bremse anpassen auf " + obere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.decreaseBrake, 10);
                                 bremseSoll = obere_grenze;
                             }
                         }
+                        break;
                     }
                 }
             }
@@ -896,7 +963,7 @@ namespace TSW2_Controller
                 for (int x = 0; (x <= (bmpScreenshot.Width - 1)); x++)
                 {
                     Color inv = bmpScreenshot.GetPixel(x, y);
-                    if (!(inv.R == 220 && inv.G == 220 && inv.B == 220) && !(inv.R == 255 && inv.G == 255 && inv.B == 255))
+                    if (inv.R + inv.G + inv.G < 500)
                     {
                         inv = Color.FromArgb(0, 0, 0, 0);
                     }
@@ -917,6 +984,9 @@ namespace TSW2_Controller
             var ocrtext = string.Empty;
             using (var engine = new TesseractEngine(@"./tessdata", "deu", EngineMode.Default))
             {
+                //engine.SetVariable("load_system_dawg", true);
+                //engine.SetVariable("language_model_penalty_non_dict_word", 1);
+                //engine.SetVariable("language_model_penalty_non_freq_dict_word", 1);
                 using (var img = PixConverter.ToPix(imgsource))
                 {
                     using (var page = engine.Process(img))
@@ -941,11 +1011,11 @@ namespace TSW2_Controller
 
                 if (requestThrottle > 0 || requestBrake > 0)
                 {
-                    rawData.Add("reqThrot:" + requestThrottle + "   reqBrake:" + requestBrake);
+                    RawData.Add("reqThrot:" + requestThrottle + "   reqBrake:" + requestBrake);
                 }
                 if (original_result != "")
                 {
-                    rawData.Add("orig:" + original_result);
+                    RawData.Add("orig:" + original_result);
                 }
 
 
@@ -963,17 +1033,47 @@ namespace TSW2_Controller
 
                 if (alternative_result != "")
                 {
-                    rawData.Add("alt:" + alternative_result);
+                    RawData.Add("alt:" + alternative_result);
                 }
 
 
                 //Wenn nichts mehr gefunden wurde aber noch Werte gefordert wurden dann drücke die Taste kurz um den Text wieder zu zeigen
                 if (requestBrake > 0 && !original_result.Contains(brakeConfig[0]) && !alternative_result.Contains(brakeConfig[0]))
                 {
+                    foreach (string bremsindex in bremsIndexe)
+                    {
+                        if (ContainsWord(original_result, bremsindex))
+                        {
+                            brakeConfig[0] = bremsindex;
+                            RawData.Add("BremsIndex = " + bremsindex);
+                            break;
+                        }
+                        else if (ContainsWord(alternative_result, bremsindex))
+                        {
+                            brakeConfig[0] = bremsindex;
+                            RawData.Add("BremsIndex = " + bremsindex);
+                            break;
+                        }
+                    }
                     Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
                 }
                 if (requestThrottle > 0 && !original_result.Contains(throttleConfig[0]) && !alternative_result.Contains(throttleConfig[0]))
                 {
+                    foreach (string leistungsIndex in schubIndexe)
+                    {
+                        if (ContainsWord(original_result, leistungsIndex))
+                        {
+                            throttleConfig[0] = leistungsIndex;
+                            RawData.Add("SchubIndex = " + leistungsIndex);
+                            break;
+                        }
+                        else if (ContainsWord(alternative_result, leistungsIndex))
+                        {
+                            throttleConfig[0] = leistungsIndex;
+                            RawData.Add("SchubIndex = " + leistungsIndex);
+                            break;
+                        }
+                    }
                     Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
                 }
 
@@ -1022,15 +1122,15 @@ namespace TSW2_Controller
                             }
                             if (erkannterSchub != -99999)
                             {
-                                if (!cancelThrottleRequest)
+                                if (cancelThrottleRequest == 0)
                                 {
                                     requestThrottle--;
                                     schubIst = erkannterSchub;
-                                    rawData.Add("schub:" + erkannterSchub);
+                                    RawData.Add("schub:" + erkannterSchub);
                                 }
-                                else
+                                else if (cancelThrottleRequest == -1)
                                 {
-                                    cancelThrottleRequest = false;
+                                    cancelThrottleRequest = 0;
                                 }
                             }
                         }
@@ -1079,15 +1179,15 @@ namespace TSW2_Controller
                             }
                             if (erkannteBremsleistung != -99999)
                             {
-                                if (!cancelBrakeRequest)
+                                if (cancelBrakeRequest == 0)
                                 {
                                     requestBrake--;
                                     bremseIst = erkannteBremsleistung;
-                                    rawData.Add("bremse:" + erkannteBremsleistung);
+                                    RawData.Add("bremse:" + erkannteBremsleistung);
                                 }
-                                else
+                                else if (cancelBrakeRequest == -1)
                                 {
-                                    cancelBrakeRequest = false;
+                                    cancelBrakeRequest = 0;
                                 }
                             }
                         }
@@ -1110,24 +1210,39 @@ namespace TSW2_Controller
 
             if (requestThrottle > 0)
             {
-                rawData.Add("reqThrot:" + requestThrottle);
+                RawData.Add("reqThrot:" + requestThrottle);
             }
             if (original_result != "")
             {
-                rawData.Add("orig:" + original_result);
+                RawData.Add("orig:" + original_result);
             }
 
 
             if (!original_result.Contains(throttleConfig[0]))
             {
                 alternative_result = GetText(Screenshot(false));
-                rawData.Add("alt:" + alternative_result);
+                RawData.Add("alt:" + alternative_result);
             }
 
 
             //Wenn nichts mehr gefunden wurde aber noch Werte gefordert wurden dann drücke die Taste kurz um den Text wieder zu zeigen
             if (requestThrottle > 0 && !original_result.Contains(throttleConfig[0]) && !alternative_result.Contains(throttleConfig[0]))
             {
+                foreach (string schubIndex in schubIndexe)
+                {
+                    if (ContainsWord(original_result, schubIndex))
+                    {
+                        throttleConfig[0] = schubIndex;
+                        RawData.Add("SchubIndex = " + schubIndex);
+                        break;
+                    }
+                    else if (ContainsWord(alternative_result, schubIndex))
+                    {
+                        throttleConfig[0] = schubIndex;
+                        RawData.Add("SchubIndex = " + schubIndex);
+                        break;
+                    }
+                }
                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
             }
 
@@ -1153,15 +1268,29 @@ namespace TSW2_Controller
                         result = result.Remove(0, 1);
                         result = result.Replace("%", "");
 
-                        if (result.Contains(kombihebel[1]))
+                        if (kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                         {
                             schubFaktor = -1;
                         }
-                        if (result.Contains(kombihebel[0]) || result.Contains(kombihebel[1]))
+
+                        foreach (string bremsIndex in kombihebel_bremsIndexe)
                         {
-                            result = result.Replace(kombihebel[0], "").Replace(kombihebel[1], "");
-                            result = result.Remove(result.Length - 1);
+                            if (result.Contains(bremsIndex) && result != "")
+                            {
+                                result = result.Replace(bremsIndex, "");
+                                result = result.Remove(result.Length - 1);
+                            }
                         }
+                        foreach (string schubIndex in kombihebel_schubIndexe)
+                        {
+                            if (result.Contains(schubIndex) && result != "")
+                            {
+                                result = result.Replace(schubIndex, "");
+                                result = result.Remove(result.Length - 1);
+                            }
+                        }
+
+
 
                         if (throttleConfig[3].Length > 0)
                         {
@@ -1185,15 +1314,15 @@ namespace TSW2_Controller
                         }
                         if (erkannterSchub != -99999)
                         {
-                            if (!cancelThrottleRequest)
+                            if (cancelThrottleRequest == 0)
                             {
                                 requestThrottle--;
                                 schubIst = erkannterSchub * schubFaktor;
-                                rawData.Add("schub:" + schubIst);
+                                RawData.Add("schub:" + schubIst);
                             }
-                            else
+                            else if (cancelThrottleRequest == -1)
                             {
-                                cancelThrottleRequest = false;
+                                cancelThrottleRequest = 0;
                             }
                         }
                     }
@@ -1304,7 +1433,7 @@ namespace TSW2_Controller
 
         private void check_active_CheckedChanged(object sender, EventArgs e)
         {
-            if(check_active.Checked)
+            if (check_active.Checked)
             {
                 check_active.BackColor = Color.Lime;
             }
@@ -1313,5 +1442,23 @@ namespace TSW2_Controller
                 check_active.BackColor = Color.Red;
             }
         }
+
+        public bool ContainsWord(string stringToCheck, string word)
+        {
+            string[] ar = stringToCheck.Split(' ');
+
+            if (stringToCheck != "")
+            {
+                foreach (string str in ar)
+                {
+                    if (str.ToLower() == word.ToLower())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
     }
 }

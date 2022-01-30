@@ -18,12 +18,11 @@ namespace TSW2_Controller
         public static int aktion = 7;
         public static int buttonDown = 8;
         public static int buttonUp = 9;
-        public static int textIndex = 10;
-        public static int art = 11;
-        public static int schritte = 12;
-        public static int specials = 13;
-        public static int zeitumrechnung = 14;
-        public static int laengerDruecken = 15;
+        public static int art = 10;
+        public static int schritte = 11;
+        public static int specials = 12;
+        public static int zeitumrechnung = 13;
+        public static int laengerDruecken = 14;
 
         public static string nameForGlobal = "_Global";
     }
