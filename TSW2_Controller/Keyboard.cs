@@ -13,30 +13,30 @@ namespace TSW2_Controller
     {
         const int PauseBetweenStrokes = 50;
         [DllImport("user32.dll", SetLastError = true)]
-        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        static extern void keybd_event(Keys bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
         const int KEY_DOWN_EVENT = 0x0001; //Key down flag
         const int KEY_UP_EVENT = 0x0002; //Key up flag
 
-        public static byte increaseThrottle = (byte)Keys.A;
-        public static byte increaseBrake = (byte)Keys.Oem7;
-        public static byte decreaseThrottle = (byte)Keys.D;
-        public static byte decreaseBrake = (byte)Keys.Oem3;
+        public static Keys increaseThrottle = Keys.A;
+        public static Keys increaseBrake = Keys.Oem7;
+        public static Keys decreaseThrottle = Keys.D;
+        public static Keys decreaseBrake = Keys.Oem3;
 
 
-        public static void HoldKey(byte key, int duration)
+        public static void HoldKey(Keys key, int duration)
         {
             keybd_event(key, 0, KEY_DOWN_EVENT, 0);
             System.Threading.Thread.Sleep(duration);
             keybd_event(key, 0, KEY_UP_EVENT, 0);
         }
 
-        public static void KeyDown(byte key)
+        public static void KeyDown(Keys key)
         {
             keybd_event(key, 0, KEY_DOWN_EVENT, 0);
         }
 
-        public static void KeyUp(byte key)
+        public static void KeyUp(Keys key)
         {
             keybd_event(key, 0, KEY_UP_EVENT, 0);
         }
@@ -101,132 +101,220 @@ namespace TSW2_Controller
             }
         }
 
-        public static byte ConvertStringToKey(string input)
+        public static Keys ConvertStringToKey(string input)
         {
-            switch (input)
-            {
+            string x;
+            switch (x = input)
+            { 
                 case ("space"):
-                    return (byte)Keys.Space;
+                    return Keys.Space;
                 case ("esc"):
-                    return (byte)Keys.Escape;
+                    return Keys.Escape;
                 case ("tab"):
-                    return (byte)Keys.Tab;
+                    return Keys.Tab;
                 case ("einfg"):
-                    return (byte)Keys.Insert;
+                    return Keys.Insert;
                 case ("pos1"):
-                    return (byte)Keys.Home;
+                    return Keys.Home;
                 case ("bildauf"):
-                    return (byte)Keys.Prior;
+                    return Keys.Prior;
                 case ("entf"):
-                    return (byte)Keys.Delete;
+                    return Keys.Delete;
                 case ("ende"):
-                    return (byte)Keys.End;
+                    return Keys.End;
                 case ("bildab"):
-                    return (byte)Keys.Next;
+                    return Keys.Next;
                 case ("hoch"):
-                    return (byte)Keys.Up;
+                    return Keys.Up;
                 case ("runter"):
-                    return (byte)Keys.Down;
+                    return Keys.Down;
                 case ("rechts"):
-                    return (byte)Keys.Right;
+                    return Keys.Right;
                 case ("links"):
-                    return (byte)Keys.Left;
+                    return Keys.Left;
+                case ("alt"):
+                    return Keys.LMenu;
+                case ("altgr"):
+                    return Keys.RMenu;
+                case ("strg"):
+                    return Keys.LControlKey;
+                case ("rstrg"):
+                    return Keys.RControlKey;
+                case ("win"):
+                    return Keys.LWin;
+                case ("rwin"):
+                    return Keys.RWin;
+                case ("shift"):
+                    return Keys.LShiftKey;
+                case ("rshift"):
+                    return Keys.RShiftKey;
                 case ("ü"):
-                    return (byte)Keys.Oem1;
+                    return Keys.Oem1;
                 case ("#"):
-                    return (byte)Keys.Oem2;
+                    return Keys.Oem2;
                 case ("ö"):
-                    return (byte)Keys.Oem3;
+                    return Keys.Oem3;
                 case ("ß"):
-                    return (byte)Keys.Oem4;
+                    return Keys.Oem4;
                 case ("^"):
-                    return (byte)Keys.Oem5;
+                    return Keys.Oem5;
                 case ("´"):
-                    return (byte)Keys.Oem6;
+                    return Keys.Oem6;
                 case ("ä"):
-                    return (byte)Keys.Oem7;
+                    return Keys.Oem7;
                 case ("+"):
-                    return (byte)Keys.Oemplus;
+                    return Keys.Oemplus;
                 case ("komma"):
-                    return (byte)Keys.Oemcomma;
+                    return Keys.Oemcomma;
                 case ("."):
-                    return (byte)Keys.OemPeriod;
+                    return Keys.OemPeriod;
                 case ("-"):
-                    return (byte)Keys.OemMinus;
+                    return Keys.OemMinus;
+                case ("capslock"):
+                    return Keys.CapsLock;
+                case ("zurück"):
+                    return Keys.Back;
+                case ("enter"):
+                    return Keys.Return;
+                case ("drucken"):
+                    return Keys.Snapshot;
+                case ("rollen"):
+                    return Keys.Scroll;
+                case ("pause"):
+                    return Keys.Pause;
+                case ("numlock"):
+                    return Keys.NumLock;
+                case ("num0"):
+                    return Keys.NumPad0;
+                case ("num1"):
+                    return Keys.NumPad1;
+                case ("num2"):
+                    return Keys.NumPad2;
+                case ("num3"):
+                    return Keys.NumPad3;
+                case ("num4"):
+                    return Keys.NumPad4;
+                case ("num5"):
+                    return Keys.NumPad5;
+                case ("num6"):
+                    return Keys.NumPad6;
+                case ("num7"):
+                    return Keys.NumPad7;
+                case ("num8"):
+                    return Keys.NumPad8;
+                case ("num9"):
+                    return Keys.NumPad9;
+                case ("num/"):
+                    return Keys.Divide;
+                case ("num*"):
+                    return Keys.Multiply;
+                case ("num-"):
+                    return Keys.Subtract;
+                case ("num+"):
+                    return Keys.Add;
+                case ("numenter"):
+                    return Keys.Return;
+                case ("numkomma"):
+                    return Keys.Delete;
                 case ("0"):
-                    return (byte)Keys.D0;
+                    return Keys.D0;
                 case ("1"):
-                    return (byte)Keys.D1;
+                    return Keys.D1;
                 case ("2"):
-                    return (byte)Keys.D2;
+                    return Keys.D2;
                 case ("3"):
-                    return (byte)Keys.D3;
+                    return Keys.D3;
                 case ("4"):
-                    return (byte)Keys.D4;
+                    return Keys.D4;
                 case ("5"):
-                    return (byte)Keys.D5;
+                    return Keys.D5;
                 case ("6"):
-                    return (byte)Keys.D6;
+                    return Keys.D6;
                 case ("7"):
-                    return (byte)Keys.D7;
+                    return Keys.D7;
                 case ("8"):
-                    return (byte)Keys.D8;
+                    return Keys.D8;
                 case ("9"):
-                    return (byte)Keys.D9;
+                    return Keys.D9;
+                case ("f1"):
+                    return Keys.F1;
+                case ("f2"):
+                    return Keys.F2;
+                case ("f3"):
+                    return Keys.F3;
+                case ("f4"):
+                    return Keys.F4;
+                case ("f5"):
+                    return Keys.F5;
+                case ("f6"):
+                    return Keys.F6;
+                case ("f7"):
+                    return Keys.F7;
+                case ("f8"):
+                    return Keys.F8;
+                case ("f9"):
+                    return Keys.F9;
+                case ("f10"):
+                    return Keys.F10;
+                case ("f11"):
+                    return Keys.F11;
+                case ("f12"):
+                    return Keys.F12;
                 case ("a"):
-                    return (byte)Keys.A;
+                    return Keys.A;
                 case ("b"):
-                    return (byte)Keys.B;
+                    return Keys.B;
                 case ("c"):
-                    return (byte)Keys.C;
+                    return Keys.C;
                 case ("d"):
-                    return (byte)Keys.D;
+                    return Keys.D;
                 case ("e"):
-                    return (byte)Keys.E;
+                    return Keys.E;
                 case ("f"):
-                    return (byte)Keys.F;
+                    return Keys.F;
                 case ("g"):
-                    return (byte)Keys.G;
+                    return Keys.G;
                 case ("h"):
-                    return (byte)Keys.H;
+                    return Keys.H;
                 case ("i"):
-                    return (byte)Keys.I;
+                    return Keys.I;
                 case ("j"):
-                    return (byte)Keys.J;
+                    return Keys.J;
                 case ("k"):
-                    return (byte)Keys.K;
+                    return Keys.K;
                 case ("l"):
-                    return (byte)Keys.L;
+                    return Keys.L;
                 case ("m"):
-                    return (byte)Keys.M;
+                    return Keys.M;
                 case ("n"):
-                    return (byte)Keys.N;
+                    return Keys.N;
                 case ("o"):
-                    return (byte)Keys.O;
+                    return Keys.O;
                 case ("p"):
-                    return (byte)Keys.P;
+                    return Keys.P;
                 case ("q"):
-                    return (byte)Keys.Q;
+                    return Keys.Q;
                 case ("r"):
-                    return (byte)Keys.R;
+                    return Keys.R;
                 case ("s"):
-                    return (byte)Keys.S;
+                    return Keys.S;
                 case ("t"):
-                    return (byte)Keys.T;
+                    return Keys.T;
                 case ("u"):
-                    return (byte)Keys.U;
+                    return Keys.U;
                 case ("v"):
-                    return (byte)Keys.V;
+                    return Keys.V;
                 case ("w"):
-                    return (byte)Keys.W;
+                    return Keys.W;
                 case ("x"):
-                    return (byte)Keys.X;
+                    return Keys.X;
                 case ("y"):
-                    return (byte)Keys.Y;
+                    return Keys.Y;
                 case ("z"):
-                    return (byte)Keys.Z;
+                    return Keys.Z;
                 default:
-                    return (byte)0;
+                    MessageBox.Show("Fehler! Kenne die Taste \"" + x + "\" nicht");
+                    return Keys.Space;
             }
 
         }

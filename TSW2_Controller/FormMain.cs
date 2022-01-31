@@ -19,7 +19,6 @@ namespace TSW2_Controller
     public partial class FormMain : Form
     {
         ///Todo:
-        ///Tastenkombinationen hinzufügen
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -885,13 +884,13 @@ namespace TSW2_Controller
                     if (currentlyPressedButtons[i] == true)
                     {
                         //on Press
-                        Keyboard.ProcessAktion(activeTrain[i][Tcfg.aktion]);
-                        Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonDown]));
+                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.aktion]); }
+                        if (activeTrain[i][Tcfg.buttonDown] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonDown])); }
                     }
                     else
                     {
                         //on release
-                        Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp]));
+                        if (activeTrain[i][Tcfg.buttonUp] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp])); }
                     }
                     previouslyPressedButtons[i] = currentlyPressedButtons[i];
                 }

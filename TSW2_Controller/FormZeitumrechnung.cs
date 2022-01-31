@@ -134,8 +134,8 @@ namespace TSW2_Controller
         private void RunNormal()
         {
             int delay = 1000;
-            byte taste_mehr;
-            byte taste_weniger;
+            Keys taste_mehr;
+            Keys taste_weniger;
             int endNumber = 0;
 
             if (radio_Schub.Checked)
@@ -176,7 +176,7 @@ namespace TSW2_Controller
                     {
                         Keyboard.HoldKey(taste_mehr, 1000);
 
-                        Keyboard.HoldKey((byte)Keys.Escape, 300);
+                        Keyboard.HoldKey(Keys.Escape, 300);
                         this.Focus();
                         Interaction.Beep();
                         DialogResult dialog = MessageBox.Show("Keine Nummer Erkannt. Kann es sein, dass du beim Maximum gelandet bist?", "Fehler", MessageBoxButtons.YesNo);
@@ -208,7 +208,7 @@ namespace TSW2_Controller
 
                 if (endNumber - startNumber > 0)
                 {
-                    Keyboard.HoldKey((byte)Keys.Escape, 300);
+                    Keyboard.HoldKey(Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
                     MessageBox.Show("Fertig!\nAls Wert für die Zeitumrechnungkannst du nun " + Math.Round(Convert.ToDouble(endNumber - startNumber) * (1000.0 / delay), 0) + " eintragen");
@@ -259,14 +259,14 @@ namespace TSW2_Controller
                 }
                 if (overskip_Value != 0)
                 {
-                    Keyboard.HoldKey((byte)Keys.Escape, 300);
+                    Keyboard.HoldKey(Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
                     MessageBox.Show("Fertig!\nAls Wert für die Zeitumrechnungkannst du nun " + Math.Round((Convert.ToDouble(overskip_Value - nextStep_Value) / 2) + nextStep_Value, 0) + " eintragen");
                 }
                 else
                 {
-                    Keyboard.HoldKey((byte)Keys.Escape, 300);
+                    Keyboard.HoldKey(Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
                     MessageBox.Show("Hmm da hat etwas nicht funktioniert. Versuche es doch nochmal.");
@@ -296,7 +296,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
 
-            Keyboard.HoldKey((byte)Keys.Escape, 300);
+            Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
             Interaction.Beep();
             MessageBox.Show("Stelle den Regler nun auf den bremswert");
@@ -318,7 +318,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
 
-            Keyboard.HoldKey((byte)Keys.Escape, 300);
+            Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
             Interaction.Beep();
             MessageBox.Show("Fertig!\nDu kannst nun bei der Zeitumrechnung " + ersterZeitwert + "|" + zweiterZeitwert + " eintragen.");
