@@ -19,6 +19,7 @@ namespace TSW2_Controller
     public partial class FormMain : Form
     {
         ///Todo:
+        ///In den Einstellungen eine csv-Eintrag Erstellhilfe erstellen.
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -71,6 +72,8 @@ namespace TSW2_Controller
 
             checkVersion();
             loadSettings();
+            Keyboard.initKeylist();
+
             comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
 

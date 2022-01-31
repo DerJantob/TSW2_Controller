@@ -23,6 +23,114 @@ namespace TSW2_Controller
         public static Keys decreaseThrottle = Keys.D;
         public static Keys decreaseBrake = Keys.Oem3;
 
+        private static List<object[]> keyList = new List<object[]>();
+
+        public static void initKeylist()
+        {
+            keyList.Add(new object[] { "space", Keys.Space });
+            keyList.Add(new object[] { "esc", Keys.Escape });
+            keyList.Add(new object[] { "tab", Keys.Tab });
+            keyList.Add(new object[] { "einfg", Keys.Insert });
+            keyList.Add(new object[] { "pos1", Keys.Home });
+            keyList.Add(new object[] { "bildauf", Keys.Prior });
+            keyList.Add(new object[] { "entf", Keys.Delete });
+            keyList.Add(new object[] { "ende", Keys.End });
+            keyList.Add(new object[] { "bildab", Keys.Next });
+            keyList.Add(new object[] { "hoch", Keys.Up });
+            keyList.Add(new object[] { "runter", Keys.Down });
+            keyList.Add(new object[] { "rechts", Keys.Right });
+            keyList.Add(new object[] { "links", Keys.Left });
+            keyList.Add(new object[] { "alt", Keys.LMenu });
+            keyList.Add(new object[] { "altgr", Keys.RMenu });
+            keyList.Add(new object[] { "strg", Keys.LControlKey });
+            keyList.Add(new object[] { "rstrg", Keys.RControlKey });
+            keyList.Add(new object[] { "win", Keys.LWin });
+            keyList.Add(new object[] { "rwin", Keys.RWin });
+            keyList.Add(new object[] { "shift", Keys.LShiftKey });
+            keyList.Add(new object[] { "rshift", Keys.RShiftKey });
+            keyList.Add(new object[] { "ü", Keys.Oem1 });
+            keyList.Add(new object[] { "#", Keys.Oem2 });
+            keyList.Add(new object[] { "ö", Keys.Oem3 });
+            keyList.Add(new object[] { "ß", Keys.Oem4 });
+            keyList.Add(new object[] { "^", Keys.Oem5 });
+            keyList.Add(new object[] { "´", Keys.Oem6 });
+            keyList.Add(new object[] { "ä", Keys.Oem7 });
+            keyList.Add(new object[] { "+", Keys.Oemplus });
+            keyList.Add(new object[] { "komma", Keys.Oemcomma });
+            keyList.Add(new object[] { ".", Keys.OemPeriod });
+            keyList.Add(new object[] { "-", Keys.OemMinus });
+            keyList.Add(new object[] { "capslock", Keys.CapsLock });
+            keyList.Add(new object[] { "zurück", Keys.Back });
+            keyList.Add(new object[] { "enter", Keys.Return });
+            keyList.Add(new object[] { "drucken", Keys.Snapshot });
+            keyList.Add(new object[] { "rollen", Keys.Scroll });
+            keyList.Add(new object[] { "pause", Keys.Pause });
+            keyList.Add(new object[] { "numlock", Keys.NumLock });
+            keyList.Add(new object[] { "num0", Keys.NumPad0 });
+            keyList.Add(new object[] { "num1", Keys.NumPad1 });
+            keyList.Add(new object[] { "num2", Keys.NumPad2 });
+            keyList.Add(new object[] { "num3", Keys.NumPad3 });
+            keyList.Add(new object[] { "num4", Keys.NumPad4 });
+            keyList.Add(new object[] { "num5", Keys.NumPad5 });
+            keyList.Add(new object[] { "num6", Keys.NumPad6 });
+            keyList.Add(new object[] { "num7", Keys.NumPad7 });
+            keyList.Add(new object[] { "num8", Keys.NumPad8 });
+            keyList.Add(new object[] { "num9", Keys.NumPad9 });
+            keyList.Add(new object[] { "num/", Keys.Divide });
+            keyList.Add(new object[] { "num*", Keys.Multiply });
+            keyList.Add(new object[] { "num-", Keys.Subtract });
+            keyList.Add(new object[] { "num+", Keys.Add });
+            keyList.Add(new object[] { "numenter", Keys.Return });
+            keyList.Add(new object[] { "numkomma", Keys.Delete });
+            keyList.Add(new object[] { "0", Keys.D0 });
+            keyList.Add(new object[] { "1", Keys.D1 });
+            keyList.Add(new object[] { "2", Keys.D2 });
+            keyList.Add(new object[] { "3", Keys.D3 });
+            keyList.Add(new object[] { "4", Keys.D4 });
+            keyList.Add(new object[] { "5", Keys.D5 });
+            keyList.Add(new object[] { "6", Keys.D6 });
+            keyList.Add(new object[] { "7", Keys.D7 });
+            keyList.Add(new object[] { "8", Keys.D8 });
+            keyList.Add(new object[] { "9", Keys.D9 });
+            keyList.Add(new object[] { "f1", Keys.F1 });
+            keyList.Add(new object[] { "f2", Keys.F2 });
+            keyList.Add(new object[] { "f3", Keys.F3 });
+            keyList.Add(new object[] { "f4", Keys.F4 });
+            keyList.Add(new object[] { "f5", Keys.F5 });
+            keyList.Add(new object[] { "f6", Keys.F6 });
+            keyList.Add(new object[] { "f7", Keys.F7 });
+            keyList.Add(new object[] { "f8", Keys.F8 });
+            keyList.Add(new object[] { "f9", Keys.F9 });
+            keyList.Add(new object[] { "f10", Keys.F10 });
+            keyList.Add(new object[] { "f11", Keys.F11 });
+            keyList.Add(new object[] { "f12", Keys.F12 });
+            keyList.Add(new object[] { "a", Keys.A });
+            keyList.Add(new object[] { "b", Keys.B });
+            keyList.Add(new object[] { "c", Keys.C });
+            keyList.Add(new object[] { "d", Keys.D });
+            keyList.Add(new object[] { "e", Keys.E });
+            keyList.Add(new object[] { "f", Keys.F });
+            keyList.Add(new object[] { "g", Keys.G });
+            keyList.Add(new object[] { "h", Keys.H });
+            keyList.Add(new object[] { "i", Keys.I });
+            keyList.Add(new object[] { "j", Keys.J });
+            keyList.Add(new object[] { "k", Keys.K });
+            keyList.Add(new object[] { "l", Keys.L });
+            keyList.Add(new object[] { "m", Keys.M });
+            keyList.Add(new object[] { "n", Keys.N });
+            keyList.Add(new object[] { "o", Keys.O });
+            keyList.Add(new object[] { "p", Keys.P });
+            keyList.Add(new object[] { "q", Keys.Q });
+            keyList.Add(new object[] { "r", Keys.R });
+            keyList.Add(new object[] { "s", Keys.S });
+            keyList.Add(new object[] { "t", Keys.T });
+            keyList.Add(new object[] { "u", Keys.U });
+            keyList.Add(new object[] { "v", Keys.V });
+            keyList.Add(new object[] { "w", Keys.W });
+            keyList.Add(new object[] { "x", Keys.X });
+            keyList.Add(new object[] { "y", Keys.Y });
+            keyList.Add(new object[] { "z", Keys.Z });
+        }
 
         public static void HoldKey(Keys key, int duration)
         {
@@ -103,220 +211,30 @@ namespace TSW2_Controller
 
         public static Keys ConvertStringToKey(string input)
         {
-            string x;
-            switch (x = input)
-            { 
-                case ("space"):
-                    return Keys.Space;
-                case ("esc"):
-                    return Keys.Escape;
-                case ("tab"):
-                    return Keys.Tab;
-                case ("einfg"):
-                    return Keys.Insert;
-                case ("pos1"):
-                    return Keys.Home;
-                case ("bildauf"):
-                    return Keys.Prior;
-                case ("entf"):
-                    return Keys.Delete;
-                case ("ende"):
-                    return Keys.End;
-                case ("bildab"):
-                    return Keys.Next;
-                case ("hoch"):
-                    return Keys.Up;
-                case ("runter"):
-                    return Keys.Down;
-                case ("rechts"):
-                    return Keys.Right;
-                case ("links"):
-                    return Keys.Left;
-                case ("alt"):
-                    return Keys.LMenu;
-                case ("altgr"):
-                    return Keys.RMenu;
-                case ("strg"):
-                    return Keys.LControlKey;
-                case ("rstrg"):
-                    return Keys.RControlKey;
-                case ("win"):
-                    return Keys.LWin;
-                case ("rwin"):
-                    return Keys.RWin;
-                case ("shift"):
-                    return Keys.LShiftKey;
-                case ("rshift"):
-                    return Keys.RShiftKey;
-                case ("ü"):
-                    return Keys.Oem1;
-                case ("#"):
-                    return Keys.Oem2;
-                case ("ö"):
-                    return Keys.Oem3;
-                case ("ß"):
-                    return Keys.Oem4;
-                case ("^"):
-                    return Keys.Oem5;
-                case ("´"):
-                    return Keys.Oem6;
-                case ("ä"):
-                    return Keys.Oem7;
-                case ("+"):
-                    return Keys.Oemplus;
-                case ("komma"):
-                    return Keys.Oemcomma;
-                case ("."):
-                    return Keys.OemPeriod;
-                case ("-"):
-                    return Keys.OemMinus;
-                case ("capslock"):
-                    return Keys.CapsLock;
-                case ("zurück"):
-                    return Keys.Back;
-                case ("enter"):
-                    return Keys.Return;
-                case ("drucken"):
-                    return Keys.Snapshot;
-                case ("rollen"):
-                    return Keys.Scroll;
-                case ("pause"):
-                    return Keys.Pause;
-                case ("numlock"):
-                    return Keys.NumLock;
-                case ("num0"):
-                    return Keys.NumPad0;
-                case ("num1"):
-                    return Keys.NumPad1;
-                case ("num2"):
-                    return Keys.NumPad2;
-                case ("num3"):
-                    return Keys.NumPad3;
-                case ("num4"):
-                    return Keys.NumPad4;
-                case ("num5"):
-                    return Keys.NumPad5;
-                case ("num6"):
-                    return Keys.NumPad6;
-                case ("num7"):
-                    return Keys.NumPad7;
-                case ("num8"):
-                    return Keys.NumPad8;
-                case ("num9"):
-                    return Keys.NumPad9;
-                case ("num/"):
-                    return Keys.Divide;
-                case ("num*"):
-                    return Keys.Multiply;
-                case ("num-"):
-                    return Keys.Subtract;
-                case ("num+"):
-                    return Keys.Add;
-                case ("numenter"):
-                    return Keys.Return;
-                case ("numkomma"):
-                    return Keys.Delete;
-                case ("0"):
-                    return Keys.D0;
-                case ("1"):
-                    return Keys.D1;
-                case ("2"):
-                    return Keys.D2;
-                case ("3"):
-                    return Keys.D3;
-                case ("4"):
-                    return Keys.D4;
-                case ("5"):
-                    return Keys.D5;
-                case ("6"):
-                    return Keys.D6;
-                case ("7"):
-                    return Keys.D7;
-                case ("8"):
-                    return Keys.D8;
-                case ("9"):
-                    return Keys.D9;
-                case ("f1"):
-                    return Keys.F1;
-                case ("f2"):
-                    return Keys.F2;
-                case ("f3"):
-                    return Keys.F3;
-                case ("f4"):
-                    return Keys.F4;
-                case ("f5"):
-                    return Keys.F5;
-                case ("f6"):
-                    return Keys.F6;
-                case ("f7"):
-                    return Keys.F7;
-                case ("f8"):
-                    return Keys.F8;
-                case ("f9"):
-                    return Keys.F9;
-                case ("f10"):
-                    return Keys.F10;
-                case ("f11"):
-                    return Keys.F11;
-                case ("f12"):
-                    return Keys.F12;
-                case ("a"):
-                    return Keys.A;
-                case ("b"):
-                    return Keys.B;
-                case ("c"):
-                    return Keys.C;
-                case ("d"):
-                    return Keys.D;
-                case ("e"):
-                    return Keys.E;
-                case ("f"):
-                    return Keys.F;
-                case ("g"):
-                    return Keys.G;
-                case ("h"):
-                    return Keys.H;
-                case ("i"):
-                    return Keys.I;
-                case ("j"):
-                    return Keys.J;
-                case ("k"):
-                    return Keys.K;
-                case ("l"):
-                    return Keys.L;
-                case ("m"):
-                    return Keys.M;
-                case ("n"):
-                    return Keys.N;
-                case ("o"):
-                    return Keys.O;
-                case ("p"):
-                    return Keys.P;
-                case ("q"):
-                    return Keys.Q;
-                case ("r"):
-                    return Keys.R;
-                case ("s"):
-                    return Keys.S;
-                case ("t"):
-                    return Keys.T;
-                case ("u"):
-                    return Keys.U;
-                case ("v"):
-                    return Keys.V;
-                case ("w"):
-                    return Keys.W;
-                case ("x"):
-                    return Keys.X;
-                case ("y"):
-                    return Keys.Y;
-                case ("z"):
-                    return Keys.Z;
-                default:
-                    MessageBox.Show("Fehler! Kenne die Taste \"" + x + "\" nicht");
-                    return Keys.Space;
+            foreach (object[] obj in keyList)
+            {
+                if (input == (string)obj[0])
+                {
+                    return (Keys)obj[1];
+                }
             }
 
+            MessageBox.Show("Fehler! Kenne die Taste \"" + input + "\" nicht");
+            return Keys.None;
+        }
+
+        public static string ConvertKeyToString(Keys key)
+        {
+            foreach (object[] obj in keyList)
+            {
+                if (key == (Keys)obj[1])
+                {
+                    return (string)obj[0];
+                }
+            }
+
+            MessageBox.Show("Kenne die Taste nicht");
+            return "";
         }
     }
 }
