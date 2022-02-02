@@ -292,6 +292,7 @@ namespace TSW2_Controller
 
         }
 
+
         public Joystick[] getSticks()
         {
             //strg+c strg+v
@@ -478,6 +479,7 @@ namespace TSW2_Controller
             catch { }
         }
 
+
         private void bgw_Throttle_DoWork(object sender, DoWorkEventArgs e)
         {
             int currentThrottleJoystickState = 0;
@@ -562,6 +564,7 @@ namespace TSW2_Controller
                 cancelBrakeRequest = -1;
             }
         }
+
 
         private void ChangeGameState(bool isThrottle)
         {
@@ -689,6 +692,7 @@ namespace TSW2_Controller
             }
         }
 
+
         public void ConvertLongPress_Throttle(bool isStufenlos)
         {
             if (throttleConfig[5].Length > 0)
@@ -811,6 +815,7 @@ namespace TSW2_Controller
             }
         }
 
+
         public void HandleButtons()
         {
             for (int i = 0; i < activeTrain.Count; i++)
@@ -898,9 +903,8 @@ namespace TSW2_Controller
                     previouslyPressedButtons[i] = currentlyPressedButtons[i];
                 }
             }
-
-
         }
+
 
         private void ShowJoystickData()
         {
@@ -997,7 +1001,6 @@ namespace TSW2_Controller
                     }
                 }
             }
-
             ocrtext = ocrtext.Replace(",", ".");
             return ocrtext;
         }
