@@ -46,8 +46,13 @@
             this.pictureBox_Screenshot_original = new System.Windows.Forms.PictureBox();
             this.pictureBox_Screenshot_alternativ = new System.Windows.Forms.PictureBox();
             this.check_deactivateGlobal = new System.Windows.Forms.CheckBox();
+            this.lbl_originalResult = new System.Windows.Forms.Label();
+            this.lbl_alternativeResult = new System.Windows.Forms.Label();
+            this.groupBox_ScanErgebnisse = new System.Windows.Forms.GroupBox();
+            this.lbl_requests = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
+            this.groupBox_ScanErgebnisse.SuspendLayout();
             this.SuspendLayout();
             // 
             // lst_inputs
@@ -131,7 +136,7 @@
             // lbl_schub
             // 
             this.lbl_schub.AutoSize = true;
-            this.lbl_schub.Location = new System.Drawing.Point(19, 266);
+            this.lbl_schub.Location = new System.Drawing.Point(19, 253);
             this.lbl_schub.Name = "lbl_schub";
             this.lbl_schub.Size = new System.Drawing.Size(110, 13);
             this.lbl_schub.TabIndex = 16;
@@ -145,7 +150,7 @@
             // lbl_bremse
             // 
             this.lbl_bremse.AutoSize = true;
-            this.lbl_bremse.Location = new System.Drawing.Point(193, 266);
+            this.lbl_bremse.Location = new System.Drawing.Point(19, 266);
             this.lbl_bremse.Name = "lbl_bremse";
             this.lbl_bremse.Size = new System.Drawing.Size(114, 13);
             this.lbl_bremse.TabIndex = 17;
@@ -212,6 +217,44 @@
             this.check_deactivateGlobal.UseVisualStyleBackColor = true;
             this.check_deactivateGlobal.CheckedChanged += new System.EventHandler(this.check_deactivateGlobal_CheckedChanged);
             // 
+            // lbl_originalResult
+            // 
+            this.lbl_originalResult.AutoSize = true;
+            this.lbl_originalResult.Location = new System.Drawing.Point(6, 16);
+            this.lbl_originalResult.Name = "lbl_originalResult";
+            this.lbl_originalResult.Size = new System.Drawing.Size(86, 13);
+            this.lbl_originalResult.TabIndex = 26;
+            this.lbl_originalResult.Text = "lbl_originalResult";
+            // 
+            // lbl_alternativeResult
+            // 
+            this.lbl_alternativeResult.AutoSize = true;
+            this.lbl_alternativeResult.Location = new System.Drawing.Point(6, 29);
+            this.lbl_alternativeResult.Name = "lbl_alternativeResult";
+            this.lbl_alternativeResult.Size = new System.Drawing.Size(102, 13);
+            this.lbl_alternativeResult.TabIndex = 27;
+            this.lbl_alternativeResult.Text = "lbl_alternativeResult";
+            // 
+            // groupBox_ScanErgebnisse
+            // 
+            this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_alternativeResult);
+            this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_originalResult);
+            this.groupBox_ScanErgebnisse.Location = new System.Drawing.Point(141, 117);
+            this.groupBox_ScanErgebnisse.Name = "groupBox_ScanErgebnisse";
+            this.groupBox_ScanErgebnisse.Size = new System.Drawing.Size(177, 52);
+            this.groupBox_ScanErgebnisse.TabIndex = 28;
+            this.groupBox_ScanErgebnisse.TabStop = false;
+            this.groupBox_ScanErgebnisse.Text = "Scan Ergebnisse";
+            // 
+            // lbl_requests
+            // 
+            this.lbl_requests.AutoSize = true;
+            this.lbl_requests.Location = new System.Drawing.Point(231, 266);
+            this.lbl_requests.Name = "lbl_requests";
+            this.lbl_requests.Size = new System.Drawing.Size(72, 13);
+            this.lbl_requests.TabIndex = 29;
+            this.lbl_requests.Text = "reqT:0 reqB:0";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +263,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(333, 854);
+            this.Controls.Add(this.lbl_requests);
+            this.Controls.Add(this.groupBox_ScanErgebnisse);
             this.Controls.Add(this.check_deactivateGlobal);
             this.Controls.Add(this.pictureBox_Screenshot_alternativ);
             this.Controls.Add(this.pictureBox_Screenshot_original);
@@ -239,6 +284,8 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).EndInit();
+            this.groupBox_ScanErgebnisse.ResumeLayout(false);
+            this.groupBox_ScanErgebnisse.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +309,10 @@
         private System.Windows.Forms.PictureBox pictureBox_Screenshot_original;
         private System.Windows.Forms.PictureBox pictureBox_Screenshot_alternativ;
         private System.Windows.Forms.CheckBox check_deactivateGlobal;
+        private System.Windows.Forms.Label lbl_originalResult;
+        private System.Windows.Forms.Label lbl_alternativeResult;
+        private System.Windows.Forms.GroupBox groupBox_ScanErgebnisse;
+        private System.Windows.Forms.Label lbl_requests;
     }
 }
 

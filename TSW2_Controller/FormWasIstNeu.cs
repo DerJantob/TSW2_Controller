@@ -35,12 +35,15 @@ namespace TSW2_Controller
             }
             #endregion
             #region 1.0.2
-            //if (new Version("1.0.2").CompareTo(version) > 0)
-            //{
-            //    changelog.Add("v1.0.2" + "\n");
-            //    changelog.Add("- Nichts");
-            //    changelog.Add("----------------------------------------");
-            //}
+            if (new Version("1.0.2").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.2" + "\n");
+                changelog.Add("- Bessere Texterkennung");
+                changelog.Add("- Besserer Umgang mit den Einrastpositionen");
+                changelog.Add("- Scanergebnisse ab jetzt im Menü zu sehen");
+                changelog.Add("- Debuglogtabelle verkleinert");
+                changelog.Add("----------------------------------------");
+            }
             #endregion
 
             return changelog;

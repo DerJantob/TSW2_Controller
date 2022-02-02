@@ -69,6 +69,9 @@ namespace TSW2_Controller
         public FormMain()
         {
             InitializeComponent();
+            lbl_originalResult.Text = "";
+            lbl_alternativeResult.Text = "";
+            groupBox_ScanErgebnisse.Hide();
 
             checkVersion();
             loadSettings();
@@ -143,12 +146,14 @@ namespace TSW2_Controller
                     listBox_debugInfo.Show();
                     lbl_bremse.Show();
                     lbl_schub.Show();
+                    lbl_requests.Show();
                 }
                 else
                 {
                     listBox_debugInfo.Hide();
                     lbl_bremse.Hide();
                     lbl_schub.Hide();
+                    lbl_requests.Hide();
                 }
                 #endregion
 
@@ -510,13 +515,13 @@ namespace TSW2_Controller
             }
 
             //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
-            if (schubSoll != currentThrottleJoystickState || (schubSoll != schubIst && throttleConfig[1] == "Stufen") || (Math.Abs(schubSoll-schubIst) > 1 && throttleConfig[1] == "Stufenlos"))
+            if (schubSoll != currentThrottleJoystickState || (schubSoll != schubIst && throttleConfig[1] == "Stufen") || (Math.Abs(schubSoll - schubIst) > 1 && throttleConfig[1] == "Stufenlos") || (schubSoll == 0 && schubIst != 0))
             {
                 cancelThrottleRequest = 1;
 
                 schubSoll = currentThrottleJoystickState;
-
                 ChangeGameState(true);
+
                 cancelThrottleRequest = -1;
             }
 
@@ -553,13 +558,13 @@ namespace TSW2_Controller
             }
 
             //Wenn sich der Wert vom Joystick-Bremsregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
-            if (bremseSoll != currentBrakeJoystickState || bremseSoll != bremseIst)
+            if (bremseSoll != currentBrakeJoystickState || (bremseSoll != bremseIst && brakeConfig[1] == "Stufen") || (Math.Abs(bremseSoll - bremseIst) > 1 && brakeConfig[1] == "Stufenlos") || (bremseSoll == 0 && bremseIst != 0))
             {
                 cancelBrakeRequest = 1;
-                requestBrake = 0;
-                bremseSoll = currentBrakeJoystickState;
 
+                bremseSoll = currentBrakeJoystickState;
                 ChangeGameState(false);
+
                 cancelBrakeRequest = -1;
             }
         }
@@ -571,45 +576,40 @@ namespace TSW2_Controller
             {
                 if (throttleConfig[1] == "Stufenlos")
                 {
-                    if (Math.Abs(schubSoll - schubIst) > 1)
-                    {
-                        int delay = 0;
-                        ConvertLongPress_Throttle(true);
-                        int diffSchub = schubSoll - schubIst; //x>0 mehr |x<0 weniger
+                    int delay = 0;
 
-                        if (throttleConfig[4].Contains("|"))
+                    ConvertLongPress_Throttle(true);
+                    int diffSchub = schubSoll - schubIst; //x>0 mehr |x<0 weniger
+
+                    if (throttleConfig[4].Contains("|"))
+                    {
+                        if (schubIst < 0 || schubSoll < 0)
                         {
-                            if (schubIst < 0 || schubSoll < 0)
-                            {
-                                delay = Convert.ToInt32(throttleConfig[4].Remove(0, throttleConfig[4].IndexOf("|") + 1));
-                            }
-                            else
-                            {
-                                delay = Convert.ToInt32(throttleConfig[4].Remove(throttleConfig[4].IndexOf("|"), throttleConfig[4].Length - throttleConfig[4].IndexOf("|")));
-                            }
+                            delay = Convert.ToInt32(throttleConfig[4].Remove(0, throttleConfig[4].IndexOf("|") + 1));
                         }
                         else
                         {
-                            delay = Convert.ToInt32(throttleConfig[4]);
-                        }
-
-                        RawData.Add("gehe von " + schubIst + " auf " + schubSoll);
-
-                        if (diffSchub > 0)
-                        {
-                            //mehr
-                            Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
-                            schubIst = schubSoll;
-                            requestThrottle = 3;
-                        }
-                        else if (diffSchub < 0)
-                        {
-                            Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
-                            schubIst = schubSoll;
-                            requestThrottle = 3;
+                            delay = Convert.ToInt32(throttleConfig[4].Remove(throttleConfig[4].IndexOf("|"), throttleConfig[4].Length - throttleConfig[4].IndexOf("|")));
                         }
                     }
+                    else
+                    {
+                        delay = Convert.ToInt32(throttleConfig[4]);
+                    }
 
+                    if (diffSchub > 0)
+                    {
+                        //mehr
+                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
+                        schubIst = schubSoll;
+                        requestThrottle = 3;
+                    }
+                    else if (diffSchub < 0)
+                    {
+                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        schubIst = schubSoll;
+                        requestThrottle = 3;
+                    }
                 }
                 else if (throttleConfig[1] == "Stufen")
                 {
@@ -617,7 +617,6 @@ namespace TSW2_Controller
 
                     ConvertLongPress_Throttle(false);
                     int diffSchub = schubSoll - schubIst;
-                    RawData.Add("gehe von " + schubIst + " auf " + schubSoll);
 
                     for (int i = 0; i < Math.Abs(diffSchub); i++)
                     {
@@ -639,30 +638,25 @@ namespace TSW2_Controller
             {
                 if (brakeConfig[1] == "Stufenlos")
                 {
-                    if (Math.Abs(bremseSoll - bremseIst) > 1)
+                    int delay = 0;
+
+                    ConvertLongPress_Brake(true);
+                    int diffBremse = bremseSoll - bremseIst; //x>0 mehr |x<0 weniger
+
+                    delay = Convert.ToInt32(brakeConfig[4]);
+
+                    if (diffBremse > 0)
                     {
-                        int delay = 0;
-                        ConvertLongPress_Brake(true);
-                        int diffBremse = bremseSoll - bremseIst; //x>0 mehr |x<0 weniger
-
-                        delay = Convert.ToInt32(brakeConfig[4]);
-
-
-                        RawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
-
-                        if (diffBremse > 0)
-                        {
-                            //mehr
-                            Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
-                            requestBrake = 2;
-                            bremseIst = bremseSoll;
-                        }
-                        else if (diffBremse < 0)
-                        {
-                            Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
-                            requestBrake = 2;
-                            bremseIst = bremseSoll;
-                        }
+                        //mehr
+                        Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
+                        requestBrake = 2;
+                        bremseIst = bremseSoll;
+                    }
+                    else if (diffBremse < 0)
+                    {
+                        Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        requestBrake = 2;
+                        bremseIst = bremseSoll;
                     }
                 }
                 else if (brakeConfig[1] == "Stufen")
@@ -671,7 +665,6 @@ namespace TSW2_Controller
 
                     ConvertLongPress_Brake(false);
                     int diffBremse = bremseSoll - bremseIst;
-                    RawData.Add("gehe Bremse von " + bremseIst + " auf " + bremseSoll);
 
                     for (int i = 0; i < Math.Abs(diffBremse); i++)
                     {
@@ -725,7 +718,6 @@ namespace TSW2_Controller
                                 schubSoll = untere_grenze;
                             }
                         }
-                        break;
                     }
                     else if (schubSoll <= untere_grenze && obere_grenze <= schubIst)
                     {
@@ -747,7 +739,6 @@ namespace TSW2_Controller
                                 schubSoll = obere_grenze;
                             }
                         }
-                        break;
                     }
                 }
             }
@@ -786,7 +777,6 @@ namespace TSW2_Controller
                                 bremseSoll = untere_grenze;
                             }
                         }
-                        break;
                     }
                     else if (bremseSoll <= untere_grenze && obere_grenze <= bremseIst)
                     {
@@ -808,7 +798,6 @@ namespace TSW2_Controller
                                 bremseSoll = obere_grenze;
                             }
                         }
-                        break;
                     }
                 }
             }
@@ -981,7 +970,7 @@ namespace TSW2_Controller
                 }
             }
 
-            if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1) }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot }); } }
+            if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1), null, null, -1, -1 }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot, null, null, -1, -1 }); } }
 
             return bmpScreenshot;
         }
@@ -1011,23 +1000,17 @@ namespace TSW2_Controller
         {
             if (!isKombihebel)
             {
-                RawData.Add("----Scan----");
                 string original_result = GetText(Screenshot(true));
                 string alternative_result = "";
                 string result = "";
 
                 if (requestThrottle > 0 || requestBrake > 0)
                 {
-                    RawData.Add("reqThrot:" + requestThrottle + "   reqBrake:" + requestBrake);
-                }
-                if (original_result != "")
-                {
-                    RawData.Add("orig:" + original_result);
+                    //RawData.Add("reqThrot:" + requestThrottle + "   reqBrake:" + requestBrake);
                 }
 
                 //Passe fehlerhaften Input bei original_result an
                 original_result = korrigiereReadScreenText(original_result);
-
 
                 if (original_result == "")
                 {
@@ -1035,19 +1018,18 @@ namespace TSW2_Controller
                 }
                 else if (throttleConfig[0] != null && brakeConfig[0] != null)
                 {
-                    if (!(original_result.Contains(throttleConfig[0]) && requestThrottle > 0) || !(original_result.Contains(brakeConfig[0]) && requestBrake > 0) || (requestBrake > 0 && requestThrottle > 0))
+                    if ((!original_result.Contains(throttleConfig[0]) && requestThrottle > 0) || (!original_result.Contains(brakeConfig[0]) && requestBrake > 0) || (requestBrake > 0 && requestThrottle > 0))
                     {
                         alternative_result = GetText(Screenshot(false));
                     }
                 }
-                if (alternative_result != "")
-                {
-                    RawData.Add("alt:" + alternative_result);
-                }
+
 
                 //Passe fehlerhaften Input bei alternative_result an
                 alternative_result = korrigiereReadScreenText(alternative_result);
 
+                //Zeige Scan-Ergebnisse
+                bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
 
 
                 //Wenn nichts gefunden wurde, dann gehe verschienene Indexe durch
@@ -1146,7 +1128,6 @@ namespace TSW2_Controller
                                 {
                                     requestThrottle--;
                                     schubIst = erkannterSchub;
-                                    RawData.Add("schub:" + erkannterSchub);
                                 }
                                 else if (cancelThrottleRequest == -1)
                                 {
@@ -1203,7 +1184,6 @@ namespace TSW2_Controller
                                 {
                                     requestBrake--;
                                     bremseIst = erkannteBremsleistung;
-                                    RawData.Add("bremse:" + erkannteBremsleistung);
                                 }
                                 else if (cancelBrakeRequest == -1)
                                 {
@@ -1228,15 +1208,6 @@ namespace TSW2_Controller
             string alternative_result = "";
             string result = "";
 
-            if (requestThrottle > 0)
-            {
-                RawData.Add("reqThrot:" + requestThrottle);
-            }
-            if (original_result != "")
-            {
-                RawData.Add("orig:" + original_result);
-            }
-
             //Passe fehlerhaften Input bei original_result an
             original_result = korrigiereReadScreenText(original_result);
 
@@ -1244,12 +1215,13 @@ namespace TSW2_Controller
             if (!original_result.Contains(throttleConfig[0]))
             {
                 alternative_result = GetText(Screenshot(false));
-                RawData.Add("alt:" + alternative_result);
             }
 
             //Passe fehlerhaften Input bei alternative_result an
             alternative_result = korrigiereReadScreenText(alternative_result);
 
+            //Zeige Scan-Ergebnisse
+            bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
 
             //Wenn nichts mehr gefunden wurde aber noch Werte gefordert wurden dann drücke die Taste kurz um den Text wieder zu zeigen
             if (requestThrottle > 0 && !original_result.Contains(throttleConfig[0]) && !alternative_result.Contains(throttleConfig[0]))
@@ -1298,6 +1270,22 @@ namespace TSW2_Controller
                             schubFaktor = -1;
                         }
 
+                        if (throttleConfig[3].Length > 0)
+                        {
+                            foreach (string singleSpezial in throttleConfig[3].Remove(throttleConfig[3].Length - 1).Replace("[", "").Split(']'))
+                            {
+                                int index = singleSpezial.IndexOf("=");
+                                string word = singleSpezial.Remove(index, singleSpezial.Length - index);
+                                int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
+
+                                if (result == word && singleSpezial != "")
+                                {
+                                    erkannterSchub = entsprechendeNummer;
+                                    break;
+                                }
+                            }
+                        }
+
                         foreach (string bremsIndex in kombihebel_bremsIndexe)
                         {
                             if (result.Contains(bremsIndex) && result != "")
@@ -1317,21 +1305,7 @@ namespace TSW2_Controller
 
 
 
-                        if (throttleConfig[3].Length > 0)
-                        {
-                            foreach (string singleSpezial in throttleConfig[3].Remove(throttleConfig[3].Length - 1).Replace("[", "").Split(']'))
-                            {
-                                int index = singleSpezial.IndexOf("=");
-                                string word = singleSpezial.Remove(index, singleSpezial.Length - index);
-                                int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
 
-                                if (result == word && singleSpezial != "")
-                                {
-                                    erkannterSchub = entsprechendeNummer;
-                                    break;
-                                }
-                            }
-                        }
 
                         if (erkannterSchub == -99999)
                         {
@@ -1343,7 +1317,6 @@ namespace TSW2_Controller
                             {
                                 requestThrottle--;
                                 schubIst = erkannterSchub * schubFaktor;
-                                RawData.Add("schub:" + schubIst);
                             }
                             else if (cancelThrottleRequest == -1)
                             {
@@ -1400,7 +1373,6 @@ namespace TSW2_Controller
                         {
                             textinput = textinput + single_textinput_result + " ";
                         }
-                        RawData.Add("-----> " + textinput);
                         return textinput;
                     }
                 }
@@ -1462,6 +1434,18 @@ namespace TSW2_Controller
         {
             if (((Bitmap)((object[])e.UserState)[0]).Height != 1) { pictureBox_Screenshot_original.Image = (Bitmap)((object[])e.UserState)[0]; }
             if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
+            if (((string)((object[])e.UserState)[2]) != null) { lbl_originalResult.Text = ((string)((object[])e.UserState)[2]); }
+            if (((string)((object[])e.UserState)[3]) != null) { lbl_alternativeResult.Text = ((string)((object[])e.UserState)[3]); }
+            if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4])-1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5])-1).ToString(); }
+
+            if((((int)((object[])e.UserState)[4]) - 1)+ (((int)((object[])e.UserState)[4]) - 1)<=0)
+            {
+                groupBox_ScanErgebnisse.Hide();
+            }
+            else
+            {
+                groupBox_ScanErgebnisse.Show();
+            }
         }
 
         private void btn_einstellungen_Click(object sender, EventArgs e)
