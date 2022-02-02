@@ -461,7 +461,6 @@ namespace TSW2_Controller
                 }
             }
 
-
             //Debuginfos anzeigen
             try
             {
@@ -511,10 +510,10 @@ namespace TSW2_Controller
             }
 
             //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
-            if (schubSoll != currentThrottleJoystickState || schubSoll != schubIst)
+            if (schubSoll != currentThrottleJoystickState || (schubSoll != schubIst && throttleConfig[1] == "Stufen") || (Math.Abs(schubSoll-schubIst) > 1 && throttleConfig[1] == "Stufenlos"))
             {
                 cancelThrottleRequest = 1;
-                requestThrottle = 0;
+
                 schubSoll = currentThrottleJoystickState;
 
                 ChangeGameState(true);
@@ -969,6 +968,8 @@ namespace TSW2_Controller
                 for (int x = 0; (x <= (bmpScreenshot.Width - 1)); x++)
                 {
                     Color inv = bmpScreenshot.GetPixel(x, y);
+
+                    //Farbanpassung um möglichst nur die Schrift zu erkennen
                     if (inv.R + inv.G + inv.G < 500)
                     {
                         inv = Color.FromArgb(0, 0, 0, 0);
@@ -1010,6 +1011,7 @@ namespace TSW2_Controller
         {
             if (!isKombihebel)
             {
+                RawData.Add("----Scan----");
                 string original_result = GetText(Screenshot(true));
                 string alternative_result = "";
                 string result = "";
@@ -1023,6 +1025,9 @@ namespace TSW2_Controller
                     RawData.Add("orig:" + original_result);
                 }
 
+                //Passe fehlerhaften Input bei original_result an
+                original_result = korrigiereReadScreenText(original_result);
+
 
                 if (original_result == "")
                 {
@@ -1030,19 +1035,23 @@ namespace TSW2_Controller
                 }
                 else if (throttleConfig[0] != null && brakeConfig[0] != null)
                 {
-                    if ((!original_result.Contains(throttleConfig[0]) && !original_result.Contains(brakeConfig[0])) || (requestBrake > 0 && requestThrottle > 0))
+                    if (!(original_result.Contains(throttleConfig[0]) && requestThrottle > 0) || !(original_result.Contains(brakeConfig[0]) && requestBrake > 0) || (requestBrake > 0 && requestThrottle > 0))
                     {
                         alternative_result = GetText(Screenshot(false));
                     }
                 }
-
                 if (alternative_result != "")
                 {
                     RawData.Add("alt:" + alternative_result);
                 }
 
+                //Passe fehlerhaften Input bei alternative_result an
+                alternative_result = korrigiereReadScreenText(alternative_result);
 
-                //Wenn nichts mehr gefunden wurde aber noch Werte gefordert wurden dann drücke die Taste kurz um den Text wieder zu zeigen
+
+
+                //Wenn nichts gefunden wurde, dann gehe verschienene Indexe durch
+                #region Bremse
                 if (requestBrake > 0 && !original_result.Contains(brakeConfig[0]) && !alternative_result.Contains(brakeConfig[0]))
                 {
                     foreach (string bremsindex in bremsIndexe)
@@ -1062,6 +1071,8 @@ namespace TSW2_Controller
                     }
                     Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
                 }
+                #endregion
+                #region Schub
                 if (requestThrottle > 0 && !original_result.Contains(throttleConfig[0]) && !alternative_result.Contains(throttleConfig[0]))
                 {
                     foreach (string leistungsIndex in schubIndexe)
@@ -1081,6 +1092,10 @@ namespace TSW2_Controller
                     }
                     Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
                 }
+                #endregion
+
+
+
 
                 if (throttleConfig[0] != null)
                 {
@@ -1222,12 +1237,18 @@ namespace TSW2_Controller
                 RawData.Add("orig:" + original_result);
             }
 
+            //Passe fehlerhaften Input bei original_result an
+            original_result = korrigiereReadScreenText(original_result);
+
 
             if (!original_result.Contains(throttleConfig[0]))
             {
                 alternative_result = GetText(Screenshot(false));
                 RawData.Add("alt:" + alternative_result);
             }
+
+            //Passe fehlerhaften Input bei alternative_result an
+            alternative_result = korrigiereReadScreenText(alternative_result);
 
 
             //Wenn nichts mehr gefunden wurde aber noch Werte gefordert wurden dann drücke die Taste kurz um den Text wieder zu zeigen
@@ -1250,7 +1271,6 @@ namespace TSW2_Controller
                 }
                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
             }
-
 
             if (original_result.Contains(throttleConfig[0]) || alternative_result.Contains(throttleConfig[0]))
             {
@@ -1345,7 +1365,48 @@ namespace TSW2_Controller
             lbl_bremse.Text = "Bremse ist " + bremseIst.ToString() + " und soll " + bremseSoll.ToString();
         }
 
+        private string korrigiereReadScreenText(string textinput)
+        {
+            //Passe fehlerhaften Input bei alternative_result an
+            string config = throttleConfig[0];
+            string[] indexe = schubIndexe.ToArray();
 
+            for (int type = 0; type < 2; type++)
+            {
+                if (type == 1 && !isKombihebel) { config = brakeConfig[0]; indexe = bremsIndexe.ToArray(); }
+
+                if (!textinput.Contains(config) && textinput != "")
+                {
+                    bool change = false;
+
+                    string[] seperated_textinput = textinput.Split(' ');
+                    for (int i = 0; i < seperated_textinput.Length && !change; i++)
+                    {
+                        foreach (string textindex in indexe)
+                        {
+                            if (GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2) > 0.8)
+                            {
+                                RawData.Add("Ändere \"" + seperated_textinput[i] + "\" zu " + textindex);
+                                seperated_textinput[i] = textindex;
+                                change = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (change)
+                    {
+                        textinput = "";
+                        foreach (string single_textinput_result in seperated_textinput)
+                        {
+                            textinput = textinput + single_textinput_result + " ";
+                        }
+                        RawData.Add("-----> " + textinput);
+                        return textinput;
+                    }
+                }
+            }
+            return textinput;
+        }
 
         private int ConvertHeight(int height)
         {
@@ -1463,6 +1524,78 @@ namespace TSW2_Controller
                 }
             }
             return false;
+        }
+
+        public static double GetDamerauLevenshteinDistanceInPercent(string string_to_check, string string_to_check_from, int maxLengthDiff)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(string_to_check) || Math.Abs(string_to_check.Length - string_to_check_from.Length) > maxLengthDiff)
+                {
+                    return 0;
+                    //throw new ArgumentNullException(t, "String Cannot Be Null Or Empty");
+                }
+
+                if (string.IsNullOrEmpty(string_to_check_from))
+                {
+                    return 0;
+                    //throw new ArgumentNullException(t, "String Cannot Be Null Or Empty");
+                }
+
+                int n = string_to_check.Length; // length of s
+                int m = string_to_check_from.Length; // length of t
+
+                if (n == 0)
+                {
+                    return m;
+                }
+
+                if (m == 0)
+                {
+                    return n;
+                }
+
+                int[] p = new int[n + 1]; //'previous' cost array, horizontally
+                int[] d = new int[n + 1]; // cost array, horizontally
+
+                // indexes into strings s and t
+                int i; // iterates through s
+                int j; // iterates through t
+
+                for (i = 0; i <= n; i++)
+                {
+                    p[i] = i;
+                }
+
+                for (j = 1; j <= m; j++)
+                {
+                    char tJ = string_to_check_from[j - 1]; // jth character of t
+                    d[0] = j;
+
+                    for (i = 1; i <= n; i++)
+                    {
+                        int cost = string_to_check[i - 1] == tJ ? 0 : 1; // cost
+                                                                         // minimum of cell to the left+1, to the top+1, diagonally left and up +cost                
+                        d[i] = Math.Min(Math.Min(d[i - 1] + 1, p[i] + 1), p[i - 1] + cost);
+                    }
+
+                    // copy current distance counts to 'previous row' distance counts
+                    int[] dPlaceholder = p; //placeholder to assist in swapping p and d
+                    p = d;
+                    d = dPlaceholder;
+                }
+
+                // our last action in the above loop was to switch d and p, so p now 
+                // actually has the most recent cost counts
+                //return p[n];
+
+                return Convert.ToDouble(m - p[n]) / Convert.ToDouble(m);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return 0;
+            }
         }
 
     }
