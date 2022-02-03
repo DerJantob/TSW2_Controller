@@ -40,13 +40,16 @@ namespace TSW2_Controller
             keyList.Add(new object[] { "runter", Keys.Down });
             keyList.Add(new object[] { "rechts", Keys.Right });
             keyList.Add(new object[] { "links", Keys.Left });
-            keyList.Add(new object[] { "alt", Keys.LMenu });
-            keyList.Add(new object[] { "altgr", Keys.RMenu });
-            keyList.Add(new object[] { "strg", Keys.LControlKey });
+            keyList.Add(new object[] { "alt", Keys.Menu });
+            keyList.Add(new object[] { "altl", Keys.LMenu });
+            keyList.Add(new object[] { "altr", Keys.RMenu });
+            keyList.Add(new object[] { "strg", Keys.ControlKey });
+            keyList.Add(new object[] { "lstrg", Keys.LControlKey });
             keyList.Add(new object[] { "rstrg", Keys.RControlKey });
             keyList.Add(new object[] { "win", Keys.LWin });
             keyList.Add(new object[] { "rwin", Keys.RWin });
-            keyList.Add(new object[] { "shift", Keys.LShiftKey });
+            keyList.Add(new object[] { "shift", Keys.ShiftKey });
+            keyList.Add(new object[] { "lshift", Keys.LShiftKey });
             keyList.Add(new object[] { "rshift", Keys.RShiftKey });
             keyList.Add(new object[] { "ü", Keys.Oem1 });
             keyList.Add(new object[] { "#", Keys.Oem2 });
@@ -141,7 +144,7 @@ namespace TSW2_Controller
 
         public static void KeyDown(Keys key)
         {
-            keybd_event(key, 0, KEY_DOWN_EVENT, 0);
+            keybd_event(key, 0, 0, 0);
         }
 
         public static void KeyUp(Keys key)

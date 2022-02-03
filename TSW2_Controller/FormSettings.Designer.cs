@@ -32,7 +32,6 @@
             this.txt_resHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.check_showDebug = new System.Windows.Forms.CheckBox();
-            this.btn_Zeitumrechnungshilfe = new System.Windows.Forms.Button();
             this.lbl_version = new System.Windows.Forms.Label();
             this.check_ShowScan = new System.Windows.Forms.CheckBox();
             this.btn_updates = new System.Windows.Forms.Button();
@@ -49,7 +48,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_kombiSchub = new System.Windows.Forms.ComboBox();
             this.btn_changelog = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_speichern = new System.Windows.Forms.Button();
+            this.btn_steuerung = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
@@ -90,17 +90,6 @@
             this.check_showDebug.TabIndex = 4;
             this.check_showDebug.Text = "Debug Informationen";
             this.check_showDebug.UseVisualStyleBackColor = true;
-            // 
-            // btn_Zeitumrechnungshilfe
-            // 
-            this.btn_Zeitumrechnungshilfe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Zeitumrechnungshilfe.Location = new System.Drawing.Point(126, 12);
-            this.btn_Zeitumrechnungshilfe.Name = "btn_Zeitumrechnungshilfe";
-            this.btn_Zeitumrechnungshilfe.Size = new System.Drawing.Size(119, 24);
-            this.btn_Zeitumrechnungshilfe.TabIndex = 5;
-            this.btn_Zeitumrechnungshilfe.Text = "Zeitumrechnungshilfe";
-            this.btn_Zeitumrechnungshilfe.UseVisualStyleBackColor = true;
-            this.btn_Zeitumrechnungshilfe.Click += new System.EventHandler(this.btn_Zeitumrechnungshilfe_Click);
             // 
             // lbl_version
             // 
@@ -272,16 +261,27 @@
             this.btn_changelog.UseVisualStyleBackColor = true;
             this.btn_changelog.Click += new System.EventHandler(this.btn_changelog_Click);
             // 
-            // button1
+            // btn_speichern
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(170, 328);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "speichern";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_speichern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_speichern.Location = new System.Drawing.Point(170, 328);
+            this.btn_speichern.Name = "btn_speichern";
+            this.btn_speichern.Size = new System.Drawing.Size(75, 23);
+            this.btn_speichern.TabIndex = 13;
+            this.btn_speichern.Text = "speichern";
+            this.btn_speichern.UseVisualStyleBackColor = true;
+            this.btn_speichern.Click += new System.EventHandler(this.btn_speichern_Click);
+            // 
+            // btn_steuerung
+            // 
+            this.btn_steuerung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_steuerung.Location = new System.Drawing.Point(170, 9);
+            this.btn_steuerung.Name = "btn_steuerung";
+            this.btn_steuerung.Size = new System.Drawing.Size(75, 23);
+            this.btn_steuerung.TabIndex = 14;
+            this.btn_steuerung.Text = "Steuerung";
+            this.btn_steuerung.UseVisualStyleBackColor = true;
+            this.btn_steuerung.Click += new System.EventHandler(this.btn_steuerung_Click);
             // 
             // FormSettings
             // 
@@ -290,13 +290,13 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(257, 360);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_steuerung);
+            this.Controls.Add(this.btn_speichern);
             this.Controls.Add(this.btn_changelog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_updates);
             this.Controls.Add(this.check_ShowScan);
             this.Controls.Add(this.lbl_version);
-            this.Controls.Add(this.btn_Zeitumrechnungshilfe);
             this.Controls.Add(this.check_showDebug);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_resHeight);
@@ -323,7 +323,6 @@
         private System.Windows.Forms.TextBox txt_resHeight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox check_showDebug;
-        private System.Windows.Forms.Button btn_Zeitumrechnungshilfe;
         private System.Windows.Forms.Label lbl_version;
         private System.Windows.Forms.CheckBox check_ShowScan;
         private System.Windows.Forms.Button btn_updates;
@@ -340,6 +339,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox_kombiSchub;
         private System.Windows.Forms.Button btn_changelog;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_speichern;
+        private System.Windows.Forms.Button btn_steuerung;
     }
 }

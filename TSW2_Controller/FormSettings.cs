@@ -171,9 +171,16 @@ namespace TSW2_Controller
             formWasIstNeu.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_speichern_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btn_steuerung_Click(object sender, EventArgs e)
+        {
+            FormSteuerung formSteuerung = new FormSteuerung();
+            formSteuerung.Location = this.Location;
+            formSteuerung.ShowDialog();
         }
     }
 }

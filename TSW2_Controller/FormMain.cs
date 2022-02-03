@@ -23,13 +23,13 @@ namespace TSW2_Controller
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
-        Joystick[] MainSticks;
+        public static Joystick[] MainSticks;
 
         public Rectangle res = Screen.PrimaryScreen.Bounds;
 
-        List<string[]> trainConfig = new List<string[]>();
+        public List<string[]> trainConfig = new List<string[]>();
         List<string[]> activeTrain = new List<string[]>();
-        List<string> trainNames = new List<string>();
+        public List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
         List<string> rawData = new List<string>();
         List<string> schubIndexe = new List<string>();
@@ -42,7 +42,7 @@ namespace TSW2_Controller
 
         string[] throttleConfig; //{Index,Art,Schritte,Specials,Zeit,längerDrücken}
         string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
-        string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
+        public static string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
 
         string[] default_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
         string[] default_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
@@ -194,7 +194,7 @@ namespace TSW2_Controller
         public void ReadTrainConfig()
         {
             trainConfig.Clear();
-            using (var reader = new StreamReader(@".\Trainconfig.csv"))
+            using (var reader = new StreamReader(Tcfg.pfad))
             {
                 while (!reader.EndOfStream)
                 {
@@ -261,7 +261,7 @@ namespace TSW2_Controller
             foreach (string[] str in activeTrain)
             {
                 isKombihebel = false;
-                if (str[Tcfg.aktion].Contains("Schub"))
+                if (str[Tcfg.tastenKombination].Contains("Schub"))
                 {
                     //Infos über den Schubhebel
                     throttleConfig[0] = "empty";
@@ -271,7 +271,7 @@ namespace TSW2_Controller
                     throttleConfig[4] = str[Tcfg.zeitumrechnung];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
                 }
-                else if (str[Tcfg.aktion].Contains("Kombihebel"))
+                else if (str[Tcfg.tastenKombination].Contains("Kombihebel"))
                 {
                     //Infos über den Kombihebel
                     isKombihebel = true;
@@ -283,7 +283,7 @@ namespace TSW2_Controller
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
                 }
 
-                if (str[Tcfg.aktion].Contains("Bremse"))
+                if (str[Tcfg.tastenKombination].Contains("Bremse"))
                 {
                     //Infos über die Bremse
                     brakeConfig[0] = "empty";
@@ -491,7 +491,7 @@ namespace TSW2_Controller
             //Bekomme den Wert vom Joystick-Schubregler
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i][Tcfg.aktion].Contains("Schub") || activeTrain[i][Tcfg.aktion].Contains("Kombihebel"))
+                if (activeTrain[i][Tcfg.tastenKombination].Contains("Schub") || activeTrain[i][Tcfg.tastenKombination].Contains("Kombihebel"))
                 {
                     if (throttleConfig[1] == "Stufen")
                     {
@@ -534,7 +534,7 @@ namespace TSW2_Controller
             //Bekomme den Wert vom Joystick-Bremsregler
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i][Tcfg.aktion].Contains("Bremse"))
+                if (activeTrain[i][Tcfg.tastenKombination].Contains("Bremse"))
                 {
                     if (brakeConfig[1] == "Stufen")
                     {
@@ -857,7 +857,6 @@ namespace TSW2_Controller
                                     if (joyButtonValue < Convert.ToInt32(single_convert.Remove(0, 1)))
                                     {
                                         currentlyPressedButtons[i] = true;
-                                        break;
                                     }
                                     else
                                     {
@@ -880,13 +879,14 @@ namespace TSW2_Controller
                     if (currentlyPressedButtons[i] == true)
                     {
                         //on Press
-                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.aktion]); }
-                        if (activeTrain[i][Tcfg.buttonDown] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonDown])); }
+                        if (activeTrain[i][Tcfg.tastenKombination] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.tastenKombination]); }
+                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     else
                     {
                         //on release
-                        if (activeTrain[i][Tcfg.buttonUp] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp])); }
+                        //if (activeTrain[i][Tcfg.buttonUp] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp])); }
+                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     previouslyPressedButtons[i] = currentlyPressedButtons[i];
                 }
@@ -1455,6 +1455,9 @@ namespace TSW2_Controller
             settingsForm.Location = this.Location;
             settingsForm.ShowDialog();
             loadSettings();
+
+            ReadTrainConfig();
+            ReadTrainNamesFromTrainconfig();
         }
 
         private void FormMain_Load(object sender, EventArgs e)

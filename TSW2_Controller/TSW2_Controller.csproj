@@ -77,6 +77,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSteuerung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSteuerung.Designer.cs">
+      <DependentUpon>FormSteuerung.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWasIstNeu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     <Compile Include="Tcfg.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSteuerung.resx">
+      <DependentUpon>FormSteuerung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWasIstNeu.resx">
       <DependentUpon>FormWasIstNeu.cs</DependentUpon>
