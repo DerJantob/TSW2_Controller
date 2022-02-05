@@ -42,38 +42,7 @@ namespace TSW2_Controller
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(txt_resWidth.Text), Convert.ToInt32(txt_resHeight.Text));
-            }
-            catch
-            {
-                MessageBox.Show("Fehler bei Auflösung!");
-            }
-
-            try
-            {
-                Settings.Default.SchubIndexe.Clear();
-                Settings.Default.SchubIndexe.AddRange(comboBox_Schub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.BremsIndexe.Clear();
-                Settings.Default.BremsIndexe.AddRange(comboBox_Bremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.Kombihebel_SchubIndexe.Clear();
-                Settings.Default.Kombihebel_SchubIndexe.AddRange(comboBox_kombiSchub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.Kombihebel_BremsIndexe.Clear();
-                Settings.Default.Kombihebel_BremsIndexe.AddRange(comboBox_kombiBremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Fehler beim Textindex!");
-                MessageBox.Show(ex.ToString());
-            }
-
-            Settings.Default.showDebug = check_showDebug.Checked;
-            Settings.Default.showScanResult = check_ShowScan.Checked;
-            Settings.Default.Save();
+            
         }
 
 
@@ -173,6 +142,38 @@ namespace TSW2_Controller
 
         private void btn_speichern_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(txt_resWidth.Text), Convert.ToInt32(txt_resHeight.Text));
+            }
+            catch
+            {
+                MessageBox.Show("Fehler bei Auflösung!");
+            }
+
+            try
+            {
+                Settings.Default.SchubIndexe.Clear();
+                Settings.Default.SchubIndexe.AddRange(comboBox_Schub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
+
+                Settings.Default.BremsIndexe.Clear();
+                Settings.Default.BremsIndexe.AddRange(comboBox_Bremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
+
+                Settings.Default.Kombihebel_SchubIndexe.Clear();
+                Settings.Default.Kombihebel_SchubIndexe.AddRange(comboBox_kombiSchub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
+
+                Settings.Default.Kombihebel_BremsIndexe.Clear();
+                Settings.Default.Kombihebel_BremsIndexe.AddRange(comboBox_kombiBremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler beim Textindex!");
+                MessageBox.Show(ex.ToString());
+            }
+
+            Settings.Default.showDebug = check_showDebug.Checked;
+            Settings.Default.showScanResult = check_ShowScan.Checked;
+            Settings.Default.Save();
             Close();
         }
 

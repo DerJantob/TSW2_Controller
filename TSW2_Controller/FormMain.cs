@@ -69,6 +69,13 @@ namespace TSW2_Controller
         public FormMain()
         {
             InitializeComponent();
+            if (!File.Exists(Tcfg.configpfad))
+            {
+                if (File.Exists(Tcfg.standartpfad))
+                {
+                    File.Copy(Tcfg.standartpfad, Tcfg.configpfad, false);
+                }
+            }
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             groupBox_ScanErgebnisse.Hide();
@@ -193,15 +200,18 @@ namespace TSW2_Controller
 
         public void ReadTrainConfig()
         {
-            trainConfig.Clear();
-            using (var reader = new StreamReader(Tcfg.pfad))
+            if (File.Exists(Tcfg.configpfad))
             {
-                while (!reader.EndOfStream)
+                trainConfig.Clear();
+                using (var reader = new StreamReader(Tcfg.configpfad))
                 {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
 
-                    trainConfig.Add(values);
+                        trainConfig.Add(values);
+                    }
                 }
             }
         }
@@ -268,7 +278,7 @@ namespace TSW2_Controller
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
-                    throttleConfig[4] = str[Tcfg.zeitumrechnung];
+                    throttleConfig[4] = str[Tcfg.zeitfaktor];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
                 }
                 else if (str[Tcfg.tastenKombination].Contains("Kombihebel"))
@@ -279,7 +289,7 @@ namespace TSW2_Controller
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
-                    throttleConfig[4] = str[Tcfg.zeitumrechnung];
+                    throttleConfig[4] = str[Tcfg.zeitfaktor];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
                 }
 
@@ -290,7 +300,7 @@ namespace TSW2_Controller
                     brakeConfig[1] = str[Tcfg.art];
                     brakeConfig[2] = str[Tcfg.schritte];
                     brakeConfig[3] = str[Tcfg.specials];
-                    brakeConfig[4] = str[Tcfg.zeitumrechnung];
+                    brakeConfig[4] = str[Tcfg.zeitfaktor];
                     brakeConfig[5] = str[Tcfg.laengerDruecken];
                 }
             }
@@ -374,14 +384,37 @@ namespace TSW2_Controller
 
                             foreach (string single_umrechnen in umrechnen)
                             {
-                                int index = single_umrechnen.IndexOf("=");
-                                int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
-                                int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
-
-                                if (joyInputs[i] == gesuchteNummer)
+                                if (single_umrechnen.Contains("|"))
                                 {
-                                    joyInputs[i] = entsprechendeNummer;
-                                    break;
+                                    int von = Convert.ToInt32(single_umrechnen.Remove(single_umrechnen.IndexOf("|"), single_umrechnen.Length - single_umrechnen.IndexOf("|")));
+
+                                    string temp_bis = single_umrechnen.Remove(0, single_umrechnen.IndexOf("|") + 1);
+                                    int index = temp_bis.IndexOf("=");
+                                    int bis = Convert.ToInt32(temp_bis.Remove(index, temp_bis.Length - index));
+                                    int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, single_umrechnen.IndexOf("=") + 1));
+
+                                    if (von <= joyInputs[i] && joyInputs[i] <= bis)
+                                    {
+                                        joyInputs[i] = entsprechendeNummer;
+                                        break;
+                                    }
+                                    else if (von >= joyInputs[i] && joyInputs[i] >= bis)
+                                    {
+                                        joyInputs[i] = entsprechendeNummer;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    int index = single_umrechnen.IndexOf("=");
+                                    int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
+                                    int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
+
+                                    if (joyInputs[i] == gesuchteNummer)
+                                    {
+                                        joyInputs[i] = entsprechendeNummer;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -1305,8 +1338,6 @@ namespace TSW2_Controller
 
 
 
-
-
                         if (erkannterSchub == -99999)
                         {
                             try { erkannterSchub = Convert.ToInt32(result); } catch { }
@@ -1436,9 +1467,9 @@ namespace TSW2_Controller
             if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
             if (((string)((object[])e.UserState)[2]) != null) { lbl_originalResult.Text = ((string)((object[])e.UserState)[2]); }
             if (((string)((object[])e.UserState)[3]) != null) { lbl_alternativeResult.Text = ((string)((object[])e.UserState)[3]); }
-            if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4])-1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5])-1).ToString(); }
+            if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4]) - 1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5]) - 1).ToString(); }
 
-            if((((int)((object[])e.UserState)[4]) - 1)+ (((int)((object[])e.UserState)[4]) - 1)<=0)
+            if ((((int)((object[])e.UserState)[4]) - 1) + (((int)((object[])e.UserState)[4]) - 1) <= 0)
             {
                 groupBox_ScanErgebnisse.Hide();
             }
