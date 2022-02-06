@@ -23,13 +23,13 @@ namespace TSW2_Controller
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
-        Joystick[] MainSticks;
+        public static Joystick[] MainSticks;
 
         public Rectangle res = Screen.PrimaryScreen.Bounds;
 
-        List<string[]> trainConfig = new List<string[]>();
+        public List<string[]> trainConfig = new List<string[]>();
         List<string[]> activeTrain = new List<string[]>();
-        List<string> trainNames = new List<string>();
+        public List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
         List<string> rawData = new List<string>();
         List<string> schubIndexe = new List<string>();
@@ -42,7 +42,7 @@ namespace TSW2_Controller
 
         string[] throttleConfig; //{Index,Art,Schritte,Specials,Zeit,längerDrücken}
         string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
-        string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
+        public static string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
 
         string[] default_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
         string[] default_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
@@ -69,6 +69,13 @@ namespace TSW2_Controller
         public FormMain()
         {
             InitializeComponent();
+            if (!File.Exists(Tcfg.configpfad))
+            {
+                if (File.Exists(Tcfg.standartpfad))
+                {
+                    File.Copy(Tcfg.standartpfad, Tcfg.configpfad, false);
+                }
+            }
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             groupBox_ScanErgebnisse.Hide();
@@ -193,15 +200,18 @@ namespace TSW2_Controller
 
         public void ReadTrainConfig()
         {
-            trainConfig.Clear();
-            using (var reader = new StreamReader(@".\Trainconfig.csv"))
+            if (File.Exists(Tcfg.configpfad))
             {
-                while (!reader.EndOfStream)
+                trainConfig.Clear();
+                using (var reader = new StreamReader(Tcfg.configpfad))
                 {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
 
-                    trainConfig.Add(values);
+                        trainConfig.Add(values);
+                    }
                 }
             }
         }
@@ -261,17 +271,17 @@ namespace TSW2_Controller
             foreach (string[] str in activeTrain)
             {
                 isKombihebel = false;
-                if (str[Tcfg.aktion].Contains("Schub"))
+                if (str[Tcfg.tastenKombination].Contains("Schub"))
                 {
                     //Infos über den Schubhebel
                     throttleConfig[0] = "empty";
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
-                    throttleConfig[4] = str[Tcfg.zeitumrechnung];
+                    throttleConfig[4] = str[Tcfg.zeitfaktor];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
                 }
-                else if (str[Tcfg.aktion].Contains("Kombihebel"))
+                else if (str[Tcfg.tastenKombination].Contains("Kombihebel"))
                 {
                     //Infos über den Kombihebel
                     isKombihebel = true;
@@ -279,18 +289,18 @@ namespace TSW2_Controller
                     throttleConfig[1] = str[Tcfg.art];
                     throttleConfig[2] = str[Tcfg.schritte];
                     throttleConfig[3] = str[Tcfg.specials];
-                    throttleConfig[4] = str[Tcfg.zeitumrechnung];
+                    throttleConfig[4] = str[Tcfg.zeitfaktor];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
                 }
 
-                if (str[Tcfg.aktion].Contains("Bremse"))
+                if (str[Tcfg.tastenKombination].Contains("Bremse"))
                 {
                     //Infos über die Bremse
                     brakeConfig[0] = "empty";
                     brakeConfig[1] = str[Tcfg.art];
                     brakeConfig[2] = str[Tcfg.schritte];
                     brakeConfig[3] = str[Tcfg.specials];
-                    brakeConfig[4] = str[Tcfg.zeitumrechnung];
+                    brakeConfig[4] = str[Tcfg.zeitfaktor];
                     brakeConfig[5] = str[Tcfg.laengerDruecken];
                 }
             }
@@ -374,14 +384,37 @@ namespace TSW2_Controller
 
                             foreach (string single_umrechnen in umrechnen)
                             {
-                                int index = single_umrechnen.IndexOf("=");
-                                int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
-                                int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
-
-                                if (joyInputs[i] == gesuchteNummer)
+                                if (single_umrechnen.Contains("|"))
                                 {
-                                    joyInputs[i] = entsprechendeNummer;
-                                    break;
+                                    int von = Convert.ToInt32(single_umrechnen.Remove(single_umrechnen.IndexOf("|"), single_umrechnen.Length - single_umrechnen.IndexOf("|")));
+
+                                    string temp_bis = single_umrechnen.Remove(0, single_umrechnen.IndexOf("|") + 1);
+                                    int index = temp_bis.IndexOf("=");
+                                    int bis = Convert.ToInt32(temp_bis.Remove(index, temp_bis.Length - index));
+                                    int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, single_umrechnen.IndexOf("=") + 1));
+
+                                    if (von <= joyInputs[i] && joyInputs[i] <= bis)
+                                    {
+                                        joyInputs[i] = entsprechendeNummer;
+                                        break;
+                                    }
+                                    else if (von >= joyInputs[i] && joyInputs[i] >= bis)
+                                    {
+                                        joyInputs[i] = entsprechendeNummer;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    int index = single_umrechnen.IndexOf("=");
+                                    int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
+                                    int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
+
+                                    if (joyInputs[i] == gesuchteNummer)
+                                    {
+                                        joyInputs[i] = entsprechendeNummer;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -491,7 +524,7 @@ namespace TSW2_Controller
             //Bekomme den Wert vom Joystick-Schubregler
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i][Tcfg.aktion].Contains("Schub") || activeTrain[i][Tcfg.aktion].Contains("Kombihebel"))
+                if (activeTrain[i][Tcfg.tastenKombination].Contains("Schub") || activeTrain[i][Tcfg.tastenKombination].Contains("Kombihebel"))
                 {
                     if (throttleConfig[1] == "Stufen")
                     {
@@ -534,7 +567,7 @@ namespace TSW2_Controller
             //Bekomme den Wert vom Joystick-Bremsregler
             for (int i = 0; i < activeTrain.Count; i++)
             {
-                if (activeTrain[i][Tcfg.aktion].Contains("Bremse"))
+                if (activeTrain[i][Tcfg.tastenKombination].Contains("Bremse"))
                 {
                     if (brakeConfig[1] == "Stufen")
                     {
@@ -857,7 +890,6 @@ namespace TSW2_Controller
                                     if (joyButtonValue < Convert.ToInt32(single_convert.Remove(0, 1)))
                                     {
                                         currentlyPressedButtons[i] = true;
-                                        break;
                                     }
                                     else
                                     {
@@ -880,13 +912,14 @@ namespace TSW2_Controller
                     if (currentlyPressedButtons[i] == true)
                     {
                         //on Press
-                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.aktion]); }
-                        if (activeTrain[i][Tcfg.buttonDown] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonDown])); }
+                        if (activeTrain[i][Tcfg.tastenKombination] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.tastenKombination]); }
+                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     else
                     {
                         //on release
-                        if (activeTrain[i][Tcfg.buttonUp] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp])); }
+                        //if (activeTrain[i][Tcfg.buttonUp] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp])); }
+                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     previouslyPressedButtons[i] = currentlyPressedButtons[i];
                 }
@@ -1305,8 +1338,6 @@ namespace TSW2_Controller
 
 
 
-
-
                         if (erkannterSchub == -99999)
                         {
                             try { erkannterSchub = Convert.ToInt32(result); } catch { }
@@ -1436,9 +1467,9 @@ namespace TSW2_Controller
             if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
             if (((string)((object[])e.UserState)[2]) != null) { lbl_originalResult.Text = ((string)((object[])e.UserState)[2]); }
             if (((string)((object[])e.UserState)[3]) != null) { lbl_alternativeResult.Text = ((string)((object[])e.UserState)[3]); }
-            if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4])-1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5])-1).ToString(); }
+            if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4]) - 1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5]) - 1).ToString(); }
 
-            if((((int)((object[])e.UserState)[4]) - 1)+ (((int)((object[])e.UserState)[4]) - 1)<=0)
+            if ((((int)((object[])e.UserState)[4]) - 1) + (((int)((object[])e.UserState)[4]) - 1) <= 0)
             {
                 groupBox_ScanErgebnisse.Hide();
             }
@@ -1455,6 +1486,9 @@ namespace TSW2_Controller
             settingsForm.Location = this.Location;
             settingsForm.ShowDialog();
             loadSettings();
+
+            ReadTrainConfig();
+            ReadTrainNamesFromTrainconfig();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
