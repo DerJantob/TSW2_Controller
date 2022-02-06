@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace TSW2_Controller
 {
-    public partial class FormZeitumrechnung : Form
+    public partial class FormZeitfaktor : Form
     {
-        public FormZeitumrechnung()
+        public FormZeitfaktor()
         {
             InitializeComponent();
             radioChanged();

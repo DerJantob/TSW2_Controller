@@ -52,7 +52,7 @@
             this.Controls.Add(this.richTextBox_Output);
             this.Name = "FormWasIstNeu";
             this.Padding = new System.Windows.Forms.Padding(12);
-            this.Text = "FormWasIstNeu";
+            this.Text = "Was ist neu?";
             this.ResumeLayout(false);
 
         }

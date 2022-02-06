@@ -89,11 +89,11 @@
     <Compile Include="FormWasIstNeu.Designer.cs">
       <DependentUpon>FormWasIstNeu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormZeitumrechnung.cs">
+    <Compile Include="FormZeitfaktor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormZeitumrechnung.Designer.cs">
-      <DependentUpon>FormZeitumrechnung.cs</DependentUpon>
+    <Compile Include="FormZeitfaktor.Designer.cs">
+      <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </Compile>
     <Compile Include="Keyboard.cs" />
     <Compile Include="Program.cs" />
@@ -114,8 +114,8 @@
     <EmbeddedResource Include="FormWasIstNeu.resx">
       <DependentUpon>FormWasIstNeu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormZeitumrechnung.resx">
-      <DependentUpon>FormZeitumrechnung.cs</DependentUpon>
+    <EmbeddedResource Include="FormZeitfaktor.resx">
+      <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
