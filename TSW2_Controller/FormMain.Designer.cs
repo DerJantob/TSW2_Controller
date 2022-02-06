@@ -82,7 +82,7 @@
             this.btn_reloadConfig.Name = "btn_reloadConfig";
             this.btn_reloadConfig.Size = new System.Drawing.Size(120, 23);
             this.btn_reloadConfig.TabIndex = 12;
-            this.btn_reloadConfig.Text = "Reload config";
+            this.btn_reloadConfig.Text = "Config neu laden";
             this.btn_reloadConfig.UseVisualStyleBackColor = true;
             this.btn_reloadConfig.Click += new System.EventHandler(this.btn_reloadConfig_Click);
             // 

@@ -118,7 +118,7 @@
             this.btn_updates.Name = "btn_updates";
             this.btn_updates.Size = new System.Drawing.Size(86, 23);
             this.btn_updates.TabIndex = 8;
-            this.btn_updates.Text = "check updates";
+            this.btn_updates.Text = "suche updates";
             this.btn_updates.UseVisualStyleBackColor = true;
             this.btn_updates.Click += new System.EventHandler(this.btn_updates_Click);
             // 

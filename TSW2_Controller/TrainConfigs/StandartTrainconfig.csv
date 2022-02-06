@@ -1,4 +1,4 @@
-Zug,Beschreibung,JoystickNummer,JoystickInput,Invert,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitumrechnung,Länger drücken
+Zug,Beschreibung,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken
 _Global,Türen links,0,B10,,Button,,y_[press]_[0],,,,,,
 _Global,Türen rechts,0,B11,,Button,,u_[press]_[0],,,,,,
 _Global,nach links schauen,0,pov,,Button[=27001],,links_[press]_[0],,,,,,

@@ -71,9 +71,9 @@ namespace TSW2_Controller
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
             {
-                if (File.Exists(Tcfg.standartpfad))
+                if (File.Exists(Tcfg.configstandartpfad))
                 {
-                    File.Copy(Tcfg.standartpfad, Tcfg.configpfad, false);
+                    File.Copy(Tcfg.configstandartpfad, Tcfg.configpfad, false);
                 }
             }
             lbl_originalResult.Text = "";
@@ -365,7 +365,7 @@ namespace TSW2_Controller
                     //In der Trainconfig kommt ein bekannter Achsen-Name vor
                     if (strActiveTrain[Tcfg.joystickInput] == inputNames[i])
                     {
-                        if (strActiveTrain[Tcfg.invert] == "1")
+                        if (strActiveTrain[Tcfg.invertieren] == "1")
                         {
                             //Soll Invertiert werden
                             joyInputs[i] = joyInputs[i] * (-1);

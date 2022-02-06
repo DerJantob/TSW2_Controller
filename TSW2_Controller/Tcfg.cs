@@ -12,7 +12,7 @@ namespace TSW2_Controller
         public static int beschreibung = 1;
         public static int joystickNummer = 2;
         public static int joystickInput = 3;
-        public static int invert = 4;
+        public static int invertieren = 4;
         public static int inputTyp = 5;
         public static int inputUmrechnen = 6;
         public static int tastenKombination = 7;
@@ -24,7 +24,8 @@ namespace TSW2_Controller
         public static int laengerDruecken = 13;
 
         public static string nameForGlobal = "_Global";
+
         public static string configpfad = @".\Trainconfig.csv";
-        public static string standartpfad = @".\TrainConfigs\StandartTrainconfig.csv";
+        public static string configstandartpfad = @".\TrainConfigs\StandartTrainconfig.csv";
     }
 }

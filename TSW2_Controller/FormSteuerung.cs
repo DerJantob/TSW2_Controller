@@ -530,7 +530,7 @@ namespace TSW2_Controller
                         txtT3_LongPress.Text = singleTrain[Tcfg.laengerDruecken].Replace("[", "").Replace("]", " ").TrimEnd(' ');
                         txtT3_Beschreibung.Text = singleTrain[Tcfg.beschreibung];
                         if (singleTrain[Tcfg.art] == "Stufen") { radioT3_Stufen.Checked = true; } else if (singleTrain[Tcfg.art] == "Stufenlos") { radioT3_Stufenlos.Checked = true; }
-                        if (singleTrain[Tcfg.invert] == "1") { checkT3_Invertiert.Checked = true; } else { checkT3_Invertiert.Checked = false; }
+                        if (singleTrain[Tcfg.invertieren] == "1") { checkT3_Invertiert.Checked = true; } else { checkT3_Invertiert.Checked = false; }
                         if (singleTrain[Tcfg.inputTyp] == "1") { checkT3_andererJoyModus.Checked = true; } else { checkT3_andererJoyModus.Checked = false; }
 
                         foundData = true;
@@ -600,7 +600,7 @@ namespace TSW2_Controller
                             if (txtT3_Sonderfaelle.Text.Length >= 3) { singleTrain[Tcfg.specials] = "[" + txtT3_Sonderfaelle.Text.Replace(" ", "][").Replace("_", " ") + "]"; } else { singleTrain[Tcfg.specials] = ""; }
                             if (txtT3_LongPress.Text.Length >= 3) { singleTrain[Tcfg.laengerDruecken] = "[" + txtT3_LongPress.Text.Replace(" ", "][") + "]"; } else { singleTrain[Tcfg.laengerDruecken] = ""; }
                             if (radioT3_Stufen.Checked) { singleTrain[Tcfg.art] = "Stufen"; } else { singleTrain[Tcfg.art] = "Stufenlos"; }
-                            if (checkT3_Invertiert.Checked) { singleTrain[Tcfg.invert] = "1"; } else { singleTrain[Tcfg.invert] = "0"; }
+                            if (checkT3_Invertiert.Checked) { singleTrain[Tcfg.invertieren] = "1"; } else { singleTrain[Tcfg.invertieren] = "0"; }
                             if (checkT3_andererJoyModus.Checked) { singleTrain[Tcfg.inputTyp] = "1"; } else { singleTrain[Tcfg.inputTyp] = "0"; }
 
                             trainConfig[i] = singleTrain;
@@ -622,7 +622,7 @@ namespace TSW2_Controller
                     if (txtT3_Sonderfaelle.Text.Length >= 3) { singleTrain[Tcfg.specials] = "[" + txtT3_Sonderfaelle.Text.Replace(" ", "][").Replace("_", " ") + "]"; }
                     if (txtT3_LongPress.Text.Length >= 3) { singleTrain[Tcfg.laengerDruecken] = "[" + txtT3_LongPress.Text.Replace(" ", "][") + "]"; }
                     if (radioT3_Stufen.Checked) { singleTrain[Tcfg.art] = "Stufen"; } else { singleTrain[Tcfg.art] = "Stufenlos"; }
-                    if (checkT3_Invertiert.Checked) { singleTrain[Tcfg.invert] = "1"; } else { singleTrain[Tcfg.invert] = "0"; }
+                    if (checkT3_Invertiert.Checked) { singleTrain[Tcfg.invertieren] = "1"; } else { singleTrain[Tcfg.invertieren] = "0"; }
                     if (checkT3_andererJoyModus.Checked) { singleTrain[Tcfg.inputTyp] = "1"; } else { singleTrain[Tcfg.inputTyp] = "0"; }
 
                     if (radioT3_Schub.Checked) { singleTrain[Tcfg.tastenKombination] = "Schub"; } else if (radioT3_Bremse.Checked) { singleTrain[Tcfg.tastenKombination] = "Bremse"; } else { singleTrain[Tcfg.tastenKombination] = "Kombihebel"; }
