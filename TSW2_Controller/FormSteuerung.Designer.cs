@@ -73,6 +73,8 @@
             this.txtT2_Taste = new System.Windows.Forms.TextBox();
             this.listBoxT2_Output = new System.Windows.Forms.ListBox();
             this.tabPage_Regler = new System.Windows.Forms.TabPage();
+            this.btnT3_ZeitfaktorFinden = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.txtT3_Beschreibung = new System.Windows.Forms.TextBox();
             this.listBoxT3_ShowJoystickStates = new System.Windows.Forms.ListBox();
@@ -104,8 +106,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.T1Timer_CheckForButtonPress = new System.Windows.Forms.Timer(this.components);
             this.T3Timer_GetJoyStates = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnT3_ZeitfaktorFinden = new System.Windows.Forms.Button();
+            this.btnT0_Delete = new System.Windows.Forms.Button();
             this.tabControl_Anzeige.SuspendLayout();
             this.tabPage_Zugauswahl.SuspendLayout();
             this.tabPage_Button.SuspendLayout();
@@ -124,12 +125,13 @@
             this.tabControl_Anzeige.Location = new System.Drawing.Point(12, 12);
             this.tabControl_Anzeige.Name = "tabControl_Anzeige";
             this.tabControl_Anzeige.SelectedIndex = 0;
-            this.tabControl_Anzeige.Size = new System.Drawing.Size(573, 296);
+            this.tabControl_Anzeige.Size = new System.Drawing.Size(316, 133);
             this.tabControl_Anzeige.TabIndex = 0;
             this.tabControl_Anzeige.SelectedIndexChanged += new System.EventHandler(this.tabControl_Anzeige_SelectedIndexChanged);
             // 
             // tabPage_Zugauswahl
             // 
+            this.tabPage_Zugauswahl.Controls.Add(this.btnT0_Delete);
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_editRegler);
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_Add);
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_editButtons);
@@ -138,7 +140,7 @@
             this.tabPage_Zugauswahl.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Zugauswahl.Name = "tabPage_Zugauswahl";
             this.tabPage_Zugauswahl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Zugauswahl.Size = new System.Drawing.Size(565, 270);
+            this.tabPage_Zugauswahl.Size = new System.Drawing.Size(308, 107);
             this.tabPage_Zugauswahl.TabIndex = 0;
             this.tabPage_Zugauswahl.Text = "Zugauswahl";
             this.tabPage_Zugauswahl.UseVisualStyleBackColor = true;
@@ -218,7 +220,7 @@
             this.tabPage_Button.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Button.Name = "tabPage_Button";
             this.tabPage_Button.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Button.Size = new System.Drawing.Size(585, 310);
+            this.tabPage_Button.Size = new System.Drawing.Size(565, 270);
             this.tabPage_Button.TabIndex = 1;
             this.tabPage_Button.Text = "Button";
             this.tabPage_Button.UseVisualStyleBackColor = true;
@@ -440,7 +442,7 @@
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.listBoxT2_Output);
             this.tabPage_Tastenkombi_Erstellen.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Tastenkombi_Erstellen.Name = "tabPage_Tastenkombi_Erstellen";
-            this.tabPage_Tastenkombi_Erstellen.Size = new System.Drawing.Size(585, 310);
+            this.tabPage_Tastenkombi_Erstellen.Size = new System.Drawing.Size(565, 270);
             this.tabPage_Tastenkombi_Erstellen.TabIndex = 2;
             this.tabPage_Tastenkombi_Erstellen.Text = "Tastenkombi Erstellen";
             this.tabPage_Tastenkombi_Erstellen.UseVisualStyleBackColor = true;
@@ -607,6 +609,26 @@
             this.tabPage_Regler.TabIndex = 3;
             this.tabPage_Regler.Text = "Regler";
             this.tabPage_Regler.UseVisualStyleBackColor = true;
+            // 
+            // btnT3_ZeitfaktorFinden
+            // 
+            this.btnT3_ZeitfaktorFinden.Location = new System.Drawing.Point(418, 89);
+            this.btnT3_ZeitfaktorFinden.Name = "btnT3_ZeitfaktorFinden";
+            this.btnT3_ZeitfaktorFinden.Size = new System.Drawing.Size(137, 23);
+            this.btnT3_ZeitfaktorFinden.TabIndex = 49;
+            this.btnT3_ZeitfaktorFinden.Text = "Zeitfaktor finden";
+            this.btnT3_ZeitfaktorFinden.UseVisualStyleBackColor = true;
+            this.btnT3_ZeitfaktorFinden.Click += new System.EventHandler(this.btnT3_ZeitfaktorFinden_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(95, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(35, 23);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "<<--";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnT1_Back_Click);
             // 
             // label17
             // 
@@ -879,25 +901,15 @@
             this.T3Timer_GetJoyStates.Enabled = true;
             this.T3Timer_GetJoyStates.Tick += new System.EventHandler(this.T3Timer_GetJoyStates_Tick);
             // 
-            // button1
+            // btnT0_Delete
             // 
-            this.button1.Location = new System.Drawing.Point(95, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(35, 23);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "<<--";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnT1_Back_Click);
-            // 
-            // btnT3_ZeitfaktorFinden
-            // 
-            this.btnT3_ZeitfaktorFinden.Location = new System.Drawing.Point(418, 89);
-            this.btnT3_ZeitfaktorFinden.Name = "btnT3_ZeitfaktorFinden";
-            this.btnT3_ZeitfaktorFinden.Size = new System.Drawing.Size(137, 23);
-            this.btnT3_ZeitfaktorFinden.TabIndex = 49;
-            this.btnT3_ZeitfaktorFinden.Text = "Zeitfaktor finden";
-            this.btnT3_ZeitfaktorFinden.UseVisualStyleBackColor = true;
-            this.btnT3_ZeitfaktorFinden.Click += new System.EventHandler(this.btnT3_ZeitfaktorFinden_Click);
+            this.btnT0_Delete.Location = new System.Drawing.Point(227, 19);
+            this.btnT0_Delete.Name = "btnT0_Delete";
+            this.btnT0_Delete.Size = new System.Drawing.Size(75, 23);
+            this.btnT0_Delete.TabIndex = 6;
+            this.btnT0_Delete.Text = "Löschen";
+            this.btnT0_Delete.UseVisualStyleBackColor = true;
+            this.btnT0_Delete.Click += new System.EventHandler(this.btnT0_Delete_Click);
             // 
             // FormSteuerung
             // 
@@ -1006,5 +1018,6 @@
         private System.Windows.Forms.TextBox txtT3_Beschreibung;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnT3_ZeitfaktorFinden;
+        private System.Windows.Forms.Button btnT0_Delete;
     }
 }

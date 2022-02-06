@@ -43,7 +43,7 @@ namespace TSW2_Controller
 
             listBoxT1_ShowJoystickStates.Hide();
 
-            tabControl_Anzeige.Size = new Size(235, 135);
+            tabControl_Anzeige.Size = new Size(316, 133);
 
             //Verstecke die Auswahl der Tab-Buttons
             tabControl_Anzeige.Appearance = TabAppearance.FlatButtons;
@@ -57,7 +57,7 @@ namespace TSW2_Controller
             switch (((TabControl)sender).SelectedIndex)
             {
                 case 0:
-                    tabControl_Anzeige.Size = new Size(235, 135);
+                    tabControl_Anzeige.Size = new Size(316, 133);
                     break;
                 case 1:
                     tabControl_Anzeige.Size = new Size(366, 273);
@@ -75,13 +75,13 @@ namespace TSW2_Controller
         #region T0
         private void comboBoxT0_Zugauswahl_TextChanged(object sender, EventArgs e)
         {
-            if(comboBoxT0_Zugauswahl.Text == Tcfg.nameForGlobal)
+            if (comboBoxT0_Zugauswahl.Text == Tcfg.nameForGlobal)
             {
                 btnT0_editRegler.Enabled = false;
             }
             else
             {
-                btnT0_editRegler.Enabled=true;
+                btnT0_editRegler.Enabled = true;
             }
         }
         private void btnT0_editButtons_Click(object sender, EventArgs e)
@@ -111,17 +111,52 @@ namespace TSW2_Controller
         private void btnT0_Add_Click(object sender, EventArgs e)
         {
             bool exestiertBereits = false;
-            foreach(string s in comboBoxT0_Zugauswahl.Items)
+            foreach (string s in comboBoxT0_Zugauswahl.Items)
             {
-                if(s == comboBoxT0_Zugauswahl.Text)
+                if (s == comboBoxT0_Zugauswahl.Text)
                 {
                     exestiertBereits = true;
                 }
             }
 
-            if(!exestiertBereits)
+            if (!exestiertBereits)
             {
                 comboBoxT0_Zugauswahl.Items.Add(comboBoxT0_Zugauswahl.Text);
+            }
+        }
+        private void btnT0_Delete_Click(object sender, EventArgs e)
+        {
+            selectedTrain = comboBoxT0_Zugauswahl.Text;
+            comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
+
+            if (MessageBox.Show("Willst du wirklich \"" + selectedTrain + "\" löschen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int counter = 0;
+                for (int i = 0; i < trainConfig.Count; i++)
+                {
+                    if (trainConfig[i][Tcfg.zug] == selectedTrain)
+                    {
+                        trainConfig.RemoveAt(i);
+                        i--;
+                        counter++;
+                    }
+                }
+
+                //Schreibe Datei
+                string[] line = new string[trainConfig.Count];
+                for (int i = 0; i < trainConfig.Count; i++)
+                {
+                    string combined = "";
+                    foreach (string s in trainConfig[i])
+                    {
+                        combined += s + ",";
+                    }
+                    combined = combined.Remove(combined.Length - 1);
+                    line[i] = combined;
+                }
+                File.WriteAllLines(Tcfg.configpfad, line);
+
+                MessageBox.Show(counter + " Einträge gelöscht!");
             }
         }
         #endregion
