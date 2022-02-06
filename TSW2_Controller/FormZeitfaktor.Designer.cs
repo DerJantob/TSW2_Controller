@@ -1,6 +1,6 @@
 ﻿namespace TSW2_Controller
 {
-    partial class FormZeitumrechnung
+    partial class FormZeitfaktor
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormZeitumrechnung));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormZeitfaktor));
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_anleitung = new System.Windows.Forms.Label();
             this.radio_Stufenlos = new System.Windows.Forms.RadioButton();
@@ -53,9 +53,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 25);
+            this.label1.Size = new System.Drawing.Size(198, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Zeitumrechnungswert finden";
+            this.label1.Text = "Zeitfaktor erkennen";
             // 
             // lbl_anleitung
             // 
@@ -175,7 +175,7 @@
             this.radio_Bremse.Text = "Bremse";
             this.radio_Bremse.UseVisualStyleBackColor = true;
             // 
-            // FormZeitumrechnung
+            // FormZeitfaktor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -187,9 +187,9 @@
             this.Controls.Add(this.txt_Startwert);
             this.Controls.Add(this.lbl_anleitung);
             this.Controls.Add(this.label1);
-            this.Name = "FormZeitumrechnung";
+            this.Name = "FormZeitfaktor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FormZeitumrechnung";
+            this.Text = "Zeitfaktor";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

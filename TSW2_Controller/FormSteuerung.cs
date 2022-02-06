@@ -749,8 +749,8 @@ namespace TSW2_Controller
         }
         private void btnT3_ZeitfaktorFinden_Click(object sender, EventArgs e)
         {
-            FormZeitumrechnung formZeitumrechnung = new FormZeitumrechnung();
-            formZeitumrechnung.ShowDialog();
+            FormZeitfaktor formZeitfaktor = new FormZeitfaktor();
+            formZeitfaktor.ShowDialog();
         }
         #endregion
     }

@@ -50,7 +50,7 @@ namespace TSW2_Controller
 
         private void btn_Zeitumrechnungshilfe_Click(object sender, EventArgs e)
         {
-            FormZeitumrechnung formZeitumrechnung = new FormZeitumrechnung();
+            FormZeitfaktor formZeitumrechnung = new FormZeitfaktor();
             formZeitumrechnung.Location = this.Location;
             formZeitumrechnung.ShowDialog();
         }

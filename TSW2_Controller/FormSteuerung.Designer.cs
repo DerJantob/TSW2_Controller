@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl_Anzeige = new System.Windows.Forms.TabControl();
             this.tabPage_Zugauswahl = new System.Windows.Forms.TabPage();
+            this.btnT0_Delete = new System.Windows.Forms.Button();
             this.btnT0_editRegler = new System.Windows.Forms.Button();
             this.btnT0_Add = new System.Windows.Forms.Button();
             this.btnT0_editButtons = new System.Windows.Forms.Button();
@@ -106,7 +107,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.T1Timer_CheckForButtonPress = new System.Windows.Forms.Timer(this.components);
             this.T3Timer_GetJoyStates = new System.Windows.Forms.Timer(this.components);
-            this.btnT0_Delete = new System.Windows.Forms.Button();
             this.tabControl_Anzeige.SuspendLayout();
             this.tabPage_Zugauswahl.SuspendLayout();
             this.tabPage_Button.SuspendLayout();
@@ -125,7 +125,7 @@
             this.tabControl_Anzeige.Location = new System.Drawing.Point(12, 12);
             this.tabControl_Anzeige.Name = "tabControl_Anzeige";
             this.tabControl_Anzeige.SelectedIndex = 0;
-            this.tabControl_Anzeige.Size = new System.Drawing.Size(316, 133);
+            this.tabControl_Anzeige.Size = new System.Drawing.Size(578, 313);
             this.tabControl_Anzeige.TabIndex = 0;
             this.tabControl_Anzeige.SelectedIndexChanged += new System.EventHandler(this.tabControl_Anzeige_SelectedIndexChanged);
             // 
@@ -144,6 +144,16 @@
             this.tabPage_Zugauswahl.TabIndex = 0;
             this.tabPage_Zugauswahl.Text = "Zugauswahl";
             this.tabPage_Zugauswahl.UseVisualStyleBackColor = true;
+            // 
+            // btnT0_Delete
+            // 
+            this.btnT0_Delete.Location = new System.Drawing.Point(227, 19);
+            this.btnT0_Delete.Name = "btnT0_Delete";
+            this.btnT0_Delete.Size = new System.Drawing.Size(75, 23);
+            this.btnT0_Delete.TabIndex = 6;
+            this.btnT0_Delete.Text = "Löschen";
+            this.btnT0_Delete.UseVisualStyleBackColor = true;
+            this.btnT0_Delete.Click += new System.EventHandler(this.btnT0_Delete_Click);
             // 
             // btnT0_editRegler
             // 
@@ -220,7 +230,7 @@
             this.tabPage_Button.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Button.Name = "tabPage_Button";
             this.tabPage_Button.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Button.Size = new System.Drawing.Size(565, 270);
+            this.tabPage_Button.Size = new System.Drawing.Size(570, 287);
             this.tabPage_Button.TabIndex = 1;
             this.tabPage_Button.Text = "Button";
             this.tabPage_Button.UseVisualStyleBackColor = true;
@@ -442,7 +452,7 @@
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.listBoxT2_Output);
             this.tabPage_Tastenkombi_Erstellen.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Tastenkombi_Erstellen.Name = "tabPage_Tastenkombi_Erstellen";
-            this.tabPage_Tastenkombi_Erstellen.Size = new System.Drawing.Size(565, 270);
+            this.tabPage_Tastenkombi_Erstellen.Size = new System.Drawing.Size(570, 287);
             this.tabPage_Tastenkombi_Erstellen.TabIndex = 2;
             this.tabPage_Tastenkombi_Erstellen.Text = "Tastenkombi Erstellen";
             this.tabPage_Tastenkombi_Erstellen.UseVisualStyleBackColor = true;
@@ -605,7 +615,7 @@
             this.tabPage_Regler.Controls.Add(this.label10);
             this.tabPage_Regler.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Regler.Name = "tabPage_Regler";
-            this.tabPage_Regler.Size = new System.Drawing.Size(565, 270);
+            this.tabPage_Regler.Size = new System.Drawing.Size(570, 287);
             this.tabPage_Regler.TabIndex = 3;
             this.tabPage_Regler.Text = "Regler";
             this.tabPage_Regler.UseVisualStyleBackColor = true;
@@ -901,16 +911,6 @@
             this.T3Timer_GetJoyStates.Enabled = true;
             this.T3Timer_GetJoyStates.Tick += new System.EventHandler(this.T3Timer_GetJoyStates_Tick);
             // 
-            // btnT0_Delete
-            // 
-            this.btnT0_Delete.Location = new System.Drawing.Point(227, 19);
-            this.btnT0_Delete.Name = "btnT0_Delete";
-            this.btnT0_Delete.Size = new System.Drawing.Size(75, 23);
-            this.btnT0_Delete.TabIndex = 6;
-            this.btnT0_Delete.Text = "Löschen";
-            this.btnT0_Delete.UseVisualStyleBackColor = true;
-            this.btnT0_Delete.Click += new System.EventHandler(this.btnT0_Delete_Click);
-            // 
             // FormSteuerung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -921,7 +921,7 @@
             this.Controls.Add(this.tabControl_Anzeige);
             this.Name = "FormSteuerung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FormSteuerung";
+            this.Text = "Steuerung";
             this.tabControl_Anzeige.ResumeLayout(false);
             this.tabPage_Zugauswahl.ResumeLayout(false);
             this.tabPage_Zugauswahl.PerformLayout();
