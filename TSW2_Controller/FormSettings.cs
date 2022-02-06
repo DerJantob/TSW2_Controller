@@ -103,7 +103,7 @@ namespace TSW2_Controller
 
         private void comboBox_Schub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_Schub.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_Schub.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_Schub.Items.RemoveAt(comboBox_Schub.SelectedIndex);
             }
@@ -111,7 +111,7 @@ namespace TSW2_Controller
 
         private void comboBox_Bremse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_Bremse.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_Bremse.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_Bremse.Items.RemoveAt(comboBox_Bremse.SelectedIndex);
             }
@@ -119,7 +119,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiSchub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_kombiSchub.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_kombiSchub.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_kombiSchub.Items.RemoveAt(comboBox_kombiSchub.SelectedIndex);
             }
@@ -127,7 +127,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiBremse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_kombiBremse.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_kombiBremse.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_kombiBremse.Items.RemoveAt(comboBox_kombiBremse.SelectedIndex);
             }
@@ -148,7 +148,7 @@ namespace TSW2_Controller
             }
             catch
             {
-                MessageBox.Show("Fehler bei Auflösung!");
+                MessageBox.Show(Sprache.Fehler_bei_Aufloesung);
             }
 
             try
@@ -167,7 +167,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fehler beim Textindex!");
+                MessageBox.Show(Sprache.Fehler_beim_Textindikator);
                 MessageBox.Show(ex.ToString());
             }
 
@@ -182,6 +182,20 @@ namespace TSW2_Controller
             FormSteuerung formSteuerung = new FormSteuerung();
             formSteuerung.Location = this.Location;
             formSteuerung.ShowDialog();
+        }
+
+        private void btn_Sprache_Click(object sender, EventArgs e)
+        {
+            if (Settings.Default.Sprache == "de-DE")
+            {
+                Settings.Default.Sprache = "en";
+            }
+            else
+            {
+                Settings.Default.Sprache = "de-DE";
+            }
+            Settings.Default.Save();
+            Application.Restart();
         }
     }
 }

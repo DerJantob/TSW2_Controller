@@ -71,9 +71,9 @@ namespace TSW2_Controller
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
             {
-                if (File.Exists(Tcfg.configstandartpfad))
+                if (File.Exists(Tcfg.configstandardpfad))
                 {
-                    File.Copy(Tcfg.configstandartpfad, Tcfg.configpfad, false);
+                    File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
                 }
             }
             lbl_originalResult.Text = "";
@@ -88,7 +88,6 @@ namespace TSW2_Controller
             MainSticks = getSticks();
 
             ReadTrainConfig();
-            ReadTrainNamesFromTrainconfig();
 
             timer_CheckSticks.Start();
         }
@@ -178,10 +177,10 @@ namespace TSW2_Controller
                 #endregion
 
                 #region TextIndexe
-                if (Settings.Default.SchubIndexe.Count == 0) { if (MessageBox.Show("Schubindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save(); } }
-                if (Settings.Default.BremsIndexe.Count == 0) { if (MessageBox.Show("Bremsindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save(); } }
-                if (Settings.Default.Kombihebel_SchubIndexe.Count == 0) { if (MessageBox.Show("Kombihebel_Schubindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save(); } }
-                if (Settings.Default.Kombihebel_BremsIndexe.Count == 0) { if (MessageBox.Show("Kombihebel_Bremsindikator leer!\n\nStandart laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.SchubIndexe.Count == 0) { if (MessageBox.Show(Sprache.Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.BremsIndexe.Count == 0) { if (MessageBox.Show(Sprache.Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.Kombihebel_SchubIndexe.Count == 0) { if (MessageBox.Show(Sprache.Kombihebel_Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.Kombihebel_BremsIndexe.Count == 0) { if (MessageBox.Show(Sprache.Kombihebel_Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save(); } }
 
                 schubIndexe.Clear();
                 bremsIndexe.Clear();
@@ -214,12 +213,15 @@ namespace TSW2_Controller
                     }
                 }
             }
+            ReadTrainNamesFromTrainconfig();
         }
 
         public void ReadTrainNamesFromTrainconfig()
         {
             trainNames.Clear();
             comboBox_Zugauswahl.Items.Clear();
+            comboBox_Zugauswahl.Items.Add(Sprache.Zugauswahl);
+            comboBox_Zugauswahl.SelectedItem = Sprache.Zugauswahl;
 
             foreach (string[] str in trainConfig)
             {
@@ -238,15 +240,6 @@ namespace TSW2_Controller
                 }
             }
             comboBox_Zugauswahl.Items.AddRange(trainNames.ToArray());
-
-            if (trainNames.Any("_Zugauswahl".Contains))
-            {
-                comboBox_Zugauswahl.SelectedItem = "_Zugauswahl";
-            }
-            else
-            {
-                MessageBox.Show("_Zugauswahl fehlt!");
-            }
         }
 
         public void getActiveTrain()
@@ -1458,7 +1451,6 @@ namespace TSW2_Controller
         {
             check_active.Checked = false;
             ReadTrainConfig();
-            ReadTrainNamesFromTrainconfig();
         }
 
         private void bgw_readScreen_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -1488,7 +1480,6 @@ namespace TSW2_Controller
             loadSettings();
 
             ReadTrainConfig();
-            ReadTrainNamesFromTrainconfig();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -1616,5 +1607,9 @@ namespace TSW2_Controller
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

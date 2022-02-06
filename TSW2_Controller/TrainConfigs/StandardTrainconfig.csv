@@ -9,7 +9,6 @@ _Global,PZB-Befehl,0,B6,,Button,,,entf,,,,,
 _Global,Direkte Bremse anlegen,0,B9,,Button,,,+,,,,,
 _Global,Direkte Bremse lösen,0,B8,,Button,,,ü,,,,,
 _Global,Hupe,0,B0,,Button,,,space,,,,,
-_Zugauswahl,,,,,,,,,,,,,
 BR101,Schub,0,JoyZ,0,1,[1|5=5],Schub,,Stufenlos,,[Aus=0][Min.=5][Max.=100],42,[0|5:200]
 BR101,Bremse,0,JoyY,0,0,,Bremse,,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Bremse=9],135,
 BR101,Nach lösen drücken,0,JoyY,,Button[<0],,,ö,,,,,

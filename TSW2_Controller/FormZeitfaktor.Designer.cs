@@ -49,72 +49,46 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Zeitfaktor erkennen";
             // 
             // lbl_anleitung
             // 
-            this.lbl_anleitung.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_anleitung.Location = new System.Drawing.Point(14, 34);
+            resources.ApplyResources(this.lbl_anleitung, "lbl_anleitung");
             this.lbl_anleitung.Name = "lbl_anleitung";
-            this.lbl_anleitung.Size = new System.Drawing.Size(370, 230);
-            this.lbl_anleitung.TabIndex = 2;
-            this.lbl_anleitung.Text = resources.GetString("lbl_anleitung.Text");
             // 
             // radio_Stufenlos
             // 
-            this.radio_Stufenlos.AutoSize = true;
+            resources.ApplyResources(this.radio_Stufenlos, "radio_Stufenlos");
             this.radio_Stufenlos.Checked = true;
-            this.radio_Stufenlos.Location = new System.Drawing.Point(3, 3);
             this.radio_Stufenlos.Name = "radio_Stufenlos";
-            this.radio_Stufenlos.Size = new System.Drawing.Size(69, 17);
-            this.radio_Stufenlos.TabIndex = 3;
             this.radio_Stufenlos.TabStop = true;
-            this.radio_Stufenlos.Text = "Stufenlos";
             this.radio_Stufenlos.UseVisualStyleBackColor = true;
             this.radio_Stufenlos.CheckedChanged += new System.EventHandler(this.radio_Stufenlos_CheckedChanged);
             // 
             // radio_Stufen
             // 
-            this.radio_Stufen.AutoSize = true;
-            this.radio_Stufen.Location = new System.Drawing.Point(3, 26);
+            resources.ApplyResources(this.radio_Stufen, "radio_Stufen");
             this.radio_Stufen.Name = "radio_Stufen";
-            this.radio_Stufen.Size = new System.Drawing.Size(56, 17);
-            this.radio_Stufen.TabIndex = 4;
-            this.radio_Stufen.Text = "Stufen";
             this.radio_Stufen.UseVisualStyleBackColor = true;
             this.radio_Stufen.CheckedChanged += new System.EventHandler(this.radio_Stufen_CheckedChanged);
             // 
             // txt_Startwert
             // 
-            this.txt_Startwert.Location = new System.Drawing.Point(17, 380);
+            resources.ApplyResources(this.txt_Startwert, "txt_Startwert");
             this.txt_Startwert.Name = "txt_Startwert";
-            this.txt_Startwert.Size = new System.Drawing.Size(100, 20);
-            this.txt_Startwert.TabIndex = 5;
             this.txt_Startwert.TextChanged += new System.EventHandler(this.txt_Startwert_TextChanged);
             this.txt_Startwert.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Startwert_KeyPress);
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 364);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Startwert in %";
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(123, 380);
+            resources.ApplyResources(this.btn_start, "btn_start");
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(41, 20);
-            this.btn_start.TabIndex = 7;
-            this.btn_start.Text = "Start";
             this.btn_start.UseVisualStyleBackColor = true;
             this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
             // 
@@ -125,61 +99,44 @@
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.radio_kombihebel);
             this.panel1.Controls.Add(this.radio_Stufenlos);
             this.panel1.Controls.Add(this.radio_Stufen);
-            this.panel1.Location = new System.Drawing.Point(17, 267);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(86, 73);
-            this.panel1.TabIndex = 9;
             // 
             // radio_kombihebel
             // 
-            this.radio_kombihebel.AutoSize = true;
-            this.radio_kombihebel.Location = new System.Drawing.Point(3, 49);
+            resources.ApplyResources(this.radio_kombihebel, "radio_kombihebel");
             this.radio_kombihebel.Name = "radio_kombihebel";
-            this.radio_kombihebel.Size = new System.Drawing.Size(80, 17);
-            this.radio_kombihebel.TabIndex = 5;
-            this.radio_kombihebel.Text = "Kombihebel";
             this.radio_kombihebel.UseVisualStyleBackColor = true;
             this.radio_kombihebel.CheckedChanged += new System.EventHandler(this.radio_kombihebel_CheckedChanged);
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.radio_Schub);
             this.panel2.Controls.Add(this.radio_Bremse);
-            this.panel2.Location = new System.Drawing.Point(109, 290);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(74, 50);
-            this.panel2.TabIndex = 10;
             // 
             // radio_Schub
             // 
-            this.radio_Schub.AutoSize = true;
+            resources.ApplyResources(this.radio_Schub, "radio_Schub");
             this.radio_Schub.Checked = true;
-            this.radio_Schub.Location = new System.Drawing.Point(3, 3);
             this.radio_Schub.Name = "radio_Schub";
-            this.radio_Schub.Size = new System.Drawing.Size(56, 17);
-            this.radio_Schub.TabIndex = 3;
             this.radio_Schub.TabStop = true;
-            this.radio_Schub.Text = "Schub";
             this.radio_Schub.UseVisualStyleBackColor = true;
             // 
             // radio_Bremse
             // 
-            this.radio_Bremse.AutoSize = true;
-            this.radio_Bremse.Location = new System.Drawing.Point(3, 26);
+            resources.ApplyResources(this.radio_Bremse, "radio_Bremse");
             this.radio_Bremse.Name = "radio_Bremse";
-            this.radio_Bremse.Size = new System.Drawing.Size(60, 17);
-            this.radio_Bremse.TabIndex = 4;
-            this.radio_Bremse.Text = "Bremse";
             this.radio_Bremse.UseVisualStyleBackColor = true;
             // 
             // FormZeitfaktor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 412);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_start);
@@ -188,8 +145,6 @@
             this.Controls.Add(this.lbl_anleitung);
             this.Controls.Add(this.label1);
             this.Name = "FormZeitfaktor";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Zeitfaktor";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
