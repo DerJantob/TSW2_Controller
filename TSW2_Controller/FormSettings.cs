@@ -26,8 +26,17 @@ namespace TSW2_Controller
             check_showDebug.Checked = Settings.Default.showDebug;
             check_ShowScan.Checked = Settings.Default.showScanResult;
 
-            txt_resHeight.Text = Settings.Default.res.Height.ToString();
-            txt_resWidth.Text = Settings.Default.res.Width.ToString();
+
+            string resName = Settings.Default.res.Width.ToString() + "x" + Settings.Default.res.Height.ToString();
+            if (!comboBox_resolution.Items.Contains(resName))
+            {
+                comboBox_resolution.Items.Add(resName);
+            }
+            if (comboBox_resolution.Items.Contains(resName))
+            {
+                comboBox_resolution.SelectedItem = resName;
+            }
+
 
             comboBox_Schub.Items.Clear();
             comboBox_Bremse.Items.Clear();
@@ -42,7 +51,7 @@ namespace TSW2_Controller
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
 
@@ -144,7 +153,7 @@ namespace TSW2_Controller
         {
             try
             {
-                Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(txt_resWidth.Text), Convert.ToInt32(txt_resHeight.Text));
+                Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(comboBox_resolution.Text.Split('x')[0]), Convert.ToInt32(comboBox_resolution.Text.Split('x')[1]));
             }
             catch
             {

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
-            this.txt_resWidth = new System.Windows.Forms.TextBox();
-            this.txt_resHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.check_showDebug = new System.Windows.Forms.CheckBox();
             this.lbl_version = new System.Windows.Forms.Label();
@@ -52,21 +50,12 @@
             this.btn_speichern = new System.Windows.Forms.Button();
             this.btn_steuerung = new System.Windows.Forms.Button();
             this.btn_Sprache = new System.Windows.Forms.Button();
+            this.comboBox_resolution = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
             this.tab_kombihebel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txt_resWidth
-            // 
-            resources.ApplyResources(this.txt_resWidth, "txt_resWidth");
-            this.txt_resWidth.Name = "txt_resWidth";
-            // 
-            // txt_resHeight
-            // 
-            resources.ApplyResources(this.txt_resHeight, "txt_resHeight");
-            this.txt_resHeight.Name = "txt_resHeight";
             // 
             // label1
             // 
@@ -99,26 +88,26 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.tabControl1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tab_schubLeistung);
             this.tabControl1.Controls.Add(this.tab_kombihebel);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tab_schubLeistung
             // 
-            resources.ApplyResources(this.tab_schubLeistung, "tab_schubLeistung");
             this.tab_schubLeistung.Controls.Add(this.label3);
             this.tab_schubLeistung.Controls.Add(this.comboBox_Bremse);
             this.tab_schubLeistung.Controls.Add(this.label2);
             this.tab_schubLeistung.Controls.Add(this.comboBox_Schub);
+            resources.ApplyResources(this.tab_schubLeistung, "tab_schubLeistung");
             this.tab_schubLeistung.Name = "tab_schubLeistung";
             this.tab_schubLeistung.UseVisualStyleBackColor = true;
             // 
@@ -129,8 +118,8 @@
             // 
             // comboBox_Bremse
             // 
-            resources.ApplyResources(this.comboBox_Bremse, "comboBox_Bremse");
             this.comboBox_Bremse.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Bremse, "comboBox_Bremse");
             this.comboBox_Bremse.Name = "comboBox_Bremse";
             this.comboBox_Bremse.Sorted = true;
             this.comboBox_Bremse.SelectedIndexChanged += new System.EventHandler(this.comboBox_Bremse_SelectedIndexChanged);
@@ -143,8 +132,8 @@
             // 
             // comboBox_Schub
             // 
-            resources.ApplyResources(this.comboBox_Schub, "comboBox_Schub");
             this.comboBox_Schub.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Schub, "comboBox_Schub");
             this.comboBox_Schub.Name = "comboBox_Schub";
             this.comboBox_Schub.Sorted = true;
             this.comboBox_Schub.SelectedIndexChanged += new System.EventHandler(this.comboBox_Schub_SelectedIndexChanged);
@@ -152,11 +141,11 @@
             // 
             // tab_kombihebel
             // 
-            resources.ApplyResources(this.tab_kombihebel, "tab_kombihebel");
             this.tab_kombihebel.Controls.Add(this.label4);
             this.tab_kombihebel.Controls.Add(this.comboBox_kombiBremse);
             this.tab_kombihebel.Controls.Add(this.label5);
             this.tab_kombihebel.Controls.Add(this.comboBox_kombiSchub);
+            resources.ApplyResources(this.tab_kombihebel, "tab_kombihebel");
             this.tab_kombihebel.Name = "tab_kombihebel";
             this.tab_kombihebel.UseVisualStyleBackColor = true;
             // 
@@ -167,8 +156,8 @@
             // 
             // comboBox_kombiBremse
             // 
-            resources.ApplyResources(this.comboBox_kombiBremse, "comboBox_kombiBremse");
             this.comboBox_kombiBremse.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_kombiBremse, "comboBox_kombiBremse");
             this.comboBox_kombiBremse.Name = "comboBox_kombiBremse";
             this.comboBox_kombiBremse.Sorted = true;
             this.comboBox_kombiBremse.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiBremse_SelectedIndexChanged);
@@ -181,8 +170,8 @@
             // 
             // comboBox_kombiSchub
             // 
-            resources.ApplyResources(this.comboBox_kombiSchub, "comboBox_kombiSchub");
             this.comboBox_kombiSchub.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_kombiSchub, "comboBox_kombiSchub");
             this.comboBox_kombiSchub.Name = "comboBox_kombiSchub";
             this.comboBox_kombiSchub.Sorted = true;
             this.comboBox_kombiSchub.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiSchub_SelectedIndexChanged);
@@ -216,10 +205,21 @@
             this.btn_Sprache.UseVisualStyleBackColor = true;
             this.btn_Sprache.Click += new System.EventHandler(this.btn_Sprache_Click);
             // 
+            // comboBox_resolution
+            // 
+            this.comboBox_resolution.FormattingEnabled = true;
+            this.comboBox_resolution.Items.AddRange(new object[] {
+            resources.GetString("comboBox_resolution.Items"),
+            resources.GetString("comboBox_resolution.Items1"),
+            resources.GetString("comboBox_resolution.Items2")});
+            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
+            this.comboBox_resolution.Name = "comboBox_resolution";
+            // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox_resolution);
             this.Controls.Add(this.btn_Sprache);
             this.Controls.Add(this.btn_steuerung);
             this.Controls.Add(this.btn_speichern);
@@ -230,8 +230,6 @@
             this.Controls.Add(this.lbl_version);
             this.Controls.Add(this.check_showDebug);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txt_resHeight);
-            this.Controls.Add(this.txt_resWidth);
             this.Name = "FormSettings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.Load += new System.EventHandler(this.SettingsForm_Load);
@@ -247,9 +245,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txt_resWidth;
-        private System.Windows.Forms.TextBox txt_resHeight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox check_showDebug;
         private System.Windows.Forms.Label lbl_version;
@@ -271,5 +266,6 @@
         private System.Windows.Forms.Button btn_speichern;
         private System.Windows.Forms.Button btn_steuerung;
         private System.Windows.Forms.Button btn_Sprache;
+        private System.Windows.Forms.ComboBox comboBox_resolution;
     }
 }

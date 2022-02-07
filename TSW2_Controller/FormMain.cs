@@ -1030,13 +1030,6 @@ namespace TSW2_Controller
                 string alternative_result = "";
                 string result = "";
 
-                if (requestThrottle > 0 || requestBrake > 0)
-                {
-                    //RawData.Add("reqThrot:" + requestThrottle + "   reqBrake:" + requestBrake);
-                }
-
-                //Passe fehlerhaften Input bei original_result an
-                original_result = korrigiereReadScreenText(original_result);
 
                 if (original_result == "")
                 {
@@ -1051,14 +1044,11 @@ namespace TSW2_Controller
                 }
 
 
-                //Passe fehlerhaften Input bei alternative_result an
-                alternative_result = korrigiereReadScreenText(alternative_result);
-
                 //Zeige Scan-Ergebnisse
                 bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
 
 
-                //Wenn nichts gefunden wurde, dann gehe verschienene Indexe durch
+                //Wenn nichts gefunden wurde, dann gehe verschienene Indexe durch und drücke gesuchte Taste
                 #region Bremse
                 if (requestBrake > 0 && !original_result.Contains(brakeConfig[0]) && !alternative_result.Contains(brakeConfig[0]))
                 {
@@ -1102,6 +1092,10 @@ namespace TSW2_Controller
                 }
                 #endregion
 
+                //Passe fehlerhaften Input bei original_result an
+                original_result = korrigiereReadScreenText(original_result);
+                //Passe fehlerhaften Input bei alternative_result an
+                alternative_result = korrigiereReadScreenText(alternative_result);
 
 
 
@@ -1375,23 +1369,27 @@ namespace TSW2_Controller
                 if (!textinput.Contains(config) && textinput != "")
                 {
                     bool change = false;
+                    string changelog = "";
+                    double bestMatch = 0;
 
                     string[] seperated_textinput = textinput.Split(' ');
                     for (int i = 0; i < seperated_textinput.Length && !change; i++)
                     {
                         foreach (string textindex in indexe)
                         {
-                            if (GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2) > 0.8)
+                            double distance = GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2);
+                            if (distance > 0.8 && distance > bestMatch)
                             {
-                                RawData.Add("Ändere \"" + seperated_textinput[i] + "\" zu " + textindex);
+                                changelog = "Ändere \"" + seperated_textinput[i] + "\" zu " + textindex;
                                 seperated_textinput[i] = textindex;
                                 change = true;
-                                break;
+                                bestMatch = distance;
                             }
                         }
                     }
                     if (change)
                     {
+                        RawData.Add(changelog);
                         textinput = "";
                         foreach (string single_textinput_result in seperated_textinput)
                         {
