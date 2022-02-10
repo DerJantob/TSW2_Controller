@@ -19,7 +19,7 @@ namespace TSW2_Controller
     public partial class FormMain : Form
     {
         ///Todo:
-        ///In den Einstellungen eine csv-Eintrag Erstellhilfe erstellen.
+        ///"Kombihebel Leistung/Bremse" wird vom Programm nur als "Kombihebel" erkannt
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -955,10 +955,10 @@ namespace TSW2_Controller
         public Bitmap Screenshot(bool normal)
         {
             //Breite und Höhe des ScanFensters
-            int width = ConvertWidth(411);
+            int width = ConvertWidth(513);
             int height = ConvertHeight(30);
             //Startposition vom oberen Fenster
-            int x1 = ConvertWidth(2022);
+            int x1 = ConvertWidth(1920);
             int y1 = ConvertHeight(458);
             //Angepasste Höhe fürs untere Fenster
             int y2 = ConvertHeight(530);
@@ -1130,7 +1130,7 @@ namespace TSW2_Controller
                                     string word = singleSpezial.Remove(index, singleSpezial.Length - index);
                                     int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
 
-                                    if (result == word && singleSpezial != "")
+                                    if (ContainsWord(result, word) && singleSpezial != "")
                                     {
                                         erkannterSchub = entsprechendeNummer;
                                         break;
@@ -1366,37 +1366,45 @@ namespace TSW2_Controller
             {
                 if (type == 1 && !isKombihebel) { config = brakeConfig[0]; indexe = bremsIndexe.ToArray(); }
 
-                if (!textinput.Contains(config) && textinput != "")
+                if (config != null)
                 {
-                    bool change = false;
-                    string changelog = "";
-                    double bestMatch = 0;
-
-                    string[] seperated_textinput = textinput.Split(' ');
-                    for (int i = 0; i < seperated_textinput.Length && !change; i++)
+                    try
                     {
-                        foreach (string textindex in indexe)
+                        if (!textinput.Contains(config) && textinput != "")
                         {
-                            double distance = GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2);
-                            if (distance > 0.8 && distance > bestMatch)
+                            bool change = false;
+                            string changelog = "";
+                            double bestMatch = 0;
+
+                            string[] seperated_textinput = textinput.Split(' ');
+                            for (int i = 0; i < seperated_textinput.Length && !change; i++)
                             {
-                                changelog = "Ändere \"" + seperated_textinput[i] + "\" zu " + textindex;
-                                seperated_textinput[i] = textindex;
-                                change = true;
-                                bestMatch = distance;
+                                foreach (string textindex in indexe)
+                                {
+                                    double distance = GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2);
+                                    if (distance > 0.8 && distance > bestMatch)
+                                    {
+                                        changelog = "Ändere \"" + seperated_textinput[i] + "\" zu " + textindex;
+                                        seperated_textinput[i] = textindex;
+                                        change = true;
+                                        bestMatch = distance;
+                                    }
+                                }
+                            }
+                            if (change)
+                            {
+                                RawData.Add(changelog);
+                                textinput = "";
+                                foreach (string single_textinput_result in seperated_textinput)
+                                {
+                                    textinput = textinput + single_textinput_result + " ";
+                                }
+                                return textinput;
                             }
                         }
                     }
-                    if (change)
-                    {
-                        RawData.Add(changelog);
-                        textinput = "";
-                        foreach (string single_textinput_result in seperated_textinput)
-                        {
-                            textinput = textinput + single_textinput_result + " ";
-                        }
-                        return textinput;
-                    }
+                    catch (Exception ex)
+                    { MessageBox.Show(ex.ToString()); }
                 }
             }
             return textinput;
@@ -1518,12 +1526,20 @@ namespace TSW2_Controller
 
         public bool ContainsWord(string stringToCheck, string word)
         {
-            string[] ar = stringToCheck.Split(' ');
+            string[] split_stringTC = stringToCheck.Split(' ');
+            int countOfWordsGiven = word.Count(x => x == ' ') + 1;
 
             if (stringToCheck != "")
             {
-                foreach (string str in ar)
+                for (int i = 0; i < split_stringTC.Length - countOfWordsGiven + 1; i++)
                 {
+                    string str = "";
+                    for (int o = 0; o < countOfWordsGiven; o++)
+                    {
+                        str += split_stringTC[o + i] + " ";
+                    }
+                    str = str.Trim();
+
                     if (str.ToLower() == word.ToLower())
                     {
                         return true;
