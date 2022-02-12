@@ -994,7 +994,7 @@ namespace TSW2_Controller
                 {
                     int delay = 0;
 
-                    ConvertLongPress(true,true);
+                    ConvertLongPress(true, true);
                     int diffSchub = schubSoll - schubIst; //x>0 mehr |x<0 weniger
 
                     if (throttleConfig[4].Contains("|"))
@@ -1016,14 +1016,20 @@ namespace TSW2_Controller
                     if (diffSchub > 0)
                     {
                         //mehr
-                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffSchub < 4)
+                        { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay * 1.5)))); } //Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
+                        else
+                        { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay)))); }
                         schubIst = schubSoll;
                         requestThrottle = 3;
                     }
                     else if (diffSchub < 0)
                     {
                         //weniger
-                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffSchub > -4)
+                        { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay * 1.5)))); }
+                        else
+                        { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
                         schubIst = schubSoll;
                         requestThrottle = 3;
                     }
@@ -1032,7 +1038,7 @@ namespace TSW2_Controller
                 {
                     int delay = Convert.ToInt32(throttleConfig[4]);
 
-                    ConvertLongPress(true,false);;
+                    ConvertLongPress(true, false); ;
                     int diffSchub = schubSoll - schubIst;
 
                     for (int i = 0; i < Math.Abs(diffSchub); i++)
@@ -1057,7 +1063,7 @@ namespace TSW2_Controller
                 {
                     int delay = 0;
 
-                    ConvertLongPress(false,true);
+                    ConvertLongPress(false, true);
                     int diffBremse = bremseSoll - bremseIst; //x>0 mehr |x<0 weniger
 
                     delay = Convert.ToInt32(brakeConfig[4]);
@@ -1065,14 +1071,20 @@ namespace TSW2_Controller
                     if (diffBremse > 0)
                     {
                         //mehr
-                        Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffBremse < 4)
+                        { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay * 1.5)))); }
+                        else
+                        { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay)))); }
                         requestBrake = 2;
                         bremseIst = bremseSoll;
                     }
                     else if (diffBremse < 0)
                     {
                         //weniger
-                        Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffBremse > -4)
+                        { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay * 1.5)))); }
+                        else
+                        { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
                         requestBrake = 2;
                         bremseIst = bremseSoll;
                     }
@@ -1081,7 +1093,7 @@ namespace TSW2_Controller
                 {
                     int delay = Convert.ToInt32(brakeConfig[4]);
 
-                    ConvertLongPress(false,false);
+                    ConvertLongPress(false, false);
                     int diffBremse = bremseSoll - bremseIst;
 
                     for (int i = 0; i < Math.Abs(diffBremse); i++)
