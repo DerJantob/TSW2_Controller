@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.lst_inputs = new System.Windows.Forms.ListBox();
             this.check_active = new System.Windows.Forms.CheckBox();
             this.btn_reloadConfig = new System.Windows.Forms.Button();
@@ -58,31 +59,21 @@
             // lst_inputs
             // 
             this.lst_inputs.FormattingEnabled = true;
-            this.lst_inputs.Location = new System.Drawing.Point(15, 117);
+            resources.ApplyResources(this.lst_inputs, "lst_inputs");
             this.lst_inputs.Name = "lst_inputs";
-            this.lst_inputs.Size = new System.Drawing.Size(120, 95);
-            this.lst_inputs.TabIndex = 9;
             // 
             // check_active
             // 
-            this.check_active.AutoSize = true;
+            resources.ApplyResources(this.check_active, "check_active");
             this.check_active.BackColor = System.Drawing.Color.Red;
-            this.check_active.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.check_active.Location = new System.Drawing.Point(15, 15);
             this.check_active.Name = "check_active";
-            this.check_active.Size = new System.Drawing.Size(50, 17);
-            this.check_active.TabIndex = 10;
-            this.check_active.Text = "Aktiv";
             this.check_active.UseVisualStyleBackColor = false;
             this.check_active.CheckedChanged += new System.EventHandler(this.check_active_CheckedChanged);
             // 
             // btn_reloadConfig
             // 
-            this.btn_reloadConfig.Location = new System.Drawing.Point(15, 88);
+            resources.ApplyResources(this.btn_reloadConfig, "btn_reloadConfig");
             this.btn_reloadConfig.Name = "btn_reloadConfig";
-            this.btn_reloadConfig.Size = new System.Drawing.Size(120, 23);
-            this.btn_reloadConfig.TabIndex = 12;
-            this.btn_reloadConfig.Text = "Config neu laden";
             this.btn_reloadConfig.UseVisualStyleBackColor = true;
             this.btn_reloadConfig.Click += new System.EventHandler(this.btn_reloadConfig_Click);
             // 
@@ -90,10 +81,8 @@
             // 
             this.comboBox_Zugauswahl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Zugauswahl.FormattingEnabled = true;
-            this.comboBox_Zugauswahl.Location = new System.Drawing.Point(71, 13);
+            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.Name = "comboBox_Zugauswahl";
-            this.comboBox_Zugauswahl.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_Zugauswahl.TabIndex = 13;
             this.comboBox_Zugauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBox_Zugauswahl_SelectedIndexChanged);
             // 
             // timer_CheckSticks
@@ -106,20 +95,18 @@
             this.comboBox_JoystickNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_JoystickNumber.FormattingEnabled = true;
             this.comboBox_JoystickNumber.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"});
-            this.comboBox_JoystickNumber.Location = new System.Drawing.Point(85, 218);
+            resources.GetString("comboBox_JoystickNumber.Items"),
+            resources.GetString("comboBox_JoystickNumber.Items1"),
+            resources.GetString("comboBox_JoystickNumber.Items2"),
+            resources.GetString("comboBox_JoystickNumber.Items3"),
+            resources.GetString("comboBox_JoystickNumber.Items4"),
+            resources.GetString("comboBox_JoystickNumber.Items5"),
+            resources.GetString("comboBox_JoystickNumber.Items6"),
+            resources.GetString("comboBox_JoystickNumber.Items7"),
+            resources.GetString("comboBox_JoystickNumber.Items8"),
+            resources.GetString("comboBox_JoystickNumber.Items9")});
+            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
-            this.comboBox_JoystickNumber.Size = new System.Drawing.Size(50, 21);
-            this.comboBox_JoystickNumber.TabIndex = 14;
             // 
             // bgw_Throttle
             // 
@@ -135,12 +122,8 @@
             // 
             // lbl_schub
             // 
-            this.lbl_schub.AutoSize = true;
-            this.lbl_schub.Location = new System.Drawing.Point(19, 253);
+            resources.ApplyResources(this.lbl_schub, "lbl_schub");
             this.lbl_schub.Name = "lbl_schub";
-            this.lbl_schub.Size = new System.Drawing.Size(110, 13);
-            this.lbl_schub.TabIndex = 16;
-            this.lbl_schub.Text = "Schub ist X und soll X";
             // 
             // bgw_Brake
             // 
@@ -149,120 +132,73 @@
             // 
             // lbl_bremse
             // 
-            this.lbl_bremse.AutoSize = true;
-            this.lbl_bremse.Location = new System.Drawing.Point(19, 266);
+            resources.ApplyResources(this.lbl_bremse, "lbl_bremse");
             this.lbl_bremse.Name = "lbl_bremse";
-            this.lbl_bremse.Size = new System.Drawing.Size(114, 13);
-            this.lbl_bremse.TabIndex = 17;
-            this.lbl_bremse.Text = "Bremse ist X und soll X";
             // 
             // listBox_debugInfo
             // 
             this.listBox_debugInfo.FormattingEnabled = true;
-            this.listBox_debugInfo.HorizontalScrollbar = true;
-            this.listBox_debugInfo.Location = new System.Drawing.Point(15, 282);
+            resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
             this.listBox_debugInfo.Name = "listBox_debugInfo";
-            this.listBox_debugInfo.Size = new System.Drawing.Size(302, 498);
-            this.listBox_debugInfo.TabIndex = 18;
             // 
             // lbl_resolution
             // 
-            this.lbl_resolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_resolution.AutoSize = true;
-            this.lbl_resolution.Location = new System.Drawing.Point(246, 39);
+            resources.ApplyResources(this.lbl_resolution, "lbl_resolution");
             this.lbl_resolution.Name = "lbl_resolution";
-            this.lbl_resolution.Size = new System.Drawing.Size(60, 13);
-            this.lbl_resolution.TabIndex = 21;
-            this.lbl_resolution.Text = "2560x1440";
             // 
             // btn_einstellungen
             // 
-            this.btn_einstellungen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_einstellungen.Location = new System.Drawing.Point(236, 15);
+            resources.ApplyResources(this.btn_einstellungen, "btn_einstellungen");
             this.btn_einstellungen.Name = "btn_einstellungen";
-            this.btn_einstellungen.Size = new System.Drawing.Size(82, 21);
-            this.btn_einstellungen.TabIndex = 22;
-            this.btn_einstellungen.Text = "Einstellungen";
             this.btn_einstellungen.UseVisualStyleBackColor = true;
             this.btn_einstellungen.Click += new System.EventHandler(this.btn_einstellungen_Click);
             // 
             // pictureBox_Screenshot_original
             // 
-            this.pictureBox_Screenshot_original.Location = new System.Drawing.Point(22, 786);
+            resources.ApplyResources(this.pictureBox_Screenshot_original, "pictureBox_Screenshot_original");
             this.pictureBox_Screenshot_original.Name = "pictureBox_Screenshot_original";
-            this.pictureBox_Screenshot_original.Size = new System.Drawing.Size(295, 24);
-            this.pictureBox_Screenshot_original.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_Screenshot_original.TabIndex = 23;
             this.pictureBox_Screenshot_original.TabStop = false;
             // 
             // pictureBox_Screenshot_alternativ
             // 
-            this.pictureBox_Screenshot_alternativ.Location = new System.Drawing.Point(22, 816);
+            resources.ApplyResources(this.pictureBox_Screenshot_alternativ, "pictureBox_Screenshot_alternativ");
             this.pictureBox_Screenshot_alternativ.Name = "pictureBox_Screenshot_alternativ";
-            this.pictureBox_Screenshot_alternativ.Size = new System.Drawing.Size(295, 24);
-            this.pictureBox_Screenshot_alternativ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_Screenshot_alternativ.TabIndex = 24;
             this.pictureBox_Screenshot_alternativ.TabStop = false;
             // 
             // check_deactivateGlobal
             // 
-            this.check_deactivateGlobal.AutoSize = true;
-            this.check_deactivateGlobal.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.check_deactivateGlobal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_deactivateGlobal.Location = new System.Drawing.Point(71, 40);
+            resources.ApplyResources(this.check_deactivateGlobal, "check_deactivateGlobal");
             this.check_deactivateGlobal.Name = "check_deactivateGlobal";
-            this.check_deactivateGlobal.Size = new System.Drawing.Size(113, 17);
-            this.check_deactivateGlobal.TabIndex = 25;
-            this.check_deactivateGlobal.Text = "Deaktiviere Global";
             this.check_deactivateGlobal.UseVisualStyleBackColor = true;
             this.check_deactivateGlobal.CheckedChanged += new System.EventHandler(this.check_deactivateGlobal_CheckedChanged);
             // 
             // lbl_originalResult
             // 
-            this.lbl_originalResult.AutoSize = true;
-            this.lbl_originalResult.Location = new System.Drawing.Point(6, 16);
+            resources.ApplyResources(this.lbl_originalResult, "lbl_originalResult");
             this.lbl_originalResult.Name = "lbl_originalResult";
-            this.lbl_originalResult.Size = new System.Drawing.Size(86, 13);
-            this.lbl_originalResult.TabIndex = 26;
-            this.lbl_originalResult.Text = "lbl_originalResult";
             // 
             // lbl_alternativeResult
             // 
-            this.lbl_alternativeResult.AutoSize = true;
-            this.lbl_alternativeResult.Location = new System.Drawing.Point(6, 29);
+            resources.ApplyResources(this.lbl_alternativeResult, "lbl_alternativeResult");
             this.lbl_alternativeResult.Name = "lbl_alternativeResult";
-            this.lbl_alternativeResult.Size = new System.Drawing.Size(102, 13);
-            this.lbl_alternativeResult.TabIndex = 27;
-            this.lbl_alternativeResult.Text = "lbl_alternativeResult";
             // 
             // groupBox_ScanErgebnisse
             // 
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_alternativeResult);
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_originalResult);
-            this.groupBox_ScanErgebnisse.Location = new System.Drawing.Point(141, 117);
+            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Name = "groupBox_ScanErgebnisse";
-            this.groupBox_ScanErgebnisse.Size = new System.Drawing.Size(177, 52);
-            this.groupBox_ScanErgebnisse.TabIndex = 28;
             this.groupBox_ScanErgebnisse.TabStop = false;
-            this.groupBox_ScanErgebnisse.Text = "Scan Ergebnisse";
             // 
             // lbl_requests
             // 
-            this.lbl_requests.AutoSize = true;
-            this.lbl_requests.Location = new System.Drawing.Point(231, 266);
+            resources.ApplyResources(this.lbl_requests, "lbl_requests");
             this.lbl_requests.Name = "lbl_requests";
-            this.lbl_requests.Size = new System.Drawing.Size(72, 13);
-            this.lbl_requests.TabIndex = 29;
-            this.lbl_requests.Text = "reqT:0 reqB:0";
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(333, 854);
             this.Controls.Add(this.lbl_requests);
             this.Controls.Add(this.groupBox_ScanErgebnisse);
             this.Controls.Add(this.check_deactivateGlobal);
@@ -278,9 +214,9 @@
             this.Controls.Add(this.btn_reloadConfig);
             this.Controls.Add(this.check_active);
             this.Controls.Add(this.lst_inputs);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMain";
-            this.Padding = new System.Windows.Forms.Padding(12);
-            this.Text = "TSW2_Controller";
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).EndInit();

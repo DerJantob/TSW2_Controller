@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TSW2_Controller.Properties;
 
 namespace TSW2_Controller
 {
@@ -17,7 +18,6 @@ namespace TSW2_Controller
         string selectedTrain = "";
         List<string[]> trainConfig = new List<string[]>();
         DirectInput input = new DirectInput();
-        Joystick mainStick;
         bool t1IsJoyButton = false;
 
         public FormSteuerung()
@@ -29,10 +29,9 @@ namespace TSW2_Controller
 
             comboBoxT0_Zugauswahl.Items.Add(Tcfg.nameForGlobal);
             comboBoxT0_Zugauswahl.Items.AddRange(formMain.trainNames.ToArray());
-            comboBoxT0_Zugauswahl.Items.Remove("_Zugauswahl");
             comboBoxT0_Zugauswahl.SelectedItem = Tcfg.nameForGlobal;
 
-            lblT1_KnopfNr.Text = "KnopfNr.";
+            lblT1_KnopfNr.Text = Sprache.lblT1_KnopfNr;
             lblT3_AnzahlStufen.Text = "";
             lblT1_Bedingung.Hide();
             txtT1_Bedingung.Hide();
@@ -86,7 +85,7 @@ namespace TSW2_Controller
         }
         private void btnT0_editButtons_Click(object sender, EventArgs e)
         {
-            if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != "_Zugauswahl")
+            if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != Sprache.Zugauswahl)
             {
                 selectedTrain = comboBoxT0_Zugauswahl.Text;
                 comboBoxT1_KnopfAuswahl.Items.Clear();
@@ -102,7 +101,7 @@ namespace TSW2_Controller
         }
         private void btnT0_editRegler_Click(object sender, EventArgs e)
         {
-            if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != "_Zugauswahl")
+            if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != Sprache.Zugauswahl)
             {
                 selectedTrain = comboBoxT0_Zugauswahl.Text;
                 tabControl_Anzeige.SelectedIndex = 3;
@@ -129,7 +128,7 @@ namespace TSW2_Controller
             selectedTrain = comboBoxT0_Zugauswahl.Text;
             comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
 
-            if (MessageBox.Show("Willst du wirklich \"" + selectedTrain + "\" löschen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Willst_du_wirklich + selectedTrain + Sprache.loeschen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int counter = 0;
                 for (int i = 0; i < trainConfig.Count; i++)
@@ -156,7 +155,7 @@ namespace TSW2_Controller
                 }
                 File.WriteAllLines(Tcfg.configpfad, line);
 
-                MessageBox.Show(counter + " Einträge gelöscht!");
+                MessageBox.Show(counter + Sprache.Eintraege_geloescht);
             }
         }
         #endregion
@@ -168,14 +167,14 @@ namespace TSW2_Controller
             if (radioT1_normal.Checked)
             {
                 t1IsJoyButton = false;
-                lblT1_KnopfNr.Text = "KnopfNr.";
+                lblT1_KnopfNr.Text = Sprache.lblT1_KnopfNr;
                 lblT1_Bedingung.Hide();
                 txtT1_Bedingung.Hide();
             }
             else
             {
                 t1IsJoyButton = true;
-                lblT1_KnopfNr.Text = "JoyName";
+                lblT1_KnopfNr.Text = Sprache.lblT1_JoyName;
                 lblT1_Bedingung.Show();
                 txtT1_Bedingung.Show();
             }
@@ -195,12 +194,14 @@ namespace TSW2_Controller
         }
         private void comboBoxT1_KnopfAuswahl_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Wenn man eigenen Knopf erstellt dann Leere alle Felder
-            txtT1_Aktion.Text = "";
-            txtT1_Bedingung.Text = "";
-            txtT1_JoystickKnopf.Text = "";
-            txtT1_JoystickNr.Text = "";
-            txtT1_Tastenkombination.Text = "";
+            //erstmal ausgeschaltet
+
+            ////Wenn man eigenen Knopf erstellt dann Leere alle Felder
+            //txtT1_Aktion.Text = "";
+            //txtT1_Bedingung.Text = "";
+            //txtT1_JoystickKnopf.Text = "";
+            //txtT1_JoystickNr.Text = "";
+            //txtT1_Tastenkombination.Text = "";
         }
         private void txtT1_Aktion_KeyDown(object sender, KeyEventArgs e)
         {
@@ -270,7 +271,7 @@ namespace TSW2_Controller
                     singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
                     trainConfig[i] = singleTrain;
                     ersetzt = true;
-                    MessageBox.Show("Ersetzt!");
+                    MessageBox.Show(Sprache.Ersetzt);
                 }
             }
             if (!ersetzt)
@@ -286,7 +287,7 @@ namespace TSW2_Controller
                 singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
                 trainConfig.Add(singleTrain);
                 comboBoxT1_KnopfAuswahl.Items.Add(comboBoxT1_KnopfAuswahl.Text);
-                MessageBox.Show("Hinzugefügt!");
+                MessageBox.Show(Sprache.Hinzugefuegt);
             }
 
             //Schreibe Datei
@@ -362,7 +363,7 @@ namespace TSW2_Controller
                     if (joyInputs[o] != 0)
                     {
                         //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        listBoxT1_ShowJoystickStates.Items.Add("Nr:" + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
+                        listBoxT1_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
                     }
                 }
 
@@ -606,7 +607,7 @@ namespace TSW2_Controller
                             trainConfig[i] = singleTrain;
                         }
                         ersetzt = true;
-                        MessageBox.Show("Ersetzt!");
+                        MessageBox.Show(Sprache.Ersetzt);
                     }
                 }
                 if (!ersetzt)
@@ -629,7 +630,7 @@ namespace TSW2_Controller
 
                     trainConfig.Add(singleTrain);
 
-                    MessageBox.Show("Erstellt!");
+                    MessageBox.Show(Sprache.Erstellt);
                 }
                 //Schreibe Datei
                 string[] line = new string[trainConfig.Count];
@@ -648,7 +649,14 @@ namespace TSW2_Controller
             }
             else
             {
-                MessageBox.Show("Wähle noch \"Stufenlos\" oder \"Stufen\" aus");
+                if (Sprache.SprachenName == "Deutsch")
+                {
+                    MessageBox.Show("Wähle noch \""+radioT3_Stufenlos.Text+"\" oder \""+radioT3_Stufen.Text+"\" aus");
+                }
+                else
+                {
+                    MessageBox.Show("Please select \"" + radioT3_Stufenlos.Text + "\" or \"" + radioT3_Stufen.Text + "\"");
+                }
             }
         }
         private void T3Timer_GetJoyStates_Tick(object sender, EventArgs e)
@@ -742,7 +750,7 @@ namespace TSW2_Controller
                     if (joyInputs[o] != 0)
                     {
                         //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        listBoxT3_ShowJoystickStates.Items.Add("Nr:" + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
+                        listBoxT3_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
                     }
                 }
             }

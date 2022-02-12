@@ -104,9 +104,19 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Sprache.Designer.cs" />
     <Compile Include="Tcfg.cs" />
+    <EmbeddedResource Include="FormMain.en.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.en.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSteuerung.en.resx">
+      <DependentUpon>FormSteuerung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSteuerung.resx">
       <DependentUpon>FormSteuerung.cs</DependentUpon>
@@ -130,6 +140,8 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Sprache.en.resx" />
+    <EmbeddedResource Include="Properties\Sprache.resx" />
     <None Include="tessdata\.gitmodules">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -155,7 +167,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TrainConfigs\StandartTrainconfig.csv">
+    <None Include="TrainConfigs\StandardTrainconfig.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

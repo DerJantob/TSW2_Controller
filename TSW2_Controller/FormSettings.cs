@@ -26,8 +26,17 @@ namespace TSW2_Controller
             check_showDebug.Checked = Settings.Default.showDebug;
             check_ShowScan.Checked = Settings.Default.showScanResult;
 
-            txt_resHeight.Text = Settings.Default.res.Height.ToString();
-            txt_resWidth.Text = Settings.Default.res.Width.ToString();
+
+            string resName = Settings.Default.res.Width.ToString() + "x" + Settings.Default.res.Height.ToString();
+            if (!comboBox_resolution.Items.Contains(resName))
+            {
+                comboBox_resolution.Items.Add(resName);
+            }
+            if (comboBox_resolution.Items.Contains(resName))
+            {
+                comboBox_resolution.SelectedItem = resName;
+            }
+
 
             comboBox_Schub.Items.Clear();
             comboBox_Bremse.Items.Clear();
@@ -42,7 +51,7 @@ namespace TSW2_Controller
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
 
@@ -103,7 +112,7 @@ namespace TSW2_Controller
 
         private void comboBox_Schub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_Schub.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_Schub.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_Schub.Items.RemoveAt(comboBox_Schub.SelectedIndex);
             }
@@ -111,7 +120,7 @@ namespace TSW2_Controller
 
         private void comboBox_Bremse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_Bremse.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_Bremse.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_Bremse.Items.RemoveAt(comboBox_Bremse.SelectedIndex);
             }
@@ -119,7 +128,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiSchub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_kombiSchub.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_kombiSchub.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_kombiSchub.Items.RemoveAt(comboBox_kombiSchub.SelectedIndex);
             }
@@ -127,7 +136,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiBremse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Möchtest du \"" + comboBox_kombiBremse.SelectedItem + "\" entfernen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_kombiBremse.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_kombiBremse.Items.RemoveAt(comboBox_kombiBremse.SelectedIndex);
             }
@@ -144,11 +153,11 @@ namespace TSW2_Controller
         {
             try
             {
-                Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(txt_resWidth.Text), Convert.ToInt32(txt_resHeight.Text));
+                Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(comboBox_resolution.Text.Split('x')[0]), Convert.ToInt32(comboBox_resolution.Text.Split('x')[1]));
             }
             catch
             {
-                MessageBox.Show("Fehler bei Auflösung!");
+                MessageBox.Show(Sprache.Fehler_bei_Aufloesung);
             }
 
             try
@@ -167,7 +176,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fehler beim Textindex!");
+                MessageBox.Show(Sprache.Fehler_beim_Textindikator);
                 MessageBox.Show(ex.ToString());
             }
 
@@ -182,6 +191,20 @@ namespace TSW2_Controller
             FormSteuerung formSteuerung = new FormSteuerung();
             formSteuerung.Location = this.Location;
             formSteuerung.ShowDialog();
+        }
+
+        private void btn_Sprache_Click(object sender, EventArgs e)
+        {
+            if (Settings.Default.Sprache == "de-DE")
+            {
+                Settings.Default.Sprache = "en";
+            }
+            else
+            {
+                Settings.Default.Sprache = "de-DE";
+            }
+            Settings.Default.Save();
+            Application.Restart();
         }
     }
 }

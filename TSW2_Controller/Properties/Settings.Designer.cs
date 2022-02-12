@@ -147,5 +147,17 @@ namespace TSW2_Controller.Properties {
                 this["Version"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("de-DE")]
+        public string Sprache {
+            get {
+                return ((string)(this["Sprache"]));
+            }
+            set {
+                this["Sprache"] = value;
+            }
+        }
     }
 }

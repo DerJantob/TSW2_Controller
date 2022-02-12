@@ -37,5 +37,8 @@
     <Setting Name="Version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.0.0</Value>
     </Setting>
+    <Setting Name="Sprache" Type="System.String" Scope="User">
+      <Value Profile="(Default)">de-DE</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
