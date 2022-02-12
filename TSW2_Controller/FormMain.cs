@@ -626,19 +626,14 @@ namespace TSW2_Controller
                     if (diffSchub > 0)
                     {
                         //mehr
-                        if (diffSchub < 3)
-                        { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay * 1.6)))); } //Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                        else
-                        { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay)))); }
+                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
                         schubIst = schubSoll;
                         requestThrottle = 3;
                     }
                     else if (diffSchub < 0)
                     {
-                        if (diffSchub > -3)
-                        { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay * 1.6)))); }
-                        else
-                        { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
+                        //weniger
+                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
                         schubIst = schubSoll;
                         requestThrottle = 3;
                     }
@@ -680,19 +675,14 @@ namespace TSW2_Controller
                     if (diffBremse > 0)
                     {
                         //mehr
-                        if (diffBremse < 3)
-                        { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay * 1.6)))); }
-                        else
-                        { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay)))); }
+                        Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
                         requestBrake = 2;
                         bremseIst = bremseSoll;
                     }
                     else if (diffBremse < 0)
                     {
-                        if (diffBremse > -3)
-                        { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay * 1.6)))); }
-                        else
-                        { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
+                        //weniger
+                        Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
                         requestBrake = 2;
                         bremseIst = bremseSoll;
                     }
