@@ -165,7 +165,7 @@ namespace TSW2_Controller
                             endNumber = Convert.ToInt32(result);
                             wait = false;
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+                        catch (Exception ex) { MessageBox.Show("Fehlerwort:"+result+"\n"+ex.ToString()); }
 
                     }
                     else

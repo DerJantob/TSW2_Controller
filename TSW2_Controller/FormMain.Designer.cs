@@ -214,6 +214,8 @@
             this.Controls.Add(this.btn_reloadConfig);
             this.Controls.Add(this.check_active);
             this.Controls.Add(this.lst_inputs);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).EndInit();
