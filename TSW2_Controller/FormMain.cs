@@ -626,13 +626,19 @@ namespace TSW2_Controller
                     if (diffSchub > 0)
                     {
                         //mehr
-                        Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffSchub < 3)
+                        { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay * 1.6)))); } //Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
+                        else
+                        { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay)))); }
                         schubIst = schubSoll;
                         requestThrottle = 3;
                     }
                     else if (diffSchub < 0)
                     {
-                        Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffSchub > -3)
+                        { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay * 1.6)))); }
+                        else
+                        { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
                         schubIst = schubSoll;
                         requestThrottle = 3;
                     }
@@ -674,13 +680,19 @@ namespace TSW2_Controller
                     if (diffBremse > 0)
                     {
                         //mehr
-                        Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffBremse < 3)
+                        { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay * 1.6)))); }
+                        else
+                        { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay)))); }
                         requestBrake = 2;
                         bremseIst = bremseSoll;
                     }
                     else if (diffBremse < 0)
                     {
-                        Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay))));
+                        if (diffBremse > -3)
+                        { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay * 1.6)))); }
+                        else
+                        { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
                         requestBrake = 2;
                         bremseIst = bremseSoll;
                     }
@@ -1024,330 +1036,219 @@ namespace TSW2_Controller
 
         private void bgw_readScreen_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (!isKombihebel)
-            {
-                string original_result = GetText(Screenshot(true));
-                string alternative_result = "";
-                string result = "";
-
-
-                if (original_result == "")
-                {
-                    alternative_result = GetText(Screenshot(false));
-                }
-                else if (throttleConfig[0] != null && brakeConfig[0] != null)
-                {
-                    if ((!original_result.Contains(throttleConfig[0]) && requestThrottle > 0) || (!original_result.Contains(brakeConfig[0]) && requestBrake > 0) || (requestBrake > 0 && requestThrottle > 0))
-                    {
-                        alternative_result = GetText(Screenshot(false));
-                    }
-                }
-
-
-                //Zeige Scan-Ergebnisse
-                bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
-
-
-                //Wenn nichts gefunden wurde, dann gehe verschienene Indexe durch und drücke gesuchte Taste
-                #region Bremse
-                if (requestBrake > 0 && !original_result.Contains(brakeConfig[0]) && !alternative_result.Contains(brakeConfig[0]))
-                {
-                    foreach (string bremsindex in bremsIndexe)
-                    {
-                        if (ContainsWord(original_result, bremsindex))
-                        {
-                            brakeConfig[0] = bremsindex;
-                            RawData.Add("BremsIndex = " + bremsindex);
-                            break;
-                        }
-                        else if (ContainsWord(alternative_result, bremsindex))
-                        {
-                            brakeConfig[0] = bremsindex;
-                            RawData.Add("BremsIndex = " + bremsindex);
-                            break;
-                        }
-                    }
-                    Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
-                }
-                #endregion
-                #region Schub
-                if (requestThrottle > 0 && !original_result.Contains(throttleConfig[0]) && !alternative_result.Contains(throttleConfig[0]))
-                {
-                    foreach (string leistungsIndex in schubIndexe)
-                    {
-                        if (ContainsWord(original_result, leistungsIndex))
-                        {
-                            throttleConfig[0] = leistungsIndex;
-                            RawData.Add("SchubIndex = " + leistungsIndex);
-                            break;
-                        }
-                        else if (ContainsWord(alternative_result, leistungsIndex))
-                        {
-                            throttleConfig[0] = leistungsIndex;
-                            RawData.Add("SchubIndex = " + leistungsIndex);
-                            break;
-                        }
-                    }
-                    Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
-                }
-                #endregion
-
-                //Passe fehlerhaften Input bei original_result an
-                original_result = korrigiereReadScreenText(original_result);
-                //Passe fehlerhaften Input bei alternative_result an
-                alternative_result = korrigiereReadScreenText(alternative_result);
-
-
-
-                if (throttleConfig[0] != null)
-                {
-                    if (original_result.Contains(throttleConfig[0]) || alternative_result.Contains(throttleConfig[0]))
-                    {
-                        #region Schub
-                        if (original_result.Contains(throttleConfig[0]))
-                        {
-                            result = original_result;
-                        }
-                        else if (alternative_result.Contains(throttleConfig[0]))
-                        {
-                            result = alternative_result;
-                        }
-                        if (result.Contains(throttleConfig[0]) && result != "")
-                        {
-                            int erkannterSchub = -99999;
-                            result = result.Remove(0, result.IndexOf(throttleConfig[0]) + throttleConfig[0].Length).Replace("\n", "");
-                            result = result.Remove(0, 1);
-                            if (result.Contains("%"))
-                            {
-                                result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
-                            }
-
-                            if (throttleConfig[3].Length > 0)
-                            {
-                                foreach (string singleSpezial in throttleConfig[3].Remove(throttleConfig[3].Length - 1).Replace("[", "").Split(']'))
-                                {
-                                    int index = singleSpezial.IndexOf("=");
-                                    string word = singleSpezial.Remove(index, singleSpezial.Length - index);
-                                    int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
-
-                                    if (ContainsWord(result, word) && singleSpezial != "")
-                                    {
-                                        erkannterSchub = entsprechendeNummer;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (erkannterSchub == -99999)
-                            {
-                                try { erkannterSchub = Convert.ToInt32(result); } catch { }
-                            }
-                            if (erkannterSchub != -99999)
-                            {
-                                if (cancelThrottleRequest == 0)
-                                {
-                                    requestThrottle--;
-                                    schubIst = erkannterSchub;
-                                }
-                                else if (cancelThrottleRequest == -1)
-                                {
-                                    cancelThrottleRequest = 0;
-                                }
-                            }
-                        }
-                        #endregion
-                    }
-                }
-                if (brakeConfig[0] != null)
-                {
-                    if (original_result.Contains(brakeConfig[0]) || alternative_result.Contains(brakeConfig[0]))
-                    {
-                        #region Bremse
-                        if (original_result.Contains(brakeConfig[0]))
-                        {
-                            result = original_result;
-                        }
-                        else if (alternative_result.Contains(brakeConfig[0]))
-                        {
-                            result = alternative_result;
-                        }
-                        if (result.Contains(brakeConfig[0]) && result != "")
-                        {
-                            int erkannteBremsleistung = -99999;
-                            result = result.Remove(0, result.IndexOf(brakeConfig[0]) + brakeConfig[0].Length).Replace("\n", "");
-                            result = result.Remove(0, 1);
-                            result = result.Replace("%", "");
-
-                            if (brakeConfig[3].Length > 0)
-                            {
-                                foreach (string singleSpezial in brakeConfig[3].Remove(brakeConfig[3].Length - 1).Replace("[", "").Split(']'))
-                                {
-                                    int index = singleSpezial.IndexOf("=");
-                                    string word = singleSpezial.Remove(index, singleSpezial.Length - index);
-                                    int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
-
-                                    if (result == word && singleSpezial != "")
-                                    {
-                                        erkannteBremsleistung = entsprechendeNummer;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (erkannteBremsleistung == -99999)
-                            {
-                                try { erkannteBremsleistung = Convert.ToInt32(result); } catch { }
-                            }
-                            if (erkannteBremsleistung != -99999)
-                            {
-                                if (cancelBrakeRequest == 0)
-                                {
-                                    requestBrake--;
-                                    bremseIst = erkannteBremsleistung;
-                                }
-                                else if (cancelBrakeRequest == -1)
-                                {
-                                    cancelBrakeRequest = 0;
-                                }
-                            }
-                        }
-                        #endregion
-                    }
-                }
-            }
-            else
-            {
-                //isKombihebel
-                readScreenkombihebel();
-            }
-        }
-
-        private void readScreenkombihebel()
-        {
             string original_result = GetText(Screenshot(true));
             string alternative_result = "";
-            string result = "";
-
-            //Passe fehlerhaften Input bei original_result an
-            original_result = korrigiereReadScreenText(original_result);
 
 
-            if (!original_result.Contains(throttleConfig[0]))
+            if (original_result == "")
+            {
+                alternative_result = GetText(Screenshot(false));
+                if (alternative_result == "")
+                {
+                    goto Ende;
+                }
+            }
+
+
+            if ((requestThrottle > 0 && requestBrake > 0) || (!ContainsWord(original_result, throttleConfig[0]) && requestThrottle > 0) || (!ContainsWord(original_result, brakeConfig[0]) && requestBrake > 0))
             {
                 alternative_result = GetText(Screenshot(false));
             }
 
-            //Passe fehlerhaften Input bei alternative_result an
-            alternative_result = korrigiereReadScreenText(alternative_result);
 
             //Zeige Scan-Ergebnisse
             bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
 
-            //Wenn nichts mehr gefunden wurde aber noch Werte gefordert wurden dann drücke die Taste kurz um den Text wieder zu zeigen
-            if (requestThrottle > 0 && !original_result.Contains(throttleConfig[0]) && !alternative_result.Contains(throttleConfig[0]))
+
+            //Wenn nichts gefunden wurde, dann gehe verschienene Indexe durch und drücke gesuchte Taste
+            #region Schub
+            if (requestThrottle > 0 && !ContainsWord(original_result, throttleConfig[0]) && !ContainsWord(alternative_result, throttleConfig[0]))
             {
-                foreach (string schubIndex in schubIndexe)
+                int maxLength = 0;
+                foreach (string leistungsIndex in schubIndexe)
                 {
-                    if (ContainsWord(original_result, schubIndex))
+                    if (ContainsWord(original_result, leistungsIndex))
                     {
-                        throttleConfig[0] = schubIndex;
-                        RawData.Add("SchubIndex = " + schubIndex);
-                        break;
+                        throttleConfig[0] = leistungsIndex;
+                        if (leistungsIndex.Length > maxLength)
+                        {
+                            maxLength = leistungsIndex.Length;
+                        }
                     }
-                    else if (ContainsWord(alternative_result, schubIndex))
+                    else if (ContainsWord(alternative_result, leistungsIndex))
                     {
-                        throttleConfig[0] = schubIndex;
-                        RawData.Add("SchubIndex = " + schubIndex);
-                        break;
+                        throttleConfig[0] = leistungsIndex;
+                        if (leistungsIndex.Length > maxLength)
+                        {
+                            maxLength = leistungsIndex.Length;
+                        }
                     }
                 }
+                if (maxLength > 0) { RawData.Add("SchubIndex = " + throttleConfig[0]); }
                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
             }
-
-            if (original_result.Contains(throttleConfig[0]) || alternative_result.Contains(throttleConfig[0]))
+            #endregion
+            #region Bremse
+            if (requestBrake > 0 && !ContainsWord(original_result, brakeConfig[0]) && !ContainsWord(alternative_result, brakeConfig[0]))
             {
-                if (original_result.Contains(throttleConfig[0]))
+                int maxLength = 0;
+                foreach (string bremsindex in bremsIndexe)
                 {
-                    result = original_result;
-                }
-                else if (alternative_result.Contains(throttleConfig[0]))
-                {
-                    result = alternative_result;
-                }
-                if (result.Contains(throttleConfig[0]) && result != "")
-                {
-                    try
+                    if (ContainsWord(original_result, bremsindex))
                     {
-                        int erkannterSchub = -99999;
-                        int schubFaktor = 1;
-
-                        result = result.Remove(0, result.IndexOf(throttleConfig[0]) + throttleConfig[0].Length).Replace("\n", "");
-                        result = result.Remove(0, 1);
-                        result = result.Replace("%", "");
-
-                        if (kombihebel_bremsIndexe.Any(result.Contains) && result != "")
+                        if (bremsindex.Length > maxLength)
                         {
-                            schubFaktor = -1;
-                        }
-
-                        if (throttleConfig[3].Length > 0)
-                        {
-                            foreach (string singleSpezial in throttleConfig[3].Remove(throttleConfig[3].Length - 1).Replace("[", "").Split(']'))
-                            {
-                                int index = singleSpezial.IndexOf("=");
-                                string word = singleSpezial.Remove(index, singleSpezial.Length - index);
-                                int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
-
-                                if (result == word && singleSpezial != "")
-                                {
-                                    erkannterSchub = entsprechendeNummer;
-                                    break;
-                                }
-                            }
-                        }
-
-                        foreach (string bremsIndex in kombihebel_bremsIndexe)
-                        {
-                            if (result.Contains(bremsIndex) && result != "")
-                            {
-                                result = result.Replace(bremsIndex, "");
-                                result = result.Remove(result.Length - 1);
-                            }
-                        }
-                        foreach (string schubIndex in kombihebel_schubIndexe)
-                        {
-                            if (result.Contains(schubIndex) && result != "")
-                            {
-                                result = result.Replace(schubIndex, "");
-                                result = result.Remove(result.Length - 1);
-                            }
-                        }
-
-
-
-                        if (erkannterSchub == -99999)
-                        {
-                            try { erkannterSchub = Convert.ToInt32(result); } catch { }
-                        }
-                        if (erkannterSchub != -99999)
-                        {
-                            if (cancelThrottleRequest == 0)
-                            {
-                                requestThrottle--;
-                                schubIst = erkannterSchub * schubFaktor;
-                            }
-                            else if (cancelThrottleRequest == -1)
-                            {
-                                cancelThrottleRequest = 0;
-                            }
+                            brakeConfig[0] = bremsindex;
                         }
                     }
-                    catch
+                    else if (ContainsWord(alternative_result, bremsindex))
                     {
+                        if (bremsindex.Length > maxLength)
+                        {
+                            brakeConfig[0] = bremsindex;
+                        }
+                    }
+                }
+                if (maxLength > 0) { RawData.Add("BremsIndex = " + throttleConfig[0]); }
+                Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
+            }
+            #endregion
 
+            if (!ContainsWord(original_result, throttleConfig[0]) && !ContainsWord(original_result, brakeConfig[0]))
+            {
+                //Passe fehlerhaften Input bei original_result an
+                original_result = korrigiereReadScreenText(original_result);
+            }
+            if (!ContainsWord(alternative_result, throttleConfig[0]) && !ContainsWord(alternative_result, brakeConfig[0]))
+            {
+                //Passe fehlerhaften Input bei alternative_result an
+                alternative_result = korrigiereReadScreenText(alternative_result);
+            }
+
+
+
+
+            if (ContainsWord(original_result, throttleConfig[0]) || ContainsWord(alternative_result, throttleConfig[0]))
+            {
+                int erkannterWert = TextZuZahl_readScreen(original_result, alternative_result, throttleConfig);
+                if (erkannterWert != -99999)
+                {
+                    if (cancelThrottleRequest == 0)
+                    {
+                        requestThrottle--;
+                        schubIst = erkannterWert;
+                    }
+                    else if (cancelThrottleRequest == -1)
+                    {
+                        cancelThrottleRequest = 0;
                     }
                 }
             }
+
+            if (original_result.Contains(brakeConfig[0]) || alternative_result.Contains(brakeConfig[0]))
+            {
+                int erkannterWert = TextZuZahl_readScreen(original_result, alternative_result, brakeConfig);
+
+                if (erkannterWert != -99999)
+                {
+                    if (cancelBrakeRequest == 0)
+                    {
+                        requestBrake--;
+                        bremseIst = erkannterWert;
+                    }
+                    else if (cancelBrakeRequest == -1)
+                    {
+                        cancelBrakeRequest = 0;
+                    }
+                }
+
+            }
+        Ende:;
+        }
+
+        int TextZuZahl_readScreen(string original_result, string alternative_result, string[] config)
+        {
+            int noResultValue = -99999;
+
+            string result = "";
+            int erkannterWert = noResultValue;
+            int schubFaktor = 1;
+
+            if (ContainsWord(original_result, config[0]))
+            {
+                result = original_result;
+            }
+            else if (ContainsWord(alternative_result, config[0]))
+            {
+                result = alternative_result;
+            }
+            if (ContainsWord(result, config[0]) && result != "")
+            {
+                result = result.Remove(0, result.IndexOf(config[0]) + config[0].Length).Replace("\n", "");
+                result = result.Trim();
+
+                if (isKombihebel)
+                {
+                    result = result.Replace("%", "");
+                }
+                else if (result.Contains("%"))
+                {
+                    result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
+                }
+
+                if (config[3].Length > 0)
+                {
+                    foreach (string singleSpezial in config[3].Remove(config[3].Length - 1).Replace("[", "").Split(']'))
+                    {
+                        int index = singleSpezial.IndexOf("=");
+                        string word = singleSpezial.Remove(index, singleSpezial.Length - index);
+                        int entsprechendeNummer = Convert.ToInt32(singleSpezial.Remove(0, index + 1));
+
+                        if (ContainsWord(result, word) && singleSpezial != "")
+                        {
+                            erkannterWert = entsprechendeNummer;
+                            break;
+                        }
+                    }
+                }
+
+                #region Kombihebel
+                if (isKombihebel)
+                {
+                    if (kombihebel_bremsIndexe.Any(result.Contains) && result != "")
+                    {
+                        schubFaktor = -1;
+                    }
+                    foreach (string bremsIndex in kombihebel_bremsIndexe)
+                    {
+                        if (ContainsWord(result, bremsIndex) && result != "")
+                        {
+                            result = result.Replace(bremsIndex, "");
+                            result = result.Remove(result.Length - 1);
+                        }
+                    }
+                    foreach (string schubIndex in kombihebel_schubIndexe)
+                    {
+                        if (ContainsWord(result, schubIndex) && result != "")
+                        {
+                            result = result.Replace(schubIndex, "");
+                            result = result.Remove(result.Length - 1);
+                        }
+                    }
+                }
+                #endregion
+
+
+                if (erkannterWert == noResultValue)
+                {
+                    try { erkannterWert = Convert.ToInt32(result); } catch { }
+                }
+                if (erkannterWert != noResultValue)
+                {
+                    return erkannterWert * schubFaktor;
+                }
+            }
+            return erkannterWert;
         }
 
         private void bgw_readScreen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -1526,27 +1427,31 @@ namespace TSW2_Controller
 
         public bool ContainsWord(string stringToCheck, string word)
         {
-            string[] split_stringTC = stringToCheck.Split(' ');
-            int countOfWordsGiven = word.Count(x => x == ' ') + 1;
-
-            if (stringToCheck != "")
+            if (word != null)
             {
-                for (int i = 0; i < split_stringTC.Length - countOfWordsGiven + 1; i++)
-                {
-                    string str = "";
-                    for (int o = 0; o < countOfWordsGiven; o++)
-                    {
-                        str += split_stringTC[o + i] + " ";
-                    }
-                    str = str.Trim();
+                string[] split_stringTC = stringToCheck.Split(' ');
+                int countOfWordsGiven = word.Count(x => x == ' ') + 1;
 
-                    if (str.ToLower() == word.ToLower())
+                if (stringToCheck != "")
+                {
+                    for (int i = 0; i < split_stringTC.Length - countOfWordsGiven + 1; i++)
                     {
-                        return true;
+                        string str = "";
+                        for (int o = 0; o < countOfWordsGiven; o++)
+                        {
+                            str += split_stringTC[o + i] + " ";
+                        }
+                        str = str.Trim();
+
+                        if (str.ToLower() == word.ToLower())
+                        {
+                            return true;
+                        }
                     }
                 }
             }
             return false;
+
         }
 
         public static double GetDamerauLevenshteinDistanceInPercent(string string_to_check, string string_to_check_from, int maxLengthDiff)
