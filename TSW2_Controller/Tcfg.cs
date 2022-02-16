@@ -25,7 +25,7 @@ namespace TSW2_Controller
 
         public static string nameForGlobal = "_Global";
 
-        public static string configpfad = @".\Trainconfig.csv";
+        public static string configpfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\Trainconfig.csv";
         public static string configstandardpfad = @".\TrainConfigs\StandardTrainconfig.csv";
     }
 }
