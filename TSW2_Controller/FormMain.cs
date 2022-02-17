@@ -73,6 +73,10 @@ namespace TSW2_Controller
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
             {
+                if(!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv","")))
+                {
+                    Directory.CreateDirectory(Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
+                }
                 if (File.Exists(Tcfg.configstandardpfad))
                 {
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
