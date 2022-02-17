@@ -45,6 +45,18 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 1.0.3
+            if (new Version("1.0.3").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.3" + "\n");
+                changelog.Add("- csv Datei (TrainConfig) kann nun in den Einstellungen bearbeitet werden");
+                changelog.Add("     - Knöopf und Regler kann man selber leicht hinzufügen");
+                changelog.Add("- Englisch hinzugefügt");
+                changelog.Add("- Verbesserungen für langsame Joystickbewegungen");
+                changelog.Add("- Auflösungseingabe verändert");
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }

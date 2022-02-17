@@ -37,6 +37,7 @@
             this.richTextBox_Output.Location = new System.Drawing.Point(12, 12);
             this.richTextBox_Output.MaximumSize = new System.Drawing.Size(484, 600);
             this.richTextBox_Output.Name = "richTextBox_Output";
+            this.richTextBox_Output.ReadOnly = true;
             this.richTextBox_Output.Size = new System.Drawing.Size(484, 215);
             this.richTextBox_Output.TabIndex = 0;
             this.richTextBox_Output.Text = "";
