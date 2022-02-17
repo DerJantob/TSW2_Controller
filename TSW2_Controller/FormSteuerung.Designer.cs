@@ -271,6 +271,8 @@
             resources.ApplyResources(this.txtT1_Aktion, "txtT1_Aktion");
             this.txtT1_Aktion.Name = "txtT1_Aktion";
             this.txtT1_Aktion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtT1_Aktion_KeyDown);
+            this.txtT1_Aktion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtT1_Aktion_MouseDown);
+            this.txtT1_Aktion.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtT1_Aktion_PreviewKeyDown);
             // 
             // label4
             // 
@@ -323,6 +325,7 @@
             // 
             resources.ApplyResources(this.radioT1_regler, "radioT1_regler");
             this.radioT1_regler.Name = "radioT1_regler";
+            this.radioT1_regler.TabStop = true;
             this.radioT1_regler.UseVisualStyleBackColor = true;
             // 
             // radioT1_normal
@@ -393,6 +396,7 @@
             // 
             resources.ApplyResources(this.radioT2_Loslassen, "radioT2_Loslassen");
             this.radioT2_Loslassen.Name = "radioT2_Loslassen";
+            this.radioT2_Loslassen.TabStop = true;
             this.radioT2_Loslassen.UseVisualStyleBackColor = true;
             this.radioT2_Loslassen.CheckedChanged += new System.EventHandler(this.radio_Changed);
             // 
@@ -400,6 +404,7 @@
             // 
             resources.ApplyResources(this.radioT2_Druecken, "radioT2_Druecken");
             this.radioT2_Druecken.Name = "radioT2_Druecken";
+            this.radioT2_Druecken.TabStop = true;
             this.radioT2_Druecken.UseVisualStyleBackColor = true;
             this.radioT2_Druecken.CheckedChanged += new System.EventHandler(this.radio_Changed);
             // 
@@ -407,6 +412,7 @@
             // 
             resources.ApplyResources(this.radioT2_Halten, "radioT2_Halten");
             this.radioT2_Halten.Name = "radioT2_Halten";
+            this.radioT2_Halten.TabStop = true;
             this.radioT2_Halten.UseVisualStyleBackColor = true;
             this.radioT2_Halten.CheckedChanged += new System.EventHandler(this.radio_Changed);
             // 

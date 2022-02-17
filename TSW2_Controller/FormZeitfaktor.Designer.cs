@@ -43,8 +43,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.radio_Schub = new System.Windows.Forms.RadioButton();
             this.radio_Bremse = new System.Windows.Forms.RadioButton();
+            this.txt_dauer = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_taste = new System.Windows.Forms.TextBox();
+            this.btn_start_longpress = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -133,10 +140,51 @@
             this.radio_Bremse.Name = "radio_Bremse";
             this.radio_Bremse.UseVisualStyleBackColor = true;
             // 
+            // txt_dauer
+            // 
+            resources.ApplyResources(this.txt_dauer, "txt_dauer");
+            this.txt_dauer.Name = "txt_dauer";
+            this.txt_dauer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_dauer_KeyPress);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txt_taste);
+            this.groupBox1.Controls.Add(this.btn_start_longpress);
+            this.groupBox1.Controls.Add(this.txt_dauer);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // txt_taste
+            // 
+            resources.ApplyResources(this.txt_taste, "txt_taste");
+            this.txt_taste.Name = "txt_taste";
+            this.txt_taste.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_taste_KeyDown);
+            // 
+            // btn_start_longpress
+            // 
+            resources.ApplyResources(this.btn_start_longpress, "btn_start_longpress");
+            this.btn_start_longpress.Name = "btn_start_longpress";
+            this.btn_start_longpress.UseVisualStyleBackColor = true;
+            this.btn_start_longpress.Click += new System.EventHandler(this.btn_start_longpress_Click);
+            // 
             // FormZeitfaktor
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_start);
@@ -152,6 +200,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +222,11 @@
         private System.Windows.Forms.RadioButton radio_Schub;
         private System.Windows.Forms.RadioButton radio_Bremse;
         private System.Windows.Forms.RadioButton radio_kombihebel;
+        private System.Windows.Forms.TextBox txt_dauer;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btn_start_longpress;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txt_taste;
     }
 }

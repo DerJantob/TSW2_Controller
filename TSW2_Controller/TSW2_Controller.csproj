@@ -107,7 +107,16 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Sprache.Designer.cs" />
+    <Compile Include="Properties\Sprache.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sprache.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Sprache.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sprache.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tcfg.cs" />
     <EmbeddedResource Include="FormMain.en.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -127,6 +136,10 @@
     <EmbeddedResource Include="FormWasIstNeu.resx">
       <DependentUpon>FormWasIstNeu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormZeitfaktor.en.resx">
+      <DependentUpon>FormZeitfaktor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormZeitfaktor.resx">
       <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,8 +156,14 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Sprache.en.resx" />
-    <EmbeddedResource Include="Properties\Sprache.resx" />
+    <EmbeddedResource Include="Properties\Sprache.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sprache.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Sprache.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sprache.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="tessdata\.gitmodules">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

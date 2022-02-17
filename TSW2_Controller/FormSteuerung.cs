@@ -205,9 +205,19 @@ namespace TSW2_Controller
         }
         private void txtT1_Aktion_KeyDown(object sender, KeyEventArgs e)
         {
-            //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
+            //Verhindert, dass die gedrückte Taste ins Textfeld geschrieben wird
             e.SuppressKeyPress = true;
+        }
+        private void txtT1_Aktion_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
+            //PreviewKeyDown um auch tab-Taste zu erlauben
             txtT1_Aktion.Text = Keyboard.ConvertKeyToString(e.KeyCode);
+            SelectNextControl((Control)sender,true,false,true,true);
+        }
+        private void txtT1_Aktion_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtT1_Aktion.Text = "";
         }
         private void btnT1_Editor_Click(object sender, EventArgs e)
         {

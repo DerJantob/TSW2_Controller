@@ -332,6 +332,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wechsel innerhalb von 7 Sekunden zum TSW und warte ähnelt.
+        /// </summary>
+        internal static string Wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte {
+            get {
+                return ResourceManager.GetString("Wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Willst du wirklich &quot; ähnelt.
         /// </summary>
         internal static string Willst_du_wirklich {

@@ -207,6 +207,9 @@
   <data name="und bestaetige mit OK" xml:space="preserve">
     <value> and press OK</value>
   </data>
+  <data name="Wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte" xml:space="preserve">
+    <value>Switch to TSW within 7 seconds and wait</value>
+  </data>
   <data name="Willst_du_wirklich" xml:space="preserve">
     <value>Do you really want to remove "</value>
   </data>

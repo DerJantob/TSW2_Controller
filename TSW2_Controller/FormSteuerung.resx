@@ -117,185 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;tabPage_Zugauswahl.Name" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.Parent" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Button.Name" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Button.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Button.Parent" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Button.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Name" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Parent" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Regler.Name" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Regler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Regler.Parent" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Regler.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tabControl_Anzeige.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="tabControl_Anzeige.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 313</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tabControl_Anzeige.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabControl_Anzeige.Name" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabControl_Anzeige.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl_Anzeige.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControl_Anzeige.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Delete.Name" xml:space="preserve">
-    <value>btnT0_Delete</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Delete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Delete.Parent" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Delete.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editRegler.Name" xml:space="preserve">
-    <value>btnT0_editRegler</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editRegler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editRegler.Parent" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editRegler.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Add.Name" xml:space="preserve">
-    <value>btnT0_Add</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Add.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Add.Parent" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;btnT0_Add.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editButtons.Name" xml:space="preserve">
-    <value>btnT0_editButtons</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editButtons.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editButtons.Parent" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;btnT0_editButtons.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT0_Zugauswahl.Name" xml:space="preserve">
-    <value>comboBoxT0_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT0_Zugauswahl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT0_Zugauswahl.Parent" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT0_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tabPage_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tabPage_Zugauswahl.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage_Zugauswahl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>570, 287</value>
-  </data>
-  <data name="tabPage_Zugauswahl.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabPage_Zugauswahl.Text" xml:space="preserve">
-    <value>Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.Name" xml:space="preserve">
-    <value>tabPage_Zugauswahl</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.Parent" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="btnT0_Delete.Location" type="System.Drawing.Point, System.Drawing">
     <value>227, 19</value>
   </data>
   <data name="btnT0_Delete.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnT0_Delete.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="btnT0_Delete.Text" xml:space="preserve">
     <value>Löschen</value>
@@ -319,7 +150,7 @@
     <value>106, 23</value>
   </data>
   <data name="btnT0_editRegler.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="btnT0_editRegler.Text" xml:space="preserve">
     <value>Regler bearbeiten</value>
@@ -367,7 +198,7 @@
     <value>106, 23</value>
   </data>
   <data name="btnT0_editButtons.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="btnT0_editButtons.Text" xml:space="preserve">
     <value>Knöpfe bearbeiten</value>
@@ -432,6 +263,52 @@
   <data name="&gt;&gt;comboBoxT0_Zugauswahl.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="tabPage_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tabPage_Zugauswahl.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage_Zugauswahl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>570, 287</value>
+  </data>
+  <data name="tabPage_Zugauswahl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage_Zugauswahl.Text" xml:space="preserve">
+    <value>Zugauswahl</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Zugauswahl.Name" xml:space="preserve">
+    <value>tabPage_Zugauswahl</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Zugauswahl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Zugauswahl.Parent" xml:space="preserve">
+    <value>tabControl_Anzeige</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Zugauswahl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 16</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Knopf Editor</value>
+  </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
   </data>
@@ -443,6 +320,18 @@
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnT1_Back.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 3</value>
+  </data>
+  <data name="btnT1_Back.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 23</value>
+  </data>
+  <data name="btnT1_Back.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnT1_Back.Text" xml:space="preserve">
+    <value>&lt;&lt;--</value>
   </data>
   <data name="&gt;&gt;btnT1_Back.Name" xml:space="preserve">
     <value>btnT1_Back</value>
@@ -456,6 +345,18 @@
   <data name="&gt;&gt;btnT1_Back.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnT1_entfernen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 40</value>
+  </data>
+  <data name="btnT1_entfernen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 21</value>
+  </data>
+  <data name="btnT1_entfernen.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnT1_entfernen.Text" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
   <data name="&gt;&gt;btnT1_entfernen.Name" xml:space="preserve">
     <value>btnT1_entfernen</value>
   </data>
@@ -467,6 +368,15 @@
   </data>
   <data name="&gt;&gt;btnT1_entfernen.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="listBoxT1_ShowJoystickStates.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 24</value>
+  </data>
+  <data name="listBoxT1_ShowJoystickStates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 91</value>
+  </data>
+  <data name="listBoxT1_ShowJoystickStates.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;listBoxT1_ShowJoystickStates.Name" xml:space="preserve">
     <value>listBoxT1_ShowJoystickStates</value>
@@ -480,6 +390,21 @@
   <data name="&gt;&gt;listBoxT1_ShowJoystickStates.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="lblT1_Bedingung.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblT1_Bedingung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 128</value>
+  </data>
+  <data name="lblT1_Bedingung.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="lblT1_Bedingung.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="lblT1_Bedingung.Text" xml:space="preserve">
+    <value>Bedingung</value>
+  </data>
   <data name="&gt;&gt;lblT1_Bedingung.Name" xml:space="preserve">
     <value>lblT1_Bedingung</value>
   </data>
@@ -491,6 +416,18 @@
   </data>
   <data name="&gt;&gt;lblT1_Bedingung.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="txtT1_Bedingung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 144</value>
+  </data>
+  <data name="txtT1_Bedingung.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 20</value>
+  </data>
+  <data name="txtT1_Bedingung.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="txtT1_Bedingung.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
   </data>
   <data name="&gt;&gt;txtT1_Bedingung.Name" xml:space="preserve">
     <value>txtT1_Bedingung</value>
@@ -504,6 +441,18 @@
   <data name="&gt;&gt;txtT1_Bedingung.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnT1_Editor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>247, 170</value>
+  </data>
+  <data name="btnT1_Editor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="btnT1_Editor.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnT1_Editor.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
   <data name="&gt;&gt;btnT1_Editor.Name" xml:space="preserve">
     <value>btnT1_Editor</value>
   </data>
@@ -515,6 +464,21 @@
   </data>
   <data name="&gt;&gt;btnT1_Editor.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 128</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 13</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Tastenkombination</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -528,6 +492,15 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="txtT1_Tastenkombination.Location" type="System.Drawing.Point, System.Drawing">
+    <value>247, 144</value>
+  </data>
+  <data name="txtT1_Tastenkombination.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="txtT1_Tastenkombination.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
   <data name="&gt;&gt;txtT1_Tastenkombination.Name" xml:space="preserve">
     <value>txtT1_Tastenkombination</value>
   </data>
@@ -539,6 +512,21 @@
   </data>
   <data name="&gt;&gt;txtT1_Tastenkombination.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 128</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Aktion</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -552,6 +540,18 @@
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="txtT1_Aktion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 144</value>
+  </data>
+  <data name="txtT1_Aktion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="txtT1_Aktion.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="txtT1_Aktion.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
   <data name="&gt;&gt;txtT1_Aktion.Name" xml:space="preserve">
     <value>txtT1_Aktion</value>
   </data>
@@ -563,6 +563,21 @@
   </data>
   <data name="&gt;&gt;txtT1_Aktion.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -576,6 +591,18 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="btnT1_Hinzufuegen_ersetzen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 208</value>
+  </data>
+  <data name="btnT1_Hinzufuegen_ersetzen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 21</value>
+  </data>
+  <data name="btnT1_Hinzufuegen_ersetzen.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnT1_Hinzufuegen_ersetzen.Text" xml:space="preserve">
+    <value>Hinzufügen / Ersetzen</value>
+  </data>
   <data name="&gt;&gt;btnT1_Hinzufuegen_ersetzen.Name" xml:space="preserve">
     <value>btnT1_Hinzufuegen_ersetzen</value>
   </data>
@@ -587,6 +614,15 @@
   </data>
   <data name="&gt;&gt;btnT1_Hinzufuegen_ersetzen.ZOrder" xml:space="preserve">
     <value>12</value>
+  </data>
+  <data name="comboBoxT1_KnopfAuswahl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="comboBoxT1_KnopfAuswahl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="comboBoxT1_KnopfAuswahl.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;comboBoxT1_KnopfAuswahl.Name" xml:space="preserve">
     <value>comboBoxT1_KnopfAuswahl</value>
@@ -600,6 +636,21 @@
   <data name="&gt;&gt;comboBoxT1_KnopfAuswahl.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 128</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Joy-Nr</value>
+  </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
   </data>
@@ -611,6 +662,18 @@
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>14</value>
+  </data>
+  <data name="txtT1_JoystickNr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 144</value>
+  </data>
+  <data name="txtT1_JoystickNr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="txtT1_JoystickNr.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="txtT1_JoystickNr.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
   </data>
   <data name="&gt;&gt;txtT1_JoystickNr.Name" xml:space="preserve">
     <value>txtT1_JoystickNr</value>
@@ -624,6 +687,18 @@
   <data name="&gt;&gt;txtT1_JoystickNr.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="btnT1_Erkennen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 170</value>
+  </data>
+  <data name="btnT1_Erkennen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 23</value>
+  </data>
+  <data name="btnT1_Erkennen.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnT1_Erkennen.Text" xml:space="preserve">
+    <value>Erkennen</value>
+  </data>
   <data name="&gt;&gt;btnT1_Erkennen.Name" xml:space="preserve">
     <value>btnT1_Erkennen</value>
   </data>
@@ -635,6 +710,21 @@
   </data>
   <data name="&gt;&gt;btnT1_Erkennen.ZOrder" xml:space="preserve">
     <value>16</value>
+  </data>
+  <data name="lblT1_KnopfNr.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblT1_KnopfNr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 128</value>
+  </data>
+  <data name="lblT1_KnopfNr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblT1_KnopfNr.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="lblT1_KnopfNr.Text" xml:space="preserve">
+    <value>Knopfnr.</value>
   </data>
   <data name="&gt;&gt;lblT1_KnopfNr.Name" xml:space="preserve">
     <value>lblT1_KnopfNr</value>
@@ -648,6 +738,18 @@
   <data name="&gt;&gt;lblT1_KnopfNr.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
+  <data name="txtT1_JoystickKnopf.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 144</value>
+  </data>
+  <data name="txtT1_JoystickKnopf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="txtT1_JoystickKnopf.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="txtT1_JoystickKnopf.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
   <data name="&gt;&gt;txtT1_JoystickKnopf.Name" xml:space="preserve">
     <value>txtT1_JoystickKnopf</value>
   </data>
@@ -660,6 +762,21 @@
   <data name="&gt;&gt;txtT1_JoystickKnopf.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
+  <data name="radioT1_regler.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT1_regler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 90</value>
+  </data>
+  <data name="radioT1_regler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
+  </data>
+  <data name="radioT1_regler.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="radioT1_regler.Text" xml:space="preserve">
+    <value>Regler als Knopf</value>
+  </data>
   <data name="&gt;&gt;radioT1_regler.Name" xml:space="preserve">
     <value>radioT1_regler</value>
   </data>
@@ -671,6 +788,21 @@
   </data>
   <data name="&gt;&gt;radioT1_regler.ZOrder" xml:space="preserve">
     <value>19</value>
+  </data>
+  <data name="radioT1_normal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT1_normal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 67</value>
+  </data>
+  <data name="radioT1_normal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="radioT1_normal.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="radioT1_normal.Text" xml:space="preserve">
+    <value>normaler Knopf</value>
   </data>
   <data name="&gt;&gt;radioT1_normal.Name" xml:space="preserve">
     <value>radioT1_normal</value>
@@ -711,723 +843,6 @@
   <data name="&gt;&gt;tabPage_Button.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 3</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 16</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Knopf Editor</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnT1_Back.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 215</value>
-  </data>
-  <data name="btnT1_Back.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 23</value>
-  </data>
-  <data name="btnT1_Back.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="btnT1_Back.Text" xml:space="preserve">
-    <value>&lt;&lt;--</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Back.Name" xml:space="preserve">
-    <value>btnT1_Back</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Back.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Back.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Back.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnT1_entfernen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 50</value>
-  </data>
-  <data name="btnT1_entfernen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 21</value>
-  </data>
-  <data name="btnT1_entfernen.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="btnT1_entfernen.Text" xml:space="preserve">
-    <value>Entfernen</value>
-  </data>
-  <data name="&gt;&gt;btnT1_entfernen.Name" xml:space="preserve">
-    <value>btnT1_entfernen</value>
-  </data>
-  <data name="&gt;&gt;btnT1_entfernen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT1_entfernen.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;btnT1_entfernen.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="listBoxT1_ShowJoystickStates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 34</value>
-  </data>
-  <data name="listBoxT1_ShowJoystickStates.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 91</value>
-  </data>
-  <data name="listBoxT1_ShowJoystickStates.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;listBoxT1_ShowJoystickStates.Name" xml:space="preserve">
-    <value>listBoxT1_ShowJoystickStates</value>
-  </data>
-  <data name="&gt;&gt;listBoxT1_ShowJoystickStates.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listBoxT1_ShowJoystickStates.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;listBoxT1_ShowJoystickStates.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblT1_Bedingung.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblT1_Bedingung.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 138</value>
-  </data>
-  <data name="lblT1_Bedingung.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 13</value>
-  </data>
-  <data name="lblT1_Bedingung.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="lblT1_Bedingung.Text" xml:space="preserve">
-    <value>Bedingung</value>
-  </data>
-  <data name="&gt;&gt;lblT1_Bedingung.Name" xml:space="preserve">
-    <value>lblT1_Bedingung</value>
-  </data>
-  <data name="&gt;&gt;lblT1_Bedingung.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblT1_Bedingung.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;lblT1_Bedingung.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="txtT1_Bedingung.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 154</value>
-  </data>
-  <data name="txtT1_Bedingung.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 20</value>
-  </data>
-  <data name="txtT1_Bedingung.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="txtT1_Bedingung.Text" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="txtT1_Bedingung.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Bedingung.Name" xml:space="preserve">
-    <value>txtT1_Bedingung</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Bedingung.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Bedingung.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Bedingung.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="btnT1_Editor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>247, 180</value>
-  </data>
-  <data name="btnT1_Editor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="btnT1_Editor.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="btnT1_Editor.Text" xml:space="preserve">
-    <value>Editor</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Editor.Name" xml:space="preserve">
-    <value>btnT1_Editor</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Editor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Editor.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Editor.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 138</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 13</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Tastenkombination</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="txtT1_Tastenkombination.Location" type="System.Drawing.Point, System.Drawing">
-    <value>247, 154</value>
-  </data>
-  <data name="txtT1_Tastenkombination.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 20</value>
-  </data>
-  <data name="txtT1_Tastenkombination.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Tastenkombination.Name" xml:space="preserve">
-    <value>txtT1_Tastenkombination</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Tastenkombination.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Tastenkombination.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Tastenkombination.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 138</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Aktion</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="txtT1_Aktion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 154</value>
-  </data>
-  <data name="txtT1_Aktion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="txtT1_Aktion.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="txtT1_Aktion.Text" xml:space="preserve">
-    <value>bildab</value>
-  </data>
-  <data name="txtT1_Aktion.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Aktion.Name" xml:space="preserve">
-    <value>txtT1_Aktion</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Aktion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Aktion.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;txtT1_Aktion.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 34</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="btnT1_Hinzufuegen_ersetzen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 218</value>
-  </data>
-  <data name="btnT1_Hinzufuegen_ersetzen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 21</value>
-  </data>
-  <data name="btnT1_Hinzufuegen_ersetzen.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="btnT1_Hinzufuegen_ersetzen.Text" xml:space="preserve">
-    <value>Hinzufügen / Ersetzen</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Hinzufuegen_ersetzen.Name" xml:space="preserve">
-    <value>btnT1_Hinzufuegen_ersetzen</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Hinzufuegen_ersetzen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Hinzufuegen_ersetzen.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Hinzufuegen_ersetzen.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="comboBoxT1_KnopfAuswahl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 50</value>
-  </data>
-  <data name="comboBoxT1_KnopfAuswahl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
-  </data>
-  <data name="comboBoxT1_KnopfAuswahl.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT1_KnopfAuswahl.Name" xml:space="preserve">
-    <value>comboBoxT1_KnopfAuswahl</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT1_KnopfAuswahl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT1_KnopfAuswahl.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;comboBoxT1_KnopfAuswahl.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 138</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Joy-Nr</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="txtT1_JoystickNr.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 154</value>
-  </data>
-  <data name="txtT1_JoystickNr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 20</value>
-  </data>
-  <data name="txtT1_JoystickNr.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="txtT1_JoystickNr.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtT1_JoystickNr.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickNr.Name" xml:space="preserve">
-    <value>txtT1_JoystickNr</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickNr.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickNr.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickNr.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="btnT1_Erkennen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 180</value>
-  </data>
-  <data name="btnT1_Erkennen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 23</value>
-  </data>
-  <data name="btnT1_Erkennen.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnT1_Erkennen.Text" xml:space="preserve">
-    <value>Erkennen</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Erkennen.Name" xml:space="preserve">
-    <value>btnT1_Erkennen</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Erkennen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Erkennen.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;btnT1_Erkennen.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="lblT1_KnopfNr.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblT1_KnopfNr.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 138</value>
-  </data>
-  <data name="lblT1_KnopfNr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="lblT1_KnopfNr.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lblT1_KnopfNr.Text" xml:space="preserve">
-    <value>Knopfnr.</value>
-  </data>
-  <data name="&gt;&gt;lblT1_KnopfNr.Name" xml:space="preserve">
-    <value>lblT1_KnopfNr</value>
-  </data>
-  <data name="&gt;&gt;lblT1_KnopfNr.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblT1_KnopfNr.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;lblT1_KnopfNr.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="txtT1_JoystickKnopf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 154</value>
-  </data>
-  <data name="txtT1_JoystickKnopf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="txtT1_JoystickKnopf.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="txtT1_JoystickKnopf.Text" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="txtT1_JoystickKnopf.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickKnopf.Name" xml:space="preserve">
-    <value>txtT1_JoystickKnopf</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickKnopf.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickKnopf.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;txtT1_JoystickKnopf.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="radioT1_regler.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioT1_regler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 100</value>
-  </data>
-  <data name="radioT1_regler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 17</value>
-  </data>
-  <data name="radioT1_regler.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="radioT1_regler.Text" xml:space="preserve">
-    <value>Regler als Knopf</value>
-  </data>
-  <data name="&gt;&gt;radioT1_regler.Name" xml:space="preserve">
-    <value>radioT1_regler</value>
-  </data>
-  <data name="&gt;&gt;radioT1_regler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT1_regler.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;radioT1_regler.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="radioT1_normal.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioT1_normal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 77</value>
-  </data>
-  <data name="radioT1_normal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 17</value>
-  </data>
-  <data name="radioT1_normal.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="radioT1_normal.Text" xml:space="preserve">
-    <value>normaler Knopf</value>
-  </data>
-  <data name="&gt;&gt;radioT1_normal.Name" xml:space="preserve">
-    <value>radioT1_normal</value>
-  </data>
-  <data name="&gt;&gt;radioT1_normal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT1_normal.Parent" xml:space="preserve">
-    <value>tabPage_Button</value>
-  </data>
-  <data name="&gt;&gt;radioT1_normal.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Fertig.Name" xml:space="preserve">
-    <value>btnT2_Fertig</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Fertig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Fertig.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Fertig.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Hinzufügen.Name" xml:space="preserve">
-    <value>btnT2_Hinzufügen</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Hinzufügen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Hinzufügen.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;btnT2_Hinzufügen.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Wartezeit.Name" xml:space="preserve">
-    <value>txtT2_Wartezeit</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Wartezeit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Wartezeit.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Wartezeit.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblT2_haltezeit.Name" xml:space="preserve">
-    <value>lblT2_haltezeit</value>
-  </data>
-  <data name="&gt;&gt;lblT2_haltezeit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblT2_haltezeit.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;lblT2_haltezeit.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Haltezeit.Name" xml:space="preserve">
-    <value>txtT2_Haltezeit</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Haltezeit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Haltezeit.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Haltezeit.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Loslassen.Name" xml:space="preserve">
-    <value>radioT2_Loslassen</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Loslassen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Loslassen.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Loslassen.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Druecken.Name" xml:space="preserve">
-    <value>radioT2_Druecken</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Druecken.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Druecken.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Druecken.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Halten.Name" xml:space="preserve">
-    <value>radioT2_Halten</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Halten.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Halten.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;radioT2_Halten.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;radioT2_einmalDruecken.Name" xml:space="preserve">
-    <value>radioT2_einmalDruecken</value>
-  </data>
-  <data name="&gt;&gt;radioT2_einmalDruecken.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT2_einmalDruecken.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;radioT2_einmalDruecken.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Taste.Name" xml:space="preserve">
-    <value>txtT2_Taste</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Taste.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Taste.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;txtT2_Taste.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;listBoxT2_Output.Name" xml:space="preserve">
-    <value>listBoxT2_Output</value>
-  </data>
-  <data name="&gt;&gt;listBoxT2_Output.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listBoxT2_Output.Parent" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;listBoxT2_Output.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="tabPage_Tastenkombi_Erstellen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPage_Tastenkombi_Erstellen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>570, 287</value>
-  </data>
-  <data name="tabPage_Tastenkombi_Erstellen.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPage_Tastenkombi_Erstellen.Text" xml:space="preserve">
-    <value>Tastenkombi Erstellen</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Name" xml:space="preserve">
-    <value>tabPage_Tastenkombi_Erstellen</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Parent" xml:space="preserve">
-    <value>tabControl_Anzeige</value>
-  </data>
-  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="btnT2_Fertig.Location" type="System.Drawing.Point, System.Drawing">
     <value>247, 200</value>
   </data>
@@ -1435,7 +850,7 @@
     <value>45, 23</value>
   </data>
   <data name="btnT2_Fertig.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>9</value>
   </data>
   <data name="btnT2_Fertig.Text" xml:space="preserve">
     <value>Fertig</value>
@@ -1459,7 +874,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnT2_Hinzufügen.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="btnT2_Hinzufügen.Text" xml:space="preserve">
     <value>Hinzufügen</value>
@@ -1510,7 +925,7 @@
     <value>92, 20</value>
   </data>
   <data name="txtT2_Wartezeit.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="txtT2_Wartezeit.Text" xml:space="preserve">
     <value>0</value>
@@ -1561,7 +976,7 @@
     <value>92, 20</value>
   </data>
   <data name="txtT2_Haltezeit.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="txtT2_Haltezeit.Text" xml:space="preserve">
     <value>0</value>
@@ -1588,7 +1003,7 @@
     <value>72, 17</value>
   </data>
   <data name="radioT2_Loslassen.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="radioT2_Loslassen.Text" xml:space="preserve">
     <value>Loslassen</value>
@@ -1615,7 +1030,7 @@
     <value>66, 17</value>
   </data>
   <data name="radioT2_Druecken.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="radioT2_Druecken.Text" xml:space="preserve">
     <value>Drücken</value>
@@ -1642,7 +1057,7 @@
     <value>56, 17</value>
   </data>
   <data name="radioT2_Halten.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="radioT2_Halten.Text" xml:space="preserve">
     <value>Halten</value>
@@ -1669,7 +1084,7 @@
     <value>80, 17</value>
   </data>
   <data name="radioT2_einmalDruecken.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="radioT2_einmalDruecken.Text" xml:space="preserve">
     <value>1x Drücken</value>
@@ -1755,341 +1170,29 @@
   <data name="&gt;&gt;listBoxT2_Output.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;btnT3_ZeitfaktorFinden.Name" xml:space="preserve">
-    <value>btnT3_ZeitfaktorFinden</value>
-  </data>
-  <data name="&gt;&gt;btnT3_ZeitfaktorFinden.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT3_ZeitfaktorFinden.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;btnT3_ZeitfaktorFinden.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Beschreibung.Name" xml:space="preserve">
-    <value>txtT3_Beschreibung</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Beschreibung.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Beschreibung.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Beschreibung.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;listBoxT3_ShowJoystickStates.Name" xml:space="preserve">
-    <value>listBoxT3_ShowJoystickStates</value>
-  </data>
-  <data name="&gt;&gt;listBoxT3_ShowJoystickStates.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listBoxT3_ShowJoystickStates.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;listBoxT3_ShowJoystickStates.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnT3_leeren.Name" xml:space="preserve">
-    <value>btnT3_leeren</value>
-  </data>
-  <data name="&gt;&gt;btnT3_leeren.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT3_leeren.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;btnT3_leeren.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnT3_Speichern.Name" xml:space="preserve">
-    <value>btnT3_Speichern</value>
-  </data>
-  <data name="&gt;&gt;btnT3_Speichern.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnT3_Speichern.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;btnT3_Speichern.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtT3_LongPress.Name" xml:space="preserve">
-    <value>txtT3_LongPress</value>
-  </data>
-  <data name="&gt;&gt;txtT3_LongPress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_LongPress.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_LongPress.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;label15.Name" xml:space="preserve">
-    <value>label15</value>
-  </data>
-  <data name="&gt;&gt;label15.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Zeitfaktor.Name" xml:space="preserve">
-    <value>txtT3_Zeitfaktor</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Zeitfaktor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Zeitfaktor.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Zeitfaktor.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;label14.Name" xml:space="preserve">
-    <value>label14</value>
-  </data>
-  <data name="&gt;&gt;label14.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Sonderfaelle.Name" xml:space="preserve">
-    <value>txtT3_Sonderfaelle</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Sonderfaelle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Sonderfaelle.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_Sonderfaelle.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyUmrechnen.Name" xml:space="preserve">
-    <value>txtT3_JoyUmrechnen</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyUmrechnen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyUmrechnen.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyUmrechnen.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;label13.Name" xml:space="preserve">
-    <value>label13</value>
-  </data>
-  <data name="&gt;&gt;label13.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;txtT3_AnzahlStufen.Name" xml:space="preserve">
-    <value>txtT3_AnzahlStufen</value>
-  </data>
-  <data name="&gt;&gt;txtT3_AnzahlStufen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_AnzahlStufen.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_AnzahlStufen.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;lblT3_AnzahlStufen.Name" xml:space="preserve">
-    <value>lblT3_AnzahlStufen</value>
-  </data>
-  <data name="&gt;&gt;lblT3_AnzahlStufen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblT3_AnzahlStufen.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;lblT3_AnzahlStufen.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyNr.Name" xml:space="preserve">
-    <value>txtT3_JoyNr</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyNr.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyNr.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyNr.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;checkT3_andererJoyModus.Name" xml:space="preserve">
-    <value>checkT3_andererJoyModus</value>
-  </data>
-  <data name="&gt;&gt;checkT3_andererJoyModus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkT3_andererJoyModus.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;checkT3_andererJoyModus.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;checkT3_Invertiert.Name" xml:space="preserve">
-    <value>checkT3_Invertiert</value>
-  </data>
-  <data name="&gt;&gt;checkT3_Invertiert.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkT3_Invertiert.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;checkT3_Invertiert.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyAchse.Name" xml:space="preserve">
-    <value>txtT3_JoyAchse</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyAchse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyAchse.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;txtT3_JoyAchse.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;panelT3_StufenStufenlos.Name" xml:space="preserve">
-    <value>panelT3_StufenStufenlos</value>
-  </data>
-  <data name="&gt;&gt;panelT3_StufenStufenlos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelT3_StufenStufenlos.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;panelT3_StufenStufenlos.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
-  </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="tabPage_Regler.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabPage_Tastenkombi_Erstellen.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabPage_Regler.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabPage_Tastenkombi_Erstellen.Size" type="System.Drawing.Size, System.Drawing">
     <value>570, 287</value>
   </data>
-  <data name="tabPage_Regler.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="tabPage_Tastenkombi_Erstellen.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="tabPage_Regler.Text" xml:space="preserve">
-    <value>Regler</value>
+  <data name="tabPage_Tastenkombi_Erstellen.Text" xml:space="preserve">
+    <value>Tastenkombi Erstellen</value>
   </data>
-  <data name="&gt;&gt;tabPage_Regler.Name" xml:space="preserve">
-    <value>tabPage_Regler</value>
+  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Name" xml:space="preserve">
+    <value>tabPage_Tastenkombi_Erstellen</value>
   </data>
-  <data name="&gt;&gt;tabPage_Regler.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage_Regler.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.Parent" xml:space="preserve">
     <value>tabControl_Anzeige</value>
   </data>
-  <data name="&gt;&gt;tabPage_Regler.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;tabPage_Tastenkombi_Erstellen.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnT3_ZeitfaktorFinden.Location" type="System.Drawing.Point, System.Drawing">
     <value>418, 89</value>
@@ -2098,7 +1201,7 @@
     <value>137, 23</value>
   </data>
   <data name="btnT3_ZeitfaktorFinden.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>15</value>
   </data>
   <data name="btnT3_ZeitfaktorFinden.Text" xml:space="preserve">
     <value>Zeitfaktor finden</value>
@@ -2122,7 +1225,7 @@
     <value>35, 23</value>
   </data>
   <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>19</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>&lt;&lt;--</value>
@@ -2173,7 +1276,7 @@
     <value>100, 20</value>
   </data>
   <data name="txtT3_Beschreibung.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;txtT3_Beschreibung.Name" xml:space="preserve">
     <value>txtT3_Beschreibung</value>
@@ -2215,7 +1318,7 @@
     <value>51, 23</value>
   </data>
   <data name="btnT3_leeren.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>4</value>
   </data>
   <data name="btnT3_leeren.Text" xml:space="preserve">
     <value>Leeren</value>
@@ -2239,7 +1342,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnT3_Speichern.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>18</value>
   </data>
   <data name="btnT3_Speichern.Text" xml:space="preserve">
     <value>Speichern</value>
@@ -2290,7 +1393,7 @@
     <value>82, 20</value>
   </data>
   <data name="txtT3_LongPress.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;txtT3_LongPress.Name" xml:space="preserve">
     <value>txtT3_LongPress</value>
@@ -2338,7 +1441,7 @@
     <value>52, 20</value>
   </data>
   <data name="txtT3_Zeitfaktor.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;txtT3_Zeitfaktor.Name" xml:space="preserve">
     <value>txtT3_Zeitfaktor</value>
@@ -2386,7 +1489,7 @@
     <value>198, 20</value>
   </data>
   <data name="txtT3_Sonderfaelle.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;txtT3_Sonderfaelle.Name" xml:space="preserve">
     <value>txtT3_Sonderfaelle</value>
@@ -2407,7 +1510,7 @@
     <value>198, 20</value>
   </data>
   <data name="txtT3_JoyUmrechnen.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;txtT3_JoyUmrechnen.Name" xml:space="preserve">
     <value>txtT3_JoyUmrechnen</value>
@@ -2455,7 +1558,7 @@
     <value>88, 20</value>
   </data>
   <data name="txtT3_AnzahlStufen.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;txtT3_AnzahlStufen.Name" xml:space="preserve">
     <value>txtT3_AnzahlStufen</value>
@@ -2503,7 +1606,7 @@
     <value>37, 20</value>
   </data>
   <data name="txtT3_JoyNr.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;txtT3_JoyNr.Name" xml:space="preserve">
     <value>txtT3_JoyNr</value>
@@ -2554,7 +1657,7 @@
     <value>117, 17</value>
   </data>
   <data name="checkT3_andererJoyModus.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>10</value>
   </data>
   <data name="checkT3_andererJoyModus.Text" xml:space="preserve">
     <value>Anderer Joy-Modus</value>
@@ -2581,7 +1684,7 @@
     <value>67, 17</value>
   </data>
   <data name="checkT3_Invertiert.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>9</value>
   </data>
   <data name="checkT3_Invertiert.Text" xml:space="preserve">
     <value>Invertiert</value>
@@ -2605,7 +1708,7 @@
     <value>56, 20</value>
   </data>
   <data name="txtT3_JoyAchse.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;txtT3_JoyAchse.Name" xml:space="preserve">
     <value>txtT3_JoyAchse</value>
@@ -2646,6 +1749,21 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
+  <data name="radioT3_Stufenlos.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT3_Stufenlos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="radioT3_Stufenlos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="radioT3_Stufenlos.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="radioT3_Stufenlos.Text" xml:space="preserve">
+    <value>Stufenlos</value>
+  </data>
   <data name="&gt;&gt;radioT3_Stufenlos.Name" xml:space="preserve">
     <value>radioT3_Stufenlos</value>
   </data>
@@ -2657,6 +1775,21 @@
   </data>
   <data name="&gt;&gt;radioT3_Stufenlos.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="radioT3_Stufen.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT3_Stufen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 3</value>
+  </data>
+  <data name="radioT3_Stufen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
+  <data name="radioT3_Stufen.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="radioT3_Stufen.Text" xml:space="preserve">
+    <value>Stufen</value>
   </data>
   <data name="&gt;&gt;radioT3_Stufen.Name" xml:space="preserve">
     <value>radioT3_Stufen</value>
@@ -2693,117 +1826,6 @@
   </data>
   <data name="&gt;&gt;panelT3_StufenStufenlos.ZOrder" xml:space="preserve">
     <value>23</value>
-  </data>
-  <data name="radioT3_Stufenlos.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioT3_Stufenlos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="radioT3_Stufenlos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
-  </data>
-  <data name="radioT3_Stufenlos.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="radioT3_Stufenlos.Text" xml:space="preserve">
-    <value>Stufenlos</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufenlos.Name" xml:space="preserve">
-    <value>radioT3_Stufenlos</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufenlos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufenlos.Parent" xml:space="preserve">
-    <value>panelT3_StufenStufenlos</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufenlos.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="radioT3_Stufen.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioT3_Stufen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 3</value>
-  </data>
-  <data name="radioT3_Stufen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
-  </data>
-  <data name="radioT3_Stufen.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="radioT3_Stufen.Text" xml:space="preserve">
-    <value>Stufen</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufen.Name" xml:space="preserve">
-    <value>radioT3_Stufen</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufen.Parent" xml:space="preserve">
-    <value>panelT3_StufenStufenlos</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Stufen.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Schub.Name" xml:space="preserve">
-    <value>radioT3_Schub</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Schub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Schub.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Schub.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Kombihebel.Name" xml:space="preserve">
-    <value>radioT3_Kombihebel</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Kombihebel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Kombihebel.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Kombihebel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Bremse.Name" xml:space="preserve">
-    <value>radioT3_Bremse</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Bremse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Bremse.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;radioT3_Bremse.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 38</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>tabPage_Regler</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>24</value>
   </data>
   <data name="radioT3_Schub.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2842,7 +1864,7 @@
     <value>80, 17</value>
   </data>
   <data name="radioT3_Kombihebel.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>3</value>
   </data>
   <data name="radioT3_Kombihebel.Text" xml:space="preserve">
     <value>Kombihebel</value>
@@ -2869,7 +1891,7 @@
     <value>60, 17</value>
   </data>
   <data name="radioT3_Bremse.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>2</value>
   </data>
   <data name="radioT3_Bremse.Text" xml:space="preserve">
     <value>Bremse</value>
@@ -2885,6 +1907,27 @@
   </data>
   <data name="&gt;&gt;radioT3_Bremse.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 38</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>tabPage_Regler</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>24</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2915,6 +1958,51 @@
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
     <value>25</value>
+  </data>
+  <data name="tabPage_Regler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage_Regler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>570, 287</value>
+  </data>
+  <data name="tabPage_Regler.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPage_Regler.Text" xml:space="preserve">
+    <value>Regler</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Regler.Name" xml:space="preserve">
+    <value>tabPage_Regler</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Regler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Regler.Parent" xml:space="preserve">
+    <value>tabControl_Anzeige</value>
+  </data>
+  <data name="&gt;&gt;tabPage_Regler.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tabControl_Anzeige.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="tabControl_Anzeige.Size" type="System.Drawing.Size, System.Drawing">
+    <value>578, 313</value>
+  </data>
+  <data name="tabControl_Anzeige.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabControl_Anzeige.Name" xml:space="preserve">
+    <value>tabControl_Anzeige</value>
+  </data>
+  <data name="&gt;&gt;tabControl_Anzeige.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl_Anzeige.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl_Anzeige.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="T1Timer_CheckForButtonPress.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

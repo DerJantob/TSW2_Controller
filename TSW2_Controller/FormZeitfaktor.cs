@@ -165,7 +165,7 @@ namespace TSW2_Controller
                             endNumber = Convert.ToInt32(result);
                             wait = false;
                         }
-                        catch (Exception ex) { MessageBox.Show("Fehlerwort:"+result+"\n"+ex.ToString()); }
+                        catch (Exception ex) { MessageBox.Show("Fehlerwort:" + result + "\n" + ex.ToString()); }
 
                     }
                     else
@@ -266,7 +266,7 @@ namespace TSW2_Controller
                     Keyboard.HoldKey(Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
-                    MessageBox.Show(Sprache.Hmm_da_hat_etwas_nicht_funktioniert_Versuche_es_doch_nochmal);
+                    MessageBox.Show(Sprache.Hmm_da_hast_du_wohl_etwas_falsch_gemacht_Die_Startzahl_sollte_groeßer_als_die_Endzahl_sein);
                 }
             }
 
@@ -364,6 +364,31 @@ namespace TSW2_Controller
         private void radio_Stufenlos_CheckedChanged(object sender, EventArgs e)
         {
             radioChanged();
+        }
+
+        private void txt_taste_KeyDown(object sender, KeyEventArgs e)
+        {
+            txt_taste.Text = Keyboard.ConvertKeyToString(e.KeyCode);
+            e.SuppressKeyPress = true;
+        }
+
+        private void txt_dauer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void btn_start_longpress_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Sprache.Wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte);
+            Thread.Sleep(7000);
+            try
+            {
+                Keyboard.HoldKey(Keyboard.ConvertStringToKey(txt_taste.Text), Convert.ToInt32(txt_dauer.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
