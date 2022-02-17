@@ -230,7 +230,10 @@
             this.Controls.Add(this.lbl_version);
             this.Controls.Add(this.check_showDebug);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormSettings";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.groupBox1.ResumeLayout(false);

@@ -144,7 +144,10 @@
             this.Controls.Add(this.txt_Startwert);
             this.Controls.Add(this.lbl_anleitung);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormZeitfaktor";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
