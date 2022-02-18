@@ -54,6 +54,7 @@ namespace TSW2_Controller
                 changelog.Add("- Englisch hinzugefügt");
                 changelog.Add("- Verbesserungen für langsame Joystickbewegungen");
                 changelog.Add("- Auflösungseingabe verändert");
+                changelog.Add("- Langdruckstellen können nun bei der \"Zeitfaktor finden\" Seite getestet werden");
                 changelog.Add("----------------------------------------");
             }
             #endregion

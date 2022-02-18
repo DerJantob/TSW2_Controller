@@ -126,10 +126,10 @@ namespace TSW2_Controller
         private void btnT0_Delete_Click(object sender, EventArgs e)
         {
             selectedTrain = comboBoxT0_Zugauswahl.Text;
-            comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
-
+            
             if (MessageBox.Show(Sprache.Willst_du_wirklich + selectedTrain + Sprache.loeschen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
                 int counter = 0;
                 for (int i = 0; i < trainConfig.Count; i++)
                 {

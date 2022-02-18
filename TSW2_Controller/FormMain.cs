@@ -487,20 +487,28 @@ namespace TSW2_Controller
             //Wenn Aktiv
             if (check_active.Checked)
             {
-                //Wenn es einen Schubregler gibt und der BGW nicht beschäftigt ist dann starte ihn
-                if (!bgw_Throttle.IsBusy && throttleConfig[0] != null)
+                if (MainSticks.Length > 0)
                 {
-                    bgw_Throttle.RunWorkerAsync();
-                }
+                    //Wenn es einen Schubregler gibt und der BGW nicht beschäftigt ist dann starte ihn
+                    if (!bgw_Throttle.IsBusy && throttleConfig[0] != null)
+                    {
+                        bgw_Throttle.RunWorkerAsync();
+                    }
 
-                //Wenn es einen Bremsregler gibt und der BGW nicht beschäftigt ist dann starte ihn
-                if (!bgw_Brake.IsBusy && !isKombihebel && brakeConfig[0] != null)
+                    //Wenn es einen Bremsregler gibt und der BGW nicht beschäftigt ist dann starte ihn
+                    if (!bgw_Brake.IsBusy && !isKombihebel && brakeConfig[0] != null)
+                    {
+                        bgw_Brake.RunWorkerAsync();
+                    }
+
+                    //Überprüfe die einzelnen Joystick knöpfe
+                    HandleButtons();
+                }
+                else
                 {
-                    bgw_Brake.RunWorkerAsync();
+                    check_active.Checked = false;
+                    MessageBox.Show(Sprache.Kein_Joystick_angeschlossen);
                 }
-
-                //Überprüfe die einzelnen Joystick knöpfe
-                HandleButtons();
             }
             else
             {

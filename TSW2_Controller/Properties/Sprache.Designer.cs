@@ -215,6 +215,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kein Joystick angeschlossen! ähnelt.
+        /// </summary>
+        internal static string Kein_Joystick_angeschlossen {
+            get {
+                return ResourceManager.GetString("Kein Joystick angeschlossen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Keine Nummer erkannt. Kann es sein, dass du beim Maximum gelandet bist? ähnelt.
         /// </summary>
         internal static string Keine_Nummer_erkannt_Kann_es_sein_dass_du_beim_Maximum_gelandet_bist {

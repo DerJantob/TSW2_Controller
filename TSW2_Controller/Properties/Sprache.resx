@@ -168,6 +168,9 @@
   <data name="Hmm da hat etwas nicht funktioniert Versuche es doch nochmal" xml:space="preserve">
     <value>Hmm, da hat etwas nicht funktioniert. Versuche es doch nochmal.</value>
   </data>
+  <data name="Kein Joystick angeschlossen" xml:space="preserve">
+    <value>Kein Joystick angeschlossen!</value>
+  </data>
   <data name="Keine Nummer erkannt Kann es sein dass du beim Maximum gelandet bist" xml:space="preserve">
     <value>Keine Nummer erkannt. Kann es sein, dass du beim Maximum gelandet bist?</value>
   </data>
