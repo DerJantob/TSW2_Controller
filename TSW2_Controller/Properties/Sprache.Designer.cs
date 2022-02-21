@@ -79,6 +79,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bremse ist ähnelt.
+        /// </summary>
+        internal static string Bremse_ist {
+            get {
+                return ResourceManager.GetString("Bremse ist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bremsindikator leer! Standard laden? ähnelt.
         /// </summary>
         internal static string Bremsindikator_Leer__Standard_Laden {
@@ -305,6 +314,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Schub ist ähnelt.
+        /// </summary>
+        internal static string Schub_ist {
+            get {
+                return ResourceManager.GetString("Schub ist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Schubindikator leer! Standard laden? ähnelt.
         /// </summary>
         internal static string Schubindikator_Leer__Standard_Laden {
@@ -337,6 +355,15 @@ namespace TSW2_Controller.Properties {
         internal static string und_bestaetige_mit_OK {
             get {
                 return ResourceManager.GetString("und bestaetige mit OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die und soll ähnelt.
+        /// </summary>
+        internal static string und_soll {
+            get {
+                return ResourceManager.GetString("und soll", resourceCulture);
             }
         }
         

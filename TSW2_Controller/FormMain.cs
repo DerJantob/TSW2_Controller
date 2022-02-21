@@ -13,6 +13,7 @@ using SlimDX.DirectInput;
 using System.IO;
 using TSW2_Controller.Properties;
 using System.Reflection;
+using System.Net;
 
 namespace TSW2_Controller
 {
@@ -44,10 +45,15 @@ namespace TSW2_Controller
         string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
         public static string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
 
-        string[] default_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
-        string[] default_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
-        string[] default_kombihebel_schubIndexe = { "Leistung" };
-        string[] default_kombihebel_bremsIndexe = { "Bremsleistung" };
+        string[] defaultDE_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
+        string[] defaultDE_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
+        string[] defaultDE_kombihebel_schubIndexe = { "Leistung" };
+        string[] defaultDE_kombihebel_bremsIndexe = { "Bremsleistung", "Bremse" };
+
+        string[] defaultEN_schubIndexe = { "Throttle", "Master Controller" };
+        string[] defaultEN_bremsIndexe = { "Train Brake" };
+        string[] defaultEN_kombihebel_schubIndexe = { "Power" };
+        string[] defaultEN_kombihebel_bremsIndexe = { "Brake" };
 
         bool isKombihebel = false;
         bool globalIsDeactivated = false;
@@ -73,7 +79,7 @@ namespace TSW2_Controller
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
             {
-                if(!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv","")))
+                if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
                 {
                     Directory.CreateDirectory(Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
                 }
@@ -378,10 +384,10 @@ namespace TSW2_Controller
                     else
                     {
                         //Neuinstallation
-                        Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save();
-                        Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save();
-                        Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save();
-                        Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save();
+                        Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe); Settings.Default.Save();
+                        Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe); Settings.Default.Save();
+                        Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultDE_kombihebel_schubIndexe); Settings.Default.Save();
+                        Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultDE_kombihebel_bremsIndexe); Settings.Default.Save();
                     }
 
                     Settings.Default.UpdateErforderlich = false;
@@ -447,10 +453,66 @@ namespace TSW2_Controller
                 #endregion
 
                 #region TextIndexe
-                if (Settings.Default.SchubIndexe.Count == 0) { if (MessageBox.Show(Sprache.Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.SchubIndexe.AddRange(default_schubIndexe); Settings.Default.Save(); } }
-                if (Settings.Default.BremsIndexe.Count == 0) { if (MessageBox.Show(Sprache.Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.BremsIndexe.AddRange(default_bremsIndexe); Settings.Default.Save(); } }
-                if (Settings.Default.Kombihebel_SchubIndexe.Count == 0) { if (MessageBox.Show(Sprache.Kombihebel_Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_SchubIndexe.AddRange(default_kombihebel_schubIndexe); Settings.Default.Save(); } }
-                if (Settings.Default.Kombihebel_BremsIndexe.Count == 0) { if (MessageBox.Show(Sprache.Kombihebel_Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes) { Settings.Default.Kombihebel_BremsIndexe.AddRange(default_kombihebel_bremsIndexe); Settings.Default.Save(); } }
+                if (Settings.Default.SchubIndexe.Count == 0)
+                {
+                    if (MessageBox.Show(Sprache.Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (Sprache.SprachenName == "Deutsch")
+                        {
+                            Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe);
+                        }
+                        else
+                        {
+                            Settings.Default.SchubIndexe.AddRange(defaultEN_schubIndexe);
+                        }
+                        Settings.Default.Save();
+                    }
+                }
+                if (Settings.Default.BremsIndexe.Count == 0)
+                {
+                    if (MessageBox.Show(Sprache.Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (Sprache.SprachenName == "Deutsch")
+                        {
+                            Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe);
+                        }
+                        else
+                        {
+                            Settings.Default.BremsIndexe.AddRange(defaultEN_bremsIndexe);
+                        }
+                        Settings.Default.Save();
+                    }
+                }
+                if (Settings.Default.Kombihebel_SchubIndexe.Count == 0)
+                {
+                    if (MessageBox.Show(Sprache.Kombihebel_Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (Sprache.SprachenName == "Deutsch")
+                        {
+                            Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultDE_kombihebel_schubIndexe);
+                        }
+                        else
+                        {
+                            Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultEN_kombihebel_schubIndexe);
+                        }
+                        Settings.Default.Save();
+                    }
+                }
+                if (Settings.Default.Kombihebel_BremsIndexe.Count == 0)
+                {
+                    if (MessageBox.Show(Sprache.Kombihebel_Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (Sprache.SprachenName == "Deutsch")
+                        {
+                            Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultDE_kombihebel_bremsIndexe);
+                        }
+                        else
+                        {
+                            Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultEN_kombihebel_bremsIndexe);
+                        }
+                        Settings.Default.Save();
+                    }
+                }
 
                 schubIndexe.Clear();
                 bremsIndexe.Clear();
@@ -1350,7 +1412,7 @@ namespace TSW2_Controller
             if (((string)((object[])e.UserState)[3]) != null) { lbl_alternativeResult.Text = ((string)((object[])e.UserState)[3]); }
             if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4]) - 1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5]) - 1).ToString(); }
 
-            if ((((int)((object[])e.UserState)[4]) - 1) + (((int)((object[])e.UserState)[4]) - 1) <= 0)
+            if (requestBrake <= 0 && requestThrottle <= 0)
             {
                 groupBox_ScanErgebnisse.Hide();
             }
@@ -1361,8 +1423,8 @@ namespace TSW2_Controller
         }
         private void bgw_readScreen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            lbl_schub.Text = "Schub ist " + schubIst.ToString() + " und soll " + schubSoll.ToString();
-            lbl_bremse.Text = "Bremse ist " + bremseIst.ToString() + " und soll " + bremseSoll.ToString();
+            lbl_schub.Text = Sprache.Schub_ist + " " + schubIst.ToString() + " " + Sprache.und_soll + " " + schubSoll.ToString();
+            lbl_bremse.Text = Sprache.Bremse_ist + " " + bremseIst.ToString() + " " + Sprache.und_soll + " " + bremseSoll.ToString();
         }
 
         int TextZuZahl_readScreen(string original_result, string alternative_result, string[] config)

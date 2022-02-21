@@ -51,6 +51,7 @@
             this.lbl_alternativeResult = new System.Windows.Forms.Label();
             this.groupBox_ScanErgebnisse = new System.Windows.Forms.GroupBox();
             this.lbl_requests = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.groupBox_ScanErgebnisse.SuspendLayout();
@@ -58,8 +59,8 @@
             // 
             // lst_inputs
             // 
-            this.lst_inputs.FormattingEnabled = true;
             resources.ApplyResources(this.lst_inputs, "lst_inputs");
+            this.lst_inputs.FormattingEnabled = true;
             this.lst_inputs.Name = "lst_inputs";
             // 
             // check_active
@@ -79,9 +80,9 @@
             // 
             // comboBox_Zugauswahl
             // 
+            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Zugauswahl.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.Name = "comboBox_Zugauswahl";
             this.comboBox_Zugauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBox_Zugauswahl_SelectedIndexChanged);
             // 
@@ -92,6 +93,7 @@
             // 
             // comboBox_JoystickNumber
             // 
+            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_JoystickNumber.FormattingEnabled = true;
             this.comboBox_JoystickNumber.Items.AddRange(new object[] {
@@ -105,7 +107,6 @@
             resources.GetString("comboBox_JoystickNumber.Items7"),
             resources.GetString("comboBox_JoystickNumber.Items8"),
             resources.GetString("comboBox_JoystickNumber.Items9")});
-            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
             // 
             // bgw_Throttle
@@ -137,8 +138,8 @@
             // 
             // listBox_debugInfo
             // 
-            this.listBox_debugInfo.FormattingEnabled = true;
             resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
+            this.listBox_debugInfo.FormattingEnabled = true;
             this.listBox_debugInfo.Name = "listBox_debugInfo";
             // 
             // lbl_resolution
@@ -184,9 +185,9 @@
             // 
             // groupBox_ScanErgebnisse
             // 
+            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_alternativeResult);
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_originalResult);
-            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Name = "groupBox_ScanErgebnisse";
             this.groupBox_ScanErgebnisse.TabStop = false;
             // 
@@ -195,10 +196,16 @@
             resources.ApplyResources(this.lbl_requests, "lbl_requests");
             this.lbl_requests.Name = "lbl_requests";
             // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_requests);
             this.Controls.Add(this.groupBox_ScanErgebnisse);
             this.Controls.Add(this.check_deactivateGlobal);
@@ -249,6 +256,7 @@
         private System.Windows.Forms.Label lbl_alternativeResult;
         private System.Windows.Forms.GroupBox groupBox_ScanErgebnisse;
         private System.Windows.Forms.Label lbl_requests;
+        private System.Windows.Forms.Label label1;
     }
 }
 

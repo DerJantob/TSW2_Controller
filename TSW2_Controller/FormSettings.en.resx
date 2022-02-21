@@ -134,7 +134,7 @@
     <value>112, 17</value>
   </data>
   <data name="check_ShowScan.Text" xml:space="preserve">
-    <value>Show scan results</value>
+    <value>Show screenshot</value>
   </data>
   <data name="btn_updates.Text" xml:space="preserve">
     <value>updates</value>

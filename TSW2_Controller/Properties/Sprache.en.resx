@@ -123,6 +123,9 @@
   <data name="Auf welcher Zahl bist du gelandet" xml:space="preserve">
     <value>What number did you land on?</value>
   </data>
+  <data name="Bremse ist" xml:space="preserve">
+    <value>Brake is</value>
+  </data>
   <data name="Bremsindikator_Leer__Standard_Laden" xml:space="preserve">
     <value>Brake indicator empty! Load standard?</value>
   </data>
@@ -198,6 +201,9 @@
   <data name="OK dann stelle den Regler nochmal auf" xml:space="preserve">
     <value>OK, than set the controller back to </value>
   </data>
+  <data name="Schub ist" xml:space="preserve">
+    <value>Thrust is</value>
+  </data>
   <data name="Schubindikator_Leer__Standard_Laden" xml:space="preserve">
     <value>Throttle indicator empty! Load standard?</value>
   </data>
@@ -209,6 +215,9 @@
   </data>
   <data name="und bestaetige mit OK" xml:space="preserve">
     <value> and press OK</value>
+  </data>
+  <data name="und soll" xml:space="preserve">
+    <value>and should be</value>
   </data>
   <data name="Wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte" xml:space="preserve">
     <value>Switch to TSW within 7 seconds and wait</value>

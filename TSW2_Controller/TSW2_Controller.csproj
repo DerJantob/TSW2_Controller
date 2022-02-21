@@ -133,6 +133,9 @@
     <EmbeddedResource Include="FormSteuerung.resx">
       <DependentUpon>FormSteuerung.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormWasIstNeu.en.resx">
+      <DependentUpon>FormWasIstNeu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWasIstNeu.resx">
       <DependentUpon>FormWasIstNeu.cs</DependentUpon>
     </EmbeddedResource>
