@@ -88,26 +88,26 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tabControl1);
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // tabControl1
             // 
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tab_schubLeistung);
             this.tabControl1.Controls.Add(this.tab_kombihebel);
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tab_schubLeistung
             // 
+            resources.ApplyResources(this.tab_schubLeistung, "tab_schubLeistung");
             this.tab_schubLeistung.Controls.Add(this.label3);
             this.tab_schubLeistung.Controls.Add(this.comboBox_Bremse);
             this.tab_schubLeistung.Controls.Add(this.label2);
             this.tab_schubLeistung.Controls.Add(this.comboBox_Schub);
-            resources.ApplyResources(this.tab_schubLeistung, "tab_schubLeistung");
             this.tab_schubLeistung.Name = "tab_schubLeistung";
             this.tab_schubLeistung.UseVisualStyleBackColor = true;
             // 
@@ -118,8 +118,8 @@
             // 
             // comboBox_Bremse
             // 
-            this.comboBox_Bremse.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_Bremse, "comboBox_Bremse");
+            this.comboBox_Bremse.FormattingEnabled = true;
             this.comboBox_Bremse.Name = "comboBox_Bremse";
             this.comboBox_Bremse.Sorted = true;
             this.comboBox_Bremse.SelectedIndexChanged += new System.EventHandler(this.comboBox_Bremse_SelectedIndexChanged);
@@ -132,8 +132,8 @@
             // 
             // comboBox_Schub
             // 
-            this.comboBox_Schub.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_Schub, "comboBox_Schub");
+            this.comboBox_Schub.FormattingEnabled = true;
             this.comboBox_Schub.Name = "comboBox_Schub";
             this.comboBox_Schub.Sorted = true;
             this.comboBox_Schub.SelectedIndexChanged += new System.EventHandler(this.comboBox_Schub_SelectedIndexChanged);
@@ -141,11 +141,11 @@
             // 
             // tab_kombihebel
             // 
+            resources.ApplyResources(this.tab_kombihebel, "tab_kombihebel");
             this.tab_kombihebel.Controls.Add(this.label4);
             this.tab_kombihebel.Controls.Add(this.comboBox_kombiBremse);
             this.tab_kombihebel.Controls.Add(this.label5);
             this.tab_kombihebel.Controls.Add(this.comboBox_kombiSchub);
-            resources.ApplyResources(this.tab_kombihebel, "tab_kombihebel");
             this.tab_kombihebel.Name = "tab_kombihebel";
             this.tab_kombihebel.UseVisualStyleBackColor = true;
             // 
@@ -156,8 +156,8 @@
             // 
             // comboBox_kombiBremse
             // 
-            this.comboBox_kombiBremse.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_kombiBremse, "comboBox_kombiBremse");
+            this.comboBox_kombiBremse.FormattingEnabled = true;
             this.comboBox_kombiBremse.Name = "comboBox_kombiBremse";
             this.comboBox_kombiBremse.Sorted = true;
             this.comboBox_kombiBremse.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiBremse_SelectedIndexChanged);
@@ -170,8 +170,8 @@
             // 
             // comboBox_kombiSchub
             // 
-            this.comboBox_kombiSchub.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_kombiSchub, "comboBox_kombiSchub");
+            this.comboBox_kombiSchub.FormattingEnabled = true;
             this.comboBox_kombiSchub.Name = "comboBox_kombiSchub";
             this.comboBox_kombiSchub.Sorted = true;
             this.comboBox_kombiSchub.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiSchub_SelectedIndexChanged);
@@ -207,12 +207,12 @@
             // 
             // comboBox_resolution
             // 
+            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
             this.comboBox_resolution.FormattingEnabled = true;
             this.comboBox_resolution.Items.AddRange(new object[] {
             resources.GetString("comboBox_resolution.Items"),
             resources.GetString("comboBox_resolution.Items1"),
             resources.GetString("comboBox_resolution.Items2")});
-            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
             this.comboBox_resolution.Name = "comboBox_resolution";
             // 
             // FormSettings
