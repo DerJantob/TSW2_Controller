@@ -21,7 +21,7 @@ I have included a lot of trains, but configured them to match my "thrustmaster t
 If you want to know how to do that, look into the `Tutorials` folder
 ## Installation
 
-Just download the `TSW2_Controller_Setup.exe` file and run the setup.
+Just download the `TSW2_Controller_Setup.exe` file under `Releases` and run the setup.
 
 If you don't want to run the exe file, you can download `TSW2_Controller.zip`
 
