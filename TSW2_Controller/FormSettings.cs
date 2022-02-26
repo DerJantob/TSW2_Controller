@@ -138,7 +138,8 @@ namespace TSW2_Controller
             }
             else
             {
-                MessageBox.Show("Unable to download exe, please check your connection", "Download failed!");
+                MessageBox.Show("Unable to download exe", "Download failed!");
+                progressBar_updater.Hide();
             }
         }
         #endregion
