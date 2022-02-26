@@ -12,6 +12,7 @@ I was bothered by the fact that you can't use a joystick as an input device in T
 - Supports custom button mapping
 - You can add trains yourself
 - Supports English and German
+- Auto updater
 ## Important!
 
 I have included a lot of trains, but configured them to match my "thrustmaster t flight hotas x" and the German language
