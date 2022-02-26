@@ -198,8 +198,12 @@
     <None Include="TrainConfigs\StandardTrainconfig.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Tutorial\Tutorial_DE.pdf" />
-    <None Include="Tutorial\Tutorial_EN.pdf" />
+    <None Include="Tutorial\Tutorial_DE.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tutorial\Tutorial_EN.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
