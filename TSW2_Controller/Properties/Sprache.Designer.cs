@@ -106,6 +106,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Du hast die neueste Version ähnelt.
+        /// </summary>
+        internal static string Du_hast_die_neueste_Version {
+            get {
+                return ResourceManager.GetString("Du hast die neueste Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Du hast noch keinen Startwert eingetragen! ähnelt.
         /// </summary>
         internal static string Du_hast_noch_keinen_Startwert_eingetragen {
@@ -220,6 +229,15 @@ namespace TSW2_Controller.Properties {
         internal static string Hmm_da_hat_etwas_nicht_funktioniert_Versuche_es_doch_nochmal {
             get {
                 return ResourceManager.GetString("Hmm da hat etwas nicht funktioniert Versuche es doch nochmal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ist verfügbar! Möchtest du aktualisieren? ähnelt.
+        /// </summary>
+        internal static string ist_verfuegbar_Moechtest_du_aktualisieren {
+            get {
+                return ResourceManager.GetString("ist verfuegbar Moechtest du aktualisieren", resourceCulture);
             }
         }
         

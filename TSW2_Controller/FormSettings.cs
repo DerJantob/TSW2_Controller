@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Octokit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -49,29 +53,97 @@ namespace TSW2_Controller
             comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
         }
 
-        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-
-
-
-        private void btn_Zeitumrechnungshilfe_Click(object sender, EventArgs e)
-        {
-            FormZeitfaktor formZeitumrechnung = new FormZeitfaktor();
-            formZeitumrechnung.Location = this.Location;
-            formZeitumrechnung.ShowDialog();
-        }
-
+        #region Updater
         private void btn_updates_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/DerJantob/TSW2_Controller");
+            CheckGitHubNewerVersion();
         }
 
+        private async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        {
+            try
+            {
+                GitHubClient client = new GitHubClient(new ProductHeaderValue("DerJantob"));
+                IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("DerJantob", "TSW2_Controller");
+
+                //Setup the versions
+                Version latestGitHubVersion = new Version(releases[0].TagName);
+                Version localVersion = new Version(Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2)); //Replace this with your local version. 
+                                                                                                                                                                                                     //Only tested with numeric values.
+                int versionComparison = localVersion.CompareTo(latestGitHubVersion);
+                if (versionComparison < 0)
+                {
+                    //The version on GitHub is more up to date than this local release.
+                    if (MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        progressBar_updater.Show();
+                        DownloadNewestVersion(latestGitHubVersion);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Process.Start("https://github.com/DerJantob/TSW2_Controller");
+                    }
+                }
+                else
+                {
+                    //This local Version and the Version on GitHub are equal
+                    MessageBox.Show(Sprache.Du_hast_die_neueste_Version);
+                }
+            }
+            catch
+            {
+                if (Sprache.SprachenName == "Deutsch")
+                {
+                    MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden");
+                }
+                else
+                {
+                    MessageBox.Show("Could not reach \"github.com/DerJantob/TSW2_Controller\"");
+                }
+            }
+        }
+        private void DownloadNewestVersion(Version version)
+        {
+            Uri uri = new Uri(@"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + @"/TSW2_Controller_Setup.exe");
+            var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp/TSW2_Controller_Setup.exe");
+
+            try
+            {
+                if (File.Exists(filename))
+                {
+                    File.Delete(filename);
+                }
+
+                WebClient wc = new WebClient();
+                wc.DownloadFileAsync(uri, filename);
+                wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
+                wc.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_DownloadFileCompleted);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            progressBar_updater.Value = e.ProgressPercentage;
+        }
+        private void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp/TSW2_Controller_Setup.exe"));
+                Close();
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                MessageBox.Show("Unable to download exe, please check your connection", "Download failed!");
+            }
+        }
+        #endregion
 
         #region Textindex
-
         private void comboBox_Schub_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -143,6 +215,13 @@ namespace TSW2_Controller
         }
         #endregion
 
+        private void btn_Zeitumrechnungshilfe_Click(object sender, EventArgs e)
+        {
+            FormZeitfaktor formZeitumrechnung = new FormZeitfaktor();
+            formZeitumrechnung.Location = this.Location;
+            formZeitumrechnung.ShowDialog();
+        }
+
         private void btn_changelog_Click(object sender, EventArgs e)
         {
             FormWasIstNeu formWasIstNeu = new FormWasIstNeu("0.0.0");
@@ -204,7 +283,7 @@ namespace TSW2_Controller
                 Settings.Default.Sprache = "de-DE";
             }
             Settings.Default.Save();
-            Application.Restart();
+            System.Windows.Forms.Application.Restart();
         }
     }
 }

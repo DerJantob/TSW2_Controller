@@ -117,440 +117,533 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lst_inputs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 117</value>
+  </data>
+  <data name="lst_inputs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 95</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lbl_originalResult.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lst_inputs.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
-  <data name="btn_reloadConfig.Text" xml:space="preserve">
-    <value>Config neu laden</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Zugauswahl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;comboBox_JoystickNumber.Name" xml:space="preserve">
-    <value>comboBox_JoystickNumber</value>
-  </data>
-  <data name="&gt;&gt;bgw_readScreen.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pictureBox_Screenshot_alternativ.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+  <data name="&gt;&gt;lst_inputs.Name" xml:space="preserve">
+    <value>lst_inputs</value>
   </data>
   <data name="&gt;&gt;lst_inputs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;check_deactivateGlobal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox_ScanErgebnisse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items9" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;comboBox_JoystickNumber.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lst_inputs.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bgw_Throttle.Name" xml:space="preserve">
-    <value>bgw_Throttle</value>
   </data>
   <data name="&gt;&gt;lst_inputs.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="check_active.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btn_einstellungen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lbl_bremse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 266</value>
-  </data>
-  <data name="&gt;&gt;lbl_alternativeResult.Parent" xml:space="preserve">
-    <value>groupBox_ScanErgebnisse</value>
-  </data>
-  <data name="comboBox_JoystickNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="lbl_bremse.Text" xml:space="preserve">
-    <value>Bremse ist X und soll X</value>
-  </data>
-  <data name="btn_einstellungen.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="listBox_debugInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 282</value>
-  </data>
-  <data name="comboBox_Zugauswahl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
-  </data>
-  <data name="lbl_schub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
-  </data>
-  <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
+  <data name="check_active.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;comboBox_Zugauswahl.Name" xml:space="preserve">
-    <value>comboBox_Zugauswahl</value>
+  <data name="check_active.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
-  <data name="comboBox_Zugauswahl.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Zugauswahl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lbl_schub.Text" xml:space="preserve">
-    <value>Schub ist X und soll X</value>
-  </data>
-  <data name="check_deactivateGlobal.Text" xml:space="preserve">
-    <value>Deaktiviere Global</value>
-  </data>
-  <data name="lbl_requests.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;check_active.Name" xml:space="preserve">
-    <value>check_active</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_original.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="check_active.Text" xml:space="preserve">
-    <value>Aktiv</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btn_reloadConfig.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_original.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lbl_originalResult.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="lbl_alternativeResult.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;btn_einstellungen.Name" xml:space="preserve">
-    <value>btn_einstellungen</value>
-  </data>
-  <data name="&gt;&gt;lbl_resolution.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_reloadConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lst_inputs.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="check_deactivateGlobal.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items5" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;bgw_readScreen.Name" xml:space="preserve">
-    <value>bgw_readScreen</value>
-  </data>
-  <data name="&gt;&gt;btn_einstellungen.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Joystick Nr.</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormMain</value>
-  </data>
-  <data name="lbl_originalResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;timer_CheckSticks.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listBox_debugInfo.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items2" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lbl_alternativeResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 29</value>
+  <data name="check_active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 15</value>
   </data>
   <data name="check_active.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 17</value>
   </data>
-  <data name="&gt;&gt;check_active.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="check_active.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;lbl_resolution.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="check_active.Text" xml:space="preserve">
+    <value>Aktiv</value>
   </data>
-  <data name="comboBox_JoystickNumber.Items8" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listBox_debugInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_original.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox_ScanErgebnisse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 52</value>
-  </data>
-  <data name="pictureBox_Screenshot_original.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 24</value>
-  </data>
-  <data name="&gt;&gt;listBox_debugInfo.Name" xml:space="preserve">
-    <value>listBox_debugInfo</value>
-  </data>
-  <data name="lbl_schub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 253</value>
-  </data>
-  <data name="&gt;&gt;bgw_Brake.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_reloadConfig.Name" xml:space="preserve">
-    <value>btn_reloadConfig</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 221</value>
-  </data>
-  <data name="&gt;&gt;btn_einstellungen.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>331, 854</value>
+  <data name="&gt;&gt;check_active.Name" xml:space="preserve">
+    <value>check_active</value>
   </data>
   <data name="&gt;&gt;check_active.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 13</value>
-  </data>
-  <data name="lbl_originalResult.Text" xml:space="preserve">
-    <value>lbl_originalResult</value>
-  </data>
-  <data name="lbl_alternativeResult.Text" xml:space="preserve">
-    <value>lbl_alternativeResult</value>
-  </data>
-  <data name="lbl_requests.Text" xml:space="preserve">
-    <value>reqT:0 reqB:0</value>
-  </data>
-  <data name="btn_einstellungen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 21</value>
-  </data>
-  <data name="&gt;&gt;timer_CheckSticks.Name" xml:space="preserve">
-    <value>timer_CheckSticks</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Parent" xml:space="preserve">
+  <data name="&gt;&gt;check_active.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bgw_Brake.Name" xml:space="preserve">
-    <value>bgw_Brake</value>
+  <data name="&gt;&gt;check_active.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="btn_reloadConfig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 88</value>
+  </data>
+  <data name="btn_reloadConfig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btn_reloadConfig.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btn_reloadConfig.Text" xml:space="preserve">
+    <value>Config neu laden</value>
+  </data>
+  <data name="&gt;&gt;btn_reloadConfig.Name" xml:space="preserve">
+    <value>btn_reloadConfig</value>
+  </data>
+  <data name="&gt;&gt;btn_reloadConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_reloadConfig.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_reloadConfig.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="comboBox_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="comboBox_Zugauswahl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="comboBox_Zugauswahl.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Zugauswahl.Name" xml:space="preserve">
+    <value>comboBox_Zugauswahl</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Zugauswahl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Zugauswahl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Zugauswahl.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <metadata name="timer_CheckSticks.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="comboBox_JoystickNumber.Items" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items3" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items4" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items6" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items7" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items8" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Items9" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 218</value>
+  </data>
+  <data name="comboBox_JoystickNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 21</value>
+  </data>
+  <data name="comboBox_JoystickNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;comboBox_JoystickNumber.Name" xml:space="preserve">
+    <value>comboBox_JoystickNumber</value>
+  </data>
+  <data name="&gt;&gt;comboBox_JoystickNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_JoystickNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_JoystickNumber.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <metadata name="bgw_Throttle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>166, 17</value>
+  </metadata>
+  <metadata name="bgw_readScreen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>399, 17</value>
+  </metadata>
+  <data name="lbl_schub.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_schub.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 253</value>
+  </data>
+  <data name="lbl_schub.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 13</value>
+  </data>
+  <data name="lbl_schub.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="lbl_schub.Text" xml:space="preserve">
+    <value>Schub ist X und soll X</value>
+  </data>
+  <data name="&gt;&gt;lbl_schub.Name" xml:space="preserve">
+    <value>lbl_schub</value>
+  </data>
+  <data name="&gt;&gt;lbl_schub.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_schub.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbl_schub.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <metadata name="bgw_Brake.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>289, 17</value>
+  </metadata>
+  <data name="lbl_bremse.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_bremse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 266</value>
+  </data>
+  <data name="lbl_bremse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 13</value>
+  </data>
+  <data name="lbl_bremse.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="lbl_bremse.Text" xml:space="preserve">
+    <value>Bremse ist X und soll X</value>
+  </data>
+  <data name="&gt;&gt;lbl_bremse.Name" xml:space="preserve">
+    <value>lbl_bremse</value>
+  </data>
+  <data name="&gt;&gt;lbl_bremse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_bremse.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbl_bremse.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="listBox_debugInfo.HorizontalScrollbar" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="listBox_debugInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 282</value>
+  </data>
+  <data name="listBox_debugInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 498</value>
+  </data>
+  <data name="listBox_debugInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;listBox_debugInfo.Name" xml:space="preserve">
+    <value>listBox_debugInfo</value>
+  </data>
+  <data name="&gt;&gt;listBox_debugInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listBox_debugInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;listBox_debugInfo.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbl_resolution.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;lbl_originalResult.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox_ScanErgebnisse.Name" xml:space="preserve">
-    <value>groupBox_ScanErgebnisse</value>
-  </data>
-  <data name="lbl_requests.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
-  </data>
-  <data name="&gt;&gt;btn_reloadConfig.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;lbl_resolution.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;comboBox_JoystickNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pictureBox_Screenshot_alternativ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 816</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="check_active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 15</value>
-  </data>
-  <data name="btn_reloadConfig.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items4" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lbl_resolution.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="pictureBox_Screenshot_original.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items1" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="check_deactivateGlobal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 40</value>
-  </data>
-  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>12, 12, 12, 12</value>
-  </data>
-  <data name="check_deactivateGlobal.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;lbl_originalResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;groupBox_ScanErgebnisse.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbl_originalResult.Parent" xml:space="preserve">
-    <value>groupBox_ScanErgebnisse</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Name" xml:space="preserve">
-    <value>pictureBox_Screenshot_alternativ</value>
-  </data>
   <data name="lbl_resolution.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;check_active.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btn_einstellungen.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_original.Name" xml:space="preserve">
-    <value>pictureBox_Screenshot_original</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>TSW2_Controller</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lbl_alternativeResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 13</value>
-  </data>
-  <data name="&gt;&gt;lbl_requests.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 21</value>
-  </data>
-  <data name="&gt;&gt;lbl_requests.Name" xml:space="preserve">
-    <value>lbl_requests</value>
-  </data>
-  <data name="&gt;&gt;groupBox_ScanErgebnisse.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="listBox_debugInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="groupBox_ScanErgebnisse.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="pictureBox_Screenshot_alternativ.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="lbl_requests.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 266</value>
-  </data>
-  <data name="&gt;&gt;comboBox_JoystickNumber.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;lbl_requests.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btn_einstellungen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 15</value>
-  </data>
-  <data name="pictureBox_Screenshot_alternativ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 24</value>
-  </data>
-  <data name="lbl_resolution.Text" xml:space="preserve">
-    <value>2560x1440</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="listBox_debugInfo.HorizontalScrollbar" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items3" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox_ScanErgebnisse.Text" xml:space="preserve">
-    <value>Scan Ergebnisse</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.Name" xml:space="preserve">
-    <value>lbl_schub</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lst_inputs.Name" xml:space="preserve">
-    <value>lst_inputs</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lbl_resolution.Location" type="System.Drawing.Point, System.Drawing">
     <value>243, 39</value>
   </data>
-  <data name="pictureBox_Screenshot_original.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+  <data name="lbl_resolution.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
   </data>
-  <data name="&gt;&gt;check_deactivateGlobal.Parent" xml:space="preserve">
+  <data name="lbl_resolution.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="lbl_resolution.Text" xml:space="preserve">
+    <value>2560x1440</value>
+  </data>
+  <data name="&gt;&gt;lbl_resolution.Name" xml:space="preserve">
+    <value>lbl_resolution</value>
+  </data>
+  <data name="&gt;&gt;lbl_resolution.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_resolution.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btn_reloadConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 23</value>
+  <data name="&gt;&gt;lbl_resolution.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="btn_einstellungen.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="lbl_originalResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 13</value>
+  <data name="btn_einstellungen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 15</value>
+  </data>
+  <data name="btn_einstellungen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 21</value>
+  </data>
+  <data name="btn_einstellungen.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="btn_einstellungen.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="&gt;&gt;btn_einstellungen.Name" xml:space="preserve">
+    <value>btn_einstellungen</value>
+  </data>
+  <data name="&gt;&gt;btn_einstellungen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_einstellungen.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_einstellungen.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="pictureBox_Screenshot_original.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 786</value>
+  </data>
+  <data name="pictureBox_Screenshot_original.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 24</value>
+  </data>
+  <data name="pictureBox_Screenshot_original.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBox_Screenshot_original.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_original.Name" xml:space="preserve">
+    <value>pictureBox_Screenshot_original</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_original.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_original.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_original.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="pictureBox_Screenshot_alternativ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 816</value>
+  </data>
+  <data name="pictureBox_Screenshot_alternativ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 24</value>
+  </data>
+  <data name="pictureBox_Screenshot_alternativ.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBox_Screenshot_alternativ.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Name" xml:space="preserve">
+    <value>pictureBox_Screenshot_alternativ</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="check_deactivateGlobal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_deactivateGlobal.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="check_deactivateGlobal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="check_deactivateGlobal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 40</value>
+  </data>
+  <data name="check_deactivateGlobal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
+  </data>
+  <data name="check_deactivateGlobal.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="check_deactivateGlobal.Text" xml:space="preserve">
+    <value>Deaktiviere Global</value>
   </data>
   <data name="&gt;&gt;check_deactivateGlobal.Name" xml:space="preserve">
     <value>check_deactivateGlobal</value>
+  </data>
+  <data name="&gt;&gt;check_deactivateGlobal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;check_deactivateGlobal.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;check_deactivateGlobal.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lbl_originalResult.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_originalResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="lbl_originalResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="lbl_originalResult.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="lbl_originalResult.Text" xml:space="preserve">
+    <value>lbl_originalResult</value>
+  </data>
+  <data name="&gt;&gt;lbl_originalResult.Name" xml:space="preserve">
+    <value>lbl_originalResult</value>
+  </data>
+  <data name="&gt;&gt;lbl_originalResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_originalResult.Parent" xml:space="preserve">
+    <value>groupBox_ScanErgebnisse</value>
+  </data>
+  <data name="&gt;&gt;lbl_originalResult.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbl_alternativeResult.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_alternativeResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 29</value>
+  </data>
+  <data name="lbl_alternativeResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 13</value>
+  </data>
+  <data name="lbl_alternativeResult.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="lbl_alternativeResult.Text" xml:space="preserve">
+    <value>lbl_alternativeResult</value>
+  </data>
+  <data name="&gt;&gt;lbl_alternativeResult.Name" xml:space="preserve">
+    <value>lbl_alternativeResult</value>
+  </data>
+  <data name="&gt;&gt;lbl_alternativeResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_alternativeResult.Parent" xml:space="preserve">
+    <value>groupBox_ScanErgebnisse</value>
+  </data>
+  <data name="&gt;&gt;lbl_alternativeResult.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox_ScanErgebnisse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 117</value>
+  </data>
+  <data name="groupBox_ScanErgebnisse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 52</value>
+  </data>
+  <data name="groupBox_ScanErgebnisse.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="groupBox_ScanErgebnisse.Text" xml:space="preserve">
+    <value>Scan Ergebnisse</value>
+  </data>
+  <data name="&gt;&gt;groupBox_ScanErgebnisse.Name" xml:space="preserve">
+    <value>groupBox_ScanErgebnisse</value>
+  </data>
+  <data name="&gt;&gt;groupBox_ScanErgebnisse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox_ScanErgebnisse.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox_ScanErgebnisse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbl_requests.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_requests.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 266</value>
+  </data>
+  <data name="lbl_requests.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="lbl_requests.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="lbl_requests.Text" xml:space="preserve">
+    <value>reqT:0 reqB:0</value>
+  </data>
+  <data name="&gt;&gt;lbl_requests.Name" xml:space="preserve">
+    <value>lbl_requests</value>
+  </data>
+  <data name="&gt;&gt;lbl_requests.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_requests.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbl_requests.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 221</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Joystick Nr.</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>331, 854</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -839,133 +932,40 @@
         /+B///////////////////////////////////////////////8=
 </value>
   </data>
-  <data name="comboBox_JoystickNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 218</value>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>12, 12, 12, 12</value>
   </data>
-  <data name="check_active.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>TSW2_Controller</value>
   </data>
-  <data name="comboBox_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 13</value>
+  <data name="&gt;&gt;timer_CheckSticks.Name" xml:space="preserve">
+    <value>timer_CheckSticks</value>
   </data>
-  <data name="&gt;&gt;lbl_alternativeResult.Name" xml:space="preserve">
-    <value>lbl_alternativeResult</value>
+  <data name="&gt;&gt;timer_CheckSticks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lst_inputs.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="lbl_bremse.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbl_schub.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.Name" xml:space="preserve">
-    <value>lbl_bremse</value>
-  </data>
-  <data name="listBox_debugInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 498</value>
-  </data>
-  <data name="lst_inputs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 117</value>
-  </data>
-  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="lbl_requests.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;lbl_requests.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbl_resolution.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="btn_reloadConfig.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 88</value>
-  </data>
-  <data name="lst_inputs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 95</value>
-  </data>
-  <data name="check_active.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;lbl_resolution.Name" xml:space="preserve">
-    <value>lbl_resolution</value>
-  </data>
-  <data name="lbl_alternativeResult.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbl_originalResult.Name" xml:space="preserve">
-    <value>lbl_originalResult</value>
-  </data>
-  <data name="lbl_bremse.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbl_alternativeResult.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;check_deactivateGlobal.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="comboBox_JoystickNumber.Items7" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="check_deactivateGlobal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 17</value>
-  </data>
-  <data name="check_deactivateGlobal.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="check_deactivateGlobal.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbl_alternativeResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Screenshot_alternativ.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;listBox_debugInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbl_schub.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+  <data name="&gt;&gt;bgw_Throttle.Name" xml:space="preserve">
+    <value>bgw_Throttle</value>
   </data>
   <data name="&gt;&gt;bgw_Throttle.Type" xml:space="preserve">
     <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pictureBox_Screenshot_original.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 786</value>
+  <data name="&gt;&gt;bgw_readScreen.Name" xml:space="preserve">
+    <value>bgw_readScreen</value>
   </data>
-  <data name="groupBox_ScanErgebnisse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 117</value>
+  <data name="&gt;&gt;bgw_readScreen.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="comboBox_JoystickNumber.Items6" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;bgw_Brake.Name" xml:space="preserve">
+    <value>bgw_Brake</value>
   </data>
-  <data name="lbl_bremse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 13</value>
+  <data name="&gt;&gt;bgw_Brake.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbl_bremse.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormMain</value>
   </data>
-  <metadata name="bgw_Throttle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>166, 17</value>
-  </metadata>
-  <metadata name="bgw_Brake.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>289, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bgw_readScreen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>399, 17</value>
-  </metadata>
-  <metadata name="timer_CheckSticks.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

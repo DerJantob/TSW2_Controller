@@ -162,14 +162,7 @@
     <value>2</value>
   </data>
   <data name="lbl_anleitung.Text" xml:space="preserve">
-    <value>- Stufenlosen Regler auf kleinen Wert stellen.
-
-- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)
-
-- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.
-
-- Auf Pause-Bildschirm warten.
-</value>
+    <value>-Text-</value>
   </data>
   <data name="&gt;&gt;lbl_anleitung.Name" xml:space="preserve">
     <value>lbl_anleitung</value>
