@@ -50,4 +50,4 @@ The code doesn't really look that nice since I only do programming as a hobby, b
 Please let me know if there are any spelling mistakes or anything like that. 
 # Donate
 
-[![donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=77KSK9C6GP6BL)
+[![donate](https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=77KSK9C6GP6BL)
