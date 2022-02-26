@@ -30,9 +30,7 @@ If you don't want to run the exe file, you can download `TSW2_Controller.zip`
 If you need help using the program you can look into the `Tutorials` folder.
 
 If that doesn't help you, just open a new issue
-### Demo
-
-Demo video:
+## Demo video
 
 [<img src="/Screenshots/TSW2_Controller_Gameplay.jpg" width="400"/>](https://www.youtube.com/watch?v=)
 ## Screenshots
