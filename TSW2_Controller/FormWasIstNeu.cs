@@ -23,6 +23,24 @@ namespace TSW2_Controller
         {
             List<string> changelog = new List<string>();
 
+
+            #region 1.0.0
+            if (new Version("1.0.0").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.0" + "\n");
+            
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Veröffentlichung");
+                }
+                else
+                {
+                    changelog.Add("- Release");
+                }
+            
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
             #region 1.0.1
             //if (new Version("1.0.1").CompareTo(version) > 0)
             //{
