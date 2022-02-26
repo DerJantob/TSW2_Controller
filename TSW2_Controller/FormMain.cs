@@ -21,7 +21,7 @@ namespace TSW2_Controller
     public partial class FormMain : Form
     {
         ///Todo:
-        ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an
+        ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an.
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
