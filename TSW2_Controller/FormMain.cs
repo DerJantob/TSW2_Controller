@@ -14,6 +14,7 @@ using System.IO;
 using TSW2_Controller.Properties;
 using System.Reflection;
 using System.Net;
+using Octokit;
 
 namespace TSW2_Controller
 {
@@ -90,7 +91,10 @@ namespace TSW2_Controller
             }
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
+            label2.Text = "";
             groupBox_ScanErgebnisse.Hide();
+
+            CheckGitHubNewerVersion();
 
             checkVersion();
             loadSettings();
@@ -182,6 +186,29 @@ namespace TSW2_Controller
         {
             check_active.Checked = false;
             ReadTrainConfig();
+        }
+
+        private async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        {
+            try
+            {
+                GitHubClient client = new GitHubClient(new ProductHeaderValue("DerJantob"));
+                IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("DerJantob", "TSW2_Controller");
+
+                //Setup the versions
+                Version latestGitHubVersion = new Version(releases[0].TagName);
+                Version localVersion = new Version(Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2)); //Replace this with your local version. 
+                                                                                                                                                                                                     //Only tested with numeric values.
+                int versionComparison = localVersion.CompareTo(latestGitHubVersion);
+                if (versionComparison < 0)
+                {
+                    //The version on GitHub is more up to date than this local release.
+                    label2.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
+                }
+            }
+            catch
+            {
+            }
         }
         #endregion
 

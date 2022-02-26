@@ -233,6 +233,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ist verfügbar ähnelt.
+        /// </summary>
+        internal static string ist_verfuegbar {
+            get {
+                return ResourceManager.GetString("ist verfuegbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  ist verfügbar! Möchtest du aktualisieren? ähnelt.
         /// </summary>
         internal static string ist_verfuegbar_Moechtest_du_aktualisieren {

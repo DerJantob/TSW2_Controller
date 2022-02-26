@@ -174,6 +174,9 @@
   <data name="Hmm da hat etwas nicht funktioniert Versuche es doch nochmal" xml:space="preserve">
     <value>Hmm, da hat etwas nicht funktioniert. Versuche es doch nochmal.</value>
   </data>
+  <data name="ist verfuegbar" xml:space="preserve">
+    <value>ist verfügbar</value>
+  </data>
   <data name="ist verfuegbar Moechtest du aktualisieren" xml:space="preserve">
     <value> ist verfügbar! Möchtest du aktualisieren?</value>
   </data>
