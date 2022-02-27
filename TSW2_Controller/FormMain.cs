@@ -419,7 +419,7 @@ namespace TSW2_Controller
                         formWasIstNeu.ShowDialog();
 
                         #region Update besonderheiten
-                        if (new Version("1.0.0").CompareTo(new Version(prevVersion.ToString())) > 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) >= 0)
                         {
                             Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
                             Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
@@ -430,6 +430,8 @@ namespace TSW2_Controller
                             Settings.Default.BremsIndexe_DE.AddRange(defaultDE_bremsIndexe);
                             Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
                             Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
+
+                            Settings.Default.Save();
                         }
                         #endregion
 

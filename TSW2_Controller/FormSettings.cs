@@ -302,7 +302,7 @@ namespace TSW2_Controller
                 Settings.Default.SchubIndexe = Settings.Default.SchubIndexe_DE;
                 Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_DE;
                 Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_DE;
-                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.BremsIndexe_DE;
+                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.Kombihebel_BremsIndexe_DE;
             }
             else
             {
@@ -314,7 +314,7 @@ namespace TSW2_Controller
                 Settings.Default.SchubIndexe = Settings.Default.SchubIndexe_EN;
                 Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_EN;
                 Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_EN;
-                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.BremsIndexe_EN;
+                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.Kombihebel_BremsIndexe_EN;
             }
         }
     }

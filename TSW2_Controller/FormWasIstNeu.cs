@@ -42,21 +42,23 @@ namespace TSW2_Controller
             }
             #endregion
             #region 1.0.1
-            //if (new Version("1.0.1").CompareTo(version) > 0)
-            //{
-            //    changelog.Add("v1.0.1" + "\n");
-            //
-            //    if (Settings.Default.Sprache == "de-DE")
-            //    {
-            //        changelog.Add("-");
-            //    }
-            //    else
-            //    {
-            //        changelog.Add("-");
-            //    }
-            //
-            //    changelog.Add("----------------------------------------");
-            //}
+            if (new Version("1.0.1").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.1" + "\n");
+            
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Textindikatoren wechseln mit der Sprache");
+                    changelog.Add("- Sprache wird beim erstmaligen Start automatisch erkannt");
+                }
+                else
+                {
+                    changelog.Add("- Text indicators change with the language");
+                    changelog.Add("- Language is automatically detected at first startup");
+                }
+            
+                changelog.Add("----------------------------------------");
+            }
             #endregion
 
             return changelog;
