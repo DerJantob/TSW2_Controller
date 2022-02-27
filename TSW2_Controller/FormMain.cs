@@ -22,6 +22,8 @@ namespace TSW2_Controller
     {
         ///Todo:
         ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an.
+        ///Automatisch die Sprache erkennen
+        ///Textindikatoren bei Sprachwechsel wechseln
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
