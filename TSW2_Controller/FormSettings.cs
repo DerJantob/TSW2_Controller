@@ -283,8 +283,39 @@ namespace TSW2_Controller
             {
                 Settings.Default.Sprache = "de-DE";
             }
+
+            ChangeIndicatorLanguage(Settings.Default.Sprache);
+
             Settings.Default.Save();
             System.Windows.Forms.Application.Restart();
+        }
+
+        private void ChangeIndicatorLanguage(string Sprache)
+        {
+            if(Sprache == "de-DE")
+            {
+                Settings.Default.SchubIndexe_EN = Settings.Default.SchubIndexe;
+                Settings.Default.BremsIndexe_EN = Settings.Default.BremsIndexe;
+                Settings.Default.Kombihebel_SchubIndexe_EN = Settings.Default.Kombihebel_SchubIndexe;
+                Settings.Default.Kombihebel_BremsIndexe_EN = Settings.Default.Kombihebel_BremsIndexe;
+
+                Settings.Default.SchubIndexe = Settings.Default.SchubIndexe_DE;
+                Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_DE;
+                Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_DE;
+                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.BremsIndexe_DE;
+            }
+            else
+            {
+                Settings.Default.SchubIndexe_DE = Settings.Default.SchubIndexe;
+                Settings.Default.BremsIndexe_DE = Settings.Default.BremsIndexe;
+                Settings.Default.Kombihebel_SchubIndexe_DE = Settings.Default.Kombihebel_SchubIndexe;
+                Settings.Default.Kombihebel_BremsIndexe_DE = Settings.Default.Kombihebel_BremsIndexe;
+
+                Settings.Default.SchubIndexe = Settings.Default.SchubIndexe_EN;
+                Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_EN;
+                Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_EN;
+                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.BremsIndexe_EN;
+            }
         }
     }
 }

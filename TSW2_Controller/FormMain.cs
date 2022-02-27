@@ -15,6 +15,7 @@ using TSW2_Controller.Properties;
 using System.Reflection;
 using System.Net;
 using Octokit;
+using System.Globalization;
 
 namespace TSW2_Controller
 {
@@ -99,6 +100,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
 
             checkVersion();
+            checkLanguageSetting();
             loadSettings();
             Keyboard.initKeylist();
 
@@ -316,6 +318,12 @@ namespace TSW2_Controller
             }
         }
 
+        public static void checkLanguageSetting()
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
+            System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
+        }
+
         public Bitmap Screenshot(bool normal)
         {
             //Breite und Höhe des ScanFensters
@@ -405,18 +413,61 @@ namespace TSW2_Controller
                     if (prevVersion != null)
                     {
                         //Update
+                        Settings.Default.Upgrade();
+
                         FormWasIstNeu formWasIstNeu = new FormWasIstNeu(prevVersion.ToString());
                         formWasIstNeu.ShowDialog();
 
-                        Settings.Default.Upgrade();
+                        #region Update besonderheiten
+                        if (new Version("1.0.0").CompareTo(new Version(prevVersion.ToString())) > 0)
+                        {
+                            Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
+                            Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
+                            Settings.Default.Kombihebel_SchubIndexe_EN.AddRange(defaultEN_kombihebel_schubIndexe);
+                            Settings.Default.Kombihebel_BremsIndexe_EN.AddRange(defaultEN_kombihebel_bremsIndexe);
+
+                            Settings.Default.SchubIndexe_DE.AddRange(defaultDE_schubIndexe);
+                            Settings.Default.BremsIndexe_DE.AddRange(defaultDE_bremsIndexe);
+                            Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
+                            Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
+                        }
+                        #endregion
+
                     }
                     else
                     {
                         //Neuinstallation
-                        Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe); Settings.Default.Save();
-                        Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe); Settings.Default.Save();
-                        Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultDE_kombihebel_schubIndexe); Settings.Default.Save();
-                        Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultDE_kombihebel_bremsIndexe); Settings.Default.Save();
+                        CultureInfo ci = CultureInfo.InstalledUICulture;
+                        if (ci.Name == "de-DE")
+                        {
+                            Settings.Default.Sprache = "de-DE";
+                            Settings.Default.Save();
+                        }
+
+                        Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
+                        Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
+                        Settings.Default.Kombihebel_SchubIndexe_EN.AddRange(defaultEN_kombihebel_schubIndexe);
+                        Settings.Default.Kombihebel_BremsIndexe_EN.AddRange(defaultEN_kombihebel_bremsIndexe);
+
+                        Settings.Default.SchubIndexe_DE.AddRange(defaultDE_schubIndexe);
+                        Settings.Default.BremsIndexe_DE.AddRange(defaultDE_bremsIndexe);
+                        Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
+                        Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
+
+                        if (Sprache.SprachenName == "Deutsch")
+                        {
+                            Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe); Settings.Default.Save();
+                            Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe); Settings.Default.Save();
+                            Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultDE_kombihebel_schubIndexe); Settings.Default.Save();
+                            Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultDE_kombihebel_bremsIndexe); Settings.Default.Save();
+                        }
+                        else
+                        {
+                            Settings.Default.SchubIndexe.AddRange(defaultEN_schubIndexe); Settings.Default.Save();
+                            Settings.Default.BremsIndexe.AddRange(defaultEN_bremsIndexe); Settings.Default.Save();
+                            Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultEN_kombihebel_schubIndexe); Settings.Default.Save();
+                            Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultEN_kombihebel_bremsIndexe); Settings.Default.Save();
+                        }
                     }
 
                     Settings.Default.UpdateErforderlich = false;
