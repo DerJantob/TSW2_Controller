@@ -23,8 +23,6 @@ namespace TSW2_Controller
     {
         ///Todo:
         ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an.
-        ///Automatisch die Sprache erkennen
-        ///Textindikatoren bei Sprachwechsel wechseln
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
@@ -80,6 +78,9 @@ namespace TSW2_Controller
 
         public FormMain()
         {
+            checkVersion();
+            checkLanguageSetting();
+
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
             {
@@ -99,8 +100,6 @@ namespace TSW2_Controller
 
             CheckGitHubNewerVersion();
 
-            checkVersion();
-            checkLanguageSetting();
             loadSettings();
             Keyboard.initKeylist();
 
@@ -421,6 +420,7 @@ namespace TSW2_Controller
                         #region Update besonderheiten
                         if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) >= 0)
                         {
+                            //Neue Einstellung muss mit Daten gefüllt werden
                             Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
                             Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
                             Settings.Default.Kombihebel_SchubIndexe_EN.AddRange(defaultEN_kombihebel_schubIndexe);
@@ -442,6 +442,7 @@ namespace TSW2_Controller
                         CultureInfo ci = CultureInfo.InstalledUICulture;
                         if (ci.Name == "de-DE")
                         {
+                            //Sprache von Windows
                             Settings.Default.Sprache = "de-DE";
                             Settings.Default.Save();
                         }

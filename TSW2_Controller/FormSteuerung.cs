@@ -32,7 +32,7 @@ namespace TSW2_Controller
             comboBoxT0_Zugauswahl.SelectedItem = Tcfg.nameForGlobal;
 
             lblT1_KnopfNr.Text = Sprache.lblT1_KnopfNr;
-            lblT3_AnzahlStufen.Text = "";
+            lblT3_AnzahlStufen.Hide();
             lblT1_Bedingung.Hide();
             txtT1_Bedingung.Hide();
 
@@ -453,7 +453,7 @@ namespace TSW2_Controller
             }
             else if (radioT2_Halten.Checked)
             {
-                listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold " + lblT2_haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
+                listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold " + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
             }
             else if (radioT2_Druecken.Checked)
             {

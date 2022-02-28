@@ -17,8 +17,6 @@ namespace TSW2_Controller
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            FormMain.checkLanguageSetting();
-
             Application.Run(new FormMain());
         }
     }
