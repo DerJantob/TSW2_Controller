@@ -85,6 +85,7 @@
             this.comboBox_Zugauswahl.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.Name = "comboBox_Zugauswahl";
+            this.comboBox_Zugauswahl.Sorted = true;
             this.comboBox_Zugauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBox_Zugauswahl_SelectedIndexChanged);
             // 
             // timer_CheckSticks

@@ -413,7 +413,7 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Zugauswahl ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Zugauswahl ähnelt.
         /// </summary>
         internal static string Zugauswahl {
             get {

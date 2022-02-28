@@ -106,10 +106,10 @@
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.radio_kombihebel);
             this.panel1.Controls.Add(this.radio_Stufenlos);
             this.panel1.Controls.Add(this.radio_Stufen);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // radio_kombihebel
@@ -121,9 +121,9 @@
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.radio_Schub);
             this.panel2.Controls.Add(this.radio_Bremse);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // radio_Schub
@@ -148,12 +148,12 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txt_taste);
             this.groupBox1.Controls.Add(this.btn_start_longpress);
             this.groupBox1.Controls.Add(this.txt_dauer);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
