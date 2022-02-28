@@ -78,8 +78,8 @@ namespace TSW2_Controller
 
         public FormMain()
         {
-            checkLanguageSetting();
             checkVersion();
+            checkLanguageSetting();
 
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
@@ -413,6 +413,7 @@ namespace TSW2_Controller
                     {
                         //Update
                         Settings.Default.Upgrade();
+                        checkLanguageSetting();
 
                         FormWasIstNeu formWasIstNeu = new FormWasIstNeu(prevVersion.ToString());
                         formWasIstNeu.ShowDialog();
