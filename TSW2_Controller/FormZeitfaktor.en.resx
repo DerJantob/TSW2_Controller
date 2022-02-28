@@ -167,7 +167,7 @@
     <value>158, 290</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
+    <value>69, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Duration [ms]</value>
@@ -473,5 +473,8 @@
         AD/+AAAAAAAAf/4AAAAAAAB//wAAAAAAAP//gAAAAAAB///AAAAAAAP///AAAAAAD///+AAAAAAf///8
         AAAAAD////8AAAAA/////8AAAAP/////8AAAD///////AAD///8=
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Time factor</value>
   </data>
 </root>

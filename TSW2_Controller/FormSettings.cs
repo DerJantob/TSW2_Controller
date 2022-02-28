@@ -59,7 +59,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
         }
 
-        private async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        private async void CheckGitHubNewerVersion()
         {
             try
             {
@@ -283,8 +283,64 @@ namespace TSW2_Controller
             {
                 Settings.Default.Sprache = "de-DE";
             }
+
+            ChangeIndicatorLanguage(Settings.Default.Sprache);
+
             Settings.Default.Save();
             System.Windows.Forms.Application.Restart();
+        }
+
+        private void ChangeIndicatorLanguage(string Sprache)
+        {
+            if(Sprache == "de-DE")
+            {
+                Settings.Default.SchubIndexe_EN = Settings.Default.SchubIndexe;
+                Settings.Default.BremsIndexe_EN = Settings.Default.BremsIndexe;
+                Settings.Default.Kombihebel_SchubIndexe_EN = Settings.Default.Kombihebel_SchubIndexe;
+                Settings.Default.Kombihebel_BremsIndexe_EN = Settings.Default.Kombihebel_BremsIndexe;
+
+                Settings.Default.SchubIndexe = Settings.Default.SchubIndexe_DE;
+                Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_DE;
+                Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_DE;
+                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.Kombihebel_BremsIndexe_DE;
+            }
+            else
+            {
+                Settings.Default.SchubIndexe_DE = Settings.Default.SchubIndexe;
+                Settings.Default.BremsIndexe_DE = Settings.Default.BremsIndexe;
+                Settings.Default.Kombihebel_SchubIndexe_DE = Settings.Default.Kombihebel_SchubIndexe;
+                Settings.Default.Kombihebel_BremsIndexe_DE = Settings.Default.Kombihebel_BremsIndexe;
+
+                Settings.Default.SchubIndexe = Settings.Default.SchubIndexe_EN;
+                Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_EN;
+                Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_EN;
+                Settings.Default.Kombihebel_BremsIndexe = Settings.Default.Kombihebel_BremsIndexe_EN;
+            }
+        }
+
+        private void btn_textindikator_StandardLaden_Click(object sender, EventArgs e)
+        {
+            comboBox_Schub.Items.Clear();
+            comboBox_Bremse.Items.Clear();
+            comboBox_kombiSchub.Items.Clear();
+            comboBox_kombiBremse.Items.Clear();
+
+            if (Sprache.SprachenName == "Deutsch")
+            {
+                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_DE.Cast<string>().ToArray());
+                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_DE.Cast<string>().ToArray());
+                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe_DE.Cast<string>().ToArray());
+                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_DE.Cast<string>().ToArray());
+                MessageBox.Show("Textindikatoren wurden zurückgesetzt!");
+            }
+            else
+            {
+                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_EN.Cast<string>().ToArray());
+                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_EN.Cast<string>().ToArray());
+                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe_EN.Cast<string>().ToArray());
+                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_EN.Cast<string>().ToArray());
+                MessageBox.Show("Text indicators have been reset!");
+            }
         }
     }
 }

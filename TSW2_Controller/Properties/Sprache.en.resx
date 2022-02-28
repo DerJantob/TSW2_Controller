@@ -235,6 +235,6 @@
     <value>Do you really want to remove "</value>
   </data>
   <data name="Zugauswahl" xml:space="preserve">
-    <value>Select train</value>
+    <value>_Select train</value>
   </data>
 </root>
