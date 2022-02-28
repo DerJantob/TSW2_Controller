@@ -52,6 +52,7 @@ namespace TSW2_Controller
                     changelog.Add("- Sprache wird beim erstmaligen Start automatisch erkannt");
                     changelog.Add("- Fix für komisches Verhalten bei den Sonderfällen beim Kombihebel");
                     changelog.Add("- Andere kleinen Korrekturen");
+                    changelog.Add("\n\n- Video tutorial hinzugefügt (auf englisch)");
                 }
                 else
                 {
@@ -59,6 +60,7 @@ namespace TSW2_Controller
                     changelog.Add("- Language is automatically detected at first startup");
                     changelog.Add("- Fix for strange behavior in the special cases with the master controller");
                     changelog.Add("- Other small fixes");
+                    changelog.Add("\n\n- Video tutorial added");
                 }
             
                 changelog.Add("----------------------------------------");

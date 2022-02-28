@@ -78,8 +78,8 @@ namespace TSW2_Controller
 
         public FormMain()
         {
-            checkVersion();
             checkLanguageSetting();
+            checkVersion();
 
             InitializeComponent();
             if (!File.Exists(Tcfg.configpfad))
@@ -191,7 +191,7 @@ namespace TSW2_Controller
             ReadTrainConfig();
         }
 
-        private async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        private async void CheckGitHubNewerVersion()
         {
             try
             {
@@ -1365,10 +1365,6 @@ namespace TSW2_Controller
             if (original_result == "")
             {
                 alternative_result = GetText(Screenshot(false));
-                if (alternative_result == "")
-                {
-                    goto Ende;
-                }
             }
 
 
@@ -1485,7 +1481,6 @@ namespace TSW2_Controller
                 }
 
             }
-        Ende:;
         }
         private void bgw_readScreen_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -1560,11 +1555,7 @@ namespace TSW2_Controller
                 #region Kombihebel
                 if (isKombihebel)
                 {
-                    if(schubFaktor == 0)
-                    {
-                        schubFaktor = 1;
-                    }
-                    else if (kombihebel_bremsIndexe.Any(result.Contains) && result != "")
+                    if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                     {
                         schubFaktor = -1;
                     }
@@ -1588,6 +1579,10 @@ namespace TSW2_Controller
                 }
                 #endregion
 
+                if (schubFaktor == 0)
+                {
+                    schubFaktor = 1;
+                }
 
                 if (erkannterWert == noResultValue)
                 {

@@ -59,7 +59,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
         }
 
-        private async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        private async void CheckGitHubNewerVersion()
         {
             try
             {
