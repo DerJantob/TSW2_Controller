@@ -50,11 +50,15 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Textindikatoren wechseln mit der Sprache");
                     changelog.Add("- Sprache wird beim erstmaligen Start automatisch erkannt");
+                    changelog.Add("- Fix für komisches Verhalten bei den Sonderfällen beim Kombihebel");
+                    changelog.Add("- Andere kleinen Korrekturen");
                 }
                 else
                 {
                     changelog.Add("- Text indicators change with the language");
                     changelog.Add("- Language is automatically detected at first startup");
+                    changelog.Add("- Fix for strange behavior in the special cases with the master controller");
+                    changelog.Add("- Other small fixes");
                 }
             
                 changelog.Add("----------------------------------------");

@@ -1551,6 +1551,7 @@ namespace TSW2_Controller
                         if (ContainsWord(result, word) && singleSpezial != "")
                         {
                             erkannterWert = entsprechendeNummer;
+                            schubFaktor = 0;
                             break;
                         }
                     }
@@ -1559,10 +1560,15 @@ namespace TSW2_Controller
                 #region Kombihebel
                 if (isKombihebel)
                 {
-                    if (kombihebel_bremsIndexe.Any(result.Contains) && result != "")
+                    if(schubFaktor == 0)
+                    {
+                        schubFaktor = 1;
+                    }
+                    else if (kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                     {
                         schubFaktor = -1;
                     }
+
                     foreach (string bremsIndex in kombihebel_bremsIndexe)
                     {
                         if (ContainsWord(result, bremsIndex) && result != "")
