@@ -94,11 +94,11 @@ namespace TSW2_Controller
             {
                 if (Sprache.SprachenName == "Deutsch")
                 {
-                    MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden");
+                    MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden.\n\nDas kann eventuell daran liegen dass das Anfragelimit überschritten wurde. Das wird nach einer Stunde zurückgesetzt.");
                 }
                 else
                 {
-                    MessageBox.Show("Could not reach \"github.com/DerJantob/TSW2_Controller\"");
+                    MessageBox.Show("Could not reach \"github.com/DerJantob/TSW2_Controller\"\n\nThis may be due to the fact that the request limit has been exceeded. This is reset after one hour.");
                 }
             }
         }
