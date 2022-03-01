@@ -26,14 +26,18 @@ Just download the `TSW2_Controller_Setup.exe` file under `Releases` and run the 
 
 If you don't want to run the exe file, you can download `TSW2_Controller.zip`
 
+## Demo video
+
+[<img src="/Screenshots/TSW2_Controller_Gameplay.jpg" width="400"/>](https://www.youtube.com/watch?v=thSA23tDu9M)
 ## Tutorials / help
 
 If you need help using the program you can look into the `Tutorials` folder.
 
 If that doesn't help you, just open a new issue
-## Demo video
 
-[<img src="/Screenshots/TSW2_Controller_Gameplay.jpg" width="400"/>](https://www.youtube.com/watch?v=thSA23tDu9M)
+Video tutorial:
+
+[<img src="/Screenshots/TSW2_Controller_Tutorial_Moment.png" width="400"/>](https://www.youtube.com/watch?v=OWzzWSfhy1s)
 ## Screenshots
 
 <img src="/Screenshots/mainEN.png" width="300"/> <img src="/Screenshots/mainDE.png" width="300"/>
