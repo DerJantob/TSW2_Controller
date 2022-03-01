@@ -23,6 +23,7 @@ namespace TSW2_Controller
     {
         ///Todo:
         ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an.
+        ///Reset button für Config und Einstellungen
 
         DirectInput input = new DirectInput();
         Joystick mainStick;
