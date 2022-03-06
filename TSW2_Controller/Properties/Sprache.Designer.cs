@@ -61,6 +61,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Alle Züge gehen dabei verloren! ähnelt.
+        /// </summary>
+        internal static string Alle_Zuege_gehen_dabei_verloren {
+            get {
+                return ResourceManager.GetString("Alle Zuege gehen dabei verloren", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Als Wert für den Zeitfaktor kannst du nun  ähnelt.
         /// </summary>
         internal static string Als_Wert_für_den_Zeitfaktor_kannst_du_nun {
@@ -120,6 +129,15 @@ namespace TSW2_Controller.Properties {
         internal static string Du_hast_noch_keinen_Startwert_eingetragen {
             get {
                 return ResourceManager.GetString("Du_hast_noch_keinen_Startwert_eingetragen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen von  ähnelt.
+        /// </summary>
+        internal static string Einstellungen_von {
+            get {
+                return ResourceManager.GetString("Einstellungen von", resourceCulture);
             }
         }
         
@@ -373,6 +391,15 @@ namespace TSW2_Controller.Properties {
         internal static string Stelle_den_Regler_nun_auf_den_bremswert {
             get {
                 return ResourceManager.GetString("Stelle den Regler nun auf den bremswert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  uebernehmen ähnelt.
+        /// </summary>
+        internal static string uebernehmen {
+            get {
+                return ResourceManager.GetString("uebernehmen", resourceCulture);
             }
         }
         

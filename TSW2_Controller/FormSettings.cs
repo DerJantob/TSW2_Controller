@@ -254,7 +254,6 @@ namespace TSW2_Controller
             }
             else
             {
-                btn_trainconfigHinzufuegen.Text = "Hinzufügen";
                 btn_trainconfigLoeschen.Enabled = true;
                 btn_trainconfigHinzufuegen.Enabled = true;
                 btn_trainconfigHinzufuegen.Enabled = true;
@@ -282,7 +281,7 @@ namespace TSW2_Controller
             if (!comboBox_TrainConfig.Items.Contains(comboBox_TrainConfig.Text))
             {
                 //Hinzufügen
-                if (MessageBox.Show("Einstellungen von " + Settings.Default.selectedTrainConfig + " übernehmen?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Sprache.Einstellungen_von + Settings.Default.selectedTrainConfig + Sprache.uebernehmen + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", true);
                 }
@@ -303,7 +302,7 @@ namespace TSW2_Controller
             {
                 if (File.Exists(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv"))
                 {
-                    if (MessageBox.Show("Möchtest du wirklich " + comboBox_TrainConfig.Text + " löschen?\nAlle Züge gehen dabei verloren!", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Moechtest_du + comboBox_TrainConfig.Text + Sprache.loeschen + "\n" + Sprache.Alle_Zuege_gehen_dabei_verloren, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         File.Delete(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv");
                         Settings.Default.selectedTrainConfig = "_Standard";
@@ -333,7 +332,7 @@ namespace TSW2_Controller
             }
             catch
             {
-                MessageBox.Show("Fehler mit der Trainconfig");
+                MessageBox.Show("Error with Trainconfig");
             }
             Settings.Default.Save();
         }
