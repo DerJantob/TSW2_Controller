@@ -94,6 +94,10 @@ namespace TSW2_Controller
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
                 }
             }
+            if (!Directory.Exists(Tcfg.configSammelungPfad))
+            {
+                Directory.CreateDirectory(Tcfg.configSammelungPfad);
+            }
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             label2.Text = "";
@@ -420,7 +424,7 @@ namespace TSW2_Controller
                         formWasIstNeu.ShowDialog();
 
                         #region Update besonderheiten
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) >= 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) <= 0)
                         {
                             //Neue Einstellung muss mit Daten gefüllt werden
                             Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
@@ -433,6 +437,21 @@ namespace TSW2_Controller
                             Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
                             Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
 
+                            Settings.Default.Save();
+                        }
+                        else if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.1")) <= 0)
+                        {
+                            bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
+                            if (!areEqual)
+                            {
+                                Directory.CreateDirectory(Tcfg.configSammelungPfad);
+                                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + "yourConfig.csv");
+                                Settings.Default.selectedTrainConfig = "yourConfig";
+                            }
+                            else
+                            {
+                                Settings.Default.selectedTrainConfig = "_Standard";
+                            }
                             Settings.Default.Save();
                         }
                         #endregion
@@ -1528,14 +1547,6 @@ namespace TSW2_Controller
                 result = result.Remove(0, result.IndexOf(config[0]) + config[0].Length).Replace("\n", "");
                 result = result.Trim();
 
-                if (isKombihebel)
-                {
-                    result = result.Replace("%", "");
-                }
-                else if (result.Contains("%"))
-                {
-                    result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
-                }
 
                 if (config[3].Length > 0)
                 {
@@ -1548,42 +1559,48 @@ namespace TSW2_Controller
                         if (ContainsWord(result, word) && singleSpezial != "")
                         {
                             erkannterWert = entsprechendeNummer;
-                            schubFaktor = 0;
                             break;
                         }
                     }
                 }
 
-                #region Kombihebel
-                if (isKombihebel)
+                if (erkannterWert == noResultValue)
                 {
-                    if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
+                    if (isKombihebel)
                     {
-                        schubFaktor = -1;
+                        result = result.Replace("%", "");
+                    }
+                    else if (result.Contains("%"))
+                    {
+                        result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
                     }
 
-                    foreach (string bremsIndex in kombihebel_bremsIndexe)
+                    #region Kombihebel
+                    if (isKombihebel)
                     {
-                        if (ContainsWord(result, bremsIndex) && result != "")
+                        if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                         {
-                            result = result.Replace(bremsIndex, "");
-                            result = result.Remove(result.Length - 1);
+                            schubFaktor = -1;
                         }
-                    }
-                    foreach (string schubIndex in kombihebel_schubIndexe)
-                    {
-                        if (ContainsWord(result, schubIndex) && result != "")
-                        {
-                            result = result.Replace(schubIndex, "");
-                            result = result.Remove(result.Length - 1);
-                        }
-                    }
-                }
-                #endregion
 
-                if (schubFaktor == 0)
-                {
-                    schubFaktor = 1;
+                        foreach (string bremsIndex in kombihebel_bremsIndexe)
+                        {
+                            if (ContainsWord(result, bremsIndex) && result != "")
+                            {
+                                result = result.Replace(bremsIndex, "");
+                                result = result.Remove(result.Length - 1);
+                            }
+                        }
+                        foreach (string schubIndex in kombihebel_schubIndexe)
+                        {
+                            if (ContainsWord(result, schubIndex) && result != "")
+                            {
+                                result = result.Replace(schubIndex, "");
+                                result = result.Remove(result.Length - 1);
+                            }
+                        }
+                    }
+                    #endregion
                 }
 
                 if (erkannterWert == noResultValue)
