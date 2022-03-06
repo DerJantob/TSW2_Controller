@@ -83,6 +83,25 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 1.0.1
+            if (new Version("1.0.2").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.2" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
+                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");
+                }
+                else
+                {
+                    changelog.Add("- You can now switch between trainconfigs in the settings");
+                    changelog.Add("- Bugfix: Special cases could not read \"%\"");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }

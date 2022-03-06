@@ -451,7 +451,7 @@ namespace TSW2_Controller
                         {
                             if(File.Exists(Tcfg.configpfad))
                             {
-                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv");
+                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv",true);
                             }
                             bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
                             if (!areEqual)
