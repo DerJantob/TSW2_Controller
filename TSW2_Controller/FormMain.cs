@@ -98,6 +98,14 @@ namespace TSW2_Controller
             {
                 Directory.CreateDirectory(Tcfg.configSammelungPfad);
             }
+            if (Settings.Default.selectedTrainConfig == "_Standard")
+            {
+                File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
+            }
+            else
+            {
+                File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
+            }
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             label2.Text = "";
@@ -439,18 +447,18 @@ namespace TSW2_Controller
 
                             Settings.Default.Save();
                         }
-                        else if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.1")) <= 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.1")) <= 0)
                         {
+                            if(File.Exists(Tcfg.configpfad))
+                            {
+                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv");
+                            }
                             bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
                             if (!areEqual)
                             {
                                 Directory.CreateDirectory(Tcfg.configSammelungPfad);
                                 File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + "yourConfig.csv");
                                 Settings.Default.selectedTrainConfig = "yourConfig";
-                            }
-                            else
-                            {
-                                Settings.Default.selectedTrainConfig = "_Standard";
                             }
                             Settings.Default.Save();
                         }
