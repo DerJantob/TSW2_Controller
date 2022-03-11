@@ -422,6 +422,10 @@ namespace TSW2_Controller
                     }
                 }
             }
+            else
+            {
+                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv",true);
+            }
         }
 
         private void btn_Sprache_Click(object sender, EventArgs e)
