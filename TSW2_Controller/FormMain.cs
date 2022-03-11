@@ -21,10 +21,6 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
-        ///Todo:
-        ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an.
-        ///Reset button für Config und Einstellungen
-
         DirectInput input = new DirectInput();
         Joystick mainStick;
         public static Joystick[] MainSticks;
@@ -449,9 +445,9 @@ namespace TSW2_Controller
                         }
                         if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.1")) <= 0)
                         {
-                            if(File.Exists(Tcfg.configpfad))
+                            if (File.Exists(Tcfg.configpfad))
                             {
-                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv",true);
+                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
                             }
                             bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
                             if (!areEqual)
