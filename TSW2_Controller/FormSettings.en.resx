@@ -139,12 +139,6 @@
   <data name="btn_updates.Text" xml:space="preserve">
     <value>check updates</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 178</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Text indicators</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btn_textindikator_StandardLaden.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -155,32 +149,26 @@
   <data name="btn_textindikator_StandardLaden.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 126</value>
-  </data>
-  <data name="tab_schubLeistung.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 100</value>
-  </data>
-  <data name="tab_schubLeistung.Text" xml:space="preserve">
-    <value>Throttle/Brake</value>
-  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Brake</value>
   </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
+    <value>133, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Throttle</value>
+    <value>Throttle / Master Controller</value>
   </data>
-  <data name="tab_kombihebel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tab_schubLeistung.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 100</value>
   </data>
-  <data name="tab_kombihebel.Text" xml:space="preserve">
-    <value>Master Controller</value>
+  <data name="tab_schubLeistung.Text" xml:space="preserve">
+    <value>Throttle/Brake</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -194,6 +182,21 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Throttle area</value>
   </data>
+  <data name="tab_kombihebel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 100</value>
+  </data>
+  <data name="tab_kombihebel.Text" xml:space="preserve">
+    <value>Master Controller</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 126</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 178</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Text indicators</value>
+  </data>
   <data name="btn_changelog.Text" xml:space="preserve">
     <value>Whats new?</value>
   </data>
@@ -205,6 +208,12 @@
   </data>
   <data name="btn_Sprache.Text" xml:space="preserve">
     <value>Deutsch</value>
+  </data>
+  <data name="btn_trainconfigHinzufuegen.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="btn_trainconfigLoeschen.Text" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -492,9 +501,6 @@
         //////AAA///////8AAD///////4AAP///////xgB////////AAH///////+AA////////8AH///////
         /+B///////////////////////////////////////////////8=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Settings</value>
