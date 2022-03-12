@@ -171,8 +171,10 @@ namespace TSW2_Controller
             {
                 check_active.BackColor = Color.Lime;
                 Log.Add("--------------------");
-                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add("Active Train:");foreach(string[] train in activeTrain) { Log.Add("  " + string.Join(",",train)); }Log.Add("");
                 Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add("Language:" + Settings.Default.Sprache);
                 Log.Add("Textindicators:");
                 Log.Add("   Throttle/Brake:");
                 Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
