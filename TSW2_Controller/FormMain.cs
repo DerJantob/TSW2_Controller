@@ -171,7 +171,8 @@ namespace TSW2_Controller
             {
                 check_active.BackColor = Color.Lime;
                 Log.Add("--------------------");
-                Log.Add("Active Train:");foreach(string[] train in activeTrain) { Log.Add("  " + string.Join(",",train)); }Log.Add("");
+                Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add("  " + string.Join(",", train)); }
+                Log.Add("");
                 Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
                 Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
                 Log.Add("Language:" + Settings.Default.Sprache);
@@ -1254,18 +1255,15 @@ namespace TSW2_Controller
                     ConvertLongPress(true, false); ;
                     int diffSchub = schubSoll - schubIst;
 
-                    for (int i = 0; i < Math.Abs(diffSchub); i++)
+                    if (diffSchub > 0)
                     {
-                        if (diffSchub > 0)
-                        {
-                            Keyboard.HoldKey(Keyboard.increaseThrottle, delay);
-                        }
-                        else
-                        {
-                            Keyboard.HoldKey(Keyboard.decreaseThrottle, delay);
-                        }
-                        Thread.Sleep(80);
+                        Keyboard.HoldKey(Keyboard.increaseThrottle, delay * Math.Abs(diffSchub));
                     }
+                    else
+                    {
+                        Keyboard.HoldKey(Keyboard.decreaseThrottle, delay * Math.Abs(diffSchub));
+                    }
+                    Thread.Sleep(80);
                     requestThrottle = 3;
                     schubIst = schubSoll;
                 }
@@ -1309,18 +1307,16 @@ namespace TSW2_Controller
                     ConvertLongPress(false, false);
                     int diffBremse = bremseSoll - bremseIst;
 
-                    for (int i = 0; i < Math.Abs(diffBremse); i++)
+                    if (diffBremse > 0)
                     {
-                        if (diffBremse > 0)
-                        {
-                            Keyboard.HoldKey(Keyboard.increaseBrake, delay);
-                        }
-                        else
-                        {
-                            Keyboard.HoldKey(Keyboard.decreaseBrake, delay);
-                        }
-                        Thread.Sleep(80);
+                        Keyboard.HoldKey(Keyboard.increaseBrake, delay * Math.Abs(diffBremse));
                     }
+                    else
+                    {
+                        Keyboard.HoldKey(Keyboard.decreaseBrake, delay * Math.Abs(diffBremse));
+                    }
+                    Thread.Sleep(80);
+
                     requestBrake = 2;
                     bremseIst = bremseSoll;
                 }
@@ -1707,7 +1703,7 @@ namespace TSW2_Controller
                                         {
                                             if (seperated_textinput.Length >= o + i)
                                             {
-                                                seperated_textinput[i+o] = "";
+                                                seperated_textinput[i + o] = "";
                                             }
                                         }
 
