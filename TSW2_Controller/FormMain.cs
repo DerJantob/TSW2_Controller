@@ -31,7 +31,7 @@ namespace TSW2_Controller
         List<string[]> activeTrain = new List<string[]>();
         public List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
-        List<string> debugData = new List<string>();
+        List<string> logData = new List<string>();
         List<string> schubIndexe = new List<string>();
         List<string> bremsIndexe = new List<string>();
         List<string> kombihebel_schubIndexe = new List<string>();
@@ -69,7 +69,7 @@ namespace TSW2_Controller
         int bremseIst = 0;
         int bremseSoll = 0;
 
-        public List<string> DebugData { get => debugData; set => debugData = value; }
+        public List<string> Log { get => logData; set => logData = value; }
 
 
 
@@ -79,6 +79,8 @@ namespace TSW2_Controller
             checkLanguageSetting();
 
             InitializeComponent();
+
+            #region Dateistruktur überprüfen
             if (!File.Exists(Tcfg.configpfad))
             {
                 if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
@@ -102,6 +104,16 @@ namespace TSW2_Controller
             {
                 File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
             }
+            if (!Directory.Exists(Tcfg.logpfad))
+            {
+                Directory.CreateDirectory(Tcfg.logpfad);
+            }
+            if (File.Exists(Tcfg.logpfad + "log.txt"))
+            {
+                File.Delete(Tcfg.logpfad + "log.txt");
+            }
+            #endregion
+
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             label2.Text = "";
@@ -110,6 +122,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
 
             loadSettings();
+
             Keyboard.initKeylist();
 
             comboBox_JoystickNumber.SelectedIndex = 0;
@@ -157,10 +170,24 @@ namespace TSW2_Controller
             if (check_active.Checked)
             {
                 check_active.BackColor = Color.Lime;
+                Log.Add("--------------------");
+                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+                Log.Add("Textindicators:");
+                Log.Add("   Throttle/Brake:");
+                Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
+                Log.Add("       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
+                Log.Add("   MasterController:");
+                Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
+                Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
+                Log.Add("Active = true");
+                Log.Add("");
             }
             else
             {
                 check_active.BackColor = Color.Red;
+                Log.Add("Active = false");
+                Log.Add("--------------------");
             }
         }
 
@@ -701,14 +728,16 @@ namespace TSW2_Controller
             try
             {
                 string[] listArray = listBox_debugInfo.Items.OfType<string>().ToArray();
-                if (listArray.Count() < DebugData.Count())
+                if (listArray.Count() < Log.Count())
                 {
-                    int diff = DebugData.Count() - listArray.Count();
-                    for (int i = 1; i <= diff; i++)
+                    int diff = Log.Count() - listArray.Count();
+                    for (int i = 0; i < diff; i++)
                     {
-                        listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + DebugData[DebugData.Count() - i]);
+                        listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + Log[Log.Count() - diff + i]);
+                        File.AppendAllText(Tcfg.logpfad + "log.txt", DateTime.Now.ToString("HH:mm:ss") + "    " + Log[Log.Count() - diff + i] + "\n");
                     }
                     listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
+                    listBox_debugInfo.SelectedIndex = -1;
                 }
             }
             catch { }
@@ -1326,7 +1355,7 @@ namespace TSW2_Controller
                         //Mehr
                         if (ist == untere_grenze)
                         {
-                            DebugData.Add("Halte mehr gedrückt");
+                            Log.Add("Halte mehr gedrückt");
                             Keyboard.HoldKey(Keyboard.increaseThrottle, dauer);
                             ist = obere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
@@ -1334,7 +1363,7 @@ namespace TSW2_Controller
                         }
                         else if (ist < untere_grenze)
                         {
-                            DebugData.Add("Anpassen auf hoch " + untere_grenze);
+                            Log.Add("Anpassen auf hoch " + untere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(keyIncrease, 10);
@@ -1347,7 +1376,7 @@ namespace TSW2_Controller
                         //Weniger
                         if (ist == obere_grenze)
                         {
-                            DebugData.Add("Halte weniger gedrückt");
+                            Log.Add("Halte weniger gedrückt");
                             Keyboard.HoldKey(keyDecrease, dauer);
                             ist = untere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
@@ -1355,7 +1384,7 @@ namespace TSW2_Controller
                         }
                         else if (ist > obere_grenze)
                         {
-                            DebugData.Add("Anpassen auf runter " + obere_grenze);
+                            Log.Add("Anpassen auf runter " + obere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 10);
@@ -1399,6 +1428,10 @@ namespace TSW2_Controller
             }
 
 
+            if (original_result != "") { Log.Add("original_result:" + original_result.Replace("\n", "")); }
+            if (alternative_result != "") { Log.Add("alternative_result:" + alternative_result.Replace("\n", "")); }
+
+
             //Zeige Scan-Ergebnisse
             bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
 
@@ -1427,7 +1460,7 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                if (maxLength > 0) { DebugData.Add("SchubIndex = " + throttleConfig[0]); }
+                if (maxLength > 0) { Log.Add("Throttle indicator = " + throttleConfig[0]); }
                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
             }
             #endregion
@@ -1452,7 +1485,7 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                if (maxLength > 0) { DebugData.Add("BremsIndex = " + throttleConfig[0]); }
+                if (maxLength > 0) { Log.Add("Brake indicator = " + throttleConfig[0]); }
                 Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
             }
             #endregion
@@ -1480,6 +1513,7 @@ namespace TSW2_Controller
                     {
                         requestThrottle--;
                         schubIst = erkannterWert;
+                        Log.Add("Throttle is " + erkannterWert);
                     }
                     else if (cancelThrottleRequest == -1)
                     {
@@ -1498,6 +1532,7 @@ namespace TSW2_Controller
                     {
                         requestBrake--;
                         bremseIst = erkannterWert;
+                        Log.Add("Brake is " + erkannterWert);
                     }
                     else if (cancelBrakeRequest == -1)
                     {
@@ -1563,6 +1598,7 @@ namespace TSW2_Controller
                         if (ContainsWord(result, word) && singleSpezial != "")
                         {
                             erkannterWert = entsprechendeNummer;
+                            Log.Add(word + "=" + entsprechendeNummer);
                             break;
                         }
                     }
@@ -1585,6 +1621,11 @@ namespace TSW2_Controller
                         if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                         {
                             schubFaktor = -1;
+                            Log.Add("is brake area");
+                        }
+                        else
+                        {
+                            Log.Add("is throttle area");
                         }
 
                         foreach (string bremsIndex in kombihebel_bremsIndexe)
@@ -1609,7 +1650,7 @@ namespace TSW2_Controller
 
                 if (erkannterWert == noResultValue)
                 {
-                    try { erkannterWert = Convert.ToInt32(result); } catch { }
+                    try { erkannterWert = Convert.ToInt32(result); } catch { Log.Add("Error converting " + result + " to number"); }
                 }
                 if (erkannterWert != noResultValue)
                 {
@@ -1644,10 +1685,30 @@ namespace TSW2_Controller
                             {
                                 foreach (string textindex in indexe)
                                 {
-                                    double distance = GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2);
+                                    int spaces = textindex.Count(x => x == ' ');
+                                    string input = seperated_textinput[i];
+
+                                    for (int o = 0; o < spaces; o++)
+                                    {
+                                        if (i + 1 < seperated_textinput.Length)
+                                        {
+                                            input = input + " " + seperated_textinput[i + 1];
+                                        }
+                                    }
+
+                                    double distance = GetDamerauLevenshteinDistanceInPercent(input, textindex, 2);
                                     if (distance > 0.8 && distance > bestMatch)
                                     {
-                                        changelog = "Ändere \"" + seperated_textinput[i] + "\" zu " + textindex;
+                                        changelog = "Change \"" + input + "\" to " + textindex + " (" + Math.Round(distance, 3) + "% match)";
+
+                                        for (int o = 1; o <= spaces; o++)
+                                        {
+                                            if (seperated_textinput.Length >= o + i)
+                                            {
+                                                seperated_textinput[i+o] = "";
+                                            }
+                                        }
+
                                         seperated_textinput[i] = textindex;
                                         change = true;
                                         bestMatch = distance;
@@ -1656,7 +1717,7 @@ namespace TSW2_Controller
                             }
                             if (change)
                             {
-                                DebugData.Add(changelog);
+                                Log.Add(changelog);
                                 textinput = "";
                                 foreach (string single_textinput_result in seperated_textinput)
                                 {
