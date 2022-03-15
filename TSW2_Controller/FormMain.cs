@@ -756,9 +756,9 @@ namespace TSW2_Controller
                 }
             }
 
+            isKombihebel = false;
             foreach (string[] str in activeTrain)
             {
-                isKombihebel = false;
                 if (str[Tcfg.tastenKombination].Contains("Schub"))
                 {
                     //Infos über den Schubhebel
