@@ -73,11 +73,11 @@ namespace TSW2_Controller
 
                 if (Settings.Default.Sprache == "de-DE")
                 {
-                    changelog.Add("- Fix: Kombihebel hat im Bremsbereich nicht mehr funktioniert wenn ein Knopf hinzugefügt wurde");
+                    changelog.Add("- Fix: Kombihebel hat im Bremsbereich nicht mehr funktioniert, wenn ein Knopf hinzugefügt wurde");
                 }
                 else
                 {
-                    changelog.Add("- Fix: Master Controller didn't work in braking area if a button was added");
+                    changelog.Add("- Fix: Master Controller didn't work in braking area, if a button was added");
                 }
 
                 changelog.Add("----------------------------------------");
