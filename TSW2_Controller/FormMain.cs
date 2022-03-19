@@ -1027,22 +1027,30 @@ namespace TSW2_Controller
 
         private void ShowJoystickData()
         {
-            //Anzeigeliste leeren
-            lst_inputs.Items.Clear();
-
             //Welcher Joystick wurde ausgewählt
             int selectedJoystickIndex = Convert.ToInt32(comboBox_JoystickNumber.SelectedItem);
 
             //Wähle von allen Joysticks nur den ausgewählten aus
             if (selectedJoystickIndex < joystickStates.Count)
             {
+                int counter = 1;
+                int topIndex = lst_inputs.TopIndex;
+
                 object[] selectedJoystick = (object[])joystickStates[Convert.ToInt32(selectedJoystickIndex)];
                 for (int i = 0; i < ((bool[])selectedJoystick[3]).Length; i++)
                 {
                     if (((bool[])selectedJoystick[3])[i])
                     {
                         //Zeige den gedrückten Button
-                        lst_inputs.Items.Add("B" + i);
+                        if (counter <= lst_inputs.Items.Count)
+                        {
+                            lst_inputs.Items[counter - 1] = "B" + i;
+                        }
+                        else
+                        {
+                            lst_inputs.Items.Add("B" + i);
+                        }
+                        counter++;
                     }
                 }
                 for (int i = 0; i < ((int[])selectedJoystick[1]).Length; i++)
@@ -1050,8 +1058,24 @@ namespace TSW2_Controller
                     if (((int[])selectedJoystick[1])[i] != 0)
                     {
                         //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        lst_inputs.Items.Add(((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i]);
+                        if (counter <= lst_inputs.Items.Count)
+                        {
+                            lst_inputs.Items[counter - 1] = ((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i];
+                        }
+                        else
+                        {
+                            lst_inputs.Items.Add(((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i]);
+                        }
+                        counter++;
                     }
+                }
+                for (int o = lst_inputs.Items.Count - counter; o >= 0; o--)
+                {
+                    lst_inputs.Items[lst_inputs.Items.Count - o - 1] = "";
+                }
+                if (lst_inputs.Items.Count > topIndex)
+                {
+                    lst_inputs.TopIndex = topIndex;
                 }
             }
         }
