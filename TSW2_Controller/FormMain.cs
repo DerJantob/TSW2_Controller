@@ -1566,7 +1566,7 @@ namespace TSW2_Controller
                         if (ContainsWord(result, bremsIndex) && result != "")
                         {
                             result = result.Replace(bremsIndex, "");
-                            result = result.Remove(result.Length - 1);
+                            result = result.Replace(" ", "");
                         }
                     }
                     foreach (string schubIndex in kombihebel_schubIndexe)
@@ -1574,7 +1574,7 @@ namespace TSW2_Controller
                         if (ContainsWord(result, schubIndex) && result != "")
                         {
                             result = result.Replace(schubIndex, "");
-                            result = result.Remove(result.Length - 1);
+                            result = result.Replace(" ", "");
                         }
                     }
                 }

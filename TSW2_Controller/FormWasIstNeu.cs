@@ -83,6 +83,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 1.0.3
+            if (new Version("1.0.3").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.3" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Fix: Probleme mit der Textindikatoren Reihenfolge");
+                }
+                else
+                {
+                    changelog.Add("- Fix: Problems with the arrangement of text indicators");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
