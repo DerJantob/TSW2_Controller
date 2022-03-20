@@ -97,6 +97,9 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Fix: Problems with the arrangement of text indicators");
                     changelog.Add("- Improvement: List multiple joystick information");
+                }
+            }
+            #endregion
             #region 1.1.0
             if (new Version("1.1.0").CompareTo(version) > 0)
             {
@@ -105,11 +108,12 @@ namespace TSW2_Controller
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
-                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");
-                }
+                    changelog.Add("- Log datei hinzugefügt");
+                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");                }
                 else
                 {
                     changelog.Add("- You can now switch between trainconfigs in the settings");
+                    changelog.Add("- Log file added");
                     changelog.Add("- Bugfix: Special cases could not read \"%\"");
                 }
 
