@@ -90,11 +90,13 @@ namespace TSW2_Controller
 
                 if (Settings.Default.Sprache == "de-DE")
                 {
-                    changelog.Add("- Fix: Probleme mit der Textindikatoren Reihenfolge");
+                    changelog.Add("- Fix: Probleme mit der Textindikatoren-Reihenfolge");
+                    changelog.Add("- Verbesserung: Auflisten von vielen Joystick-Informationen");
                 }
                 else
                 {
                     changelog.Add("- Fix: Problems with the arrangement of text indicators");
+                    changelog.Add("- Improvement: List multiple joystick information");
                 }
 
                 changelog.Add("----------------------------------------");
