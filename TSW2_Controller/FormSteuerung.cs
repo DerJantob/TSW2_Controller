@@ -126,7 +126,7 @@ namespace TSW2_Controller
         private void btnT0_Delete_Click(object sender, EventArgs e)
         {
             selectedTrain = comboBoxT0_Zugauswahl.Text;
-            
+
             if (MessageBox.Show(Sprache.Willst_du_wirklich + selectedTrain + Sprache.loeschen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
@@ -213,7 +213,7 @@ namespace TSW2_Controller
             //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
             //PreviewKeyDown um auch tab-Taste zu erlauben
             txtT1_Aktion.Text = Keyboard.ConvertKeyToString(e.KeyCode);
-            SelectNextControl((Control)sender,true,false,true,true);
+            SelectNextControl((Control)sender, true, false, true, true);
         }
         private void txtT1_Aktion_MouseDown(object sender, MouseEventArgs e)
         {
@@ -323,7 +323,13 @@ namespace TSW2_Controller
         }
         private void T1Timer_CheckForButtonPress_Tick(object sender, EventArgs e)
         {
+            int topIndex = listBoxT1_ShowJoystickStates.TopIndex;
             string result = getBtn();
+            if (listBoxT1_ShowJoystickStates.Items.Count > topIndex)
+            {
+                listBoxT1_ShowJoystickStates.TopIndex = topIndex;
+            }
+
             if (result != "" && !t1IsJoyButton)
             {
                 txtT1_JoystickKnopf.Text = result.Remove(result.IndexOf('|'), result.Length - result.IndexOf('|'));
@@ -335,7 +341,7 @@ namespace TSW2_Controller
         private string getBtn()
         {
             //Anzeigeliste leeren
-            listBoxT1_ShowJoystickStates.Items.Clear();
+            int counter = 1;
             for (int i = 0; i < FormMain.MainSticks.Length; i++)
             {
                 bool[] buttons;
@@ -365,7 +371,15 @@ namespace TSW2_Controller
                     if (buttons[o])
                     {
                         //Zeige den gedrückten Button
-                        listBoxT1_ShowJoystickStates.Items.Add("B" + o);
+                        if (counter <= listBoxT1_ShowJoystickStates.Items.Count)
+                        {
+                            listBoxT1_ShowJoystickStates.Items[counter - 1] = Sprache.Nr + i + " " + "B" + o;
+                        }
+                        else
+                        {
+                            listBoxT1_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + "B" + o);
+                        }
+                        counter++;
                     }
                 }
                 for (int o = 0; o < joyInputs.Length; o++)
@@ -373,7 +387,15 @@ namespace TSW2_Controller
                     if (joyInputs[o] != 0)
                     {
                         //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        listBoxT1_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
+                        if (counter <= listBoxT1_ShowJoystickStates.Items.Count)
+                        {
+                            listBoxT1_ShowJoystickStates.Items[counter - 1] = Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o];
+                        }
+                        else
+                        {
+                            listBoxT1_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
+                        }
+                        counter++;
                     }
                 }
 
@@ -384,6 +406,10 @@ namespace TSW2_Controller
                         return o + "|" + i; //Button|JoystickID
                     }
                 }
+            }
+            for (int o = listBoxT1_ShowJoystickStates.Items.Count - counter; o >= 0; o--)
+            {
+                listBoxT1_ShowJoystickStates.Items[listBoxT1_ShowJoystickStates.Items.Count - o - 1] = "";
             }
             return "";
         }
@@ -661,7 +687,7 @@ namespace TSW2_Controller
             {
                 if (Sprache.SprachenName == "Deutsch")
                 {
-                    MessageBox.Show("Wähle noch \""+radioT3_Stufenlos.Text+"\" oder \""+radioT3_Stufen.Text+"\" aus");
+                    MessageBox.Show("Wähle noch \"" + radioT3_Stufenlos.Text + "\" oder \"" + radioT3_Stufen.Text + "\" aus");
                 }
                 else
                 {
@@ -672,7 +698,8 @@ namespace TSW2_Controller
         private void T3Timer_GetJoyStates_Tick(object sender, EventArgs e)
         {
             //Anzeigeliste leeren
-            listBoxT3_ShowJoystickStates.Items.Clear();
+            int counter = 1;
+            int topIndex = listBoxT3_ShowJoystickStates.TopIndex;
             for (int i = 0; i < FormMain.MainSticks.Length; i++)
             {
                 int[] joyInputs = new int[8];
@@ -760,9 +787,25 @@ namespace TSW2_Controller
                     if (joyInputs[o] != 0)
                     {
                         //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        listBoxT3_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
+                        if (counter <= listBoxT3_ShowJoystickStates.Items.Count)
+                        {
+                            listBoxT3_ShowJoystickStates.Items[counter - 1] = Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o];
+                        }
+                        else
+                        {
+                            listBoxT3_ShowJoystickStates.Items.Add(Sprache.Nr + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]);
+                        }
+                        counter++;
                     }
                 }
+            }
+            for (int o = listBoxT3_ShowJoystickStates.Items.Count - counter; o >= 0; o--)
+            {
+                listBoxT3_ShowJoystickStates.Items[listBoxT3_ShowJoystickStates.Items.Count - o - 1] = "";
+            }
+            if (listBoxT3_ShowJoystickStates.Items.Count > topIndex)
+            {
+                listBoxT3_ShowJoystickStates.TopIndex = topIndex;
             }
         }
         private void btnT3_ZeitfaktorFinden_Click(object sender, EventArgs e)
