@@ -263,5 +263,17 @@ namespace TSW2_Controller.Properties {
                 this["BremsIndexe_EN"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_Standard")]
+        public string selectedTrainConfig {
+            get {
+                return ((string)(this["selectedTrainConfig"]));
+            }
+            set {
+                this["selectedTrainConfig"] = value;
+            }
+        }
     }
 }

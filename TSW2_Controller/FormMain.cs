@@ -21,9 +21,6 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
-        ///Todo:
-        ///Wenn man den Regler langsam bewegt, dann passt der den irgendwie ungenau an.
-
         DirectInput input = new DirectInput();
         Joystick mainStick;
         public static Joystick[] MainSticks;
@@ -34,7 +31,7 @@ namespace TSW2_Controller
         List<string[]> activeTrain = new List<string[]>();
         public List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
-        List<string> debugData = new List<string>();
+        List<string> logData = new List<string>();
         List<string> schubIndexe = new List<string>();
         List<string> bremsIndexe = new List<string>();
         List<string> kombihebel_schubIndexe = new List<string>();
@@ -72,7 +69,7 @@ namespace TSW2_Controller
         int bremseIst = 0;
         int bremseSoll = 0;
 
-        public List<string> DebugData { get => debugData; set => debugData = value; }
+        public List<string> Log { get => logData; set => logData = value; }
 
 
 
@@ -82,6 +79,8 @@ namespace TSW2_Controller
             checkLanguageSetting();
 
             InitializeComponent();
+
+            #region Dateistruktur überprüfen
             if (!File.Exists(Tcfg.configpfad))
             {
                 if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
@@ -93,6 +92,28 @@ namespace TSW2_Controller
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
                 }
             }
+            if (!Directory.Exists(Tcfg.configSammelungPfad))
+            {
+                Directory.CreateDirectory(Tcfg.configSammelungPfad);
+            }
+            if (Settings.Default.selectedTrainConfig == "_Standard")
+            {
+                File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
+            }
+            else
+            {
+                File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
+            }
+            if (!Directory.Exists(Tcfg.logpfad))
+            {
+                Directory.CreateDirectory(Tcfg.logpfad);
+            }
+            if (File.Exists(Tcfg.logpfad + "log.txt"))
+            {
+                File.Delete(Tcfg.logpfad + "log.txt");
+            }
+            #endregion
+
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             label2.Text = "";
@@ -101,6 +122,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
 
             loadSettings();
+
             Keyboard.initKeylist();
 
             comboBox_JoystickNumber.SelectedIndex = 0;
@@ -148,10 +170,27 @@ namespace TSW2_Controller
             if (check_active.Checked)
             {
                 check_active.BackColor = Color.Lime;
+                Log.Add("--------------------");
+                Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add("  " + string.Join(",", train)); }
+                Log.Add("");
+                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add("Language:" + Settings.Default.Sprache);
+                Log.Add("Textindicators:");
+                Log.Add("   Throttle/Brake:");
+                Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
+                Log.Add("       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
+                Log.Add("   MasterController:");
+                Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
+                Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
+                Log.Add("Active = true");
+                Log.Add("");
             }
             else
             {
                 check_active.BackColor = Color.Red;
+                Log.Add("Active = false");
+                Log.Add("--------------------");
             }
         }
 
@@ -419,7 +458,7 @@ namespace TSW2_Controller
                         formWasIstNeu.ShowDialog();
 
                         #region Update besonderheiten
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) >= 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) <= 0)
                         {
                             //Neue Einstellung muss mit Daten gefüllt werden
                             Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
@@ -432,6 +471,21 @@ namespace TSW2_Controller
                             Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
                             Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
 
+                            Settings.Default.Save();
+                        }
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.1")) <= 0)
+                        {
+                            if (File.Exists(Tcfg.configpfad))
+                            {
+                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
+                            }
+                            bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
+                            if (!areEqual)
+                            {
+                                Directory.CreateDirectory(Tcfg.configSammelungPfad);
+                                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + "yourConfig.csv");
+                                Settings.Default.selectedTrainConfig = "yourConfig";
+                            }
                             Settings.Default.Save();
                         }
                         #endregion
@@ -677,14 +731,16 @@ namespace TSW2_Controller
             try
             {
                 string[] listArray = listBox_debugInfo.Items.OfType<string>().ToArray();
-                if (listArray.Count() < DebugData.Count())
+                if (listArray.Count() < Log.Count())
                 {
-                    int diff = DebugData.Count() - listArray.Count();
-                    for (int i = 1; i <= diff; i++)
+                    int diff = Log.Count() - listArray.Count();
+                    for (int i = 0; i < diff; i++)
                     {
-                        listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + DebugData[DebugData.Count() - i]);
+                        listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + Log[Log.Count() - diff + i]);
+                        File.AppendAllText(Tcfg.logpfad + "log.txt", DateTime.Now.ToString("HH:mm:ss") + "    " + Log[Log.Count() - diff + i] + "\n");
                     }
                     listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
+                    listBox_debugInfo.SelectedIndex = -1;
                 }
             }
             catch { }
@@ -1223,18 +1279,15 @@ namespace TSW2_Controller
                     ConvertLongPress(true, false); ;
                     int diffSchub = schubSoll - schubIst;
 
-                    for (int i = 0; i < Math.Abs(diffSchub); i++)
+                    if (diffSchub > 0)
                     {
-                        if (diffSchub > 0)
-                        {
-                            Keyboard.HoldKey(Keyboard.increaseThrottle, delay);
-                        }
-                        else
-                        {
-                            Keyboard.HoldKey(Keyboard.decreaseThrottle, delay);
-                        }
-                        Thread.Sleep(80);
+                        Keyboard.HoldKey(Keyboard.increaseThrottle, delay * Math.Abs(diffSchub));
                     }
+                    else
+                    {
+                        Keyboard.HoldKey(Keyboard.decreaseThrottle, delay * Math.Abs(diffSchub));
+                    }
+                    Thread.Sleep(80);
                     requestThrottle = 3;
                     schubIst = schubSoll;
                 }
@@ -1278,18 +1331,16 @@ namespace TSW2_Controller
                     ConvertLongPress(false, false);
                     int diffBremse = bremseSoll - bremseIst;
 
-                    for (int i = 0; i < Math.Abs(diffBremse); i++)
+                    if (diffBremse > 0)
                     {
-                        if (diffBremse > 0)
-                        {
-                            Keyboard.HoldKey(Keyboard.increaseBrake, delay);
-                        }
-                        else
-                        {
-                            Keyboard.HoldKey(Keyboard.decreaseBrake, delay);
-                        }
-                        Thread.Sleep(80);
+                        Keyboard.HoldKey(Keyboard.increaseBrake, delay * Math.Abs(diffBremse));
                     }
+                    else
+                    {
+                        Keyboard.HoldKey(Keyboard.decreaseBrake, delay * Math.Abs(diffBremse));
+                    }
+                    Thread.Sleep(80);
+
                     requestBrake = 2;
                     bremseIst = bremseSoll;
                 }
@@ -1326,7 +1377,7 @@ namespace TSW2_Controller
                         //Mehr
                         if (ist == untere_grenze)
                         {
-                            DebugData.Add("Halte mehr gedrückt");
+                            Log.Add("Halte mehr gedrückt");
                             Keyboard.HoldKey(Keyboard.increaseThrottle, dauer);
                             ist = obere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
@@ -1334,7 +1385,7 @@ namespace TSW2_Controller
                         }
                         else if (ist < untere_grenze)
                         {
-                            DebugData.Add("Anpassen auf hoch " + untere_grenze);
+                            Log.Add("Anpassen auf hoch " + untere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(keyIncrease, 10);
@@ -1347,7 +1398,7 @@ namespace TSW2_Controller
                         //Weniger
                         if (ist == obere_grenze)
                         {
-                            DebugData.Add("Halte weniger gedrückt");
+                            Log.Add("Halte weniger gedrückt");
                             Keyboard.HoldKey(keyDecrease, dauer);
                             ist = untere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
@@ -1355,7 +1406,7 @@ namespace TSW2_Controller
                         }
                         else if (ist > obere_grenze)
                         {
-                            DebugData.Add("Anpassen auf runter " + obere_grenze);
+                            Log.Add("Anpassen auf runter " + obere_grenze);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 10);
@@ -1399,6 +1450,10 @@ namespace TSW2_Controller
             }
 
 
+            if (original_result != "") { Log.Add("original_result:" + original_result.Replace("\n", "")); }
+            if (alternative_result != "") { Log.Add("alternative_result:" + alternative_result.Replace("\n", "")); }
+
+
             //Zeige Scan-Ergebnisse
             bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), new Bitmap(1, 1), original_result.Replace("\n", ""), alternative_result.Replace("\n", ""), requestThrottle, requestBrake });
 
@@ -1427,7 +1482,7 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                if (maxLength > 0) { DebugData.Add("SchubIndex = " + throttleConfig[0]); }
+                if (maxLength > 0) { Log.Add("Throttle indicator = " + throttleConfig[0]); }
                 Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
             }
             #endregion
@@ -1452,7 +1507,7 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                if (maxLength > 0) { DebugData.Add("BremsIndex = " + throttleConfig[0]); }
+                if (maxLength > 0) { Log.Add("Brake indicator = " + throttleConfig[0]); }
                 Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
             }
             #endregion
@@ -1480,6 +1535,7 @@ namespace TSW2_Controller
                     {
                         requestThrottle--;
                         schubIst = erkannterWert;
+                        Log.Add("Throttle is " + erkannterWert);
                     }
                     else if (cancelThrottleRequest == -1)
                     {
@@ -1498,6 +1554,7 @@ namespace TSW2_Controller
                     {
                         requestBrake--;
                         bremseIst = erkannterWert;
+                        Log.Add("Brake is " + erkannterWert);
                     }
                     else if (cancelBrakeRequest == -1)
                     {
@@ -1551,14 +1608,6 @@ namespace TSW2_Controller
                 result = result.Remove(0, result.IndexOf(config[0]) + config[0].Length).Replace("\n", "");
                 result = result.Trim();
 
-                if (isKombihebel)
-                {
-                    result = result.Replace("%", "");
-                }
-                else if (result.Contains("%"))
-                {
-                    result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
-                }
 
                 if (config[3].Length > 0)
                 {
@@ -1571,47 +1620,59 @@ namespace TSW2_Controller
                         if (ContainsWord(result, word) && singleSpezial != "")
                         {
                             erkannterWert = entsprechendeNummer;
-                            schubFaktor = 0;
+                            Log.Add(word + "=" + entsprechendeNummer);
                             break;
                         }
                     }
                 }
 
-                #region Kombihebel
-                if (isKombihebel)
+                if (erkannterWert == noResultValue)
                 {
-                    if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
+                    if (isKombihebel)
                     {
-                        schubFaktor = -1;
+                        result = result.Replace("%", "");
+                    }
+                    else if (result.Contains("%"))
+                    {
+                        result = result.Remove(result.IndexOf("%"), result.Length - result.IndexOf("%"));
                     }
 
-                    foreach (string bremsIndex in kombihebel_bremsIndexe)
+                    #region Kombihebel
+                    if (isKombihebel)
                     {
-                        if (ContainsWord(result, bremsIndex) && result != "")
+                        if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                         {
-                            result = result.Replace(bremsIndex, "");
-                            result = result.Replace(" ", "");
+                            schubFaktor = -1;
+                            Log.Add("is brake area");
                         }
-                    }
-                    foreach (string schubIndex in kombihebel_schubIndexe)
-                    {
-                        if (ContainsWord(result, schubIndex) && result != "")
+                        else
                         {
-                            result = result.Replace(schubIndex, "");
-                            result = result.Replace(" ", "");
+                            Log.Add("is throttle area");
                         }
-                    }
-                }
-                #endregion
 
-                if (schubFaktor == 0)
-                {
-                    schubFaktor = 1;
+                        foreach (string bremsIndex in kombihebel_bremsIndexe)
+                        {
+                            if (ContainsWord(result, bremsIndex) && result != "")
+                            {
+                                result = result.Replace(bremsIndex, "");
+                                result = result.Remove(result.Length - 1);
+                            }
+                        }
+                        foreach (string schubIndex in kombihebel_schubIndexe)
+                        {
+                            if (ContainsWord(result, schubIndex) && result != "")
+                            {
+                                result = result.Replace(schubIndex, "");
+                                result = result.Remove(result.Length - 1);
+                            }
+                        }
+                    }
+                    #endregion
                 }
 
                 if (erkannterWert == noResultValue)
                 {
-                    try { erkannterWert = Convert.ToInt32(result); } catch { }
+                    try { erkannterWert = Convert.ToInt32(result); } catch { Log.Add("Error converting " + result + " to number"); }
                 }
                 if (erkannterWert != noResultValue)
                 {
@@ -1646,10 +1707,30 @@ namespace TSW2_Controller
                             {
                                 foreach (string textindex in indexe)
                                 {
-                                    double distance = GetDamerauLevenshteinDistanceInPercent(seperated_textinput[i], textindex, 2);
+                                    int spaces = textindex.Count(x => x == ' ');
+                                    string input = seperated_textinput[i];
+
+                                    for (int o = 0; o < spaces; o++)
+                                    {
+                                        if (i + 1 < seperated_textinput.Length)
+                                        {
+                                            input = input + " " + seperated_textinput[i + 1];
+                                        }
+                                    }
+
+                                    double distance = GetDamerauLevenshteinDistanceInPercent(input, textindex, 2);
                                     if (distance > 0.8 && distance > bestMatch)
                                     {
-                                        changelog = "Ändere \"" + seperated_textinput[i] + "\" zu " + textindex;
+                                        changelog = "Change \"" + input + "\" to " + textindex + " (" + Math.Round(distance, 3) + "% match)";
+
+                                        for (int o = 1; o <= spaces; o++)
+                                        {
+                                            if (seperated_textinput.Length >= o + i)
+                                            {
+                                                seperated_textinput[i + o] = "";
+                                            }
+                                        }
+
                                         seperated_textinput[i] = textindex;
                                         change = true;
                                         bestMatch = distance;
@@ -1658,7 +1739,7 @@ namespace TSW2_Controller
                             }
                             if (change)
                             {
-                                DebugData.Add(changelog);
+                                Log.Add(changelog);
                                 textinput = "";
                                 foreach (string single_textinput_result in seperated_textinput)
                                 {
