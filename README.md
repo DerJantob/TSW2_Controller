@@ -13,16 +13,20 @@ I was bothered by the fact that you can't use a joystick as an input device in T
 - You can add trains yourself
 - Supports English and German
 - Auto updater
+
+Upcoming features or bugfixes can be seen under [`Projects`](https://github.com/DerJantob/TSW2_Controller/projects)
 ## Important!
 
 I have included a lot of trains, but configured them to match my "thrustmaster t flight hotas x" and the German language
 
 **If you are using a different joystick, or are using a different language, you have to edit the controllers!**
 
-If you want to know how to do that, look into the `Tutorials` folder
-## Installation
+If you want to know how to do that, look into the `Tutorials` folder, or watch the video.
 
-Just download the `TSW2_Controller_Setup.exe` file under `Releases` and run the setup.
+You must also **have HUD enabled**, as the program uses the displayed text to read out the current state of the simulator.
+## Installation / Download
+
+Just download the `TSW2_Controller_Setup.exe` file under [`Releases`](https://github.com/DerJantob/TSW2_Controller/releases) and run the setup.
 
 If you don't want to run the exe file, you can download `TSW2_Controller.zip`
 
@@ -31,7 +35,7 @@ If you don't want to run the exe file, you can download `TSW2_Controller.zip`
 [<img src="/Screenshots/TSW2_Controller_Gameplay.jpg" width="400"/>](https://www.youtube.com/watch?v=thSA23tDu9M)
 ## Tutorials / help
 
-If you need help using the program you can look into the `Tutorials` folder.
+If you need help using the program you can look into the `Tutorials` folder, or watch the video.
 
 If that doesn't help you, just open a new issue
 
