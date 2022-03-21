@@ -852,7 +852,7 @@ namespace TSW2_Controller
                 foreach (string[] strActiveTrain in activeTrain)
                 {
                     //In der Trainconfig kommt ein bekannter Achsen-Name vor
-                    if (strActiveTrain[Tcfg.joystickInput] == inputNames[i])
+                    if (strActiveTrain[Tcfg.joystickInput] == inputNames[i] && Convert.ToInt32(strActiveTrain[Tcfg.joystickNummer]) == id)
                     {
                         if (strActiveTrain[Tcfg.invertieren] == "1")
                         {
