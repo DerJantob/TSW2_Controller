@@ -22,7 +22,17 @@ namespace TSW2_Controller
         public FormSettings()
         {
             InitializeComponent();
-            lbl_version.Text = "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2);
+
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            if (version.EndsWith("0"))
+            {
+                lbl_version.Text = "v" + version.Remove(version.Length - 2, 2);
+            }
+            else
+            {
+                lbl_version.Text = "Pre-release " + version.Split('.')[3] +" "+ "v" + version.Split('.')[0] + "." + version.Split('.')[1] + "." + (Convert.ToInt32(version.Split('.')[2]) + 1);
+            }
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
@@ -292,7 +302,7 @@ namespace TSW2_Controller
 
         private void ChangeIndicatorLanguage(string Sprache)
         {
-            if(Sprache == "de-DE")
+            if (Sprache == "de-DE")
             {
                 Settings.Default.SchubIndexe_EN = Settings.Default.SchubIndexe;
                 Settings.Default.BremsIndexe_EN = Settings.Default.BremsIndexe;

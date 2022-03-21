@@ -102,6 +102,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 1.0.4
+            if (new Version("1.0.4").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.0.4" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Fix: Wenn man das Joystick verhalten geändert hat (Invertiert / Anderer Joy Modus), dann wurde das unabhängig von der Joynummer übernommen");
+                }
+                else
+                {
+                    changelog.Add("- Fix: If you changed the joystick behavior (Inverted / Other Joy Mode), then it was applied regardless of the joystick number");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
