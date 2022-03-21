@@ -95,7 +95,7 @@ namespace TSW2_Controller
             }
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
-            label2.Text = "";
+            lbl_updateAvailable.Text = "";
             groupBox_ScanErgebnisse.Hide();
 
             CheckGitHubNewerVersion();
@@ -206,12 +206,18 @@ namespace TSW2_Controller
                 if (versionComparison < 0)
                 {
                     //The version on GitHub is more up to date than this local release.
-                    label2.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
+                    lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
                 }
             }
             catch
             {
             }
+        }
+
+        private void lbl_updateAvailable_Click(object sender, EventArgs e)
+        {
+            FormSettings formSettings = new FormSettings();
+            formSettings.CheckGitHubNewerVersion();
         }
         #endregion
 

@@ -69,7 +69,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
         }
 
-        private async void CheckGitHubNewerVersion()
+        public async void CheckGitHubNewerVersion()
         {
             try
             {
