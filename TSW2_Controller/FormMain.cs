@@ -1078,6 +1078,10 @@ namespace TSW2_Controller
                     lst_inputs.TopIndex = topIndex;
                 }
             }
+            else
+            {
+                if (lst_inputs.Items.Count > 0) { lst_inputs.Items.Clear(); }
+            }
         }
         #endregion
 
