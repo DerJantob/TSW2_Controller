@@ -249,7 +249,6 @@ namespace TSW2_Controller
                 else
                 {
                     btn_trainconfigLoeschen.Enabled = true;
-                    btn_trainconfigHinzufuegen.Enabled = true;
                 }
             }
             else
@@ -278,21 +277,28 @@ namespace TSW2_Controller
 
         private void btn_trainconfigHinzufuegen_Click(object sender, EventArgs e)
         {
-            if (!comboBox_TrainConfig.Items.Contains(comboBox_TrainConfig.Text))
+            if (comboBox_TrainConfig.Text != "")
             {
-                //Hinzufügen
-                if (MessageBox.Show(Sprache.Einstellungen_von + Settings.Default.selectedTrainConfig + Sprache.uebernehmen + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (!comboBox_TrainConfig.Items.Contains(comboBox_TrainConfig.Text))
                 {
-                    File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", true);
+                    //Hinzufügen
+                    if (MessageBox.Show(Sprache.Einstellungen_von + Settings.Default.selectedTrainConfig + Sprache.uebernehmen + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", true);
+                    }
+                    else
+                    {
+                        File.Create(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv").Close();
+                        File.WriteAllText(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", "Zug,Beschreibung,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken");
+                    }
+                    changeConfig();
+                    comboBox_TrainConfig.Items.Add(comboBox_TrainConfig.Text);
+                    comboBox_TrainConfig.SelectedItem = comboBox_TrainConfig.Text;
                 }
-                else
-                {
-                    File.Create(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv").Close();
-                    File.WriteAllText(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", "Zug,Beschreibung,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken");
-                }
-                changeConfig();
-                comboBox_TrainConfig.Items.Add(comboBox_TrainConfig.Text);
-                comboBox_TrainConfig.SelectedItem = comboBox_TrainConfig.Text;
+            }
+            else
+            {
+                MessageBox.Show(Sprache.Das_Feld_darf_nicht_leer_sein);
             }
         }
 
@@ -424,7 +430,7 @@ namespace TSW2_Controller
             }
             else
             {
-                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv",true);
+                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
             }
         }
 

@@ -102,7 +102,14 @@ namespace TSW2_Controller
             }
             else
             {
-                File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
+                if (File.Exists(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv"))
+                {
+                    File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
+                }
+                else
+                {
+                    File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
+                }
             }
             if (!Directory.Exists(Tcfg.logpfad))
             {
@@ -473,7 +480,7 @@ namespace TSW2_Controller
 
                             Settings.Default.Save();
                         }
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.1")) <= 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.1.0")) <= 0)
                         {
                             if (File.Exists(Tcfg.configpfad))
                             {

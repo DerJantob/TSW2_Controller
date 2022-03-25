@@ -132,6 +132,9 @@
   <data name="Bremsindikator_Leer__Standard_Laden" xml:space="preserve">
     <value>Brake indicator empty! Load standard?</value>
   </data>
+  <data name="Das Feld darf nicht leer sein" xml:space="preserve">
+    <value>The text field cannot be empty</value>
+  </data>
   <data name="Druecke nochmal auf OK wechsel innerhalb von 7 Sekunden zum TSW und warte" xml:space="preserve">
     <value>Press OK again, switch to TSW within 7 seconds and wait</value>
   </data>

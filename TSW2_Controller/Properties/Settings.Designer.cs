@@ -266,7 +266,7 @@ namespace TSW2_Controller.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("_Standard")]
+        [global::System.Configuration.DefaultSettingValueAttribute("yourConfig")]
         public string selectedTrainConfig {
             get {
                 return ((string)(this["selectedTrainConfig"]));

@@ -106,6 +106,15 @@ namespace TSW2_Controller.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Das Feld darf nicht leer sein ähnelt.
+        /// </summary>
+        internal static string Das_Feld_darf_nicht_leer_sein {
+            get {
+                return ResourceManager.GetString("Das Feld darf nicht leer sein", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Drücke nochmal auf OK, wechsel innerhalb von 7 Sekunden zum TSW und warte ähnelt.
         /// </summary>
         internal static string Druecke_nochmal_auf_OK_wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte {
