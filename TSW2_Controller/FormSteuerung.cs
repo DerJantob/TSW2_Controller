@@ -129,7 +129,11 @@ namespace TSW2_Controller
 
             if (MessageBox.Show(Sprache.Willst_du_wirklich + selectedTrain + Sprache.loeschen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
+                if (selectedTrain != Tcfg.nameForGlobal)
+                {
+                    comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
+                }
+
                 int counter = 0;
                 for (int i = 0; i < trainConfig.Count; i++)
                 {
