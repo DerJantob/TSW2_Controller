@@ -668,6 +668,59 @@ namespace TSW2_Controller
         }
         private void btnT3_Speichern_Click(object sender, EventArgs e)
         {
+            bool ok = true;
+            if (txtT3_JoyAchse.Text == "" && txtT3_JoyNr.Text == "" && txtT3_AnzahlStufen.Text == "" && txtT3_JoyUmrechnen.Text == "" && txtT3_Zeitfaktor.Text == "" && txtT3_LongPress.Text == "" && txtT3_Sonderfaelle.Text == "")
+            {
+                ok = false;
+            }
+            else
+            {
+                if (!(radioT3_Stufen.Checked || radioT3_Stufenlos.Checked))
+                {
+                    ok = false;
+                    MessageClass.Show("Wähle noch \"" + radioT3_Stufenlos.Text + "\" oder \"" + radioT3_Stufen.Text + "\" aus", "Please select \"" + radioT3_Stufenlos.Text + "\" or \"" + radioT3_Stufen.Text + "\"");
+                }
+                if (txtT3_JoyNr.Text == "" || !txtT3_JoyNr.Text.All(char.IsDigit))
+                {
+                    ok = false;
+                    MessageClass.Show("Fehler bei Joystick Nr.", "Error with Joy no.");
+                }
+                if (txtT3_JoyAchse.Text == "" || !FormMain.inputNames.Any(txtT3_JoyAchse.Text.Equals))
+                {
+                    ok = false;
+                    MessageClass.Show("Fehler bei Joy-Achse", "Error with Joy-Axis");
+                }
+                if (radioT3_Stufen.Checked && (!txtT3_AnzahlStufen.Text.All(char.IsDigit) || txtT3_AnzahlStufen.Text == ""))
+                {
+                    ok = false;
+                    MessageClass.Show("Fehler bei Anzahl der Stufen", "Error with Number of notches");
+                }
+                if (txtT3_JoyUmrechnen.Text != "" && (txtT3_JoyUmrechnen.Text.Any(char.IsLetter) || txtT3_JoyUmrechnen.Text.Split(' ').Count() + 1 != txtT3_JoyUmrechnen.Text.Split('=').Count()))
+                {
+                    //txtT3_JoyUmrechnen.Text != "" weil es leer sein darf
+                    ok = false;
+                    MessageClass.Show("Fehler bei Joy umrechnen", "Error with Reassign joy states");
+                }
+                if (txtT3_Sonderfaelle.Text != "" && (txtT3_Sonderfaelle.Text.Split(' ').Count() + 1 != txtT3_Sonderfaelle.Text.Split('=').Count()))
+                {
+                    //txtT3_Sonderfaelle.Text != "" weil es leer sein darf
+                    ok = false;
+                    MessageClass.Show("Fehler bei Sonderfälle umrechnen", "Error with Convert special cases");
+                }
+                if (txtT3_Zeitfaktor.Text == "" || txtT3_Zeitfaktor.Text.Any(char.IsLetter))
+                {
+                    ok = false;
+                    MessageClass.Show("Fehler bei Zeitfakrot", "Error with Time factor");
+                }
+                if (txtT3_LongPress.Text != "" && (txtT3_LongPress.Text.Split(' ').Count() + 1 != txtT3_LongPress.Text.Split(':').Count()))
+                {
+                    //txtT3_Zeitfaktor.Text != "" weil es leer sein darf
+                    ok = false;
+                    MessageClass.Show("Fehler bei Länger drücken", "Error with Long press");
+                }
+            }
+
+
             if (radioT3_Stufen.Checked || radioT3_Stufenlos.Checked)
             {
                 bool ersetzt = false;
@@ -676,11 +729,12 @@ namespace TSW2_Controller
                     string[] singleTrain = trainConfig[i];
                     if (singleTrain[Tcfg.zug] == selectedTrain && ((singleTrain[Tcfg.tastenKombination] == "Schub" && radioT3_Schub.Checked) || (singleTrain[Tcfg.tastenKombination] == "Bremse" && radioT3_Bremse.Checked) || (singleTrain[Tcfg.tastenKombination] == "Kombihebel" && radioT3_Kombihebel.Checked)))
                     {
-                        if (txtT3_JoyAchse.Text == "")
+                        if (txtT3_JoyAchse.Text == "" && txtT3_JoyNr.Text == "" && txtT3_AnzahlStufen.Text == "" && txtT3_JoyUmrechnen.Text == "" && txtT3_Zeitfaktor.Text == "" && txtT3_LongPress.Text == "" && txtT3_Sonderfaelle.Text == "")
                         {
                             trainConfig.RemoveAt(i);
+                            MessageClass.Show("Gelöscht!", "Deleted!");
                         }
-                        else
+                        else if (ok)
                         {
                             singleTrain[Tcfg.zug] = selectedTrain;
                             singleTrain[Tcfg.joystickNummer] = txtT3_JoyNr.Text;
@@ -695,12 +749,13 @@ namespace TSW2_Controller
                             if (checkT3_andererJoyModus.Checked) { singleTrain[Tcfg.inputTyp] = "1"; } else { singleTrain[Tcfg.inputTyp] = "0"; }
 
                             trainConfig[i] = singleTrain;
+
+                            MessageBox.Show(Sprache.Ersetzt);
                         }
                         ersetzt = true;
-                        MessageBox.Show(Sprache.Ersetzt);
                     }
                 }
-                if (!ersetzt)
+                if (!ersetzt && ok)
                 {
                     string[] singleTrain = new string[trainConfig[0].Length];
                     singleTrain[Tcfg.zug] = selectedTrain;
