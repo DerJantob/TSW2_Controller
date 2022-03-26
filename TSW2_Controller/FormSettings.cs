@@ -165,7 +165,7 @@ namespace TSW2_Controller
         #region Textindex
         private void comboBox_Schub_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
             {
                 comboBox_Schub.Items.Add(comboBox_Schub.Text);
                 comboBox_Schub.Text = "";
@@ -174,7 +174,7 @@ namespace TSW2_Controller
 
         private void comboBox_Bremse_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
             {
                 comboBox_Bremse.Items.Add(comboBox_Bremse.Text);
                 comboBox_Bremse.Text = "";
@@ -183,7 +183,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiSchub_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
             {
                 comboBox_kombiSchub.Items.Add(comboBox_kombiSchub.Text);
                 comboBox_kombiSchub.Text = "";
@@ -192,7 +192,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiBremse_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
             {
                 comboBox_kombiBremse.Items.Add(comboBox_kombiBremse.Text);
                 comboBox_kombiBremse.Text = "";
@@ -251,10 +251,14 @@ namespace TSW2_Controller
                     btn_trainconfigLoeschen.Enabled = true;
                 }
             }
+            else if(comboBox_TrainConfig.Text == "")
+            {
+                btn_trainconfigLoeschen.Enabled = false;
+                btn_trainconfigHinzufuegen.Enabled = false;
+            }
             else
             {
                 btn_trainconfigLoeschen.Enabled = true;
-                btn_trainconfigHinzufuegen.Enabled = true;
                 btn_trainconfigHinzufuegen.Enabled = true;
             }
         }
@@ -343,13 +347,6 @@ namespace TSW2_Controller
             Settings.Default.Save();
         }
         #endregion
-
-        private void btn_Zeitumrechnungshilfe_Click(object sender, EventArgs e)
-        {
-            FormZeitfaktor formZeitumrechnung = new FormZeitfaktor();
-            formZeitumrechnung.Location = this.Location;
-            formZeitumrechnung.ShowDialog();
-        }
 
         private void btn_changelog_Click(object sender, EventArgs e)
         {

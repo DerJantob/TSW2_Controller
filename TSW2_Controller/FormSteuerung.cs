@@ -118,7 +118,7 @@ namespace TSW2_Controller
                 }
             }
 
-            if (!exestiertBereits)
+            if (!exestiertBereits && comboBoxT0_Zugauswahl.Text != "")
             {
                 comboBoxT0_Zugauswahl.Items.Add(comboBoxT0_Zugauswahl.Text);
             }
@@ -127,39 +127,42 @@ namespace TSW2_Controller
         {
             selectedTrain = comboBoxT0_Zugauswahl.Text;
 
-            if (MessageBox.Show(Sprache.Willst_du_wirklich + selectedTrain + Sprache.loeschen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (selectedTrain != "")
             {
-                if (selectedTrain != Tcfg.nameForGlobal)
+                if (MessageBox.Show(Sprache.Willst_du_wirklich + selectedTrain + Sprache.loeschen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
-                }
-
-                int counter = 0;
-                for (int i = 0; i < trainConfig.Count; i++)
-                {
-                    if (trainConfig[i][Tcfg.zug] == selectedTrain)
+                    if (selectedTrain != Tcfg.nameForGlobal)
                     {
-                        trainConfig.RemoveAt(i);
-                        i--;
-                        counter++;
+                        comboBoxT0_Zugauswahl.Items.Remove(selectedTrain);
                     }
-                }
 
-                //Schreibe Datei
-                string[] line = new string[trainConfig.Count];
-                for (int i = 0; i < trainConfig.Count; i++)
-                {
-                    string combined = "";
-                    foreach (string s in trainConfig[i])
+                    int counter = 0;
+                    for (int i = 0; i < trainConfig.Count; i++)
                     {
-                        combined += s + ",";
+                        if (trainConfig[i][Tcfg.zug] == selectedTrain)
+                        {
+                            trainConfig.RemoveAt(i);
+                            i--;
+                            counter++;
+                        }
                     }
-                    combined = combined.Remove(combined.Length - 1);
-                    line[i] = combined;
-                }
-                File.WriteAllLines(Tcfg.configpfad, line);
 
-                MessageBox.Show(counter + Sprache.Eintraege_geloescht);
+                    //Schreibe Datei
+                    string[] line = new string[trainConfig.Count];
+                    for (int i = 0; i < trainConfig.Count; i++)
+                    {
+                        string combined = "";
+                        foreach (string s in trainConfig[i])
+                        {
+                            combined += s + ",";
+                        }
+                        combined = combined.Remove(combined.Length - 1);
+                        line[i] = combined;
+                    }
+                    File.WriteAllLines(Tcfg.configpfad, line);
+
+                    MessageBox.Show(counter + Sprache.Eintraege_geloescht);
+                }
             }
         }
         #endregion
@@ -272,52 +275,95 @@ namespace TSW2_Controller
         }
         private void btnT1_Hinzufuegen_ersetzen_Click(object sender, EventArgs e)
         {
-            bool ersetzt = false;
-            for (int i = 0; i < trainConfig.Count; i++)
+            bool ok = true;
+            if (comboBoxT1_KnopfAuswahl.Text == "")
             {
-                string[] singleTrain = trainConfig[i];
-                if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.beschreibung] == comboBoxT1_KnopfAuswahl.Text)
+                ok = false;
+                MessageClass.Show("Kein Name eingegeben", "No name entered");
+            }
+            if (txtT1_JoystickNr.Text == "" || !txtT1_JoystickNr.Text.All(char.IsDigit))
+            {
+                ok = false;
+                MessageClass.Show("Fehler bei Joystick Nr.", "Error with Joy no.");
+            }
+            if (txtT1_JoystickKnopf.Text == "" || (!txtT1_JoystickKnopf.Text.All(char.IsDigit) && radioT1_normal.Checked) || (!FormMain.inputNames.Any(txtT1_JoystickKnopf.Text.Equals) && radioT1_regler.Checked))
+            {
+                ok = false;
+                if (radioT1_normal.Checked)
                 {
+                    MessageClass.Show("Fehler bei Knopf Nr.", "Error with Button-no.");
+                }
+                else
+                {
+                    MessageClass.Show("Fehler bei JoyName", "Error with Joyname");
+                }
+            }
+            if (!(txtT1_Bedingung.Text.Contains("<") || txtT1_Bedingung.Text.Contains(">") || txtT1_Bedingung.Text.Contains("=")) || txtT1_Bedingung.Text.Any(char.IsLetter))
+            {
+                ok = false;
+                MessageClass.Show("Fehler bei Joystick Nr.", "Error with Joy-no.");
+            }
+            if (txtT1_Aktion.Text == "" && txtT1_Tastenkombination.Text == "")
+            {
+                ok = false;
+                MessageClass.Show("Keine Aktion oder Tastenkombination", "No action or keyboard shortcut");
+            }
+            if (txtT1_Tastenkombination.Text != "" && !(txtT1_Tastenkombination.Text.Trim('_').Count() == 3 || (txtT1_Tastenkombination.Text.Trim('_').Count() + 1) % 3 == 0))
+            {
+                ok = false;
+                MessageClass.Show("Fehler bei Tastenkombination", "Error with keyboard shortcut");
+            }
+
+
+            if (ok)
+            {
+                bool ersetzt = false;
+                for (int i = 0; i < trainConfig.Count; i++)
+                {
+                    string[] singleTrain = trainConfig[i];
+                    if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.beschreibung] == comboBoxT1_KnopfAuswahl.Text)
+                    {
+                        singleTrain[Tcfg.joystickNummer] = txtT1_JoystickNr.Text;
+                        if (!t1IsJoyButton) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtT1_Bedingung.Text.Replace(" ", "][") + "]"; }
+                        if (!t1IsJoyButton) { singleTrain[Tcfg.joystickInput] = "B" + txtT1_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtT1_JoystickKnopf.Text; }
+                        singleTrain[Tcfg.aktion] = txtT1_Aktion.Text;
+                        singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
+                        trainConfig[i] = singleTrain;
+                        ersetzt = true;
+                        MessageBox.Show(Sprache.Ersetzt);
+                    }
+                }
+                if (!ersetzt)
+                {
+                    string[] singleTrain = new string[trainConfig[0].Length];
+
+                    singleTrain[Tcfg.zug] = selectedTrain;
+                    singleTrain[Tcfg.beschreibung] = comboBoxT1_KnopfAuswahl.Text;
                     singleTrain[Tcfg.joystickNummer] = txtT1_JoystickNr.Text;
                     if (!t1IsJoyButton) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtT1_Bedingung.Text.Replace(" ", "][") + "]"; }
                     if (!t1IsJoyButton) { singleTrain[Tcfg.joystickInput] = "B" + txtT1_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtT1_JoystickKnopf.Text; }
                     singleTrain[Tcfg.aktion] = txtT1_Aktion.Text;
                     singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
-                    trainConfig[i] = singleTrain;
-                    ersetzt = true;
-                    MessageBox.Show(Sprache.Ersetzt);
+                    trainConfig.Add(singleTrain);
+                    comboBoxT1_KnopfAuswahl.Items.Add(comboBoxT1_KnopfAuswahl.Text);
+                    MessageBox.Show(Sprache.Hinzugefuegt);
                 }
-            }
-            if (!ersetzt)
-            {
-                string[] singleTrain = new string[trainConfig[0].Length];
 
-                singleTrain[Tcfg.zug] = selectedTrain;
-                singleTrain[Tcfg.beschreibung] = comboBoxT1_KnopfAuswahl.Text;
-                singleTrain[Tcfg.joystickNummer] = txtT1_JoystickNr.Text;
-                if (!t1IsJoyButton) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtT1_Bedingung.Text.Replace(" ", "][") + "]"; }
-                if (!t1IsJoyButton) { singleTrain[Tcfg.joystickInput] = "B" + txtT1_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtT1_JoystickKnopf.Text; }
-                singleTrain[Tcfg.aktion] = txtT1_Aktion.Text;
-                singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
-                trainConfig.Add(singleTrain);
-                comboBoxT1_KnopfAuswahl.Items.Add(comboBoxT1_KnopfAuswahl.Text);
-                MessageBox.Show(Sprache.Hinzugefuegt);
-            }
-
-            //Schreibe Datei
-            string[] line = new string[trainConfig.Count];
-            for (int i = 0; i < trainConfig.Count; i++)
-            {
-                string combined = "";
-                foreach (string s in trainConfig[i])
+                //Schreibe Datei
+                string[] line = new string[trainConfig.Count];
+                for (int i = 0; i < trainConfig.Count; i++)
                 {
-                    combined += s + ",";
+                    string combined = "";
+                    foreach (string s in trainConfig[i])
+                    {
+                        combined += s + ",";
+                    }
+                    combined = combined.Remove(combined.Length - 1);
+                    line[i] = combined;
                 }
-                combined = combined.Remove(combined.Length - 1);
-                line[i] = combined;
-            }
 
-            File.WriteAllLines(Tcfg.configpfad, line);
+                File.WriteAllLines(Tcfg.configpfad, line);
+            }
         }
         private void btnT1_Erkennen_Click(object sender, EventArgs e)
         {
