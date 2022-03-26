@@ -70,6 +70,7 @@ namespace TSW2_Controller
         int bremseSoll = 0;
 
         public List<string> Log { get => logData; set => logData = value; }
+        int logCount = 0;
 
 
 
@@ -86,38 +87,47 @@ namespace TSW2_Controller
                 if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
                 {
                     Directory.CreateDirectory(Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
+                    Log.Add(">>Create Dir:" + Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
                 }
                 if (File.Exists(Tcfg.configstandardpfad))
                 {
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
+                    Log.Add(">>No TrainConfig.csv");
+                    Log.Add(">>Copy :" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
                 }
             }
             if (!Directory.Exists(Tcfg.configSammelungPfad))
             {
                 Directory.CreateDirectory(Tcfg.configSammelungPfad);
+                Log.Add(">>Create Dir:" + Tcfg.configSammelungPfad);
             }
             if (Settings.Default.selectedTrainConfig == "_Standard")
             {
                 File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
+                Log.Add(">>Copy:" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
             }
             else
             {
                 if (File.Exists(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv"))
                 {
                     File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
+                    Log.Add(">>Copy:" + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv" + " to " + Tcfg.configpfad);
                 }
                 else
                 {
                     File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
+                    Log.Add(">>Copy:" + Tcfg.configpfad + " to " + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv");
                 }
             }
             if (!Directory.Exists(Tcfg.logpfad))
             {
                 Directory.CreateDirectory(Tcfg.logpfad);
+                Log.Add(">>Create Dir:" + Tcfg.logpfad);
             }
             if (File.Exists(Tcfg.logpfad + "log.txt"))
             {
                 File.Delete(Tcfg.logpfad + "log.txt");
+                Log.Add(">>Delete:" + Tcfg.logpfad + "log.txt");
             }
             #endregion
 
@@ -177,27 +187,27 @@ namespace TSW2_Controller
             if (check_active.Checked)
             {
                 check_active.BackColor = Color.Lime;
-                Log.Add("--------------------");
-                Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add("  " + string.Join(",", train)); }
-                Log.Add("");
-                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
-                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
-                Log.Add("Language:" + Settings.Default.Sprache);
-                Log.Add("Textindicators:");
-                Log.Add("   Throttle/Brake:");
-                Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
-                Log.Add("       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
-                Log.Add("   MasterController:");
-                Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
-                Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
-                Log.Add("Active = true");
-                Log.Add("");
+                Log.Add(">>--------------------");
+                Log.Add(">>Active Train:"); foreach (string[] train in activeTrain) { Log.Add(">>  " + string.Join(",", train)); }
+                Log.Add(">>");
+                Log.Add(">>version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+                Log.Add(">>Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add(">>Language:" + Settings.Default.Sprache);
+                Log.Add(">>Textindicators:");
+                Log.Add(">>   Throttle/Brake:");
+                Log.Add(">>       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
+                Log.Add(">>       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
+                Log.Add(">>   MasterController:");
+                Log.Add(">>       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
+                Log.Add(">>       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
+                Log.Add(">>Active = true");
+                Log.Add(">>");
             }
             else
             {
                 check_active.BackColor = Color.Red;
-                Log.Add("Active = false");
-                Log.Add("--------------------");
+                Log.Add(">>Active = false");
+                Log.Add(">>--------------------");
             }
         }
 
@@ -248,11 +258,20 @@ namespace TSW2_Controller
                 Version latestGitHubVersion = new Version(releases[0].TagName);
                 Version localVersion = new Version(Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2)); //Replace this with your local version. 
                                                                                                                                                                                                      //Only tested with numeric values.
+                Log.Add(">>Get Releases from GitHub:");
+                foreach (Release rel in releases) { Log.Add(">>     ->" + rel.TagName); }
+                Log.Add(">>     ->Your Version:" + localVersion.ToString());
+
                 int versionComparison = localVersion.CompareTo(latestGitHubVersion);
                 if (versionComparison < 0)
                 {
                     //The version on GitHub is more up to date than this local release.
+                    Log.Add(">>Update available");
                     label2.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
+                }
+                else
+                {
+                    Log.Add(">>     ->No update available");
                 }
             }
             catch
@@ -450,6 +469,7 @@ namespace TSW2_Controller
         #region Versions überprüfung
         public void checkVersion()
         {
+            Log.Add(">>CheckVersion...");
             try
             {
                 if (Settings.Default.UpdateErforderlich)
@@ -458,6 +478,8 @@ namespace TSW2_Controller
                     if (prevVersion != null)
                     {
                         //Update
+                        Log.Add(">>Update Settings... prevVersion=" + prevVersion.ToString());
+
                         Settings.Default.Upgrade();
                         checkLanguageSetting();
 
@@ -544,6 +566,7 @@ namespace TSW2_Controller
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                Log.Add(">>ERROR(CheckVersion):" + ex.ToString());
             }
         }
         #endregion
@@ -551,6 +574,7 @@ namespace TSW2_Controller
         #region Einstellungen laden
         public void loadSettings()
         {
+            Log.Add(">>Load Settings");
             try
             {
                 #region Auflösung
@@ -670,7 +694,7 @@ namespace TSW2_Controller
                 kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
                 #endregion
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); Log.Add(">>ERROR (loadSettings):" + ex.ToString()); Close(); }
         }
         #endregion
 
@@ -737,17 +761,25 @@ namespace TSW2_Controller
             //Debuginfos anzeigen
             try
             {
-                string[] listArray = listBox_debugInfo.Items.OfType<string>().ToArray();
-                if (listArray.Count() < Log.Count())
+                string[] logArray = Log.ToArray();
+                if (logCount < logArray.Count())
                 {
-                    int diff = Log.Count() - listArray.Count();
+                    int diff = logArray.Count() - logCount;
                     for (int i = 0; i < diff; i++)
                     {
-                        listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + Log[Log.Count() - diff + i]);
-                        File.AppendAllText(Tcfg.logpfad + "log.txt", DateTime.Now.ToString("HH:mm:ss") + "    " + Log[Log.Count() - diff + i] + "\n");
+                        if (!logArray[logArray.Count() - diff + i].StartsWith(">>"))
+                        {
+                            listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i]);
+                        }
+                        else
+                        {
+                            logArray[logArray.Count() - diff + i] = logArray[logArray.Count() - diff + i].Remove(0, 2);
+                        }
+                        File.AppendAllText(Tcfg.logpfad + "log.txt", "│" + DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i] + "\n");
                     }
                     listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
                     listBox_debugInfo.SelectedIndex = -1;
+                    logCount = logArray.Count();
                 }
             }
             catch { }
@@ -1757,11 +1789,41 @@ namespace TSW2_Controller
                         }
                     }
                     catch (Exception ex)
-                    { MessageBox.Show(ex.ToString()); }
+                    { MessageBox.Show(ex.ToString()); Log.Add(">>ERROR (KorregiereReadScreenText):" + ex.ToString()); }
                 }
             }
             return textinput;
         }
         #endregion
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Log.Add("Closing...");
+            //Debuginfos anzeigen
+            try
+            {
+                string[] logArray = Log.ToArray();
+                if (logCount < logArray.Count())
+                {
+                    int diff = logArray.Count() - logCount;
+                    for (int i = 0; i < diff; i++)
+                    {
+                        if (!logArray[logArray.Count() - diff + i].StartsWith(">>"))
+                        {
+                            listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i]);
+                        }
+                        else
+                        {
+                            logArray[logArray.Count() - diff + i] = logArray[logArray.Count() - diff + i].Remove(0, 2);
+                        }
+                        File.AppendAllText(Tcfg.logpfad + "log.txt", "│" + DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i] + "\n");
+                    }
+                    listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
+                    listBox_debugInfo.SelectedIndex = -1;
+                    logCount = logArray.Count();
+                }
+            }
+            catch { }
+        }
     }
 }
