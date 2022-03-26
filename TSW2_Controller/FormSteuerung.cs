@@ -276,6 +276,7 @@ namespace TSW2_Controller
         private void btnT1_Hinzufuegen_ersetzen_Click(object sender, EventArgs e)
         {
             bool ok = true;
+            #region Eingabeüberprüfung
             if (comboBoxT1_KnopfAuswahl.Text == "")
             {
                 ok = false;
@@ -298,10 +299,11 @@ namespace TSW2_Controller
                     MessageClass.Show("Fehler bei JoyName", "Error with Joyname");
                 }
             }
-            if (!(txtT1_Bedingung.Text.Contains("<") || txtT1_Bedingung.Text.Contains(">") || txtT1_Bedingung.Text.Contains("=")) || txtT1_Bedingung.Text.Any(char.IsLetter))
+            if (txtT1_Bedingung.Text != "" && (!(txtT1_Bedingung.Text.Contains("<") || txtT1_Bedingung.Text.Contains(">") || txtT1_Bedingung.Text.Contains("=")) || txtT1_Bedingung.Text.Any(char.IsLetter)))
             {
+                //txtT1_Bedingung.Text != "" weil es leer sein darf
                 ok = false;
-                MessageClass.Show("Fehler bei Joystick Nr.", "Error with Joy-no.");
+                MessageClass.Show("Fehler bei Bedingung", "Error with Condition");
             }
             if (txtT1_Aktion.Text == "" && txtT1_Tastenkombination.Text == "")
             {
@@ -313,6 +315,7 @@ namespace TSW2_Controller
                 ok = false;
                 MessageClass.Show("Fehler bei Tastenkombination", "Error with keyboard shortcut");
             }
+            #endregion
 
 
             if (ok)
@@ -669,6 +672,7 @@ namespace TSW2_Controller
         private void btnT3_Speichern_Click(object sender, EventArgs e)
         {
             bool ok = true;
+            #region Eingabeüberprüfung
             if (txtT3_JoyAchse.Text == "" && txtT3_JoyNr.Text == "" && txtT3_AnzahlStufen.Text == "" && txtT3_JoyUmrechnen.Text == "" && txtT3_Zeitfaktor.Text == "" && txtT3_LongPress.Text == "" && txtT3_Sonderfaelle.Text == "")
             {
                 ok = false;
@@ -719,6 +723,7 @@ namespace TSW2_Controller
                     MessageClass.Show("Fehler bei Länger drücken", "Error with Long press");
                 }
             }
+            #endregion
 
 
             if (radioT3_Stufen.Checked || radioT3_Stufenlos.Checked)
