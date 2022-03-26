@@ -77,8 +77,6 @@
             this.tabPage_Regler = new System.Windows.Forms.TabPage();
             this.btnT3_ZeitfaktorFinden = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtT3_Beschreibung = new System.Windows.Forms.TextBox();
             this.listBoxT3_ShowJoystickStates = new System.Windows.Forms.ListBox();
             this.btnT3_leeren = new System.Windows.Forms.Button();
             this.btnT3_Speichern = new System.Windows.Forms.Button();
@@ -119,24 +117,24 @@
             // 
             // tabControl_Anzeige
             // 
-            resources.ApplyResources(this.tabControl_Anzeige, "tabControl_Anzeige");
             this.tabControl_Anzeige.Controls.Add(this.tabPage_Zugauswahl);
             this.tabControl_Anzeige.Controls.Add(this.tabPage_Button);
             this.tabControl_Anzeige.Controls.Add(this.tabPage_Tastenkombi_Erstellen);
             this.tabControl_Anzeige.Controls.Add(this.tabPage_Regler);
+            resources.ApplyResources(this.tabControl_Anzeige, "tabControl_Anzeige");
             this.tabControl_Anzeige.Name = "tabControl_Anzeige";
             this.tabControl_Anzeige.SelectedIndex = 0;
             this.tabControl_Anzeige.SelectedIndexChanged += new System.EventHandler(this.tabControl_Anzeige_SelectedIndexChanged);
             // 
             // tabPage_Zugauswahl
             // 
-            resources.ApplyResources(this.tabPage_Zugauswahl, "tabPage_Zugauswahl");
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_Delete);
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_editRegler);
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_Add);
             this.tabPage_Zugauswahl.Controls.Add(this.btnT0_editButtons);
             this.tabPage_Zugauswahl.Controls.Add(this.label1);
             this.tabPage_Zugauswahl.Controls.Add(this.comboBoxT0_Zugauswahl);
+            resources.ApplyResources(this.tabPage_Zugauswahl, "tabPage_Zugauswahl");
             this.tabPage_Zugauswahl.Name = "tabPage_Zugauswahl";
             this.tabPage_Zugauswahl.UseVisualStyleBackColor = true;
             // 
@@ -175,15 +173,14 @@
             // 
             // comboBoxT0_Zugauswahl
             // 
-            resources.ApplyResources(this.comboBoxT0_Zugauswahl, "comboBoxT0_Zugauswahl");
             this.comboBoxT0_Zugauswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT0_Zugauswahl, "comboBoxT0_Zugauswahl");
             this.comboBoxT0_Zugauswahl.Name = "comboBoxT0_Zugauswahl";
             this.comboBoxT0_Zugauswahl.Sorted = true;
             this.comboBoxT0_Zugauswahl.TextChanged += new System.EventHandler(this.comboBoxT0_Zugauswahl_TextChanged);
             // 
             // tabPage_Button
             // 
-            resources.ApplyResources(this.tabPage_Button, "tabPage_Button");
             this.tabPage_Button.Controls.Add(this.label8);
             this.tabPage_Button.Controls.Add(this.btnT1_Back);
             this.tabPage_Button.Controls.Add(this.btnT1_entfernen);
@@ -205,6 +202,7 @@
             this.tabPage_Button.Controls.Add(this.txtT1_JoystickKnopf);
             this.tabPage_Button.Controls.Add(this.radioT1_regler);
             this.tabPage_Button.Controls.Add(this.radioT1_normal);
+            resources.ApplyResources(this.tabPage_Button, "tabPage_Button");
             this.tabPage_Button.Name = "tabPage_Button";
             this.tabPage_Button.UseVisualStyleBackColor = true;
             // 
@@ -229,9 +227,9 @@
             // 
             // listBoxT1_ShowJoystickStates
             // 
-            resources.ApplyResources(this.listBoxT1_ShowJoystickStates, "listBoxT1_ShowJoystickStates");
             this.listBoxT1_ShowJoystickStates.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxT1_ShowJoystickStates.FormattingEnabled = true;
+            resources.ApplyResources(this.listBoxT1_ShowJoystickStates, "listBoxT1_ShowJoystickStates");
             this.listBoxT1_ShowJoystickStates.Name = "listBoxT1_ShowJoystickStates";
             // 
             // lblT1_Bedingung
@@ -288,8 +286,8 @@
             // 
             // comboBoxT1_KnopfAuswahl
             // 
-            resources.ApplyResources(this.comboBoxT1_KnopfAuswahl, "comboBoxT1_KnopfAuswahl");
             this.comboBoxT1_KnopfAuswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT1_KnopfAuswahl, "comboBoxT1_KnopfAuswahl");
             this.comboBoxT1_KnopfAuswahl.Name = "comboBoxT1_KnopfAuswahl";
             this.comboBoxT1_KnopfAuswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT1_KnopfAuswahl_SelectedIndexChanged);
             this.comboBoxT1_KnopfAuswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT1_KnopfAuswahl_KeyPress);
@@ -339,7 +337,6 @@
             // 
             // tabPage_Tastenkombi_Erstellen
             // 
-            resources.ApplyResources(this.tabPage_Tastenkombi_Erstellen, "tabPage_Tastenkombi_Erstellen");
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.btnT2_Fertig);
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.btnT2_Hinzufügen);
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.label9);
@@ -353,6 +350,7 @@
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.label7);
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.txtT2_Taste);
             this.tabPage_Tastenkombi_Erstellen.Controls.Add(this.listBoxT2_Output);
+            resources.ApplyResources(this.tabPage_Tastenkombi_Erstellen, "tabPage_Tastenkombi_Erstellen");
             this.tabPage_Tastenkombi_Erstellen.Name = "tabPage_Tastenkombi_Erstellen";
             this.tabPage_Tastenkombi_Erstellen.UseVisualStyleBackColor = true;
             // 
@@ -438,18 +436,15 @@
             // 
             // listBoxT2_Output
             // 
-            resources.ApplyResources(this.listBoxT2_Output, "listBoxT2_Output");
             this.listBoxT2_Output.FormattingEnabled = true;
+            resources.ApplyResources(this.listBoxT2_Output, "listBoxT2_Output");
             this.listBoxT2_Output.Name = "listBoxT2_Output";
             this.listBoxT2_Output.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT2_Output_KeyDown);
             // 
             // tabPage_Regler
             // 
-            resources.ApplyResources(this.tabPage_Regler, "tabPage_Regler");
             this.tabPage_Regler.Controls.Add(this.btnT3_ZeitfaktorFinden);
             this.tabPage_Regler.Controls.Add(this.button1);
-            this.tabPage_Regler.Controls.Add(this.label17);
-            this.tabPage_Regler.Controls.Add(this.txtT3_Beschreibung);
             this.tabPage_Regler.Controls.Add(this.listBoxT3_ShowJoystickStates);
             this.tabPage_Regler.Controls.Add(this.btnT3_leeren);
             this.tabPage_Regler.Controls.Add(this.btnT3_Speichern);
@@ -472,6 +467,7 @@
             this.tabPage_Regler.Controls.Add(this.panelT3_StufenStufenlos);
             this.tabPage_Regler.Controls.Add(this.panel1);
             this.tabPage_Regler.Controls.Add(this.label10);
+            resources.ApplyResources(this.tabPage_Regler, "tabPage_Regler");
             this.tabPage_Regler.Name = "tabPage_Regler";
             this.tabPage_Regler.UseVisualStyleBackColor = true;
             // 
@@ -489,22 +485,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnT1_Back_Click);
             // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
-            // 
-            // txtT3_Beschreibung
-            // 
-            resources.ApplyResources(this.txtT3_Beschreibung, "txtT3_Beschreibung");
-            this.txtT3_Beschreibung.Name = "txtT3_Beschreibung";
-            // 
             // listBoxT3_ShowJoystickStates
             // 
-            resources.ApplyResources(this.listBoxT3_ShowJoystickStates, "listBoxT3_ShowJoystickStates");
             this.listBoxT3_ShowJoystickStates.BackColor = System.Drawing.SystemColors.Window;
             this.listBoxT3_ShowJoystickStates.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxT3_ShowJoystickStates.FormattingEnabled = true;
+            resources.ApplyResources(this.listBoxT3_ShowJoystickStates, "listBoxT3_ShowJoystickStates");
             this.listBoxT3_ShowJoystickStates.Name = "listBoxT3_ShowJoystickStates";
             // 
             // btnT3_leeren
@@ -605,9 +591,9 @@
             // 
             // panelT3_StufenStufenlos
             // 
-            resources.ApplyResources(this.panelT3_StufenStufenlos, "panelT3_StufenStufenlos");
             this.panelT3_StufenStufenlos.Controls.Add(this.radioT3_Stufenlos);
             this.panelT3_StufenStufenlos.Controls.Add(this.radioT3_Stufen);
+            resources.ApplyResources(this.panelT3_StufenStufenlos, "panelT3_StufenStufenlos");
             this.panelT3_StufenStufenlos.Name = "panelT3_StufenStufenlos";
             // 
             // radioT3_Stufenlos
@@ -626,10 +612,10 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.radioT3_Schub);
             this.panel1.Controls.Add(this.radioT3_Kombihebel);
             this.panel1.Controls.Add(this.radioT3_Bremse);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // radioT3_Schub
@@ -768,8 +754,6 @@
         private System.Windows.Forms.Button btnT3_leeren;
         private System.Windows.Forms.ListBox listBoxT3_ShowJoystickStates;
         private System.Windows.Forms.Timer T3Timer_GetJoyStates;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtT3_Beschreibung;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnT3_ZeitfaktorFinden;
         private System.Windows.Forms.Button btnT0_Delete;

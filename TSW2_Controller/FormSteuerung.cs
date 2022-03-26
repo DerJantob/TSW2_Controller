@@ -520,24 +520,31 @@ namespace TSW2_Controller
         }
         private void btnT2_Hinzufügen_Click(object sender, EventArgs e)
         {
-            if (txtT2_Wartezeit.Text == "") { txtT2_Wartezeit.Text = "0"; }
-            if (txtT2_Haltezeit.Text == "") { txtT2_Haltezeit.Text = "0"; }
+            if (txtT2_Taste.Text != "")
+            {
+                if (txtT2_Wartezeit.Text == "") { txtT2_Wartezeit.Text = "0"; }
+                if (txtT2_Haltezeit.Text == "") { txtT2_Haltezeit.Text = "0"; }
 
-            if (radioT2_einmalDruecken.Checked)
-            {
-                listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[press]_[" + txtT2_Wartezeit.Text + "]");
+                if (radioT2_einmalDruecken.Checked)
+                {
+                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[press]_[" + txtT2_Wartezeit.Text + "]");
+                }
+                else if (radioT2_Halten.Checked)
+                {
+                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold " + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
+                }
+                else if (radioT2_Druecken.Checked)
+                {
+                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[down]_[" + txtT2_Wartezeit.Text + "]");
+                }
+                else if (radioT2_Loslassen.Checked)
+                {
+                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[up]_[" + txtT2_Wartezeit.Text + "]");
+                }
             }
-            else if (radioT2_Halten.Checked)
+            else
             {
-                listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold " + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
-            }
-            else if (radioT2_Druecken.Checked)
-            {
-                listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[down]_[" + txtT2_Wartezeit.Text + "]");
-            }
-            else if (radioT2_Loslassen.Checked)
-            {
-                listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[up]_[" + txtT2_Wartezeit.Text + "]");
+                MessageClass.Show("Keine Taste", "No key");
             }
         }
         private void txtT2_Haltezeit_KeyPress(object sender, KeyPressEventArgs e)
@@ -592,7 +599,6 @@ namespace TSW2_Controller
             txtT3_Sonderfaelle.Text = "";
             txtT3_Zeitfaktor.Text = "";
             txtT3_LongPress.Text = "";
-            txtT3_Beschreibung.Text = "";
 
             checkT3_andererJoyModus.Checked = false;
             checkT3_Invertiert.Checked = false;
@@ -615,7 +621,6 @@ namespace TSW2_Controller
                         txtT3_Sonderfaelle.Text = singleTrain[Tcfg.specials].Replace(" ", "_").Replace("[", "").Replace("]", " ").TrimEnd(' ');
                         txtT3_Zeitfaktor.Text = singleTrain[Tcfg.zeitfaktor];
                         txtT3_LongPress.Text = singleTrain[Tcfg.laengerDruecken].Replace("[", "").Replace("]", " ").TrimEnd(' ');
-                        txtT3_Beschreibung.Text = singleTrain[Tcfg.beschreibung];
                         if (singleTrain[Tcfg.art] == "Stufen") { radioT3_Stufen.Checked = true; } else if (singleTrain[Tcfg.art] == "Stufenlos") { radioT3_Stufenlos.Checked = true; }
                         if (singleTrain[Tcfg.invertieren] == "1") { checkT3_Invertiert.Checked = true; } else { checkT3_Invertiert.Checked = false; }
                         if (singleTrain[Tcfg.inputTyp] == "1") { checkT3_andererJoyModus.Checked = true; } else { checkT3_andererJoyModus.Checked = false; }
@@ -682,7 +687,6 @@ namespace TSW2_Controller
                             singleTrain[Tcfg.joystickInput] = txtT3_JoyAchse.Text;
                             singleTrain[Tcfg.schritte] = txtT3_AnzahlStufen.Text;
                             singleTrain[Tcfg.zeitfaktor] = txtT3_Zeitfaktor.Text;
-                            singleTrain[Tcfg.beschreibung] = txtT3_Beschreibung.Text;
                             if (txtT3_JoyUmrechnen.Text.Length >= 3) { singleTrain[Tcfg.inputUmrechnen] = "[" + txtT3_JoyUmrechnen.Text.Replace(" ", "][") + "]"; } else { singleTrain[Tcfg.inputUmrechnen] = ""; }
                             if (txtT3_Sonderfaelle.Text.Length >= 3) { singleTrain[Tcfg.specials] = "[" + txtT3_Sonderfaelle.Text.Replace(" ", "][").Replace("_", " ") + "]"; } else { singleTrain[Tcfg.specials] = ""; }
                             if (txtT3_LongPress.Text.Length >= 3) { singleTrain[Tcfg.laengerDruecken] = "[" + txtT3_LongPress.Text.Replace(" ", "][") + "]"; } else { singleTrain[Tcfg.laengerDruecken] = ""; }
@@ -704,7 +708,6 @@ namespace TSW2_Controller
                     singleTrain[Tcfg.joystickInput] = txtT3_JoyAchse.Text;
                     singleTrain[Tcfg.schritte] = txtT3_AnzahlStufen.Text;
                     singleTrain[Tcfg.zeitfaktor] = txtT3_Zeitfaktor.Text;
-                    singleTrain[Tcfg.beschreibung] = txtT3_Beschreibung.Text;
                     if (txtT3_JoyUmrechnen.Text.Length >= 3) { singleTrain[Tcfg.inputUmrechnen] = "[" + txtT3_JoyUmrechnen.Text.Replace(" ", "][") + "]"; }
                     if (txtT3_Sonderfaelle.Text.Length >= 3) { singleTrain[Tcfg.specials] = "[" + txtT3_Sonderfaelle.Text.Replace(" ", "][").Replace("_", " ") + "]"; }
                     if (txtT3_LongPress.Text.Length >= 3) { singleTrain[Tcfg.laengerDruecken] = "[" + txtT3_LongPress.Text.Replace(" ", "][") + "]"; }
