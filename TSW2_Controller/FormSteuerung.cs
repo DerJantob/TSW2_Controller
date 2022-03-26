@@ -85,6 +85,7 @@ namespace TSW2_Controller
         }
         private void btnT0_editButtons_Click(object sender, EventArgs e)
         {
+            T1Reset();
             if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != Sprache.Zugauswahl)
             {
                 selectedTrain = comboBoxT0_Zugauswahl.Text;
@@ -101,6 +102,7 @@ namespace TSW2_Controller
         }
         private void btnT0_editRegler_Click(object sender, EventArgs e)
         {
+            T3Reset(true);
             if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != Sprache.Zugauswahl)
             {
                 selectedTrain = comboBoxT0_Zugauswahl.Text;
@@ -168,6 +170,16 @@ namespace TSW2_Controller
         #endregion
 
         #region T1
+        private void T1Reset()
+        {
+            comboBoxT1_KnopfAuswahl.Items.Clear();
+            comboBoxT1_KnopfAuswahl.Text = "";
+            txtT1_Aktion.Text = "";
+            txtT1_Bedingung.Text = "";
+            txtT1_JoystickKnopf.Text = "";
+            txtT1_JoystickNr.Text = "";
+            txtT1_Tastenkombination.Text = "";
+        }
         private void radioT1_normal_CheckedChanged(object sender, EventArgs e)
         {
             //Auswahl zwischen "normaler Knopf" und "Regler als Knopf"
@@ -593,7 +605,7 @@ namespace TSW2_Controller
         #endregion
 
         #region T3
-        private void T3Reset()
+        private void T3Reset(bool full)
         {
             txtT3_JoyNr.Text = "";
             txtT3_JoyAchse.Text = "";
@@ -605,6 +617,14 @@ namespace TSW2_Controller
 
             checkT3_andererJoyModus.Checked = false;
             checkT3_Invertiert.Checked = false;
+            if(full)
+            {
+                radioT3_Schub.Checked = false;
+                radioT3_Bremse.Checked = false;
+                radioT3_Kombihebel.Checked = false;
+                radioT3_Stufenlos.Checked = false;
+                radioT3_Stufen.Checked = false;
+            }
         }
         private void radioT3_SchubBremseKombihebel_CheckedChanged(object sender, EventArgs e)
         {
@@ -636,7 +656,7 @@ namespace TSW2_Controller
             }
             if (!foundData)
             {
-                T3Reset();
+                T3Reset(false);
                 radioT3_Stufen.Checked = false;
                 radioT3_Stufenlos.Checked = false;
             }
@@ -653,7 +673,7 @@ namespace TSW2_Controller
         }
         private void btnT3_leeren_Click(object sender, EventArgs e)
         {
-            T3Reset();
+            T3Reset(false);
         }
         private void radioT3_StufenStufenlos_CheckedChanged(object sender, EventArgs e)
         {
