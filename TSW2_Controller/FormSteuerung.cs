@@ -85,7 +85,7 @@ namespace TSW2_Controller
         }
         private void btnT0_editButtons_Click(object sender, EventArgs e)
         {
-            T1Reset();
+            T1Reset(true);
             if (comboBoxT0_Zugauswahl.Text != "" && comboBoxT0_Zugauswahl.Text != Sprache.Zugauswahl)
             {
                 selectedTrain = comboBoxT0_Zugauswahl.Text;
@@ -170,9 +170,12 @@ namespace TSW2_Controller
         #endregion
 
         #region T1
-        private void T1Reset()
+        private void T1Reset(bool full)
         {
-            comboBoxT1_KnopfAuswahl.Items.Clear();
+            if (full)
+            {
+                comboBoxT1_KnopfAuswahl.Items.Clear();
+            }
             comboBoxT1_KnopfAuswahl.Text = "";
             txtT1_Aktion.Text = "";
             txtT1_Bedingung.Text = "";
@@ -488,6 +491,8 @@ namespace TSW2_Controller
                     trainConfig.RemoveAt(i);
                     comboBoxT1_KnopfAuswahl.Items.Remove(comboBoxT1_KnopfAuswahl.Text);
                     comboBoxT1_KnopfAuswahl.Text = "";
+                    T1Reset(false);
+                    MessageClass.Show("Entfernt", "Removed");
                 }
             }
 
@@ -617,7 +622,7 @@ namespace TSW2_Controller
 
             checkT3_andererJoyModus.Checked = false;
             checkT3_Invertiert.Checked = false;
-            if(full)
+            if (full)
             {
                 radioT3_Schub.Checked = false;
                 radioT3_Bremse.Checked = false;
