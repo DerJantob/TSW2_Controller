@@ -40,8 +40,8 @@ namespace TSW2_Controller
         bool[] currentlyPressedButtons = new bool[128];
         bool[] previouslyPressedButtons = new bool[128];
 
-        string[] throttleConfig; //{Index,Art,Schritte,Specials,Zeit,längerDrücken}
-        string[] brakeConfig; //{Index,Art,Schritte,Specials,Zeit,LängerDrücken}
+        string[] throttleConfig; //{Aktiver Indikator,Art,Schritte,Specials,Zeit,längerDrücken,Beschreibung}
+        string[] brakeConfig; //{Aktiver Indikator,Art,Schritte,Specials,Zeit,LängerDrücken,Beschreibung}
         public static string[] inputNames = { "JoyX", "JoyY", "JoyZ", "pov", "RotX", "RotY", "RotZ", "Sldr" };
 
         string[] defaultDE_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
@@ -727,7 +727,7 @@ namespace TSW2_Controller
                     }
 
                     //Wenn es einen Bremsregler gibt und der BGW nicht beschäftigt ist dann starte ihn
-                    if (!bgw_Brake.IsBusy && !isKombihebel && brakeConfig[0] != null)
+                    if (!bgw_Brake.IsBusy && brakeConfig[0] != null)
                     {
                         bgw_Brake.RunWorkerAsync();
                     }
@@ -835,8 +835,8 @@ namespace TSW2_Controller
         public void getActiveTrain()
         {
             //Reset Infos
-            throttleConfig = new string[6];
-            brakeConfig = new string[6];
+            throttleConfig = new string[7];
+            brakeConfig = new string[7];
             activeTrain.Clear();
 
             //Was wurde ausgewählt
@@ -863,6 +863,7 @@ namespace TSW2_Controller
                     throttleConfig[3] = str[Tcfg.specials];
                     throttleConfig[4] = str[Tcfg.zeitfaktor];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
+                    throttleConfig[6] = "Schub";
                 }
                 else if (str[Tcfg.tastenKombination].Contains("Kombihebel"))
                 {
@@ -874,6 +875,7 @@ namespace TSW2_Controller
                     throttleConfig[3] = str[Tcfg.specials];
                     throttleConfig[4] = str[Tcfg.zeitfaktor];
                     throttleConfig[5] = str[Tcfg.laengerDruecken];
+                    throttleConfig[6] = "Kombihebel";
                 }
 
                 if (str[Tcfg.tastenKombination].Contains("Bremse"))
@@ -885,6 +887,7 @@ namespace TSW2_Controller
                     brakeConfig[3] = str[Tcfg.specials];
                     brakeConfig[4] = str[Tcfg.zeitfaktor];
                     brakeConfig[5] = str[Tcfg.laengerDruecken];
+                    brakeConfig[6] = "Bremse";
                 }
             }
 
@@ -1417,7 +1420,7 @@ namespace TSW2_Controller
                         if (ist == untere_grenze)
                         {
                             Log.Add("Halte mehr gedrückt");
-                            Keyboard.HoldKey(Keyboard.increaseThrottle, dauer);
+                            Keyboard.HoldKey(keyIncrease, dauer);
                             ist = obere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
                             Thread.Sleep(100);
@@ -1448,7 +1451,7 @@ namespace TSW2_Controller
                             Log.Add("Anpassen auf runter " + obere_grenze);
                             if (isStufenlos)
                             {
-                                Keyboard.HoldKey(Keyboard.decreaseThrottle, 10);
+                                Keyboard.HoldKey(keyDecrease, 10);
                                 soll = obere_grenze;
                             }
                         }
@@ -1506,17 +1509,17 @@ namespace TSW2_Controller
                 {
                     if (ContainsWord(original_result, leistungsIndex))
                     {
-                        throttleConfig[0] = leistungsIndex;
                         if (leistungsIndex.Length > maxLength)
                         {
+                            throttleConfig[0] = leistungsIndex;
                             maxLength = leistungsIndex.Length;
                         }
                     }
                     else if (ContainsWord(alternative_result, leistungsIndex))
                     {
-                        throttleConfig[0] = leistungsIndex;
                         if (leistungsIndex.Length > maxLength)
                         {
+                            throttleConfig[0] = leistungsIndex;
                             maxLength = leistungsIndex.Length;
                         }
                     }
@@ -1536,6 +1539,7 @@ namespace TSW2_Controller
                         if (bremsindex.Length > maxLength)
                         {
                             brakeConfig[0] = bremsindex;
+                            maxLength = bremsindex.Length;
                         }
                     }
                     else if (ContainsWord(alternative_result, bremsindex))
@@ -1543,6 +1547,7 @@ namespace TSW2_Controller
                         if (bremsindex.Length > maxLength)
                         {
                             brakeConfig[0] = bremsindex;
+                            maxLength = bremsindex.Length;
                         }
                     }
                 }
@@ -1667,7 +1672,7 @@ namespace TSW2_Controller
 
                 if (erkannterWert == noResultValue)
                 {
-                    if (isKombihebel)
+                    if (config[6] == "Kombihebel")
                     {
                         result = result.Replace("%", "");
                     }
@@ -1677,7 +1682,7 @@ namespace TSW2_Controller
                     }
 
                     #region Kombihebel
-                    if (isKombihebel)
+                    if (config[6] == "Kombihebel")
                     {
                         if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                         {
@@ -1711,7 +1716,21 @@ namespace TSW2_Controller
 
                 if (erkannterWert == noResultValue)
                 {
-                    try { erkannterWert = Convert.ToInt32(result); } catch { Log.Add("Error converting " + result + " to number"); }
+                    try
+                    {
+                        erkannterWert = Convert.ToInt32(result);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            erkannterWert = Convert.ToInt32(result.Remove(0, result.IndexOfAny("0123456789".ToCharArray())));
+                        }
+                        catch
+                        {
+                            Log.Add("Error converting " + result + " to number");
+                        }
+                    }
                 }
                 if (erkannterWert != noResultValue)
                 {
