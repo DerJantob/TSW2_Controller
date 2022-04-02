@@ -73,7 +73,7 @@ namespace TSW2_Controller
         int bremseSoll = 0;
 
         public List<string> DebugData { get => debugData; set => debugData = value; }
-
+        
 
 
         public FormMain()
@@ -100,8 +100,9 @@ namespace TSW2_Controller
 
             CheckGitHubNewerVersion();
 
-            loadSettings();
             Keyboard.initKeylist();
+
+            loadSettings();
 
             comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
@@ -613,6 +614,20 @@ namespace TSW2_Controller
                 bremsIndexe.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
                 kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
                 kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+                #endregion
+
+                #region Tastenbelegung#
+                try
+                {
+                    Keyboard.increaseThrottle = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[0]);
+                    Keyboard.decreaseThrottle = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[1]);
+                    Keyboard.increaseBrake = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[2]);
+                    Keyboard.decreaseBrake = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[3]);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
                 #endregion
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); Close(); }

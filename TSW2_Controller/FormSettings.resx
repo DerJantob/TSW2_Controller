@@ -117,485 +117,869 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>257, 445</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>tab_kombihebel</value>
-  </data>
-  <data name="comboBox_Bremse.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.Name" xml:space="preserve">
-    <value>btn_Sprache</value>
-  </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="progressBar_updater.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="progressBar_updater.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbl_version.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 423</value>
-  </data>
-  <data name="btn_updates.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiSchub.Parent" xml:space="preserve">
-    <value>tab_kombihebel</value>
-  </data>
-  <data name="&gt;&gt;check_ShowScan.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="comboBox_Bremse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 21</value>
-  </data>
-  <data name="&gt;&gt;check_showDebug.Name" xml:space="preserve">
-    <value>check_showDebug</value>
-  </data>
-  <data name="&gt;&gt;lbl_version.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btn_steuerung.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tab_kombihebel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 100</value>
-  </data>
-  <data name="btn_updates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 394</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiSchub.Name" xml:space="preserve">
-    <value>comboBox_kombiSchub</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Bremse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="check_showDebug.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 97</value>
-  </data>
-  <data name="btn_steuerung.Text" xml:space="preserve">
-    <value>Steuerung</value>
-  </data>
-  <data name="comboBox_Bremse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 63</value>
-  </data>
-  <data name="check_showDebug.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="check_ShowScan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 17</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="btn_Sprache.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="lbl_version.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiSchub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn_Sprache.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="comboBox_kombiSchub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="tab_schubLeistung.Text" xml:space="preserve">
-    <value>Schub/Bremse</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBox_resolution.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Spiel-Auflösung:</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormSettings</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn_textindikator_StandardLaden.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btn_changelog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 23</value>
-  </data>
-  <data name="progressBar_updater.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiBremse.Name" xml:space="preserve">
-    <value>comboBox_kombiBremse</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btn_speichern.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="comboBox_resolution.Items1" xml:space="preserve">
-    <value>2560x1440</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="tab_kombihebel.Text" xml:space="preserve">
-    <value>Kombihebel</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Schub.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="comboBox_Schub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="comboBox_kombiBremse.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 47</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Bremse</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>Manual</value>
-  </data>
-  <data name="tab_schubLeistung.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="&gt;&gt;btn_steuerung.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btn_Sprache.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;btn_speichern.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 50</value>
-  </data>
-  <data name="comboBox_kombiSchub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 21</value>
-  </data>
-  <data name="check_ShowScan.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Schub.Name" xml:space="preserve">
-    <value>comboBox_Schub</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;comboBox_resolution.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lbl_version.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Text Indikatoren</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.ZOrder" xml:space="preserve">
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="tab_kombihebel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Spiel-Auflösung:</value>
   </data>
-  <data name="btn_speichern.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="&gt;&gt;check_showDebug.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btn_steuerung.Name" xml:space="preserve">
-    <value>btn_steuerung</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btn_speichern.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 413</value>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="check_showDebug.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="check_showDebug.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 97</value>
   </data>
-  <data name="tab_kombihebel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="check_showDebug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 17</value>
   </data>
   <data name="check_showDebug.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;tab_schubLeistung.Name" xml:space="preserve">
-    <value>tab_schubLeistung</value>
+  <data name="check_showDebug.Text" xml:space="preserve">
+    <value>Debug Informationen</value>
   </data>
-  <data name="&gt;&gt;btn_textindikator_StandardLaden.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;check_showDebug.Name" xml:space="preserve">
+    <value>check_showDebug</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tab_kombihebel</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiBremse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn_textindikator_StandardLaden.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 147</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>tab_schubLeistung</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="btn_updates.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="progressBar_updater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 10</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Bremse.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiBremse.Parent" xml:space="preserve">
-    <value>tab_kombihebel</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Bremse.Name" xml:space="preserve">
-    <value>comboBox_Bremse</value>
-  </data>
-  <data name="&gt;&gt;btn_changelog.Name" xml:space="preserve">
-    <value>btn_changelog</value>
-  </data>
-  <data name="btn_textindikator_StandardLaden.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
+  <data name="&gt;&gt;check_showDebug.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;check_showDebug.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="&gt;&gt;check_showDebug.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lbl_version.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lbl_version.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;comboBox_resolution.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="lbl_version.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 555</value>
   </data>
-  <data name="btn_changelog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 365</value>
+  <data name="lbl_version.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 13</value>
+  </data>
+  <data name="lbl_version.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lbl_version.Text" xml:space="preserve">
+    <value>vX.X.X</value>
+  </data>
+  <data name="&gt;&gt;lbl_version.Name" xml:space="preserve">
+    <value>lbl_version</value>
   </data>
   <data name="&gt;&gt;lbl_version.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 143</value>
+  <data name="&gt;&gt;lbl_version.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbl_version.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="check_ShowScan.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_ShowScan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 120</value>
+  </data>
+  <data name="check_ShowScan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 17</value>
+  </data>
+  <data name="check_ShowScan.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="check_ShowScan.Text" xml:space="preserve">
+    <value>Screenshot anzeigen</value>
+  </data>
+  <data name="&gt;&gt;check_ShowScan.Name" xml:space="preserve">
+    <value>check_ShowScan</value>
+  </data>
+  <data name="&gt;&gt;check_ShowScan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;check_ShowScan.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;check_ShowScan.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btn_updates.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btn_updates.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 526</value>
+  </data>
+  <data name="btn_updates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 23</value>
+  </data>
+  <data name="btn_updates.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="btn_updates.Text" xml:space="preserve">
     <value>suche updates</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;check_ShowScan.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tab_schubLeistung.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 100</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="comboBox_resolution.Items" xml:space="preserve">
-    <value>1920x1080</value>
-  </data>
-  <data name="check_ShowScan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 120</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;tab_kombihebel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="check_showDebug.Text" xml:space="preserve">
-    <value>Debug Informationen</value>
-  </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btn_Sprache.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 23</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 178</value>
-  </data>
-  <data name="&gt;&gt;check_showDebug.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btn_textindikator_StandardLaden.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="comboBox_kombiBremse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 21</value>
-  </data>
-  <data name="&gt;&gt;check_ShowScan.Name" xml:space="preserve">
-    <value>check_ShowScan</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 47</value>
-  </data>
-  <data name="comboBox_resolution.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 21</value>
-  </data>
-  <data name="&gt;&gt;tab_kombihebel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="&gt;&gt;btn_textindikator_StandardLaden.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="comboBox_resolution.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 66</value>
-  </data>
   <data name="&gt;&gt;btn_updates.Name" xml:space="preserve">
     <value>btn_updates</value>
   </data>
-  <data name="&gt;&gt;progressBar_updater.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btn_updates.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_updates.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btn_changelog.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="&gt;&gt;btn_updates.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="comboBox_kombiBremse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 63</value>
+  <data name="btn_textindikator_StandardLaden.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 147</value>
   </data>
-  <data name="&gt;&gt;btn_changelog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btn_textindikator_StandardLaden.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btn_textindikator_StandardLaden.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
-  <data name="comboBox_Schub.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tab_schubLeistung.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="comboBox_resolution.Items2" xml:space="preserve">
-    <value>3840x2160</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiSchub.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 3</value>
-  </data>
-  <data name="&gt;&gt;btn_speichern.Name" xml:space="preserve">
-    <value>btn_speichern</value>
-  </data>
-  <data name="tab_schubLeistung.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 126</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="btn_textindikator_StandardLaden.Text" xml:space="preserve">
+    <value>Zurücksetzen</value>
   </data>
   <data name="&gt;&gt;btn_textindikator_StandardLaden.Name" xml:space="preserve">
     <value>btn_textindikator_StandardLaden</value>
   </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;btn_textindikator_StandardLaden.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;progressBar_updater.Name" xml:space="preserve">
-    <value>progressBar_updater</value>
+  <data name="&gt;&gt;btn_textindikator_StandardLaden.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btn_textindikator_StandardLaden.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 47</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Bremse</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tab_schubLeistung</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBox_Bremse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 63</value>
+  </data>
+  <data name="comboBox_Bremse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 21</value>
+  </data>
+  <data name="comboBox_Bremse.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Bremse.Name" xml:space="preserve">
+    <value>comboBox_Bremse</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Bremse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboBox_Bremse.Parent" xml:space="preserve">
     <value>tab_schubLeistung</value>
   </data>
-  <data name="&gt;&gt;btn_changelog.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;comboBox_Bremse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 3</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Schub</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>tab_schubLeistung</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comboBox_Schub.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="comboBox_Schub.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 21</value>
+  </data>
+  <data name="comboBox_Schub.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Schub.Name" xml:space="preserve">
+    <value>comboBox_Schub</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Schub.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboBox_Schub.Parent" xml:space="preserve">
     <value>tab_schubLeistung</value>
+  </data>
+  <data name="&gt;&gt;comboBox_Schub.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tab_schubLeistung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tab_schubLeistung.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tab_schubLeistung.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 100</value>
+  </data>
+  <data name="tab_schubLeistung.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tab_schubLeistung.Text" xml:space="preserve">
+    <value>Schub/Bremse</value>
+  </data>
+  <data name="&gt;&gt;tab_schubLeistung.Name" xml:space="preserve">
+    <value>tab_schubLeistung</value>
+  </data>
+  <data name="&gt;&gt;tab_schubLeistung.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tab_schubLeistung.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tab_schubLeistung.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 47</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Bremsbereich</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tab_kombihebel</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBox_kombiBremse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 63</value>
+  </data>
+  <data name="comboBox_kombiBremse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 21</value>
+  </data>
+  <data name="comboBox_kombiBremse.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiBremse.Name" xml:space="preserve">
+    <value>comboBox_kombiBremse</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiBremse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiBremse.Parent" xml:space="preserve">
+    <value>tab_kombihebel</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiBremse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 3</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Schubbereich</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>tab_kombihebel</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comboBox_kombiSchub.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="comboBox_kombiSchub.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 21</value>
+  </data>
+  <data name="comboBox_kombiSchub.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiSchub.Name" xml:space="preserve">
+    <value>comboBox_kombiSchub</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiSchub.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiSchub.Parent" xml:space="preserve">
+    <value>tab_kombihebel</value>
+  </data>
+  <data name="&gt;&gt;comboBox_kombiSchub.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tab_kombihebel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tab_kombihebel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tab_kombihebel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 100</value>
+  </data>
+  <data name="tab_kombihebel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tab_kombihebel.Text" xml:space="preserve">
+    <value>Kombihebel</value>
+  </data>
+  <data name="&gt;&gt;tab_kombihebel.Name" xml:space="preserve">
+    <value>tab_kombihebel</value>
+  </data>
+  <data name="&gt;&gt;tab_kombihebel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tab_kombihebel.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tab_kombihebel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 126</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 143</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 178</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Text Indikatoren</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btn_changelog.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btn_changelog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 497</value>
+  </data>
+  <data name="btn_changelog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 23</value>
+  </data>
+  <data name="btn_changelog.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btn_changelog.Text" xml:space="preserve">
+    <value>Was ist neu?</value>
+  </data>
+  <data name="&gt;&gt;btn_changelog.Name" xml:space="preserve">
+    <value>btn_changelog</value>
+  </data>
+  <data name="&gt;&gt;btn_changelog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_changelog.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_changelog.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btn_speichern.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btn_speichern.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 545</value>
+  </data>
+  <data name="btn_speichern.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btn_speichern.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btn_speichern.Text" xml:space="preserve">
+    <value>speichern</value>
+  </data>
+  <data name="&gt;&gt;btn_speichern.Name" xml:space="preserve">
+    <value>btn_speichern</value>
+  </data>
+  <data name="&gt;&gt;btn_speichern.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_speichern.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_speichern.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btn_steuerung.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btn_steuerung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 12</value>
+  </data>
+  <data name="btn_steuerung.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btn_steuerung.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btn_steuerung.Text" xml:space="preserve">
+    <value>Steuerung</value>
+  </data>
+  <data name="&gt;&gt;btn_steuerung.Name" xml:space="preserve">
+    <value>btn_steuerung</value>
+  </data>
+  <data name="&gt;&gt;btn_steuerung.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_steuerung.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_steuerung.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btn_Sprache.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btn_Sprache.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="btn_Sprache.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 23</value>
+  </data>
+  <data name="btn_Sprache.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btn_Sprache.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="&gt;&gt;btn_Sprache.Name" xml:space="preserve">
+    <value>btn_Sprache</value>
+  </data>
+  <data name="&gt;&gt;btn_Sprache.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_Sprache.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_Sprache.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="comboBox_resolution.Items" xml:space="preserve">
+    <value>1920x1080</value>
+  </data>
+  <data name="comboBox_resolution.Items1" xml:space="preserve">
+    <value>2560x1440</value>
+  </data>
+  <data name="comboBox_resolution.Items2" xml:space="preserve">
+    <value>3840x2160</value>
+  </data>
+  <data name="comboBox_resolution.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 66</value>
+  </data>
+  <data name="comboBox_resolution.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 21</value>
+  </data>
+  <data name="comboBox_resolution.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;comboBox_resolution.Name" xml:space="preserve">
+    <value>comboBox_resolution</value>
+  </data>
+  <data name="&gt;&gt;comboBox_resolution.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_resolution.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_resolution.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="progressBar_updater.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="progressBar_updater.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="progressBar_updater.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 545</value>
+  </data>
+  <data name="progressBar_updater.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 10</value>
+  </data>
+  <data name="progressBar_updater.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="progressBar_updater.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;progressBar_updater.Name" xml:space="preserve">
+    <value>progressBar_updater</value>
+  </data>
+  <data name="&gt;&gt;progressBar_updater.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;progressBar_updater.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;progressBar_updater.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 100</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 13</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Bremse verringern</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 74</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Bremse erhöhen</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 48</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Schub verringern</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 22</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Schub erhöhen</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txt_decreaseBrake.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 97</value>
+  </data>
+  <data name="txt_decreaseBrake.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="txt_decreaseBrake.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseBrake.Name" xml:space="preserve">
+    <value>txt_decreaseBrake</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseBrake.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseBrake.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txt_increaseBrake.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 71</value>
+  </data>
+  <data name="txt_increaseBrake.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="txt_increaseBrake.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseBrake.Name" xml:space="preserve">
+    <value>txt_increaseBrake</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseBrake.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseBrake.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txt_decreaseThrottle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 45</value>
+  </data>
+  <data name="txt_decreaseThrottle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="txt_decreaseThrottle.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseThrottle.Name" xml:space="preserve">
+    <value>txt_decreaseThrottle</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseThrottle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseThrottle.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txt_decreaseThrottle.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txt_increaseThrottle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="txt_increaseThrottle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="txt_increaseThrottle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseThrottle.Name" xml:space="preserve">
+    <value>txt_increaseThrottle</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseThrottle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseThrottle.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txt_increaseThrottle.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 327</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 135</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Tastenbelegung</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>317, 577</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -884,178 +1268,16 @@
         /+B///////////////////////////////////////////////8=
 </value>
   </data>
-  <data name="btn_Sprache.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>Manual</value>
   </data>
-  <data name="&gt;&gt;btn_speichern.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
-  <data name="check_ShowScan.Text" xml:space="preserve">
-    <value>Screenshot anzeigen</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormSettings</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbl_version.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btn_changelog.Text" xml:space="preserve">
-    <value>Was ist neu?</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>tab_schubLeistung</value>
-  </data>
-  <data name="btn_changelog.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Schub</value>
-  </data>
-  <data name="progressBar_updater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 413</value>
-  </data>
-  <data name="tab_schubLeistung.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="&gt;&gt;comboBox_Schub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn_speichern.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;progressBar_updater.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tab_kombihebel.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Bremsbereich</value>
-  </data>
-  <data name="&gt;&gt;comboBox_kombiBremse.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comboBox_kombiSchub.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tab_kombihebel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="comboBox_Schub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 21</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn_steuerung.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;btn_steuerung.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lbl_version.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btn_speichern.Text" xml:space="preserve">
-    <value>speichern</value>
-  </data>
-  <data name="&gt;&gt;tab_schubLeistung.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btn_steuerung.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="comboBox_resolution.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;btn_changelog.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Schubbereich</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lbl_version.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="btn_steuerung.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 12</value>
-  </data>
-  <data name="btn_updates.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 23</value>
-  </data>
-  <data name="&gt;&gt;comboBox_resolution.Name" xml:space="preserve">
-    <value>comboBox_resolution</value>
-  </data>
-  <data name="check_ShowScan.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btn_textindikator_StandardLaden.Text" xml:space="preserve">
-    <value>Zurücksetzen</value>
-  </data>
-  <data name="&gt;&gt;tab_kombihebel.Name" xml:space="preserve">
-    <value>tab_kombihebel</value>
-  </data>
-  <data name="btn_Sprache.Text" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="lbl_version.Text" xml:space="preserve">
-    <value>vX.X.X</value>
-  </data>
-  <data name="&gt;&gt;tab_schubLeistung.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;progressBar_updater.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="check_showDebug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 17</value>
-  </data>
-  <data name="&gt;&gt;lbl_version.Name" xml:space="preserve">
-    <value>lbl_version</value>
-  </data>
-  <data name="progressBar_updater.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="btn_speichern.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn_steuerung.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

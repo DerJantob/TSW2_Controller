@@ -110,12 +110,14 @@ namespace TSW2_Controller
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Fix: Wenn man das Joystick verhalten geändert hat (Invertiert / Anderer Joy Modus), dann wurde das unabhängig von der Joynummer übernommen");
+                    changelog.Add("- Fix/Verbessert: Tastenbelegung für Schub und Bremse einstellbar, damit verschiedene Tastaturlayouts funktionieren");
                     changelog.Add("- Verbessert: \"Update verfügbar\" ist ab jetzt klickbar");
                 }
                 else
                 {
-                    changelog.Add("- Fix: If you changed the joystick behavior (Inverted / Other Joy Mode), then it was applied regardless of the joystick number");
-                    changelog.Add("- Improvement: \"Update\" available now clickable");
+                    changelog.Add("- Fix: If you changed the joystick behavior (Inverted / Other Joy Mode), it was applied regardless of the joystick number");
+                    changelog.Add("- Fix/Improvement: Key mapping for throttle and brake customizable to support different keyboard layouts");
+                    changelog.Add("- Improvement: \"Update available\" now clickable");
                 }
 
                 changelog.Add("----------------------------------------");
