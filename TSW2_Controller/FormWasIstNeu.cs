@@ -109,7 +109,7 @@ namespace TSW2_Controller
 
                 if (Settings.Default.Sprache == "de-DE")
                 {
-                    changelog.Add("- Fix: Wenn man das Joystick verhalten geändert hat (Invertiert / Anderer Joy Modus), dann wurde das unabhängig von der Joynummer übernommen");
+                    changelog.Add("- Fix: Wenn man das Joystickverhalten geändert hat (Invertiert / Anderer Joy Modus), dann wurde das unabhängig von der Joynummer übernommen");
                     changelog.Add("- Fix/Verbessert: Tastenbelegung für Schub und Bremse einstellbar, damit verschiedene Tastaturlayouts funktionieren");
                     changelog.Add("- Verbessert: \"Update verfügbar\" ist ab jetzt klickbar");
                 }
