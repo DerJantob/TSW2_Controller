@@ -22,7 +22,17 @@ namespace TSW2_Controller
         public FormSettings()
         {
             InitializeComponent();
-            lbl_version.Text = "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2);
+
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            if (version.EndsWith("0"))
+            {
+                lbl_version.Text = "v" + version.Remove(version.Length - 2, 2);
+            }
+            else
+            {
+                lbl_version.Text = "Pre-release " + version.Split('.')[3] + " " + "v" + version.Split('.')[0] + "." + version.Split('.')[1] + "." + (Convert.ToInt32(version.Split('.')[2]) + 1);
+            }
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
@@ -53,6 +63,11 @@ namespace TSW2_Controller
             comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
             comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
 
+            txt_increaseThrottle.Text = Settings.Default.Tastenbelegung[0];
+            txt_decreaseThrottle.Text = Settings.Default.Tastenbelegung[1];
+            txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
+            txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
+            
             string[] files = Directory.GetFiles(Tcfg.configSammelungPfad);
             comboBox_TrainConfig.Items.Add("_Standard");
             foreach (string file in files)
@@ -77,7 +92,7 @@ namespace TSW2_Controller
             CheckGitHubNewerVersion();
         }
 
-        private async void CheckGitHubNewerVersion()
+        public async void CheckGitHubNewerVersion()
         {
             try
             {
@@ -385,6 +400,18 @@ namespace TSW2_Controller
                 MessageBox.Show(ex.ToString());
             }
 
+            try
+            {
+                Settings.Default.Tastenbelegung[0] = txt_increaseThrottle.Text;
+                Settings.Default.Tastenbelegung[1] = txt_decreaseThrottle.Text;
+                Settings.Default.Tastenbelegung[2] = txt_increaseBrake.Text;
+                Settings.Default.Tastenbelegung[3] = txt_decreaseBrake.Text;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
             Settings.Default.showDebug = check_showDebug.Checked;
             Settings.Default.showScanResult = check_ShowScan.Checked;
             Settings.Default.Save();
@@ -499,6 +526,20 @@ namespace TSW2_Controller
                 comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_EN.Cast<string>().ToArray());
                 MessageBox.Show("Text indicators have been reset!");
             }
+        }
+
+        private void txt_ConvertKeyToString_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
+            //PreviewKeyDown um auch tab-Taste zu erlauben
+            ((TextBox)sender).Text = Keyboard.ConvertKeyToString(e.KeyCode);
+            btn_speichern.Select();
+        }
+
+        private void txt_SuppressKeyPress_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Verhindert, dass die gedrückte Taste ins Textfeld geschrieben wird
+            e.SuppressKeyPress = true;
         }
     }
 }

@@ -859,18 +859,25 @@ namespace TSW2_Controller
 
                 for (int o = 0; o < joyInputs.Length; o++)
                 {
-                    if (txtT3_JoyAchse.Text == FormMain.inputNames[o])
+                    try
                     {
-                        if (checkT3_Invertiert.Checked)
+                        if (txtT3_JoyAchse.Text == FormMain.inputNames[o] && Convert.ToInt32(txtT3_JoyNr.Text) == i)
                         {
-                            //Soll Invertiert werden
-                            joyInputs[o] = joyInputs[o] * (-1);
+                            if (checkT3_Invertiert.Checked)
+                            {
+                                //Soll Invertiert werden
+                                joyInputs[o] = joyInputs[o] * (-1);
+                            }
+                            if (checkT3_andererJoyModus.Checked)
+                            {
+                                //Soll von (0<>100) in (-100<>0<>100) geändert werden
+                                joyInputs[o] = (joyInputs[o] / (-2)) + 50;
+                            }
                         }
-                        if (checkT3_andererJoyModus.Checked)
-                        {
-                            //Soll von (0<>100) in (-100<>0<>100) geändert werden
-                            joyInputs[o] = (joyInputs[o] / (-2)) + 50;
-                        }
+                    }
+                    catch
+                    {
+
                     }
 
                     //Bestimmt Inputwerte sollen in andere Umgerechnet werden

@@ -209,6 +209,29 @@
   <data name="btn_Sprache.Text" xml:space="preserve">
     <value>Deutsch</value>
   </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Decrease brake</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 13</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Increase brake</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Decrease throttle</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Increase throttle</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Key bindings</value>
   <data name="btn_trainconfigHinzufuegen.Text" xml:space="preserve">
     <value>Add</value>
   </data>

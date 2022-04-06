@@ -133,14 +133,16 @@ namespace TSW2_Controller
 
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
-            label2.Text = "";
+            lbl_updateAvailable.Text = "";
             groupBox_ScanErgebnisse.Hide();
 
             CheckGitHubNewerVersion();
 
             loadSettings();
-
+            
             Keyboard.initKeylist();
+
+            loadSettings();
 
             comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
@@ -277,6 +279,12 @@ namespace TSW2_Controller
             catch
             {
             }
+        }
+
+        private void lbl_updateAvailable_Click(object sender, EventArgs e)
+        {
+            FormSettings formSettings = new FormSettings();
+            formSettings.CheckGitHubNewerVersion();
         }
         #endregion
 
@@ -693,6 +701,20 @@ namespace TSW2_Controller
                 kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
                 kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
                 #endregion
+
+                #region Tastenbelegung#
+                try
+                {
+                    Keyboard.increaseThrottle = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[0]);
+                    Keyboard.decreaseThrottle = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[1]);
+                    Keyboard.increaseBrake = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[2]);
+                    Keyboard.decreaseBrake = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[3]);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                #endregion
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); Log.Add(">>ERROR (loadSettings):" + ex.ToString()); Close(); }
         }
@@ -947,7 +969,7 @@ namespace TSW2_Controller
                 foreach (string[] strActiveTrain in activeTrain)
                 {
                     //In der Trainconfig kommt ein bekannter Achsen-Name vor
-                    if (strActiveTrain[Tcfg.joystickInput] == inputNames[i])
+                    if (strActiveTrain[Tcfg.joystickInput] == inputNames[i] && Convert.ToInt32(strActiveTrain[Tcfg.joystickNummer]) == id)
                     {
                         if (strActiveTrain[Tcfg.invertieren] == "1")
                         {
@@ -1172,6 +1194,10 @@ namespace TSW2_Controller
                 {
                     lst_inputs.TopIndex = topIndex;
                 }
+            }
+            else
+            {
+                if (lst_inputs.Items.Count > 0) { lst_inputs.Items.Clear(); }
             }
         }
         #endregion

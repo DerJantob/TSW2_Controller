@@ -52,7 +52,7 @@
             this.groupBox_ScanErgebnisse = new System.Windows.Forms.GroupBox();
             this.lbl_requests = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_updateAvailable = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.groupBox_ScanErgebnisse.SuspendLayout();
@@ -203,16 +203,18 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // label2
+            // lbl_updateAvailable
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.lbl_updateAvailable, "lbl_updateAvailable");
+            this.lbl_updateAvailable.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_updateAvailable.Name = "lbl_updateAvailable";
+            this.lbl_updateAvailable.Click += new System.EventHandler(this.lbl_updateAvailable_Click);
             // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbl_updateAvailable);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_requests);
             this.Controls.Add(this.groupBox_ScanErgebnisse);
@@ -266,7 +268,7 @@
         private System.Windows.Forms.GroupBox groupBox_ScanErgebnisse;
         private System.Windows.Forms.Label lbl_requests;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_updateAvailable;
     }
 }
 

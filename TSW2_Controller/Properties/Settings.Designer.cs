@@ -266,6 +266,19 @@ namespace TSW2_Controller.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>a</string>
+  <string>d</string>
+  <string>ä</string>
+  <string>ö</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Tastenbelegung {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Tastenbelegung"]));
+            }
+            set {
+                this["Tastenbelegung"] = value;
         [global::System.Configuration.DefaultSettingValueAttribute("yourConfig")]
         public string selectedTrainConfig {
             get {
