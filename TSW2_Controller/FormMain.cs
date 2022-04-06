@@ -1415,7 +1415,7 @@ namespace TSW2_Controller
                     if (diffSchub > 0)
                     {
                         //mehr
-                        if (diffSchub < 4 && false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
+                        if (diffSchub < 4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
                         { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay * 1.5)))); } //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
                         else
                         { Keyboard.HoldKey(Keyboard.increaseThrottle, Convert.ToInt32(diffSchub * (1000.0 / Convert.ToDouble(delay)))); }
@@ -1425,7 +1425,7 @@ namespace TSW2_Controller
                     else if (diffSchub < 0)
                     {
                         //weniger
-                        if (diffSchub > -4 && false)
+                        if (diffSchub > -4 || false)
                         { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay * 1.5)))); }
                         else
                         { Keyboard.HoldKey(Keyboard.decreaseThrottle, Convert.ToInt32(diffSchub * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
@@ -1467,7 +1467,7 @@ namespace TSW2_Controller
                     if (diffBremse > 0)
                     {
                         //mehr
-                        if (diffBremse < 4 && false)
+                        if (diffBremse < 4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
                         { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay * 1.5)))); }
                         else
                         { Keyboard.HoldKey(Keyboard.increaseBrake, Convert.ToInt32(diffBremse * (1000.0 / Convert.ToDouble(delay)))); }
@@ -1477,7 +1477,7 @@ namespace TSW2_Controller
                     else if (diffBremse < 0)
                     {
                         //weniger
-                        if (diffBremse > -4 && false)
+                        if (diffBremse > -4 || false)
                         { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay * 1.5)))); }
                         else
                         { Keyboard.HoldKey(Keyboard.decreaseBrake, Convert.ToInt32(diffBremse * (-1) * (1000.0 / Convert.ToDouble(delay)))); }
