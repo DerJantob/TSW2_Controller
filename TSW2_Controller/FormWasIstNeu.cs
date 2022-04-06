@@ -28,7 +28,7 @@ namespace TSW2_Controller
             if (new Version("1.0.0").CompareTo(version) > 0)
             {
                 changelog.Add("v1.0.0" + "\n");
-            
+
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Veröffentlichung");
@@ -37,7 +37,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Release");
                 }
-            
+
                 changelog.Add("----------------------------------------");
             }
             #endregion
@@ -45,7 +45,7 @@ namespace TSW2_Controller
             if (new Version("1.0.1").CompareTo(version) > 0)
             {
                 changelog.Add("v1.0.1" + "\n");
-            
+
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Textindikatoren wechseln mit der Sprache");
@@ -62,7 +62,7 @@ namespace TSW2_Controller
                     changelog.Add("- Other small fixes");
                     changelog.Add("\n\n- Video tutorial added:\n  https://www.youtube.com/watch?v=OWzzWSfhy1s");
                 }
-            
+
                 changelog.Add("----------------------------------------");
             }
             #endregion
@@ -129,13 +129,22 @@ namespace TSW2_Controller
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
-                    changelog.Add("- Log datei hinzugefügt");
-                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");                }
+                    changelog.Add("- Hinzugefügt: Log datei");
+                    changelog.Add("- Verbessert: Stufenregler schneller");
+                    changelog.Add("- Verbessert: Fehlerhafte Benutzereingaben werden angezeigt");
+                    changelog.Add("- Verbessert: Benennungen der Tasten verändert um verwirrung zu verhindern");
+                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");
+                    changelog.Add("- Bugfix: Kombihebel kann nun mit der Bremse kombiniert werden");
+                }
                 else
                 {
                     changelog.Add("- You can now switch between trainconfigs in the settings");
-                    changelog.Add("- Log file added");
+                    changelog.Add("- Added: Log file");
+                    changelog.Add("- Improved: Notch controller faster");
+                    changelog.Add("- Improved: Detect faulty user input and notify him about it");
+                    changelog.Add("- Improved: Names of the keys changed to prevent confusion");
                     changelog.Add("- Bugfix: Special cases could not read \"%\"");
+                    changelog.Add("- Bugfix: Master Controller can now be combined with the brake");
                 }
 
                 changelog.Add("----------------------------------------");

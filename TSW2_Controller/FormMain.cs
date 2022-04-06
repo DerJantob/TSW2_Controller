@@ -138,7 +138,7 @@ namespace TSW2_Controller
 
             CheckGitHubNewerVersion();
 
-            
+
             Keyboard.initKeylist();
 
             loadSettings();
@@ -514,14 +514,108 @@ namespace TSW2_Controller
                             if (File.Exists(Tcfg.configpfad))
                             {
                                 File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
+
+                                //Neue Tastenbenennung
+                                string[] file = File.ReadAllLines(Tcfg.configpfad);
+                                for (int i = 0; i < file.Count(); i++)
+                                {
+                                    //Veränderungen
+                                    string convertKey(string key)
+                                    {
+                                        switch (key)
+                                        {
+                                            case "einfg":
+                                                return "insert";
+                                            case "pos1":
+                                                return "home";
+                                            case "bildauf":
+                                                return "prior";
+                                            case "entf":
+                                                return "del";
+                                            case "ende":
+                                                return "end";
+                                            case "bildab":
+                                                return "next";
+                                            case "hoch":
+                                                return "up";
+                                            case "runter":
+                                                return "down";
+                                            case "rechts":
+                                                return "right";
+                                            case "links":
+                                                return "left";
+                                            case "strg":
+                                                return "ctrl";
+                                            case "lstrg":
+                                                return "lctrl";
+                                            case "rstrg":
+                                                return "rctrl";
+                                            case "ü":
+                                                return "oem1";
+                                            case "#":
+                                                return "oem2";
+                                            case "ö":
+                                                return "oem3";
+                                            case "ß":
+                                                return "oem4";
+                                            case "^":
+                                                return "oem5";
+                                            case "´":
+                                                return "oem6";
+                                            case "ä":
+                                                return "oem7";
+                                            case "komma":
+                                                return "comma";
+                                            case "zurück":
+                                                return "back";
+                                            case "enter":
+                                                return "return";
+                                            case "drucken":
+                                                return "print";
+                                            case "rollen":
+                                                return "scroll";
+                                            default:
+                                                return key;
+                                        }
+                                    }
+
+                                    string[] single = file[i].Split(',');
+
+                                    //Aktion
+                                    single[8] = convertKey(single[8]);
+
+                                    //Tastenkombination
+                                    string[] tc = single[7].Split('_');
+                                    if (tc.Count() >= 3)
+                                    {
+                                        for (int o = 0; o < tc.Count(); o += 3)
+                                        {
+                                            tc[o] = convertKey(tc[o]);
+                                        }
+                                        single[7] = String.Join("_", tc);
+                                    }
+                                    //Einstellungen
+                                    Settings.Default.Tastenbelegung[0] = convertKey(Settings.Default.Tastenbelegung[0]);
+                                    Settings.Default.Tastenbelegung[1] = convertKey(Settings.Default.Tastenbelegung[1]);
+                                    Settings.Default.Tastenbelegung[2] = convertKey(Settings.Default.Tastenbelegung[2]);
+                                    Settings.Default.Tastenbelegung[3] = convertKey(Settings.Default.Tastenbelegung[3]);
+
+                                    file[i] = String.Join(",", single);
+                                }
+
+                                File.WriteAllLines(Tcfg.configpfad, file);
                             }
+
+
                             bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
                             if (!areEqual)
                             {
                                 Directory.CreateDirectory(Tcfg.configSammelungPfad);
-                                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + "yourConfig.csv");
+                                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + "yourConfig.csv", true);
                                 Settings.Default.selectedTrainConfig = "yourConfig";
                             }
+
+
                             Settings.Default.Save();
                         }
                         #endregion
@@ -701,7 +795,7 @@ namespace TSW2_Controller
                 kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
                 #endregion
 
-                #region Tastenbelegung#
+                #region Tastenbelegung
                 try
                 {
                     Keyboard.increaseThrottle = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[0]);
@@ -709,7 +803,7 @@ namespace TSW2_Controller
                     Keyboard.increaseBrake = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[2]);
                     Keyboard.decreaseBrake = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[3]);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
