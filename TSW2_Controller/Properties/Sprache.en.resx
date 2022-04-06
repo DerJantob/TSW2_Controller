@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Alle Zuege gehen dabei verloren" xml:space="preserve">
+    <value>All trains will be deleted!</value>
+  </data>
   <data name="Als Wert für den Zeitfaktor kannst du nun" xml:space="preserve">
     <value>You can now set the time factor to </value>
   </data>
@@ -129,6 +132,9 @@
   <data name="Bremsindikator_Leer__Standard_Laden" xml:space="preserve">
     <value>Brake indicator empty! Load standard?</value>
   </data>
+  <data name="Das Feld darf nicht leer sein" xml:space="preserve">
+    <value>The text field cannot be empty</value>
+  </data>
   <data name="Druecke nochmal auf OK wechsel innerhalb von 7 Sekunden zum TSW und warte" xml:space="preserve">
     <value>Press OK again, switch to TSW within 7 seconds and wait</value>
   </data>
@@ -137,6 +143,9 @@
   </data>
   <data name="Du_hast_noch_keinen_Startwert_eingetragen" xml:space="preserve">
     <value>You didn't enter any starting value!</value>
+  </data>
+  <data name="Einstellungen von" xml:space="preserve">
+    <value>Transfer the data of </value>
   </data>
   <data name="Eintraege_geloescht" xml:space="preserve">
     <value> entries deleted!</value>
@@ -221,6 +230,9 @@
   </data>
   <data name="Stelle den Regler nun auf den bremswert" xml:space="preserve">
     <value>Now set the controller to the braking value</value>
+  </data>
+  <data name="uebernehmen" xml:space="preserve">
+    <value />
   </data>
   <data name="und bestaetige mit OK" xml:space="preserve">
     <value> and press OK</value>

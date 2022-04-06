@@ -279,6 +279,13 @@ namespace TSW2_Controller.Properties {
             }
             set {
                 this["Tastenbelegung"] = value;
+        [global::System.Configuration.DefaultSettingValueAttribute("yourConfig")]
+        public string selectedTrainConfig {
+            get {
+                return ((string)(this["selectedTrainConfig"]));
+            }
+            set {
+                this["selectedTrainConfig"] = value;
             }
         }
     }

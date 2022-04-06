@@ -80,6 +80,8 @@
   &lt;string&gt;ä&lt;/string&gt;
   &lt;string&gt;ö&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    <Setting Name="selectedTrainConfig" Type="System.String" Scope="User">
+      <Value Profile="(Default)">yourConfig</Value>
     </Setting>
   </Settings>
 </SettingsFile>

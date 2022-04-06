@@ -50,7 +50,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Textindikatoren wechseln mit der Sprache");
                     changelog.Add("- Sprache wird beim erstmaligen Start automatisch erkannt");
-                    changelog.Add("- Fix für komisches Verhalten bei den Sonderfällen beim Kombihebel");
+                    changelog.Add("- Fix für komisches Verhalten bei den Sonderfällen beim Kombihebel (muss also evtl überarbeitet werden)");
                     changelog.Add("- Andere kleinen Korrekturen");
                     changelog.Add("\n\n- Video tutorial hinzugefügt (auf englisch):\n  https://www.youtube.com/watch?v=OWzzWSfhy1s");
                 }
@@ -58,7 +58,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Text indicators change with the language");
                     changelog.Add("- Language is automatically detected at first startup");
-                    changelog.Add("- Fix for strange behavior in the special cases with the master controller");
+                    changelog.Add("- Fix for strange behavior in the special cases with the master controller (you should check it)");
                     changelog.Add("- Other small fixes");
                     changelog.Add("\n\n- Video tutorial added:\n  https://www.youtube.com/watch?v=OWzzWSfhy1s");
                 }
@@ -97,6 +97,24 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Fix: Problems with the arrangement of text indicators");
                     changelog.Add("- Improvement: List multiple joystick information");
+                }
+            }
+            #endregion
+            #region 1.1.0
+            if (new Version("1.1.0").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.1.0" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
+                    changelog.Add("- Log datei hinzugefügt");
+                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");                }
+                else
+                {
+                    changelog.Add("- You can now switch between trainconfigs in the settings");
+                    changelog.Add("- Log file added");
+                    changelog.Add("- Bugfix: Special cases could not read \"%\"");
                 }
 
                 changelog.Add("----------------------------------------");

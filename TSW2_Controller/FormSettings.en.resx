@@ -155,11 +155,14 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Brake</value>
   </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
+    <value>133, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Throttle</value>
+    <value>Throttle / Master Controller</value>
   </data>
   <data name="tab_schubLeistung.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 100</value>
@@ -229,6 +232,11 @@
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Key bindings</value>
+  <data name="btn_trainconfigHinzufuegen.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="btn_trainconfigLoeschen.Text" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

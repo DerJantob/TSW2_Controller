@@ -62,6 +62,10 @@
             this.txt_increaseBrake = new System.Windows.Forms.TextBox();
             this.txt_decreaseThrottle = new System.Windows.Forms.TextBox();
             this.txt_increaseThrottle = new System.Windows.Forms.TextBox();
+            this.comboBox_TrainConfig = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btn_trainconfigHinzufuegen = new System.Windows.Forms.Button();
+            this.btn_trainconfigLoeschen = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
@@ -268,6 +272,13 @@
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
+            // comboBox_TrainConfig
+            // 
+            resources.ApplyResources(this.comboBox_TrainConfig, "comboBox_TrainConfig");
+            this.comboBox_TrainConfig.FormattingEnabled = true;
+            this.comboBox_TrainConfig.Name = "comboBox_TrainConfig";
+            this.comboBox_TrainConfig.SelectedIndexChanged += new System.EventHandler(this.comboBox_TrainConfig_SelectedIndexChanged);
+            this.comboBox_TrainConfig.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_TrainConfig_KeyUp);
             // 
             // label6
             // 
@@ -301,12 +312,29 @@
             this.txt_increaseThrottle.Name = "txt_increaseThrottle";
             this.txt_increaseThrottle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SuppressKeyPress_KeyDown);
             this.txt_increaseThrottle.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txt_ConvertKeyToString_PreviewKeyDown);
+            // btn_trainconfigHinzufuegen
+            // 
+            resources.ApplyResources(this.btn_trainconfigHinzufuegen, "btn_trainconfigHinzufuegen");
+            this.btn_trainconfigHinzufuegen.Name = "btn_trainconfigHinzufuegen";
+            this.btn_trainconfigHinzufuegen.UseVisualStyleBackColor = true;
+            this.btn_trainconfigHinzufuegen.Click += new System.EventHandler(this.btn_trainconfigHinzufuegen_Click);
+            // 
+            // btn_trainconfigLoeschen
+            // 
+            resources.ApplyResources(this.btn_trainconfigLoeschen, "btn_trainconfigLoeschen");
+            this.btn_trainconfigLoeschen.Name = "btn_trainconfigLoeschen";
+            this.btn_trainconfigLoeschen.UseVisualStyleBackColor = true;
+            this.btn_trainconfigLoeschen.Click += new System.EventHandler(this.btn_trainconfigLoeschen_Click);
             // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btn_trainconfigLoeschen);
+            this.Controls.Add(this.btn_trainconfigHinzufuegen);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comboBox_TrainConfig);
             this.Controls.Add(this.progressBar_updater);
             this.Controls.Add(this.comboBox_resolution);
             this.Controls.Add(this.btn_Sprache);
@@ -371,5 +399,9 @@
         private System.Windows.Forms.TextBox txt_increaseBrake;
         private System.Windows.Forms.TextBox txt_decreaseThrottle;
         private System.Windows.Forms.TextBox txt_increaseThrottle;
+        private System.Windows.Forms.ComboBox comboBox_TrainConfig;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btn_trainconfigHinzufuegen;
+        private System.Windows.Forms.Button btn_trainconfigLoeschen;
     }
 }
