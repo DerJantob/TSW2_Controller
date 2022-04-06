@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -221,7 +222,9 @@ namespace TSW2_Controller
             {
                 Keyboard.HoldKey(taste_mehr, 0);
                 Thread.Sleep(500);
-                string grundstellung = FormMain.GetText(formMain.Screenshot(true));
+                Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+
+                string grundstellung = rgx.Replace(FormMain.GetText(formMain.Screenshot(true)), "");
                 Thread.Sleep(500);
 
                 int nextStep_Value = 0;
@@ -230,11 +233,25 @@ namespace TSW2_Controller
                 for (int i = 0; i < 1000; i += 5)
                 {
                     Keyboard.HoldKey(taste_mehr, i);
-                    Thread.Sleep(80);
-                    if (FormMain.GetText(formMain.Screenshot(true)) != grundstellung)
+                    Thread.Sleep(180);
+                    string neueStellung = rgx.Replace(FormMain.GetText(formMain.Screenshot(true)), "");
+                    if (neueStellung != grundstellung)
                     {
-                        nextStep_Value = i;
-                        break;
+                        bool different = true;
+                        for (int o = 0; o < 5; o++)
+                        {
+                            Thread.Sleep(100);
+                            neueStellung = rgx.Replace(FormMain.GetText(formMain.Screenshot(true)), "");
+                            if (neueStellung == grundstellung)
+                            {
+                                different = false;
+                            }
+                        }
+                        if (different)
+                        {
+                            nextStep_Value = i;
+                            break;
+                        }
                     }
                     Thread.Sleep(100);
                 }
@@ -245,10 +262,25 @@ namespace TSW2_Controller
                     {
                         Keyboard.HoldKey(taste_weniger, nextStep_Value + i);
                         Thread.Sleep(500);
-                        if (FormMain.GetText(formMain.Screenshot(true)) != grundstellung)
+                        string neueStellung = rgx.Replace(FormMain.GetText(formMain.Screenshot(true)), "");
+                        if (neueStellung != grundstellung)
                         {
-                            overskip_Value = nextStep_Value + i;
-                            break;
+                            bool different = true;
+                            for (int o = 0; o < 5; o++)
+                            {
+                                Thread.Sleep(100);
+                                neueStellung = rgx.Replace(FormMain.GetText(formMain.Screenshot(true)), "");
+                                if (neueStellung == grundstellung)
+                                {
+                                    different = false;
+                                }
+                            }
+
+                            if (different)
+                            {
+                                overskip_Value = nextStep_Value + i;
+                                break;
+                            }
                         }
                         Keyboard.HoldKey(taste_mehr, nextStep_Value + 30);
                         Thread.Sleep(500);
@@ -291,7 +323,7 @@ namespace TSW2_Controller
                 endWert = GetNumber();
                 ersterZeitwert = endWert - startWert;
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch { MessageBox.Show("not able to read number");}
 
             Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
@@ -313,7 +345,7 @@ namespace TSW2_Controller
                 endWert = GetNumber();
                 zweiterZeitwert = endWert - startWert;
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch { MessageBox.Show("not able to read number"); }
 
             Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
