@@ -138,7 +138,6 @@ namespace TSW2_Controller
 
             CheckGitHubNewerVersion();
 
-            loadSettings();
             
             Keyboard.initKeylist();
 
@@ -269,7 +268,7 @@ namespace TSW2_Controller
                 {
                     //The version on GitHub is more up to date than this local release.
                     Log.Add(">>Update available");
-                    label2.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
+                    lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
                 }
                 else
                 {

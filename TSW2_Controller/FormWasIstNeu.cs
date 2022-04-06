@@ -100,26 +100,6 @@ namespace TSW2_Controller
                 }
             }
             #endregion
-            #region 1.1.0
-            if (new Version("1.1.0").CompareTo(version) > 0)
-            {
-                changelog.Add("v1.1.0" + "\n");
-
-                if (Settings.Default.Sprache == "de-DE")
-                {
-                    changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
-                    changelog.Add("- Log datei hinzugefügt");
-                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");                }
-                else
-                {
-                    changelog.Add("- You can now switch between trainconfigs in the settings");
-                    changelog.Add("- Log file added");
-                    changelog.Add("- Bugfix: Special cases could not read \"%\"");
-                }
-
-                changelog.Add("----------------------------------------");
-            }
-            #endregion
             #region 1.0.4
             if (new Version("1.0.4").CompareTo(version) > 0)
             {
@@ -136,6 +116,26 @@ namespace TSW2_Controller
                     changelog.Add("- Fix: If you changed the joystick behavior (Inverted / Other Joy Mode), it was applied regardless of the joystick number");
                     changelog.Add("- Fix/Improvement: Key mapping for throttle and brake customizable to support different keyboard layouts");
                     changelog.Add("- Improvement: \"Update available\" now clickable");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
+            #region 1.1.0
+            if (new Version("1.1.0").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.1.0" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
+                    changelog.Add("- Log datei hinzugefügt");
+                    changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");                }
+                else
+                {
+                    changelog.Add("- You can now switch between trainconfigs in the settings");
+                    changelog.Add("- Log file added");
+                    changelog.Add("- Bugfix: Special cases could not read \"%\"");
                 }
 
                 changelog.Add("----------------------------------------");

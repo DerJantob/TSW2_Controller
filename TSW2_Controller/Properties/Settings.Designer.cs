@@ -279,6 +279,11 @@ namespace TSW2_Controller.Properties {
             }
             set {
                 this["Tastenbelegung"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("yourConfig")]
         public string selectedTrainConfig {
             get {

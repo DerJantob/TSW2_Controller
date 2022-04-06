@@ -232,6 +232,7 @@
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Key bindings</value>
+  </data>
   <data name="btn_trainconfigHinzufuegen.Text" xml:space="preserve">
     <value>Add</value>
   </data>

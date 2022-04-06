@@ -57,20 +57,22 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txt_decreaseBrake = new System.Windows.Forms.TextBox();
             this.txt_increaseBrake = new System.Windows.Forms.TextBox();
             this.txt_decreaseThrottle = new System.Windows.Forms.TextBox();
             this.txt_increaseThrottle = new System.Windows.Forms.TextBox();
             this.comboBox_TrainConfig = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.btn_trainconfigHinzufuegen = new System.Windows.Forms.Button();
             this.btn_trainconfigLoeschen = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
             this.tab_kombihebel.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -246,10 +248,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.txt_decreaseBrake);
             this.groupBox2.Controls.Add(this.txt_increaseBrake);
             this.groupBox2.Controls.Add(this.txt_decreaseThrottle);
@@ -272,18 +274,6 @@
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            // comboBox_TrainConfig
-            // 
-            resources.ApplyResources(this.comboBox_TrainConfig, "comboBox_TrainConfig");
-            this.comboBox_TrainConfig.FormattingEnabled = true;
-            this.comboBox_TrainConfig.Name = "comboBox_TrainConfig";
-            this.comboBox_TrainConfig.SelectedIndexChanged += new System.EventHandler(this.comboBox_TrainConfig_SelectedIndexChanged);
-            this.comboBox_TrainConfig.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_TrainConfig_KeyUp);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
             // 
             // txt_decreaseBrake
             // 
@@ -312,6 +302,20 @@
             this.txt_increaseThrottle.Name = "txt_increaseThrottle";
             this.txt_increaseThrottle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SuppressKeyPress_KeyDown);
             this.txt_increaseThrottle.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txt_ConvertKeyToString_PreviewKeyDown);
+            // 
+            // comboBox_TrainConfig
+            // 
+            this.comboBox_TrainConfig.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_TrainConfig, "comboBox_TrainConfig");
+            this.comboBox_TrainConfig.Name = "comboBox_TrainConfig";
+            this.comboBox_TrainConfig.SelectedIndexChanged += new System.EventHandler(this.comboBox_TrainConfig_SelectedIndexChanged);
+            this.comboBox_TrainConfig.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_TrainConfig_KeyUp);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // btn_trainconfigHinzufuegen
             // 
             resources.ApplyResources(this.btn_trainconfigHinzufuegen, "btn_trainconfigHinzufuegen");
@@ -326,15 +330,26 @@
             this.btn_trainconfigLoeschen.UseVisualStyleBackColor = true;
             this.btn_trainconfigLoeschen.Click += new System.EventHandler(this.btn_trainconfigLoeschen_Click);
             // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // groupBox3
+            // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Controls.Add(this.comboBox_TrainConfig);
+            this.groupBox3.Controls.Add(this.btn_trainconfigHinzufuegen);
+            this.groupBox3.Controls.Add(this.btn_trainconfigLoeschen);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btn_trainconfigLoeschen);
-            this.Controls.Add(this.btn_trainconfigHinzufuegen);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox_TrainConfig);
             this.Controls.Add(this.progressBar_updater);
             this.Controls.Add(this.comboBox_resolution);
             this.Controls.Add(this.btn_Sprache);
@@ -360,6 +375,7 @@
             this.tab_kombihebel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,17 +407,18 @@
         private System.Windows.Forms.ProgressBar progressBar_updater;
         private System.Windows.Forms.Button btn_textindikator_StandardLaden;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_decreaseBrake;
         private System.Windows.Forms.TextBox txt_increaseBrake;
         private System.Windows.Forms.TextBox txt_decreaseThrottle;
         private System.Windows.Forms.TextBox txt_increaseThrottle;
         private System.Windows.Forms.ComboBox comboBox_TrainConfig;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_trainconfigHinzufuegen;
         private System.Windows.Forms.Button btn_trainconfigLoeschen;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
