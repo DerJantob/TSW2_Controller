@@ -285,6 +285,36 @@ namespace TSW2_Controller
             FormSettings formSettings = new FormSettings();
             formSettings.CheckGitHubNewerVersion();
         }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Log.Add("Closing...");
+            //Debuginfos anzeigen
+            try
+            {
+                string[] logArray = Log.ToArray();
+                if (logCount < logArray.Count())
+                {
+                    int diff = logArray.Count() - logCount;
+                    for (int i = 0; i < diff; i++)
+                    {
+                        if (!logArray[logArray.Count() - diff + i].StartsWith(">>"))
+                        {
+                            listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i]);
+                        }
+                        else
+                        {
+                            logArray[logArray.Count() - diff + i] = logArray[logArray.Count() - diff + i].Remove(0, 2);
+                        }
+                        File.AppendAllText(Tcfg.logpfad + "log.txt", "│" + DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i] + "\n");
+                    }
+                    listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
+                    listBox_debugInfo.SelectedIndex = -1;
+                    logCount = logArray.Count();
+                }
+            }
+            catch { }
+        }
         #endregion
 
         #region Allgemeine Funktionen
@@ -806,6 +836,7 @@ namespace TSW2_Controller
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
+                    Log.Add(">>ERROR (loadSettings_Tastenbelegung):" + ex.ToString());
                 }
                 #endregion
             }
@@ -1933,35 +1964,5 @@ namespace TSW2_Controller
             return textinput;
         }
         #endregion
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Log.Add("Closing...");
-            //Debuginfos anzeigen
-            try
-            {
-                string[] logArray = Log.ToArray();
-                if (logCount < logArray.Count())
-                {
-                    int diff = logArray.Count() - logCount;
-                    for (int i = 0; i < diff; i++)
-                    {
-                        if (!logArray[logArray.Count() - diff + i].StartsWith(">>"))
-                        {
-                            listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i]);
-                        }
-                        else
-                        {
-                            logArray[logArray.Count() - diff + i] = logArray[logArray.Count() - diff + i].Remove(0, 2);
-                        }
-                        File.AppendAllText(Tcfg.logpfad + "log.txt", "│" + DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i] + "\n");
-                    }
-                    listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
-                    listBox_debugInfo.SelectedIndex = -1;
-                    logCount = logArray.Count();
-                }
-            }
-            catch { }
-        }
     }
 }
