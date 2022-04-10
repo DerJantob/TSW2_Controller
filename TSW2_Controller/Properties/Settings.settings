@@ -77,10 +77,10 @@
 &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;string&gt;a&lt;/string&gt;
   &lt;string&gt;d&lt;/string&gt;
-  &lt;string&gt;ä&lt;/string&gt;
-  &lt;string&gt;ö&lt;/string&gt;
+  &lt;string&gt;oem7&lt;/string&gt;
+  &lt;string&gt;oem3&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
-	</Setting>
+    </Setting>
     <Setting Name="selectedTrainConfig" Type="System.String" Scope="User">
       <Value Profile="(Default)">yourConfig</Value>
     </Setting>

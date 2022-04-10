@@ -270,8 +270,8 @@ namespace TSW2_Controller.Properties {
 <ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
   <string>a</string>
   <string>d</string>
-  <string>ä</string>
-  <string>ö</string>
+  <string>oem7</string>
+  <string>oem3</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection Tastenbelegung {
             get {

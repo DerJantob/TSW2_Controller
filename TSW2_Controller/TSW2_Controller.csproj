@@ -102,6 +102,7 @@
       <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </Compile>
     <Compile Include="Keyboard.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="MessageClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -37,58 +37,65 @@ namespace TSW2_Controller
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            check_showDebug.Checked = Settings.Default.showDebug;
-            check_ShowScan.Checked = Settings.Default.showScanResult;
-
-
-            string resName = Settings.Default.res.Width.ToString() + "x" + Settings.Default.res.Height.ToString();
-            if (!comboBox_resolution.Items.Contains(resName))
+            try
             {
-                comboBox_resolution.Items.Add(resName);
+                check_showDebug.Checked = Settings.Default.showDebug;
+                check_ShowScan.Checked = Settings.Default.showScanResult;
+
+
+                string resName = Settings.Default.res.Width.ToString() + "x" + Settings.Default.res.Height.ToString();
+                if (!comboBox_resolution.Items.Contains(resName))
+                {
+                    comboBox_resolution.Items.Add(resName);
+                }
+                if (comboBox_resolution.Items.Contains(resName))
+                {
+                    comboBox_resolution.SelectedItem = resName;
+                }
+
+
+                comboBox_Schub.Items.Clear();
+                comboBox_Bremse.Items.Clear();
+                comboBox_kombiSchub.Items.Clear();
+                comboBox_kombiBremse.Items.Clear();
+                comboBox_TrainConfig.Items.Clear();
+
+                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+
+                txt_increaseThrottle.Text = Settings.Default.Tastenbelegung[0];
+                txt_decreaseThrottle.Text = Settings.Default.Tastenbelegung[1];
+                txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
+                txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
+
+                string[] files = Directory.GetFiles(Tcfg.configSammelungPfad);
+                comboBox_TrainConfig.Items.Add("_Standard");
+                foreach (string file in files)
+                {
+                    comboBox_TrainConfig.Items.Add(Path.GetFileName(file).Replace(".csv", ""));
+                }
+
+                if (File.Exists(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv"))
+                {
+                    comboBox_TrainConfig.SelectedItem = Settings.Default.selectedTrainConfig;
+                }
+                else if (Settings.Default.selectedTrainConfig == "_Standard")
+                {
+                    comboBox_TrainConfig.SelectedItem = Settings.Default.selectedTrainConfig;
+                }
             }
-            if (comboBox_resolution.Items.Contains(resName))
+            catch (Exception ex)
             {
-                comboBox_resolution.SelectedItem = resName;
+                Log.Error(ex);
             }
-
-
-            comboBox_Schub.Items.Clear();
-            comboBox_Bremse.Items.Clear();
-            comboBox_kombiSchub.Items.Clear();
-            comboBox_kombiBremse.Items.Clear();
-            comboBox_TrainConfig.Items.Clear();
-
-            comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
-            comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
-            comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
-            comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
-
-            txt_increaseThrottle.Text = Settings.Default.Tastenbelegung[0];
-            txt_decreaseThrottle.Text = Settings.Default.Tastenbelegung[1];
-            txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
-            txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
-            
-            string[] files = Directory.GetFiles(Tcfg.configSammelungPfad);
-            comboBox_TrainConfig.Items.Add("_Standard");
-            foreach (string file in files)
-            {
-                comboBox_TrainConfig.Items.Add(Path.GetFileName(file).Replace(".csv", ""));
-            }
-
-            if (File.Exists(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv"))
-            {
-                comboBox_TrainConfig.SelectedItem = Settings.Default.selectedTrainConfig;
-            }
-            else if (Settings.Default.selectedTrainConfig == "_Standard")
-            {
-                comboBox_TrainConfig.SelectedItem = Settings.Default.selectedTrainConfig;
-            }
-
         }
 
         #region Updater
         private void btn_updates_Click(object sender, EventArgs e)
         {
+            Log.Add("Check github Version...");
             CheckGitHubNewerVersion();
         }
 
@@ -106,6 +113,7 @@ namespace TSW2_Controller
                 int versionComparison = localVersion.CompareTo(latestGitHubVersion);
                 if (versionComparison < 0)
                 {
+                    Log.Add("Update available", false, 1);
                     //The version on GitHub is more up to date than this local release.
                     if (MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
@@ -120,11 +128,13 @@ namespace TSW2_Controller
                 else
                 {
                     //This local Version and the Version on GitHub are equal
+                    Log.Add("No update available");
                     MessageBox.Show(Sprache.Du_hast_die_neueste_Version);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error(ex);
                 if (Sprache.SprachenName == "Deutsch")
                 {
                     MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden.\n\nDas kann eventuell daran liegen dass das Anfragelimit überschritten wurde. Das wird nach einer Stunde zurückgesetzt.");
@@ -137,6 +147,8 @@ namespace TSW2_Controller
         }
         private void DownloadNewestVersion(Version version)
         {
+            Log.Add("Download \"" + @"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + "/TSW2_Controller_Setup.exe\"");
+
             Uri uri = new Uri(@"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + @"/TSW2_Controller_Setup.exe");
             var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp/TSW2_Controller_Setup.exe");
 
@@ -159,6 +171,10 @@ namespace TSW2_Controller
         }
         private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
+            if (progressBar_updater.Value != e.ProgressPercentage)
+            {
+                Log.Add("Downloading... " + e.ProgressPercentage + "%");
+            }
             progressBar_updater.Value = e.ProgressPercentage;
         }
         private void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -266,7 +282,7 @@ namespace TSW2_Controller
                     btn_trainconfigLoeschen.Enabled = true;
                 }
             }
-            else if(comboBox_TrainConfig.Text == "")
+            else if (comboBox_TrainConfig.Text == "")
             {
                 btn_trainconfigLoeschen.Enabled = false;
                 btn_trainconfigHinzufuegen.Enabled = false;
@@ -345,7 +361,12 @@ namespace TSW2_Controller
             {
                 if (comboBox_TrainConfig.Text == "_Standard")
                 {
-                    if (Settings.Default.selectedTrainConfig != "_Standard") { File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true); }
+                    if (Settings.Default.selectedTrainConfig != "_Standard")
+                    {
+                        Log.Add("Copy " + Tcfg.configpfad + " to " + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv");
+                        File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
+                    }
+                    Log.Add("Copy " + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
                     Settings.Default.selectedTrainConfig = "_Standard";
                 }

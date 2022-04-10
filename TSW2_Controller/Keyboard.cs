@@ -27,6 +27,7 @@ namespace TSW2_Controller
 
         public static void initKeylist()
         {
+            Log.Add("InitKeyList");
             keyList.Add(new object[] { "space", Keys.Space });
             keyList.Add(new object[] { "esc", Keys.Escape });
             keyList.Add(new object[] { "tab", Keys.Tab });

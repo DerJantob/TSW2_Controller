@@ -69,16 +69,16 @@ namespace TSW2_Controller
         int bremseIst = 0;
         int bremseSoll = 0;
 
-        public List<string> Log { get => logData; set => logData = value; }
-        int logCount = 0;
-
 
 
         public FormMain()
         {
+            Log.Clear();
+
             checkVersion();
             checkLanguageSetting();
 
+            Log.Add("Init components");
             InitializeComponent();
 
             #region Dateistruktur überprüfen
@@ -87,47 +87,37 @@ namespace TSW2_Controller
                 if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
                 {
                     Directory.CreateDirectory(Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
-                    Log.Add(">>Create Dir:" + Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
+                    Log.Add("Create Dir:" + Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
                 }
                 if (File.Exists(Tcfg.configstandardpfad))
                 {
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
-                    Log.Add(">>No TrainConfig.csv");
-                    Log.Add(">>Copy :" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
+                    Log.Add("No TrainConfig.csv");
+                    Log.Add("Copy :" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
                 }
             }
             if (!Directory.Exists(Tcfg.configSammelungPfad))
             {
                 Directory.CreateDirectory(Tcfg.configSammelungPfad);
-                Log.Add(">>Create Dir:" + Tcfg.configSammelungPfad);
+                Log.Add("Create Dir:" + Tcfg.configSammelungPfad);
             }
             if (Settings.Default.selectedTrainConfig == "_Standard")
             {
                 File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
-                Log.Add(">>Copy:" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
+                Log.Add("Copy:" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
             }
             else
             {
                 if (File.Exists(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv"))
                 {
                     File.Copy(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
-                    Log.Add(">>Copy:" + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv" + " to " + Tcfg.configpfad);
+                    Log.Add("Copy:" + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv" + " to " + Tcfg.configpfad);
                 }
                 else
                 {
                     File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
-                    Log.Add(">>Copy:" + Tcfg.configpfad + " to " + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv");
+                    Log.Add("Copy:" + Tcfg.configpfad + " to " + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv");
                 }
-            }
-            if (!Directory.Exists(Tcfg.logpfad))
-            {
-                Directory.CreateDirectory(Tcfg.logpfad);
-                Log.Add(">>Create Dir:" + Tcfg.logpfad);
-            }
-            if (File.Exists(Tcfg.logpfad + "log.txt"))
-            {
-                File.Delete(Tcfg.logpfad + "log.txt");
-                Log.Add(">>Delete:" + Tcfg.logpfad + "log.txt");
             }
             #endregion
 
@@ -144,7 +134,7 @@ namespace TSW2_Controller
             loadSettings();
 
             MainSticks = getSticks();
-            comboBox_JoystickNumber.SelectedIndex = 0;
+            if (MainSticks.Length > 0) { comboBox_JoystickNumber.SelectedIndex = 0; }
 
             ReadTrainConfig();
 
@@ -159,6 +149,7 @@ namespace TSW2_Controller
         private void comboBox_Zugauswahl_SelectedIndexChanged(object sender, EventArgs e)
         {
             check_active.Checked = false;
+            Log.Add(comboBox_Zugauswahl.Text + " selected");
 
             if (Settings.Default.deactivatedGlobals.Count > 0)
             {
@@ -169,6 +160,7 @@ namespace TSW2_Controller
                     check_deactivateGlobal.CheckedChanged += check_deactivateGlobal_CheckedChanged;
 
                     globalIsDeactivated = true;
+                    Log.Add("_global is deactivated",false,1);
                 }
                 else
                 {
@@ -188,27 +180,27 @@ namespace TSW2_Controller
             if (check_active.Checked)
             {
                 check_active.BackColor = Color.Lime;
-                Log.Add(">>--------------------");
-                Log.Add(">>Active Train:"); foreach (string[] train in activeTrain) { Log.Add(">>  " + string.Join(",", train)); }
-                Log.Add(">>");
-                Log.Add(">>version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
-                Log.Add(">>Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
-                Log.Add(">>Language:" + Settings.Default.Sprache);
-                Log.Add(">>Textindicators:");
-                Log.Add(">>   Throttle/Brake:");
-                Log.Add(">>       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
-                Log.Add(">>       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
-                Log.Add(">>   MasterController:");
-                Log.Add(">>       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
-                Log.Add(">>       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
-                Log.Add(">>Active = true");
-                Log.Add(">>");
+                Log.Add("--------------------");
+                Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add(string.Join(",", train), false, 1); }
+                Log.Add("");
+                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add("Language:" + Settings.Default.Sprache);
+                Log.Add("Textindicators:");
+                Log.Add("   Throttle/Brake:");
+                Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
+                Log.Add("       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
+                Log.Add("   MasterController:");
+                Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
+                Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
+                Log.Add("Active = true");
+                Log.Add("");
             }
             else
             {
                 check_active.BackColor = Color.Red;
-                Log.Add(">>Active = false");
-                Log.Add(">>--------------------");
+                Log.Add("Active = false");
+                Log.Add("--------------------");
             }
         }
 
@@ -216,6 +208,7 @@ namespace TSW2_Controller
         {
             if (check_deactivateGlobal.Checked)
             {
+                Log.Add("Add " + comboBox_Zugauswahl.Text + " to deactivatedGlobals list");
                 Settings.Default.deactivatedGlobals.Add(comboBox_Zugauswahl.Text);
                 Settings.Default.Save();
 
@@ -223,6 +216,7 @@ namespace TSW2_Controller
             }
             else
             {
+                Log.Add("Remove " + comboBox_Zugauswahl.Text + " from deactivatedGlobals list");
                 Settings.Default.deactivatedGlobals.Remove(comboBox_Zugauswahl.Text);
                 Settings.Default.Save();
 
@@ -233,6 +227,7 @@ namespace TSW2_Controller
 
         private void btn_einstellungen_Click(object sender, EventArgs e)
         {
+            Log.Add("Going to settings:");
             check_active.Checked = false;
             FormSettings settingsForm = new FormSettings();
             settingsForm.Location = this.Location;
@@ -259,24 +254,25 @@ namespace TSW2_Controller
                 Version latestGitHubVersion = new Version(releases[0].TagName);
                 Version localVersion = new Version(Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2)); //Replace this with your local version. 
                                                                                                                                                                                                      //Only tested with numeric values.
-                Log.Add(">>Get Releases from GitHub:");
-                foreach (Release rel in releases) { Log.Add(">>     ->" + rel.TagName); }
-                Log.Add(">>     ->Your Version:" + localVersion.ToString());
+                Log.Add("Get Releases from GitHub:");
+                foreach (Release rel in releases) { Log.Add("->" + rel.TagName, false, 1); }
+                Log.Add("->Your Version:" + localVersion.ToString(), false, 1);
 
                 int versionComparison = localVersion.CompareTo(latestGitHubVersion);
                 if (versionComparison < 0)
                 {
                     //The version on GitHub is more up to date than this local release.
-                    Log.Add(">>Update available");
+                    Log.Add("Update available", false, 1);
                     lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
                 }
                 else
                 {
-                    Log.Add(">>     ->No update available");
+                    Log.Add("->No update available", false, 1);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error(ex);
             }
         }
 
@@ -288,32 +284,7 @@ namespace TSW2_Controller
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Log.Add("Closing...");
-            //Debuginfos anzeigen
-            try
-            {
-                string[] logArray = Log.ToArray();
-                if (logCount < logArray.Count())
-                {
-                    int diff = logArray.Count() - logCount;
-                    for (int i = 0; i < diff; i++)
-                    {
-                        if (!logArray[logArray.Count() - diff + i].StartsWith(">>"))
-                        {
-                            listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i]);
-                        }
-                        else
-                        {
-                            logArray[logArray.Count() - diff + i] = logArray[logArray.Count() - diff + i].Remove(0, 2);
-                        }
-                        File.AppendAllText(Tcfg.logpfad + "log.txt", "│" + DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i] + "\n");
-                    }
-                    listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
-                    listBox_debugInfo.SelectedIndex = -1;
-                    logCount = logArray.Count();
-                }
-            }
-            catch { }
+
         }
         #endregion
 
@@ -414,13 +385,14 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Log.Error(ex);
                 return 0;
             }
         }
 
         public static void checkLanguageSetting()
         {
+            Log.Add("Set language");
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
             System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
         }
@@ -506,7 +478,7 @@ namespace TSW2_Controller
         #region Versions überprüfung
         public void checkVersion()
         {
-            Log.Add(">>CheckVersion...");
+            Log.Add("Check version of settings...");
             try
             {
                 if (Settings.Default.UpdateErforderlich)
@@ -515,7 +487,7 @@ namespace TSW2_Controller
                     if (prevVersion != null)
                     {
                         //Update
-                        Log.Add(">>Update Settings... prevVersion=" + prevVersion.ToString());
+                        Log.Add("Updating Settings, prevVersion=" + prevVersion.ToString());
 
                         Settings.Default.Upgrade();
                         checkLanguageSetting();
@@ -526,6 +498,7 @@ namespace TSW2_Controller
                         #region Update besonderheiten
                         if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) <= 0)
                         {
+                            Log.Add("1.0.0", false, 1);
                             //Neue Einstellung muss mit Daten gefüllt werden
                             Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
                             Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
@@ -541,6 +514,7 @@ namespace TSW2_Controller
                         }
                         if (new Version(prevVersion.ToString()).CompareTo(new Version("1.1.0")) <= 0)
                         {
+                            Log.Add("1.1.0", false, 1);
                             if (File.Exists(Tcfg.configpfad))
                             {
                                 File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
@@ -693,11 +667,15 @@ namespace TSW2_Controller
 
                     Settings.Default.Save();
                 }
+                else
+                {
+                    Log.Add("Settings are up to date", false, 1);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                Log.Add(">>ERROR(CheckVersion):" + ex.ToString());
+                Log.Error(ex);
             }
         }
         #endregion
@@ -705,10 +683,11 @@ namespace TSW2_Controller
         #region Einstellungen laden
         public void loadSettings()
         {
-            Log.Add(">>Load Settings");
+            Log.Add("Load Settings...");
             try
             {
                 #region Auflösung
+                Log.Add("load res", false, 1);
                 if (Settings.Default.res.IsEmpty)
                 {
                     Settings.Default.res = res;
@@ -723,6 +702,7 @@ namespace TSW2_Controller
                 #endregion
 
                 #region Zeige Debug-Infos
+                Log.Add("load debug info", false, 1);
                 if (Settings.Default.showDebug)
                 {
                     listBox_debugInfo.Show();
@@ -740,6 +720,7 @@ namespace TSW2_Controller
                 #endregion
 
                 #region Zeige Scan Ergebnis
+                Log.Add("load scan results", false, 1);
                 if (Settings.Default.showScanResult)
                 {
                     pictureBox_Screenshot_original.Show();
@@ -753,6 +734,7 @@ namespace TSW2_Controller
                 #endregion
 
                 #region TextIndexe
+                Log.Add("load text indicators", false, 1);
                 if (Settings.Default.SchubIndexe.Count == 0)
                 {
                     if (MessageBox.Show(Sprache.Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -826,6 +808,7 @@ namespace TSW2_Controller
                 #endregion
 
                 #region Tastenbelegung
+                Log.Add("load key bindings", false, 1);
                 try
                 {
                     Keyboard.increaseThrottle = Keyboard.ConvertStringToKey(Settings.Default.Tastenbelegung[0]);
@@ -836,11 +819,11 @@ namespace TSW2_Controller
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                    Log.Add(">>ERROR (loadSettings_Tastenbelegung):" + ex.ToString());
+                    Log.Error(ex);
                 }
                 #endregion
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Log.Add(">>ERROR (loadSettings):" + ex.ToString()); Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); Log.Error(ex); Close(); }
         }
         #endregion
 
@@ -904,37 +887,20 @@ namespace TSW2_Controller
                 }
             }
 
-            //Debuginfos anzeigen
-            try
+            if (Log.PublicInfo.Count > listBox_debugInfo.Items.Count)
             {
-                string[] logArray = Log.ToArray();
-                if (logCount < logArray.Count())
+                for (int i = listBox_debugInfo.Items.Count; i < Log.PublicInfo.Count; i++)
                 {
-                    int diff = logArray.Count() - logCount;
-                    for (int i = 0; i < diff; i++)
-                    {
-                        if (!logArray[logArray.Count() - diff + i].StartsWith(">>"))
-                        {
-                            listBox_debugInfo.Items.Add(DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i]);
-                        }
-                        else
-                        {
-                            logArray[logArray.Count() - diff + i] = logArray[logArray.Count() - diff + i].Remove(0, 2);
-                        }
-                        File.AppendAllText(Tcfg.logpfad + "log.txt", "│" + DateTime.Now.ToString("HH:mm:ss") + "    " + logArray[logArray.Count() - diff + i] + "\n");
-                    }
-                    listBox_debugInfo.SelectedIndex = listBox_debugInfo.Items.Count - 1;
-                    listBox_debugInfo.SelectedIndex = -1;
-                    logCount = logArray.Count();
+                    listBox_debugInfo.Items.Add(Log.PublicInfo[i]);
                 }
             }
-            catch { }
         }
         #endregion
 
         #region Trainconfig
         public void ReadTrainConfig()
         {
+            Log.Add("Read TrainConfig");
             if (File.Exists(Tcfg.configpfad))
             {
                 trainConfig.Clear();
@@ -1043,6 +1009,7 @@ namespace TSW2_Controller
         #region Joystick
         public Joystick[] getSticks()
         {
+            Log.Add("Search for joysticks:");
             //strg+c strg+v
             List<SlimDX.DirectInput.Joystick> sticks = new List<SlimDX.DirectInput.Joystick>();
             int counter = 0;
@@ -1064,12 +1031,13 @@ namespace TSW2_Controller
                     comboBox_JoystickNumber.Items.Add(counter);
                     counter++;
                 }
-                catch (DirectInputException)
+                catch (Exception ex)
                 {
+                    Log.Error(ex);
                     throw;
                 }
             }
-
+            Log.Add(sticks.Count + " joysticks found", false, 1);
             return sticks.ToArray();
 
         }
@@ -1258,13 +1226,14 @@ namespace TSW2_Controller
                     if (currentlyPressedButtons[i] == true)
                     {
                         //on Press
+                        Log.Add("\"" + activeTrain[i][Tcfg.beschreibung] + "\" is getting pressed", true);
                         if (activeTrain[i][Tcfg.tastenKombination] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.tastenKombination]); }
                         if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     else
                     {
                         //on release
-                        //if (activeTrain[i][Tcfg.buttonUp] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.buttonUp])); }
+                        Log.Add("\"" + activeTrain[i][Tcfg.beschreibung] + "\" is getting released", true);
                         if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     previouslyPressedButtons[i] = currentlyPressedButtons[i];
@@ -1366,6 +1335,7 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (schubSoll != currentThrottleJoystickState || (schubSoll != schubIst && throttleConfig[1] == "Stufen") || (Math.Abs(schubSoll - schubIst) > 1 && throttleConfig[1] == "Stufenlos") || (schubSoll == 0 && schubIst != 0))
             {
+                Log.Add("throttlejoystick is " + currentThrottleJoystickState);
                 cancelThrottleRequest = 1;
 
                 schubSoll = currentThrottleJoystickState;
@@ -1409,6 +1379,7 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Bremsregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (bremseSoll != currentBrakeJoystickState || (bremseSoll != bremseIst && brakeConfig[1] == "Stufen") || (Math.Abs(bremseSoll - bremseIst) > 1 && brakeConfig[1] == "Stufenlos") || (bremseSoll == 0 && bremseIst != 0))
             {
+                Log.Add("brakejoystick is " + currentBrakeJoystickState);
                 cancelBrakeRequest = 1;
 
                 bremseSoll = currentBrakeJoystickState;
@@ -1430,6 +1401,7 @@ namespace TSW2_Controller
                     ConvertLongPress(true, true);
                     int diffSchub = schubSoll - schubIst; //x>0 mehr |x<0 weniger
 
+                    Log.Add("Throttle is currently " + schubIst + " is getting moved to " + schubSoll);
                     if (throttleConfig[4].Contains("|"))
                     {
                         if (schubIst < 0 || schubSoll < 0)
@@ -1474,6 +1446,7 @@ namespace TSW2_Controller
                     ConvertLongPress(true, false); ;
                     int diffSchub = schubSoll - schubIst;
 
+                    Log.Add("Throttle is currently " + schubIst + " is getting moved to " + schubSoll);
                     if (diffSchub > 0)
                     {
                         Keyboard.HoldKey(Keyboard.increaseThrottle, delay * Math.Abs(diffSchub));
@@ -1498,6 +1471,7 @@ namespace TSW2_Controller
 
                     delay = Convert.ToInt32(brakeConfig[4]);
 
+                    Log.Add("Brake is currently " + bremseIst + " is getting moved to " + bremseSoll);
                     if (diffBremse > 0)
                     {
                         //mehr
@@ -1526,6 +1500,7 @@ namespace TSW2_Controller
                     ConvertLongPress(false, false);
                     int diffBremse = bremseSoll - bremseIst;
 
+                    Log.Add("Brake is currently " + bremseIst + " is getting moved to " + bremseSoll);
                     if (diffBremse > 0)
                     {
                         Keyboard.HoldKey(Keyboard.increaseBrake, delay * Math.Abs(diffBremse));
@@ -1572,7 +1547,7 @@ namespace TSW2_Controller
                         //Mehr
                         if (ist == untere_grenze)
                         {
-                            Log.Add("Halte mehr gedrückt");
+                            Log.Add("Long press " + (isThrottle ? "throttle" : "brake") + " \"up\"", true);
                             Keyboard.HoldKey(keyIncrease, dauer);
                             ist = obere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
@@ -1580,7 +1555,7 @@ namespace TSW2_Controller
                         }
                         else if (ist < untere_grenze)
                         {
-                            Log.Add("Anpassen auf hoch " + untere_grenze);
+                            Log.Add("Set " + (isThrottle ? "throttle" : "brake") + " to " + untere_grenze + " moving up", true);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(keyIncrease, 10);
@@ -1593,7 +1568,7 @@ namespace TSW2_Controller
                         //Weniger
                         if (ist == obere_grenze)
                         {
-                            Log.Add("Halte weniger gedrückt");
+                            Log.Add("Long press " + (isThrottle ? "throttle" : "brake") + " \"down\"", true);
                             Keyboard.HoldKey(keyDecrease, dauer);
                             ist = untere_grenze;
                             if (isThrottle) { requestThrottle = 3; } else { requestBrake = 3; }
@@ -1601,7 +1576,7 @@ namespace TSW2_Controller
                         }
                         else if (ist > obere_grenze)
                         {
-                            Log.Add("Anpassen auf runter " + obere_grenze);
+                            Log.Add("Set " + (isThrottle ? "throttle" : "brake") + " to " + obere_grenze + " moving down", true);
                             if (isStufenlos)
                             {
                                 Keyboard.HoldKey(keyDecrease, 10);
@@ -1629,6 +1604,7 @@ namespace TSW2_Controller
         #region ReadScreen
         private void bgw_readScreen_DoWork(object sender, DoWorkEventArgs e)
         {
+            Log.Add("reqThrottle:" + requestThrottle + " reqBrake:" + requestBrake);
             string original_result = GetText(Screenshot(true));
             string alternative_result = "";
 
@@ -1645,8 +1621,8 @@ namespace TSW2_Controller
             }
 
 
-            if (original_result != "") { Log.Add("original_result:" + original_result.Replace("\n", "")); }
-            if (alternative_result != "") { Log.Add("alternative_result:" + alternative_result.Replace("\n", "")); }
+            if (original_result != "") { Log.Add("original_result:" + original_result.Replace("\n", ""), true); }
+            if (alternative_result != "") { Log.Add("alternative_result:" + alternative_result.Replace("\n", ""), true); }
 
 
             //Zeige Scan-Ergebnisse
@@ -1677,8 +1653,15 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                if (maxLength > 0) { Log.Add("Throttle indicator = " + throttleConfig[0]); }
-                Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
+                if (maxLength > 0)
+                {
+                    Log.Add("Throttle indicator = " + throttleConfig[0], true);
+                }
+                else
+                {
+                    Log.Add("No text for throttle found");
+                    Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
+                }
             }
             #endregion
             #region Bremse
@@ -1704,8 +1687,15 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                if (maxLength > 0) { Log.Add("Brake indicator = " + throttleConfig[0]); }
-                Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
+                if (maxLength > 0)
+                {
+                    Log.Add("Brake indicator = " + throttleConfig[0], true);
+                }
+                else
+                {
+                    Log.Add("No text for brake found");
+                    Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
+                }
             }
             #endregion
 
@@ -1732,7 +1722,7 @@ namespace TSW2_Controller
                     {
                         requestThrottle--;
                         schubIst = erkannterWert;
-                        Log.Add("Throttle is " + erkannterWert);
+                        Log.Add("SimThrottle is " + erkannterWert, true);
                     }
                     else if (cancelThrottleRequest == -1)
                     {
@@ -1751,7 +1741,7 @@ namespace TSW2_Controller
                     {
                         requestBrake--;
                         bremseIst = erkannterWert;
-                        Log.Add("Brake is " + erkannterWert);
+                        Log.Add("SimBrake is " + erkannterWert, true);
                     }
                     else if (cancelBrakeRequest == -1)
                     {
@@ -1817,7 +1807,7 @@ namespace TSW2_Controller
                         if (ContainsWord(result, word) && singleSpezial != "")
                         {
                             erkannterWert = entsprechendeNummer;
-                            Log.Add(word + "=" + entsprechendeNummer);
+                            Log.Add(word + "=" + entsprechendeNummer, true);
                             break;
                         }
                     }
@@ -1840,11 +1830,11 @@ namespace TSW2_Controller
                         if (schubFaktor != 0 && kombihebel_bremsIndexe.Any(result.Contains) && result != "")
                         {
                             schubFaktor = -1;
-                            Log.Add("is brake area");
+                            Log.Add("is brake area", true);
                         }
                         else
                         {
-                            Log.Add("is throttle area");
+                            Log.Add("is throttle area", true);
                         }
 
                         foreach (string bremsIndex in kombihebel_bremsIndexe)
@@ -1950,7 +1940,7 @@ namespace TSW2_Controller
                             }
                             if (change)
                             {
-                                Log.Add(changelog);
+                                Log.Add(changelog, true);
                                 textinput = "";
                                 foreach (string single_textinput_result in seperated_textinput)
                                 {
@@ -1961,7 +1951,7 @@ namespace TSW2_Controller
                         }
                     }
                     catch (Exception ex)
-                    { MessageBox.Show(ex.ToString()); Log.Add(">>ERROR (KorregiereReadScreenText):" + ex.ToString()); }
+                    { MessageBox.Show(ex.ToString()); Log.Error(ex); }
                 }
             }
             return textinput;

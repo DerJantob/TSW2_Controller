@@ -246,7 +246,6 @@
         private System.Windows.Forms.Label lbl_schub;
         private System.ComponentModel.BackgroundWorker bgw_Brake;
         private System.Windows.Forms.Label lbl_bremse;
-        private System.Windows.Forms.ListBox listBox_debugInfo;
         private System.Windows.Forms.Label lbl_resolution;
         private System.Windows.Forms.Button btn_einstellungen;
         private System.Windows.Forms.PictureBox pictureBox_Screenshot_original;
@@ -258,6 +257,7 @@
         private System.Windows.Forms.Label lbl_requests;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_updateAvailable;
+        private System.Windows.Forms.ListBox listBox_debugInfo;
     }
 }
 
