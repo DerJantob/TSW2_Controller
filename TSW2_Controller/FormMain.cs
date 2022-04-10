@@ -73,8 +73,6 @@ namespace TSW2_Controller
 
         public FormMain()
         {
-            Log.Clear();
-
             checkVersion();
             checkLanguageSetting();
 
@@ -160,7 +158,7 @@ namespace TSW2_Controller
                     check_deactivateGlobal.CheckedChanged += check_deactivateGlobal_CheckedChanged;
 
                     globalIsDeactivated = true;
-                    Log.Add("_global is deactivated",false,1);
+                    Log.Add("_global is deactivated", false, 1);
                 }
                 else
                 {
@@ -232,6 +230,8 @@ namespace TSW2_Controller
             FormSettings settingsForm = new FormSettings();
             settingsForm.Location = this.Location;
             settingsForm.ShowDialog();
+            Log.Add("Leaving settings");
+
             loadSettings();
 
             ReadTrainConfig();
@@ -272,7 +272,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                Log.ErrorException(ex);
             }
         }
 
@@ -385,14 +385,13 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                Log.ErrorException(ex);
                 return 0;
             }
         }
 
         public static void checkLanguageSetting()
         {
-            Log.Add("Set language");
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
             System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
         }
@@ -533,13 +532,13 @@ namespace TSW2_Controller
                                             case "pos1":
                                                 return "home";
                                             case "bildauf":
-                                                return "prior";
+                                                return "pageUp";
                                             case "entf":
                                                 return "del";
                                             case "ende":
                                                 return "end";
                                             case "bildab":
-                                                return "next";
+                                                return "pageDown";
                                             case "hoch":
                                                 return "up";
                                             case "runter":
@@ -675,7 +674,7 @@ namespace TSW2_Controller
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                Log.Error(ex);
+                Log.ErrorException(ex);
             }
         }
         #endregion
@@ -819,11 +818,11 @@ namespace TSW2_Controller
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                    Log.Error(ex);
+                    Log.ErrorException(ex);
                 }
                 #endregion
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Log.Error(ex); Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); Log.ErrorException(ex); Close(); }
         }
         #endregion
 
@@ -887,11 +886,22 @@ namespace TSW2_Controller
                 }
             }
 
-            if (Log.PublicInfo.Count > listBox_debugInfo.Items.Count)
+            if (Log.DebugInfoList.Count > listBox_debugInfo.Items.Count)
             {
-                for (int i = listBox_debugInfo.Items.Count; i < Log.PublicInfo.Count; i++)
+                bool autoScroll = false;
+                if (listBox_debugInfo.TopIndex == listBox_debugInfo.Items.Count - 38)
                 {
-                    listBox_debugInfo.Items.Add(Log.PublicInfo[i]);
+                    autoScroll = true;
+                }
+
+                for (int i = listBox_debugInfo.Items.Count; i < Log.DebugInfoList.Count; i++)
+                {
+                    listBox_debugInfo.Items.Add(Log.DebugInfoList[i]);
+                }
+
+                if (autoScroll)
+                {
+                    listBox_debugInfo.TopIndex = listBox_debugInfo.Items.Count - 1;
                 }
             }
         }
@@ -1033,7 +1043,7 @@ namespace TSW2_Controller
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex);
+                    Log.ErrorException(ex);
                     throw;
                 }
             }
@@ -1159,7 +1169,10 @@ namespace TSW2_Controller
                 if (activeTrain[i][Tcfg.inputTyp] == "Button")
                 {
                     int buttonNumber = Convert.ToInt32(activeTrain[i][Tcfg.joystickInput].Replace("B", ""));
-                    currentlyPressedButtons[i] = ((bool[])((object[])joystickStates[Convert.ToInt32(activeTrain[i][Tcfg.joystickNummer])])[3])[buttonNumber];
+                    if (Convert.ToInt32(activeTrain[i][Tcfg.joystickNummer]) <= MainSticks.Count())
+                    {
+                        currentlyPressedButtons[i] = ((bool[])((object[])joystickStates[Convert.ToInt32(activeTrain[i][Tcfg.joystickNummer])])[3])[buttonNumber];
+                    }
                 }
                 else if (activeTrain[i][Tcfg.inputTyp].Contains("Button"))
                 {
@@ -1335,6 +1348,7 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (schubSoll != currentThrottleJoystickState || (schubSoll != schubIst && throttleConfig[1] == "Stufen") || (Math.Abs(schubSoll - schubIst) > 1 && throttleConfig[1] == "Stufenlos") || (schubSoll == 0 && schubIst != 0))
             {
+                Log.Add("---------------------------------------------------");
                 Log.Add("throttlejoystick is " + currentThrottleJoystickState);
                 cancelThrottleRequest = 1;
 
@@ -1379,6 +1393,7 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Bremsregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (bremseSoll != currentBrakeJoystickState || (bremseSoll != bremseIst && brakeConfig[1] == "Stufen") || (Math.Abs(bremseSoll - bremseIst) > 1 && brakeConfig[1] == "Stufenlos") || (bremseSoll == 0 && bremseIst != 0))
             {
+                Log.Add("---------------------------------------------------");
                 Log.Add("brakejoystick is " + currentBrakeJoystickState);
                 cancelBrakeRequest = 1;
 
@@ -1659,7 +1674,7 @@ namespace TSW2_Controller
                 }
                 else
                 {
-                    Log.Add("No text for throttle found");
+                    if (cancelThrottleRequest != 0) { Log.Add("No text for throttle found"); }
                     Keyboard.HoldKey(Keyboard.decreaseThrottle, 1);
                 }
             }
@@ -1693,7 +1708,7 @@ namespace TSW2_Controller
                 }
                 else
                 {
-                    Log.Add("No text for brake found");
+                    if (cancelBrakeRequest != 0) { Log.Add("No text for brake found"); }
                     Keyboard.HoldKey(Keyboard.decreaseBrake, 1);
                 }
             }
@@ -1951,7 +1966,7 @@ namespace TSW2_Controller
                         }
                     }
                     catch (Exception ex)
-                    { MessageBox.Show(ex.ToString()); Log.Error(ex); }
+                    { MessageBox.Show(ex.ToString()); Log.ErrorException(ex); }
                 }
             }
             return textinput;

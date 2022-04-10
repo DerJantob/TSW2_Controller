@@ -11,7 +11,7 @@ namespace TSW2_Controller
 {
     public class Log
     {
-        public static List<string> PublicInfo = new List<string>();
+        public static List<string> DebugInfoList = new List<string>();
         public Log()
         {
         }
@@ -56,12 +56,30 @@ namespace TSW2_Controller
 
                 if (ShowUser)
                 {
-                    PublicInfo.Add(message);
+                    DebugInfoList.Add(message);
                 }
             }
         }
 
-        public static void Error(Exception ex)
+        public static void Error(string message, bool ShowUser = false)
+        {
+            lock (locker)
+            {
+                CheckPath();
+
+                StreamWriter SW;
+                SW = File.AppendText(Tcfg.logpfad);
+                SW.WriteLine(DateTime.Now.ToString("HH:mm:ss") + "    " + "-Error-  :" + message);
+                SW.Close();
+
+                if (ShowUser)
+                {
+                    DebugInfoList.Add(message);
+                }
+            }
+        }
+
+        public static void ErrorException(Exception ex)
         {
             lock (locker)
             {

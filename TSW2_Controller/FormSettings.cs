@@ -88,7 +88,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                Log.ErrorException(ex);
             }
         }
 
@@ -134,7 +134,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                Log.ErrorException(ex);
                 if (Sprache.SprachenName == "Deutsch")
                 {
                     MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden.\n\nDas kann eventuell daran liegen dass das Anfragelimit überschritten wurde. Das wird nach einer Stunde zurückgesetzt.");
@@ -363,10 +363,8 @@ namespace TSW2_Controller
                 {
                     if (Settings.Default.selectedTrainConfig != "_Standard")
                     {
-                        Log.Add("Copy " + Tcfg.configpfad + " to " + Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv");
                         File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
                     }
-                    Log.Add("Copy " + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
                     Settings.Default.selectedTrainConfig = "_Standard";
                 }
@@ -376,8 +374,9 @@ namespace TSW2_Controller
                     Settings.Default.selectedTrainConfig = comboBox_TrainConfig.Text;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Log.ErrorException(ex);
                 MessageBox.Show("Error with Trainconfig");
             }
             Settings.Default.Save();
@@ -396,8 +395,9 @@ namespace TSW2_Controller
             {
                 Settings.Default.res = new Rectangle(0, 0, Convert.ToInt32(comboBox_resolution.Text.Split('x')[0]), Convert.ToInt32(comboBox_resolution.Text.Split('x')[1]));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.ErrorException(ex);
                 MessageBox.Show(Sprache.Fehler_bei_Aufloesung);
             }
 
@@ -417,8 +417,8 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
+                Log.ErrorException(ex);
                 MessageBox.Show(Sprache.Fehler_beim_Textindikator);
-                MessageBox.Show(ex.ToString());
             }
 
             try
@@ -430,7 +430,8 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Log.ErrorException(ex);
+                MessageClass.Show("Fehler bei der Tastenbelegung", "Error with keybindings");
             }
 
             Settings.Default.showDebug = check_showDebug.Checked;
@@ -441,14 +442,18 @@ namespace TSW2_Controller
 
         private void btn_steuerung_Click(object sender, EventArgs e)
         {
+            Log.Add("Going to controls");
             FormSteuerung formSteuerung = new FormSteuerung();
             formSteuerung.Location = this.Location;
             formSteuerung.ShowDialog();
+            Log.Add("Leaving controls");
+
             if (Settings.Default.selectedTrainConfig == "_Standard")
             {
                 if (!File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad)))
                 {
                     //Die Datei hat sich geändert
+                    Log.Add("Config has changed, but standard selected");
                     string name = "yourConfig";
                     if (!File.Exists(Tcfg.configSammelungPfad + name + ".csv"))
                     {
@@ -471,6 +476,7 @@ namespace TSW2_Controller
                         comboBox_TrainConfig.Items.Add(name);
                         comboBox_TrainConfig.SelectedItem = name;
                     }
+                    Log.Add("Saved as " + name);
                 }
             }
             else

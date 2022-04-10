@@ -17,6 +17,8 @@ namespace TSW2_Controller
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Log.Clear();
+
             Application.Run(new FormMain());
         }
     }

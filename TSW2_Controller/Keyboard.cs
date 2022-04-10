@@ -33,10 +33,10 @@ namespace TSW2_Controller
             keyList.Add(new object[] { "tab", Keys.Tab });
             keyList.Add(new object[] { "insert", Keys.Insert });
             keyList.Add(new object[] { "home", Keys.Home });
-            keyList.Add(new object[] { "prior", Keys.Prior });
+            keyList.Add(new object[] { "pageUp", Keys.Prior });
             keyList.Add(new object[] { "del", Keys.Delete });
             keyList.Add(new object[] { "end", Keys.End });
-            keyList.Add(new object[] { "next", Keys.Next });
+            keyList.Add(new object[] { "pageDown", Keys.Next });
             keyList.Add(new object[] { "up", Keys.Up });
             keyList.Add(new object[] { "down", Keys.Down });
             keyList.Add(new object[] { "right", Keys.Right });
@@ -224,7 +224,7 @@ namespace TSW2_Controller
                 }
             }
 
-            MessageBox.Show("Fehler! Kenne die Taste \"" + input + "\" nicht");
+            Log.Error("Unknown key:"+input,true);
             return Keys.None;
         }
 
@@ -238,7 +238,7 @@ namespace TSW2_Controller
                 }
             }
 
-            MessageBox.Show("Kenne die Taste nicht");
+            Log.Error("Unknown key:" + key.ToString(), true);
             return "";
         }
     }
