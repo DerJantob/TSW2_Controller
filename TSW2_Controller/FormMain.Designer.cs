@@ -97,17 +97,6 @@
             // 
             this.comboBox_JoystickNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_JoystickNumber.FormattingEnabled = true;
-            this.comboBox_JoystickNumber.Items.AddRange(new object[] {
-            resources.GetString("comboBox_JoystickNumber.Items"),
-            resources.GetString("comboBox_JoystickNumber.Items1"),
-            resources.GetString("comboBox_JoystickNumber.Items2"),
-            resources.GetString("comboBox_JoystickNumber.Items3"),
-            resources.GetString("comboBox_JoystickNumber.Items4"),
-            resources.GetString("comboBox_JoystickNumber.Items5"),
-            resources.GetString("comboBox_JoystickNumber.Items6"),
-            resources.GetString("comboBox_JoystickNumber.Items7"),
-            resources.GetString("comboBox_JoystickNumber.Items8"),
-            resources.GetString("comboBox_JoystickNumber.Items9")});
             resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
             // 

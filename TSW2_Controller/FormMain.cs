@@ -143,8 +143,8 @@ namespace TSW2_Controller
 
             loadSettings();
 
-            comboBox_JoystickNumber.SelectedIndex = 0;
             MainSticks = getSticks();
+            comboBox_JoystickNumber.SelectedIndex = 0;
 
             ReadTrainConfig();
 
@@ -1045,6 +1045,7 @@ namespace TSW2_Controller
         {
             //strg+c strg+v
             List<SlimDX.DirectInput.Joystick> sticks = new List<SlimDX.DirectInput.Joystick>();
+            int counter = 0;
             foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
             {
                 try
@@ -1060,6 +1061,8 @@ namespace TSW2_Controller
                         }
                     }
                     sticks.Add(mainStick);
+                    comboBox_JoystickNumber.Items.Add(counter);
+                    counter++;
                 }
                 catch (DirectInputException)
                 {
