@@ -134,8 +134,10 @@ namespace TSW2_Controller
                     changelog.Add("- Verbessert: Stufenregler schneller");
                     changelog.Add("- Verbessert: Fehlerhafte Benutzereingaben werden angezeigt");
                     changelog.Add("- Verbessert: Benennungen der Tasten verändert um verwirrung zu verhindern");
+                    changelog.Add("- Verbessert: Tastenkombinationen können jetzt im Editor auch bearbeitet werden");
                     changelog.Add("- Bugfix: Sonderfälle konnten das %-Zeichen nicht lesen");
                     changelog.Add("- Bugfix: Kombihebel kann nun mit der Bremse kombiniert werden");
+                    changelog.Add("- Bugfix: Shift-Taste funktioniert jetzt korrekt");
                 }
                 else
                 {
@@ -145,8 +147,10 @@ namespace TSW2_Controller
                     changelog.Add("- Improved: Notch controller faster");
                     changelog.Add("- Improved: Detect faulty user input and notify him about it");
                     changelog.Add("- Improved: Names of the keys changed to prevent confusion");
+                    changelog.Add("- Improved: Keyboard shortcuts can now also be edited in the editor");
                     changelog.Add("- Bugfix: Special cases could not read \"%\"");
                     changelog.Add("- Bugfix: Master Controller can now be combined with the brake");
+                    changelog.Add("- Bugfix: Shift key is now working correctly");
                 }
 
                 changelog.Add("----------------------------------------");

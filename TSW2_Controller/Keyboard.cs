@@ -50,8 +50,6 @@ namespace TSW2_Controller
             keyList.Add(new object[] { "win", Keys.LWin });
             keyList.Add(new object[] { "rwin", Keys.RWin });
             keyList.Add(new object[] { "shift", Keys.ShiftKey });
-            keyList.Add(new object[] { "lshift", Keys.LShiftKey });
-            keyList.Add(new object[] { "rshift", Keys.RShiftKey });
             keyList.Add(new object[] { "oem1", Keys.Oem1 });
             keyList.Add(new object[] { "oem2", Keys.Oem2 });
             keyList.Add(new object[] { "oem3", Keys.Oem3 });
@@ -139,19 +137,42 @@ namespace TSW2_Controller
 
         public static void HoldKey(Keys key, int duration)
         {
-            keybd_event(key, 0, KEY_DOWN_EVENT, 0);
-            System.Threading.Thread.Sleep(duration);
-            keybd_event(key, 0, KEY_UP_EVENT, 0);
+            if (key != Keys.ShiftKey)
+            {
+                keybd_event(key, 0, KEY_DOWN_EVENT, 0);
+                System.Threading.Thread.Sleep(duration);
+                keybd_event(key, 0, KEY_UP_EVENT, 0);
+            }
+            else
+            {
+                ShiftEmulator.HoldKey();
+                System.Threading.Thread.Sleep(duration);
+                ShiftEmulator.ReleaseKey();
+            }
         }
 
         public static void KeyDown(Keys key)
         {
-            keybd_event(key, 0, 0, 0);
+            if (key != Keys.ShiftKey)
+            {
+                keybd_event(key, 0, 0, 0);
+            }
+            else
+            {
+                ShiftEmulator.HoldKey();
+            }
         }
 
         public static void KeyUp(Keys key)
         {
-            keybd_event(key, 0, KEY_UP_EVENT, 0);
+            if (key != Keys.ShiftKey)
+            {
+                keybd_event(key, 0, KEY_UP_EVENT, 0);
+            }
+            else
+            {
+                ShiftEmulator.ReleaseKey();
+            }
         }
 
         public static void ProcessAktion(string input)

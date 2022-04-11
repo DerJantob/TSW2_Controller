@@ -928,7 +928,7 @@
     <value>7</value>
   </data>
   <data name="txtT2_Wartezeit.Text" xml:space="preserve">
-    <value>80</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;txtT2_Wartezeit.Name" xml:space="preserve">
     <value>txtT2_Wartezeit</value>

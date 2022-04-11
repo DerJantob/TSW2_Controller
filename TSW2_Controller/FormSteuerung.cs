@@ -244,6 +244,18 @@ namespace TSW2_Controller
         private void btnT1_Editor_Click(object sender, EventArgs e)
         {
             //Erstelle eine Tastenkombination
+            if (txtT1_Tastenkombination.Text != "" && (txtT1_Tastenkombination.Text.Split('_').Count() == 3 || txtT1_Tastenkombination.Text.Split('_').Count() % 3 == 0))
+            {
+                string[] splitted = txtT1_Tastenkombination.Text.Split('_');
+
+                listBoxT2_Output.Items.Clear();
+
+                for (int i = 0; i < splitted.Count(); i += 3)
+                {
+                    listBoxT2_Output.Items.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2] + "_");
+                }
+            }
+
             tabControl_Anzeige.SelectedIndex = 2;
         }
         private void comboBoxT1_KnopfAuswahl_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,7 +337,7 @@ namespace TSW2_Controller
                 ok = false;
                 MessageClass.Show("Keine Aktion oder Tastenkombination", "No action or keyboard shortcut");
             }
-            if (txtT1_Tastenkombination.Text != "" && !(txtT1_Tastenkombination.Text.Trim('_').Count() == 3 || (txtT1_Tastenkombination.Text.Trim('_').Count() + 1) % 3 == 0))
+            if (txtT1_Tastenkombination.Text != "" && !(txtT1_Tastenkombination.Text.Split('_').Count() == 3 || txtT1_Tastenkombination.Text.Split('_').Count() % 3 == 0))
             {
                 ok = false;
                 MessageClass.Show("Fehler bei Tastenkombination", "Error with keyboard shortcut");
@@ -551,7 +563,7 @@ namespace TSW2_Controller
                 }
                 else if (radioT2_Halten.Checked)
                 {
-                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold " + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
+                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold" + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
                 }
                 else if (radioT2_Druecken.Checked)
                 {
@@ -581,7 +593,7 @@ namespace TSW2_Controller
                     listBoxT2_Output.Items.RemoveAt(listBoxT2_Output.SelectedIndex);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.ErrorException(ex);
             }
