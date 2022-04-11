@@ -130,6 +130,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Man kann nun in den Einstellungen zwischen TrainConfigs wechseln");
                     changelog.Add("- Hinzugefügt: Log datei");
+                    changelog.Add("- Hinzugefügt: Menüstreifen in den Einstellungen");
                     changelog.Add("- Verbessert: Stufenregler schneller");
                     changelog.Add("- Verbessert: Fehlerhafte Benutzereingaben werden angezeigt");
                     changelog.Add("- Verbessert: Benennungen der Tasten verändert um verwirrung zu verhindern");
@@ -140,6 +141,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- You can now switch between trainconfigs in the settings");
                     changelog.Add("- Added: Log file");
+                    changelog.Add("- Added: Menustrip in the settings");
                     changelog.Add("- Improved: Notch controller faster");
                     changelog.Add("- Improved: Detect faulty user input and notify him about it");
                     changelog.Add("- Improved: Names of the keys changed to prevent confusion");

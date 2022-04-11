@@ -71,8 +71,8 @@
             this.sucheNachUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucheNachUpdatesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.spracheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.englischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
@@ -380,17 +380,17 @@
             this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
             resources.ApplyResources(this.spracheToolStripMenuItem, "spracheToolStripMenuItem");
             // 
-            // englischToolStripMenuItem
-            // 
-            this.englischToolStripMenuItem.Name = "englischToolStripMenuItem";
-            resources.ApplyResources(this.englischToolStripMenuItem, "englischToolStripMenuItem");
-            this.englischToolStripMenuItem.Click += new System.EventHandler(this.englischToolStripMenuItem_Click);
-            // 
             // deutschToolStripMenuItem
             // 
             this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
             resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
             this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
+            // 
+            // englischToolStripMenuItem
+            // 
+            this.englischToolStripMenuItem.Name = "englischToolStripMenuItem";
+            resources.ApplyResources(this.englischToolStripMenuItem, "englischToolStripMenuItem");
+            this.englischToolStripMenuItem.Click += new System.EventHandler(this.englischToolStripMenuItem_Click);
             // 
             // FormSettings
             // 

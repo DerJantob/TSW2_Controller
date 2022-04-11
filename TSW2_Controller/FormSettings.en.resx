@@ -136,9 +136,6 @@
   <data name="check_ShowScan.Text" xml:space="preserve">
     <value>Show screenshot</value>
   </data>
-  <data name="btn_updates.Text" xml:space="preserve">
-    <value>check updates</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btn_textindikator_StandardLaden.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -197,17 +194,26 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Text indicators</value>
   </data>
-  <data name="btn_changelog.Text" xml:space="preserve">
-    <value>Whats new?</value>
+  <data name="btn_speichern.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 432</value>
   </data>
   <data name="btn_speichern.Text" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="btn_steuerung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 27</value>
+  </data>
   <data name="btn_steuerung.Text" xml:space="preserve">
     <value>Controls</value>
   </data>
-  <data name="btn_Sprache.Text" xml:space="preserve">
-    <value>Deutsch</value>
+  <data name="progressBar_updater.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 24</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Increase throttle</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -224,12 +230,6 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Decrease throttle</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Increase throttle</value>
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Key bindings</value>
   </data>
@@ -238,6 +238,33 @@
   </data>
   <data name="btn_trainconfigLoeschen.Text" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 117</value>
+  </data>
+  <data name="wasIstNeuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 20</value>
+  </data>
+  <data name="wasIstNeuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Whats new</value>
+  </data>
+  <data name="informationsdateiErstellenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="informationsdateiErstellenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Create helpfile</value>
+  </data>
+  <data name="hilfeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="sucheNachUpdatesToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Search for uppdates</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 24</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>356, 467</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -525,6 +552,9 @@
         //////AAA///////8AAD///////4AAP///////xgB////////AAH///////+AA////////8AH///////
         /+B///////////////////////////////////////////////8=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Settings</value>

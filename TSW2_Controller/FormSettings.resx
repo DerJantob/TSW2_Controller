@@ -1045,7 +1045,7 @@
     <value>180, 22</value>
   </data>
   <data name="englischToolStripMenuItem.Text" xml:space="preserve">
-    <value>Englisch</value>
+    <value>English</value>
   </data>
   <data name="spracheToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 20</value>
@@ -1379,9 +1379,6 @@
         /+B///////////////////////////////////////////////8=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>Manual</value>
   </data>
@@ -1424,16 +1421,16 @@
   <data name="&gt;&gt;spracheToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;englischToolStripMenuItem.Name" xml:space="preserve">
-    <value>englischToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;englischToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;deutschToolStripMenuItem.Name" xml:space="preserve">
     <value>deutschToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;deutschToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;englischToolStripMenuItem.Name" xml:space="preserve">
+    <value>englischToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;englischToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
