@@ -419,7 +419,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                Log.ErrorException(ex);
             }
         }
     }
