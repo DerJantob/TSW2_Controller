@@ -179,6 +179,7 @@ namespace TSW2_Controller
             {
                 check_active.BackColor = Color.Lime;
                 Log.Add("--------------------");
+                Log.Add("Active = true");
                 Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add(string.Join(",", train), false, 1); }
                 Log.Add("");
                 Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
@@ -191,7 +192,6 @@ namespace TSW2_Controller
                 Log.Add("   MasterController:");
                 Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
                 Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
-                Log.Add("Active = true");
                 Log.Add("");
             }
             else

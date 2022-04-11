@@ -581,8 +581,9 @@ namespace TSW2_Controller
                     listBoxT2_Output.Items.RemoveAt(listBoxT2_Output.SelectedIndex);
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                Log.ErrorException(ex);
             }
         }
         private void btnT2_Fertig_Click(object sender, EventArgs e)
@@ -602,6 +603,7 @@ namespace TSW2_Controller
                 }
                 catch (Exception ex)
                 {
+                    Log.ErrorException(ex);
                     MessageBox.Show(ex.ToString());
                 }
             }

@@ -181,7 +181,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Log.ErrorException(ex);
             }
         }
         private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

@@ -33,7 +33,7 @@ namespace TSW2_Controller
         }
         private void txt_Startwert_TextChanged(object sender, EventArgs e)
         {
-            try { if (Convert.ToInt32(txt_Startwert.Text) > 100) { txt_Startwert.Text = txt_Startwert.Text.Remove(txt_Startwert.Text.Length - 1); } } catch { }
+            try { if (Convert.ToInt32(txt_Startwert.Text) > 100) { txt_Startwert.Text = txt_Startwert.Text.Remove(txt_Startwert.Text.Length - 1); } } catch(Exception ex) { Log.ErrorException(ex); }
         }
 
         private void SetUI(bool enabled)
@@ -99,7 +99,7 @@ namespace TSW2_Controller
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    Log.ErrorException(ex);
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace TSW2_Controller
                             endNumber = Convert.ToInt32(result);
                             wait = false;
                         }
-                        catch (Exception ex) { MessageBox.Show("Fehlerwort:" + result + "\n" + ex.ToString()); }
+                        catch (Exception ex) { MessageBox.Show(result + "\n" + ex.ToString()); Log.ErrorException(ex); }
 
                     }
                     else
@@ -198,7 +198,7 @@ namespace TSW2_Controller
                                     nothingDetected = true;
                                     break;
                                 }
-                                catch { }
+                                catch(Exception ex) { Log.ErrorException(ex); }
                             }
                         }
                     }
@@ -323,7 +323,7 @@ namespace TSW2_Controller
                 endWert = GetNumber();
                 ersterZeitwert = endWert - startWert;
             }
-            catch { MessageBox.Show("not able to read number");}
+            catch(Exception ex) { MessageBox.Show("not able to read number"); Log.ErrorException(ex); }
 
             Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
@@ -345,7 +345,7 @@ namespace TSW2_Controller
                 endWert = GetNumber();
                 zweiterZeitwert = endWert - startWert;
             }
-            catch { MessageBox.Show("not able to read number"); }
+            catch (Exception ex) { MessageBox.Show("not able to read number"); Log.ErrorException(ex); }
 
             Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
@@ -419,7 +419,7 @@ namespace TSW2_Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Log.Error(ex);
             }
         }
     }
