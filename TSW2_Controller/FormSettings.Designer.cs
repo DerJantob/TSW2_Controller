@@ -68,6 +68,7 @@
             this.wasIstNeuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationsdateiErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zurConfigGehenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucheNachUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucheNachUpdatesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.spracheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -334,9 +335,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wasIstNeuToolStripMenuItem,
-            this.hilfeToolStripMenuItem,
             this.sucheNachUpdatesToolStripMenuItem,
-            this.spracheToolStripMenuItem});
+            this.spracheToolStripMenuItem,
+            this.hilfeToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -349,7 +350,8 @@
             // hilfeToolStripMenuItem
             // 
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.informationsdateiErstellenToolStripMenuItem});
+            this.informationsdateiErstellenToolStripMenuItem,
+            this.zurConfigGehenToolStripMenuItem});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
             resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
             // 
@@ -358,6 +360,12 @@
             this.informationsdateiErstellenToolStripMenuItem.Name = "informationsdateiErstellenToolStripMenuItem";
             resources.ApplyResources(this.informationsdateiErstellenToolStripMenuItem, "informationsdateiErstellenToolStripMenuItem");
             this.informationsdateiErstellenToolStripMenuItem.Click += new System.EventHandler(this.informationsdateiErstellenToolStripMenuItem_Click);
+            // 
+            // zurConfigGehenToolStripMenuItem
+            // 
+            this.zurConfigGehenToolStripMenuItem.Name = "zurConfigGehenToolStripMenuItem";
+            resources.ApplyResources(this.zurConfigGehenToolStripMenuItem, "zurConfigGehenToolStripMenuItem");
+            this.zurConfigGehenToolStripMenuItem.Click += new System.EventHandler(this.zurConfigGehenToolStripMenuItem_Click);
             // 
             // sucheNachUpdatesToolStripMenuItem
             // 
@@ -474,5 +482,6 @@
         private System.Windows.Forms.ToolStripMenuItem spracheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englischToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deutschToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zurConfigGehenToolStripMenuItem;
     }
 }

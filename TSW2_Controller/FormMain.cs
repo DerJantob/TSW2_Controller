@@ -178,13 +178,11 @@ namespace TSW2_Controller
             if (check_active.Checked)
             {
                 check_active.BackColor = Color.Lime;
-                Log.Add("--------------------");
+                Log.Add("----------------------------------------------------------------------------------------------------");
+                Log.Add("----------------------------------------------------------------------------------------------------");
                 Log.Add("Active = true");
                 Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add(string.Join(",", train), false, 1); }
                 Log.Add("");
-                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
-                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
-                Log.Add("Language:" + Settings.Default.Sprache);
                 Log.Add("Textindicators:");
                 Log.Add("   Throttle/Brake:");
                 Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
@@ -193,12 +191,20 @@ namespace TSW2_Controller
                 Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
                 Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
                 Log.Add("");
+                Log.Add("KeyLayout:"+ string.Join(",", Settings.Default.Tastenbelegung.Cast<string>().ToArray()));
+                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+                Log.Add("Language:" + Settings.Default.Sprache);
+                Log.Add("WindowsLanguage:" + InputLanguage.CurrentInputLanguage.Culture.Name);
+                Log.Add("KeyboardLayout:" + InputLanguage.CurrentInputLanguage.LayoutName);
+                Log.Add("");
             }
             else
             {
                 check_active.BackColor = Color.Red;
                 Log.Add("Active = false");
-                Log.Add("--------------------");
+                Log.Add("----------------------------------------------------------------------------------------------------");
+                Log.Add("----------------------------------------------------------------------------------------------------");
             }
         }
 
@@ -519,7 +525,9 @@ namespace TSW2_Controller
                             Log.Add("1.1.0", false, 1);
                             if (File.Exists(Tcfg.configpfad))
                             {
+                                //Backup
                                 File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
+                                MessageClass.Show("Backup has been created on the Desktop", "Ein Backup wurde auf dem Desktop erstellt");
 
                                 //Neue Tastenbenennung
                                 string[] file = File.ReadAllLines(Tcfg.configpfad);
@@ -1351,7 +1359,7 @@ namespace TSW2_Controller
             //Wenn sich der Wert vom Joystick-Schubregler geändert hat oder der vom Bildschirm gelesene Wert nicht passt
             if (schubSoll != currentThrottleJoystickState || (schubSoll != schubIst && throttleConfig[1] == "Stufen") || (Math.Abs(schubSoll - schubIst) > 1 && throttleConfig[1] == "Stufenlos") || (schubSoll == 0 && schubIst != 0))
             {
-                Log.Add("---------------------------------------------------");
+                Log.Add("-----------------");
                 Log.Add("throttlejoystick is " + currentThrottleJoystickState);
                 cancelThrottleRequest = 1;
 

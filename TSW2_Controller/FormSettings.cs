@@ -20,7 +20,7 @@ namespace TSW2_Controller
 {
     public partial class FormSettings : Form
     {
-        public static string newestVersion= "";
+        public static string newestVersion = "";
         public FormSettings()
         {
             InitializeComponent();
@@ -72,7 +72,7 @@ namespace TSW2_Controller
                 txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
                 txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
 
-                if(Sprache.SprachenName == "Deutsch")
+                if (Sprache.SprachenName == "Deutsch")
                 {
                     deutschToolStripMenuItem.Checked = true;
                 }
@@ -81,7 +81,7 @@ namespace TSW2_Controller
                     englischToolStripMenuItem.Checked = true;
                 }
 
-                if(newestVersion!="")
+                if (newestVersion != "")
                 {
                     sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Installiere v" + newestVersion, "Install v" + newestVersion);
                 }
@@ -127,10 +127,11 @@ namespace TSW2_Controller
                     //The version on GitHub is more up to date than this local release.
                     if (newestVersion.Contains("dontAsk"))
                     {
+                        newestVersion = newestVersion.Replace("dontAsk", "");
                         progressBar_updater.Show();
                         DownloadNewestVersion(latestGitHubVersion);
                     }
-                    else if(MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    else if (MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         progressBar_updater.Show();
                         DownloadNewestVersion(latestGitHubVersion);
@@ -164,6 +165,8 @@ namespace TSW2_Controller
         {
             Log.Add("Download \"" + @"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + "/TSW2_Controller_Setup.exe\"");
 
+            sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Installiere...", "Installing...");
+            sucheNachUpdatesToolStripMenuItem1.Enabled = false;
             Uri uri = new Uri(@"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + @"/TSW2_Controller_Setup.exe");
             var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp/TSW2_Controller_Setup.exe");
 
@@ -204,6 +207,8 @@ namespace TSW2_Controller
             {
                 MessageBox.Show("Unable to download exe", "Download failed!");
                 progressBar_updater.Hide();
+                sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Download gescheitert", "Download failed");
+                sucheNachUpdatesToolStripMenuItem1.Enabled = true;
             }
         }
         #endregion
@@ -573,7 +578,7 @@ namespace TSW2_Controller
             string startfolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller";
 
             if (File.Exists(finishedFile)) { File.Delete(finishedFile); }
-            ZipFile.CreateFromDirectory(startfolder, finishedFile,CompressionLevel.Fastest,true);
+            ZipFile.CreateFromDirectory(startfolder, finishedFile, CompressionLevel.Fastest, true);
             Process.Start("explorer.exe", "/select, \"" + finishedFile + "\"");
             MessageClass.Show("Datei wurde auf dem Desktop erstellt!", "File has been created on the desktop!");
             Close();
@@ -583,7 +588,7 @@ namespace TSW2_Controller
         private void sucheNachUpdatesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Log.Add("Check github Version...");
-            if(newestVersion != "")
+            if (newestVersion != "")
             {
                 newestVersion += "dontAsk";
             }
@@ -592,7 +597,7 @@ namespace TSW2_Controller
 
         private void englischToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(!englischToolStripMenuItem.Checked)
+            if (!englischToolStripMenuItem.Checked)
             {
                 englischToolStripMenuItem.Checked = true;
                 deutschToolStripMenuItem.Checked = false;
@@ -606,7 +611,7 @@ namespace TSW2_Controller
 
         private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(!deutschToolStripMenuItem.Checked)
+            if (!deutschToolStripMenuItem.Checked)
             {
                 deutschToolStripMenuItem.Checked = true;
                 englischToolStripMenuItem.Checked = false;
@@ -616,6 +621,11 @@ namespace TSW2_Controller
                 Settings.Default.Save();
                 System.Windows.Forms.Application.Restart();
             }
+        }
+
+        private void zurConfigGehenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Tcfg.configpfad.Replace("Trainconfig.csv", ""));
         }
     }
 }
