@@ -252,7 +252,7 @@ namespace TSW2_Controller
 
                 for (int i = 0; i < splitted.Count(); i += 3)
                 {
-                    listBoxT2_Output.Items.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2] + "_");
+                    listBoxT2_Output.Items.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2] );
                 }
             }
 
@@ -552,6 +552,13 @@ namespace TSW2_Controller
         }
         private void btnT2_Hinzufügen_Click(object sender, EventArgs e)
         {
+            int insertIndex = listBoxT2_Output.SelectedIndex + 1;
+            if (insertIndex == 0)
+            {
+                insertIndex = listBoxT2_Output.Items.Count;
+            }
+
+
             if (txtT2_Taste.Text != "")
             {
                 if (txtT2_Wartezeit.Text == "") { txtT2_Wartezeit.Text = "0"; }
@@ -559,20 +566,21 @@ namespace TSW2_Controller
 
                 if (radioT2_einmalDruecken.Checked)
                 {
-                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[press]_[" + txtT2_Wartezeit.Text + "]");
+                    listBoxT2_Output.Items.Insert(insertIndex, txtT2_Taste.Text + "_[press]_[" + txtT2_Wartezeit.Text + "]");
                 }
                 else if (radioT2_Halten.Checked)
                 {
-                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[hold" + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
+                    listBoxT2_Output.Items.Insert(insertIndex, txtT2_Taste.Text + "_[hold" + txtT2_Haltezeit.Text + "]_[" + txtT2_Wartezeit.Text + "]");
                 }
                 else if (radioT2_Druecken.Checked)
                 {
-                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[down]_[" + txtT2_Wartezeit.Text + "]");
+                    listBoxT2_Output.Items.Insert(insertIndex, txtT2_Taste.Text + "_[down]_[" + txtT2_Wartezeit.Text + "]");
                 }
                 else if (radioT2_Loslassen.Checked)
                 {
-                    listBoxT2_Output.Items.Add(txtT2_Taste.Text + "_[up]_[" + txtT2_Wartezeit.Text + "]");
+                    listBoxT2_Output.Items.Insert(insertIndex, txtT2_Taste.Text + "_[up]_[" + txtT2_Wartezeit.Text + "]");
                 }
+                listBoxT2_Output.SelectedIndex = insertIndex;
             }
             else
             {
