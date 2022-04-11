@@ -227,9 +227,9 @@ namespace TSW2_Controller
         {
             Log.Add("Going to settings:");
             check_active.Checked = false;
-            FormSettings settingsForm = new FormSettings();
-            settingsForm.Location = this.Location;
-            settingsForm.ShowDialog();
+            FormSettings formSettings = new FormSettings();
+            formSettings.Location = this.Location;
+            formSettings.ShowDialog();
             Log.Add("Leaving settings");
 
             loadSettings();
@@ -264,6 +264,7 @@ namespace TSW2_Controller
                     //The version on GitHub is more up to date than this local release.
                     Log.Add("Update available", false, 1);
                     lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
+                    FormSettings.newestVersion = latestGitHubVersion.ToString();
                 }
                 else
                 {
@@ -279,7 +280,9 @@ namespace TSW2_Controller
         private void lbl_updateAvailable_Click(object sender, EventArgs e)
         {
             FormSettings formSettings = new FormSettings();
+            formSettings.Location = this.Location;
             formSettings.CheckGitHubNewerVersion();
+            formSettings.ShowDialog();
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

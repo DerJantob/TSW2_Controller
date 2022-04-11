@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 50</value>
+    <value>3, 24</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -144,13 +144,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="check_showDebug.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="check_showDebug.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 97</value>
+    <value>6, 71</value>
   </data>
   <data name="check_showDebug.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 17</value>
@@ -171,7 +171,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;check_showDebug.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbl_version.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -181,7 +181,7 @@
     <value>True</value>
   </data>
   <data name="lbl_version.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 555</value>
+    <value>3, 445</value>
   </data>
   <data name="lbl_version.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 13</value>
@@ -202,13 +202,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbl_version.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="check_ShowScan.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="check_ShowScan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 120</value>
+    <value>6, 94</value>
   </data>
   <data name="check_ShowScan.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 17</value>
@@ -229,34 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;check_ShowScan.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="btn_updates.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="btn_updates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 526</value>
-  </data>
-  <data name="btn_updates.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 23</value>
-  </data>
-  <data name="btn_updates.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="btn_updates.Text" xml:space="preserve">
-    <value>suche updates</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.Name" xml:space="preserve">
-    <value>btn_updates</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btn_updates.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="btn_textindikator_StandardLaden.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 147</value>
@@ -550,7 +523,7 @@
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 143</value>
+    <value>6, 117</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 178</value>
@@ -571,40 +544,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="btn_changelog.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="btn_changelog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 497</value>
-  </data>
-  <data name="btn_changelog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 23</value>
-  </data>
-  <data name="btn_changelog.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="btn_changelog.Text" xml:space="preserve">
-    <value>Was ist neu?</value>
-  </data>
-  <data name="&gt;&gt;btn_changelog.Name" xml:space="preserve">
-    <value>btn_changelog</value>
-  </data>
-  <data name="&gt;&gt;btn_changelog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_changelog.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btn_changelog.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="btn_speichern.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="btn_speichern.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 542</value>
+    <value>238, 432</value>
   </data>
   <data name="btn_speichern.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -625,13 +571,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_speichern.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="btn_steuerung.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="btn_steuerung.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 12</value>
+    <value>238, 27</value>
   </data>
   <data name="btn_steuerung.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -652,33 +598,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_steuerung.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="btn_Sprache.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btn_Sprache.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="btn_Sprache.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 23</value>
-  </data>
-  <data name="btn_Sprache.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="btn_Sprache.Text" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.Name" xml:space="preserve">
-    <value>btn_Sprache</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btn_Sprache.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="comboBox_resolution.Items" xml:space="preserve">
@@ -691,7 +610,7 @@
     <value>3840x2160</value>
   </data>
   <data name="comboBox_resolution.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 66</value>
+    <value>6, 40</value>
   </data>
   <data name="comboBox_resolution.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 21</value>
@@ -711,17 +630,14 @@
   <data name="&gt;&gt;comboBox_resolution.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="progressBar_updater.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
   <data name="progressBar_updater.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="progressBar_updater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 545</value>
+    <value>127, 24</value>
   </data>
   <data name="progressBar_updater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 10</value>
+    <value>73, 10</value>
   </data>
   <data name="progressBar_updater.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -946,7 +862,7 @@
     <value>7</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 327</value>
+    <value>6, 301</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 135</value>
@@ -1063,7 +979,7 @@
     <value>Top, Right</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 143</value>
+    <value>180, 117</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>133, 101</value>
@@ -1086,6 +1002,81 @@
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="wasIstNeuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 20</value>
+  </data>
+  <data name="wasIstNeuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Was ist neu</value>
+  </data>
+  <data name="informationsdateiErstellenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="informationsdateiErstellenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Informationsdatei erstellen</value>
+  </data>
+  <data name="hilfeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="hilfeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="sucheNachUpdatesToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="sucheNachUpdatesToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Suche nach updates</value>
+  </data>
+  <data name="sucheNachUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="sucheNachUpdatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="deutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="deutschToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="englischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="englischToolStripMenuItem.Text" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="spracheToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 20</value>
+  </data>
+  <data name="spracheToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sprache/Language</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1099,7 +1090,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>325, 577</value>
+    <value>325, 467</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1396,6 +1387,54 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Einstellungen</value>
+  </data>
+  <data name="&gt;&gt;wasIstNeuToolStripMenuItem.Name" xml:space="preserve">
+    <value>wasIstNeuToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;wasIstNeuToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hilfeToolStripMenuItem.Name" xml:space="preserve">
+    <value>hilfeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;hilfeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;informationsdateiErstellenToolStripMenuItem.Name" xml:space="preserve">
+    <value>informationsdateiErstellenToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;informationsdateiErstellenToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sucheNachUpdatesToolStripMenuItem.Name" xml:space="preserve">
+    <value>sucheNachUpdatesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sucheNachUpdatesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sucheNachUpdatesToolStripMenuItem1.Name" xml:space="preserve">
+    <value>sucheNachUpdatesToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;sucheNachUpdatesToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spracheToolStripMenuItem.Name" xml:space="preserve">
+    <value>spracheToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;spracheToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;englischToolStripMenuItem.Name" xml:space="preserve">
+    <value>englischToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;englischToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deutschToolStripMenuItem.Name" xml:space="preserve">
+    <value>deutschToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deutschToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormSettings</value>

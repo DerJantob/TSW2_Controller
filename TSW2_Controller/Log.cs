@@ -19,17 +19,17 @@ namespace TSW2_Controller
         public static void Clear()
         {
             CheckPath();
-            if (File.Exists(Tcfg.logpfad))
+            if (File.Exists(Tcfg.vollerlogpfad))
             {
-                File.WriteAllText(Tcfg.logpfad, "");
+                File.WriteAllText(Tcfg.vollerlogpfad, "");
             }
         }
 
         private static void CheckPath()
         {
-            if (!Directory.Exists(Tcfg.logpfad.Replace("log.txt", "")))
+            if (!Directory.Exists(Tcfg.logOrdnerpfad))
             {
-                Directory.CreateDirectory(Tcfg.logpfad.Replace("log.txt", ""));
+                Directory.CreateDirectory(Tcfg.logOrdnerpfad);
             }
         }
 
@@ -50,7 +50,7 @@ namespace TSW2_Controller
                 CheckPath();
 
                 StreamWriter SW;
-                SW = File.AppendText(Tcfg.logpfad);
+                SW = File.AppendText(Tcfg.vollerlogpfad);
                 SW.WriteLine(DateTime.Now.ToString("HH:mm:ss") + "             :" + leerZeichen + message);
                 SW.Close();
 
@@ -68,7 +68,7 @@ namespace TSW2_Controller
                 CheckPath();
 
                 StreamWriter SW;
-                SW = File.AppendText(Tcfg.logpfad);
+                SW = File.AppendText(Tcfg.vollerlogpfad);
                 SW.WriteLine(DateTime.Now.ToString("HH:mm:ss") + "    " + "-Error-  :" + message);
                 SW.Close();
 
@@ -86,7 +86,7 @@ namespace TSW2_Controller
                 CheckPath();
 
                 StreamWriter SW;
-                SW = File.AppendText(Tcfg.logpfad);
+                SW = File.AppendText(Tcfg.vollerlogpfad);
                 SW.WriteLine(DateTime.Now.ToString("HH:mm:ss") + "    " + "-Error-  :" + ex.ToString().Replace("\r\n", ""));
                 SW.Close();
             }

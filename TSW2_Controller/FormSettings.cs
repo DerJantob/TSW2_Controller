@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -19,6 +20,7 @@ namespace TSW2_Controller
 {
     public partial class FormSettings : Form
     {
+        public static string newestVersion= "";
         public FormSettings()
         {
             InitializeComponent();
@@ -70,6 +72,20 @@ namespace TSW2_Controller
                 txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
                 txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
 
+                if(Sprache.SprachenName == "Deutsch")
+                {
+                    deutschToolStripMenuItem.Checked = true;
+                }
+                else
+                {
+                    englischToolStripMenuItem.Checked = true;
+                }
+
+                if(newestVersion!="")
+                {
+                    sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Installiere v" + newestVersion, "Install v" + newestVersion);
+                }
+
                 string[] files = Directory.GetFiles(Tcfg.configSammelungPfad);
                 comboBox_TrainConfig.Items.Add("_Standard");
                 foreach (string file in files)
@@ -93,12 +109,6 @@ namespace TSW2_Controller
         }
 
         #region Updater
-        private void btn_updates_Click(object sender, EventArgs e)
-        {
-            Log.Add("Check github Version...");
-            CheckGitHubNewerVersion();
-        }
-
         public async void CheckGitHubNewerVersion()
         {
             try
@@ -115,7 +125,12 @@ namespace TSW2_Controller
                 {
                     Log.Add("Update available", false, 1);
                     //The version on GitHub is more up to date than this local release.
-                    if (MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (newestVersion.Contains("dontAsk"))
+                    {
+                        progressBar_updater.Show();
+                        DownloadNewestVersion(latestGitHubVersion);
+                    }
+                    else if(MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         progressBar_updater.Show();
                         DownloadNewestVersion(latestGitHubVersion);
@@ -383,12 +398,6 @@ namespace TSW2_Controller
         }
         #endregion
 
-        private void btn_changelog_Click(object sender, EventArgs e)
-        {
-            FormWasIstNeu formWasIstNeu = new FormWasIstNeu("0.0.0");
-            formWasIstNeu.ShowDialog();
-        }
-
         private void btn_speichern_Click(object sender, EventArgs e)
         {
             try
@@ -485,23 +494,6 @@ namespace TSW2_Controller
             }
         }
 
-        private void btn_Sprache_Click(object sender, EventArgs e)
-        {
-            if (Settings.Default.Sprache == "de-DE")
-            {
-                Settings.Default.Sprache = "en";
-            }
-            else
-            {
-                Settings.Default.Sprache = "de-DE";
-            }
-
-            ChangeIndicatorLanguage(Settings.Default.Sprache);
-
-            Settings.Default.Save();
-            System.Windows.Forms.Application.Restart();
-        }
-
         private void ChangeIndicatorLanguage(string Sprache)
         {
             if (Sprache == "de-DE")
@@ -567,6 +559,63 @@ namespace TSW2_Controller
         {
             //Verhindert, dass die gedrückte Taste ins Textfeld geschrieben wird
             e.SuppressKeyPress = true;
+        }
+
+        private void wasIstNeuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormWasIstNeu formWasIstNeu = new FormWasIstNeu("0.0.0");
+            formWasIstNeu.ShowDialog();
+        }
+
+        private void informationsdateiErstellenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string finishedFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TSW2Controller_HelpFile.zip");
+            string startfolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller";
+
+            if (File.Exists(finishedFile)) { File.Delete(finishedFile); }
+            ZipFile.CreateFromDirectory(startfolder, finishedFile,CompressionLevel.Fastest,true);
+            Process.Start("explorer.exe", "/select, \"" + finishedFile + "\"");
+            MessageClass.Show("Datei wurde auf dem Desktop erstellt!", "File has been created on the desktop!");
+            Close();
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void sucheNachUpdatesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Log.Add("Check github Version...");
+            if(newestVersion != "")
+            {
+                newestVersion += "dontAsk";
+            }
+            CheckGitHubNewerVersion();
+        }
+
+        private void englischToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(!englischToolStripMenuItem.Checked)
+            {
+                englischToolStripMenuItem.Checked = true;
+                deutschToolStripMenuItem.Checked = false;
+
+                Settings.Default.Sprache = "en";
+                ChangeIndicatorLanguage(Settings.Default.Sprache);
+                Settings.Default.Save();
+                System.Windows.Forms.Application.Restart();
+            }
+        }
+
+        private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(!deutschToolStripMenuItem.Checked)
+            {
+                deutschToolStripMenuItem.Checked = true;
+                englischToolStripMenuItem.Checked = false;
+
+                Settings.Default.Sprache = "de-DE";
+                ChangeIndicatorLanguage(Settings.Default.Sprache);
+                Settings.Default.Save();
+                System.Windows.Forms.Application.Restart();
+            }
         }
     }
 }

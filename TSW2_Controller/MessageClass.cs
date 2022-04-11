@@ -21,5 +21,16 @@ namespace TSW2_Controller
                 MessageBox.Show(Englisch);
             }
         }
+        public static string Convert(string Deutsch, string Englisch)
+        {
+            if (Sprache.SprachenName == "Deutsch")
+            {
+                return Deutsch;
+            }
+            else
+            {
+                return Englisch;
+            }
+        }
     }
 }

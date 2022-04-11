@@ -33,7 +33,6 @@
             this.check_showDebug = new System.Windows.Forms.CheckBox();
             this.lbl_version = new System.Windows.Forms.Label();
             this.check_ShowScan = new System.Windows.Forms.CheckBox();
-            this.btn_updates = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_textindikator_StandardLaden = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -47,13 +46,12 @@
             this.comboBox_kombiBremse = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_kombiSchub = new System.Windows.Forms.ComboBox();
-            this.btn_changelog = new System.Windows.Forms.Button();
             this.btn_speichern = new System.Windows.Forms.Button();
             this.btn_steuerung = new System.Windows.Forms.Button();
-            this.btn_Sprache = new System.Windows.Forms.Button();
             this.comboBox_resolution = new System.Windows.Forms.ComboBox();
             this.progressBar_updater = new System.Windows.Forms.ProgressBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -65,14 +63,23 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btn_trainconfigHinzufuegen = new System.Windows.Forms.Button();
             this.btn_trainconfigLoeschen = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.wasIstNeuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informationsdateiErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucheNachUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucheNachUpdatesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.spracheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_schubLeistung.SuspendLayout();
             this.tab_kombihebel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -96,13 +103,6 @@
             resources.ApplyResources(this.check_ShowScan, "check_ShowScan");
             this.check_ShowScan.Name = "check_ShowScan";
             this.check_ShowScan.UseVisualStyleBackColor = true;
-            // 
-            // btn_updates
-            // 
-            resources.ApplyResources(this.btn_updates, "btn_updates");
-            this.btn_updates.Name = "btn_updates";
-            this.btn_updates.UseVisualStyleBackColor = true;
-            this.btn_updates.Click += new System.EventHandler(this.btn_updates_Click);
             // 
             // groupBox1
             // 
@@ -203,13 +203,6 @@
             this.comboBox_kombiSchub.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiSchub_SelectedIndexChanged);
             this.comboBox_kombiSchub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_kombiSchub_KeyPress);
             // 
-            // btn_changelog
-            // 
-            resources.ApplyResources(this.btn_changelog, "btn_changelog");
-            this.btn_changelog.Name = "btn_changelog";
-            this.btn_changelog.UseVisualStyleBackColor = true;
-            this.btn_changelog.Click += new System.EventHandler(this.btn_changelog_Click);
-            // 
             // btn_speichern
             // 
             resources.ApplyResources(this.btn_speichern, "btn_speichern");
@@ -223,13 +216,6 @@
             this.btn_steuerung.Name = "btn_steuerung";
             this.btn_steuerung.UseVisualStyleBackColor = true;
             this.btn_steuerung.Click += new System.EventHandler(this.btn_steuerung_Click);
-            // 
-            // btn_Sprache
-            // 
-            resources.ApplyResources(this.btn_Sprache, "btn_Sprache");
-            this.btn_Sprache.Name = "btn_Sprache";
-            this.btn_Sprache.UseVisualStyleBackColor = true;
-            this.btn_Sprache.Click += new System.EventHandler(this.btn_Sprache_Click);
             // 
             // comboBox_resolution
             // 
@@ -259,6 +245,11 @@
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
             // 
             // label9
             // 
@@ -330,11 +321,6 @@
             this.btn_trainconfigLoeschen.UseVisualStyleBackColor = true;
             this.btn_trainconfigLoeschen.Click += new System.EventHandler(this.btn_trainconfigLoeschen_Click);
             // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
             // groupBox3
             // 
             resources.ApplyResources(this.groupBox3, "groupBox3");
@@ -344,6 +330,68 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wasIstNeuToolStripMenuItem,
+            this.hilfeToolStripMenuItem,
+            this.sucheNachUpdatesToolStripMenuItem,
+            this.spracheToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // wasIstNeuToolStripMenuItem
+            // 
+            this.wasIstNeuToolStripMenuItem.Name = "wasIstNeuToolStripMenuItem";
+            resources.ApplyResources(this.wasIstNeuToolStripMenuItem, "wasIstNeuToolStripMenuItem");
+            this.wasIstNeuToolStripMenuItem.Click += new System.EventHandler(this.wasIstNeuToolStripMenuItem_Click);
+            // 
+            // hilfeToolStripMenuItem
+            // 
+            this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.informationsdateiErstellenToolStripMenuItem});
+            this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
+            resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
+            // 
+            // informationsdateiErstellenToolStripMenuItem
+            // 
+            this.informationsdateiErstellenToolStripMenuItem.Name = "informationsdateiErstellenToolStripMenuItem";
+            resources.ApplyResources(this.informationsdateiErstellenToolStripMenuItem, "informationsdateiErstellenToolStripMenuItem");
+            this.informationsdateiErstellenToolStripMenuItem.Click += new System.EventHandler(this.informationsdateiErstellenToolStripMenuItem_Click);
+            // 
+            // sucheNachUpdatesToolStripMenuItem
+            // 
+            this.sucheNachUpdatesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sucheNachUpdatesToolStripMenuItem1});
+            this.sucheNachUpdatesToolStripMenuItem.Name = "sucheNachUpdatesToolStripMenuItem";
+            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem, "sucheNachUpdatesToolStripMenuItem");
+            // 
+            // sucheNachUpdatesToolStripMenuItem1
+            // 
+            this.sucheNachUpdatesToolStripMenuItem1.Name = "sucheNachUpdatesToolStripMenuItem1";
+            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem1, "sucheNachUpdatesToolStripMenuItem1");
+            this.sucheNachUpdatesToolStripMenuItem1.Click += new System.EventHandler(this.sucheNachUpdatesToolStripMenuItem1_Click);
+            // 
+            // spracheToolStripMenuItem
+            // 
+            this.spracheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deutschToolStripMenuItem,
+            this.englischToolStripMenuItem});
+            this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
+            resources.ApplyResources(this.spracheToolStripMenuItem, "spracheToolStripMenuItem");
+            // 
+            // englischToolStripMenuItem
+            // 
+            this.englischToolStripMenuItem.Name = "englischToolStripMenuItem";
+            resources.ApplyResources(this.englischToolStripMenuItem, "englischToolStripMenuItem");
+            this.englischToolStripMenuItem.Click += new System.EventHandler(this.englischToolStripMenuItem_Click);
+            // 
+            // deutschToolStripMenuItem
+            // 
+            this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
+            resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
+            this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
+            // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
@@ -352,16 +400,14 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.progressBar_updater);
             this.Controls.Add(this.comboBox_resolution);
-            this.Controls.Add(this.btn_Sprache);
             this.Controls.Add(this.btn_steuerung);
             this.Controls.Add(this.btn_speichern);
-            this.Controls.Add(this.btn_changelog);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btn_updates);
             this.Controls.Add(this.check_ShowScan);
             this.Controls.Add(this.lbl_version);
             this.Controls.Add(this.check_showDebug);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSettings";
@@ -376,6 +422,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,7 +434,6 @@
         private System.Windows.Forms.CheckBox check_showDebug;
         private System.Windows.Forms.Label lbl_version;
         private System.Windows.Forms.CheckBox check_ShowScan;
-        private System.Windows.Forms.Button btn_updates;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tab_schubLeistung;
@@ -399,10 +446,8 @@
         private System.Windows.Forms.ComboBox comboBox_kombiBremse;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox_kombiSchub;
-        private System.Windows.Forms.Button btn_changelog;
         private System.Windows.Forms.Button btn_speichern;
         private System.Windows.Forms.Button btn_steuerung;
-        private System.Windows.Forms.Button btn_Sprache;
         private System.Windows.Forms.ComboBox comboBox_resolution;
         private System.Windows.Forms.ProgressBar progressBar_updater;
         private System.Windows.Forms.Button btn_textindikator_StandardLaden;
@@ -420,5 +465,14 @@
         private System.Windows.Forms.Button btn_trainconfigLoeschen;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem wasIstNeuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informationsdateiErstellenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucheNachUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucheNachUpdatesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem spracheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englischToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deutschToolStripMenuItem;
     }
 }

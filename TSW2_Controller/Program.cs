@@ -17,6 +17,7 @@ namespace TSW2_Controller
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Tcfg.vollerlogpfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\Log\log"+DateTime.Now.ToString("yyyyMMdd_HH_mm_ss")+".txt";
             Log.Clear();
 
             Application.Run(new FormMain());
