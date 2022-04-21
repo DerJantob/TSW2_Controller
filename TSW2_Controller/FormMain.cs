@@ -504,7 +504,7 @@ namespace TSW2_Controller
                         formWasIstNeu.ShowDialog();
 
                         #region Update besonderheiten
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) <= 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) < 0)
                         {
                             Log.Add("1.0.0", false, 1);
                             //Neue Einstellung muss mit Daten gefüllt werden
@@ -520,7 +520,7 @@ namespace TSW2_Controller
 
                             Settings.Default.Save();
                         }
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.1.0")) <= 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.1.0")) < 0)
                         {
                             Log.Add("1.1.0", false, 1);
                             if (File.Exists(Tcfg.configpfad))
