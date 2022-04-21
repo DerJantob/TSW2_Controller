@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tesseract;
-using SlimDX.DirectInput;
+using SharpDX.DirectInput;
 using System.IO;
 using TSW2_Controller.Properties;
 using System.Reflection;
@@ -191,7 +191,7 @@ namespace TSW2_Controller
                 Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
                 Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
                 Log.Add("");
-                Log.Add("KeyLayout:"+ string.Join(",", Settings.Default.Tastenbelegung.Cast<string>().ToArray()));
+                Log.Add("KeyLayout:" + string.Join(",", Settings.Default.Tastenbelegung.Cast<string>().ToArray()));
                 Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
                 Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
                 Log.Add("Language:" + Settings.Default.Sprache);
@@ -1032,31 +1032,20 @@ namespace TSW2_Controller
         {
             Log.Add("Search for joysticks:");
             //strg+c strg+v
-            List<SlimDX.DirectInput.Joystick> sticks = new List<SlimDX.DirectInput.Joystick>();
+            List<Joystick> sticks = new List<Joystick>();
             int counter = 0;
-            foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
+            foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameControl, DeviceEnumerationFlags.AttachedOnly))
             {
-                try
-                {
-                    mainStick = new SlimDX.DirectInput.Joystick(input, device.InstanceGuid);
-                    mainStick.Acquire();
+                Joystick stick = new Joystick(input, device.InstanceGuid);
+                stick.Acquire();
 
-                    foreach (DeviceObjectInstance deviceObject in mainStick.GetObjects())
-                    {
-                        if ((deviceObject.ObjectType & ObjectDeviceType.Axis) != 0)
-                        {
-                            mainStick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-100, 100);
-                        }
-                    }
-                    sticks.Add(mainStick);
-                    comboBox_JoystickNumber.Items.Add(counter);
-                    counter++;
-                }
-                catch (Exception ex)
+                foreach (DeviceObjectInstance deviceObject in stick.GetObjects(DeviceObjectTypeFlags.Axis))
                 {
-                    Log.ErrorException(ex);
-                    throw;
+                    stick.GetObjectPropertiesById(deviceObject.ObjectId).Range = new InputRange(-100, 100);
                 }
+                sticks.Add(stick);
+                comboBox_JoystickNumber.Items.Add(counter);
+                counter++;
             }
             Log.Add(sticks.Count + " joysticks found", false, 1);
             return sticks.ToArray();
@@ -1065,93 +1054,103 @@ namespace TSW2_Controller
 
         void stickHandle(Joystick stick, int id)
         {
-            bool[] buttons;
-            int[] joyInputs = new int[8];
-
-            JoystickState state = new JoystickState();
-
-            //Bekomme alle Infos über den mit id ausgewählten Stick
-            state = stick.GetCurrentState();
-
-            joyInputs[0] = state.X;
-            joyInputs[1] = state.Y;
-            joyInputs[2] = state.Z;
-            joyInputs[3] = state.GetPointOfViewControllers()[0] + 1;
-            joyInputs[4] = state.RotationX;
-            joyInputs[5] = state.RotationY;
-            joyInputs[6] = state.RotationZ;
-            joyInputs[7] = state.GetSliders()[0];
-
-
-            for (int i = 0; i < inputNames.Length; i++)
+            try
             {
-                foreach (string[] strActiveTrain in activeTrain)
+                Joystick test = stick;
+                bool[] buttons;
+                int[] joyInputs = new int[8];
+                
+                JoystickState state = new JoystickState();
+
+                //Bekomme alle Infos über den mit id ausgewählten Stick
+                state = stick.GetCurrentState();
+
+                joyInputs[0] = state.X;
+                joyInputs[1] = state.Y;
+                joyInputs[2] = state.Z;
+                joyInputs[3] = state.PointOfViewControllers[0] + 1;
+                joyInputs[4] = state.RotationX;
+                joyInputs[5] = state.RotationY;
+                joyInputs[6] = state.RotationZ;
+                joyInputs[7] = state.Sliders[0];
+
+
+                for (int i = 0; i < inputNames.Length; i++)
                 {
-                    //In der Trainconfig kommt ein bekannter Achsen-Name vor
-                    if (strActiveTrain[Tcfg.joystickInput] == inputNames[i] && Convert.ToInt32(strActiveTrain[Tcfg.joystickNummer]) == id)
+                    foreach (string[] strActiveTrain in activeTrain)
                     {
-                        if (strActiveTrain[Tcfg.invertieren] == "1")
+                        //In der Trainconfig kommt ein bekannter Achsen-Name vor
+                        if (strActiveTrain[Tcfg.joystickInput] == inputNames[i] && Convert.ToInt32(strActiveTrain[Tcfg.joystickNummer]) == id)
                         {
-                            //Soll Invertiert werden
-                            joyInputs[i] = joyInputs[i] * (-1);
-                        }
-                        if (strActiveTrain[Tcfg.inputTyp] == "1")
-                        {
-                            //Soll von (0<>100) in (-100<>0<>100) geändert werden
-                            joyInputs[i] = (joyInputs[i] / (-2)) + 50;
-                        }
-
-
-                        //Bestimmt Inputwerte sollen in andere Umgerechnet werden
-                        if (strActiveTrain[Tcfg.inputUmrechnen].Length > 5)
-                        {
-                            string[] umrechnen = strActiveTrain[Tcfg.inputUmrechnen].Remove(strActiveTrain[Tcfg.inputUmrechnen].Length - 1).Replace("[", "").Split(']');
-
-                            foreach (string single_umrechnen in umrechnen)
+                            if (strActiveTrain[Tcfg.invertieren] == "1")
                             {
-                                if (single_umrechnen.Contains("|"))
+                                //Soll Invertiert werden
+                                joyInputs[i] = joyInputs[i] * (-1);
+                            }
+                            if (strActiveTrain[Tcfg.inputTyp] == "1")
+                            {
+                                //Soll von (0<>100) in (-100<>0<>100) geändert werden
+                                joyInputs[i] = (joyInputs[i] / (-2)) + 50;
+                            }
+
+
+                            //Bestimmt Inputwerte sollen in andere Umgerechnet werden
+                            if (strActiveTrain[Tcfg.inputUmrechnen].Length > 5)
+                            {
+                                string[] umrechnen = strActiveTrain[Tcfg.inputUmrechnen].Remove(strActiveTrain[Tcfg.inputUmrechnen].Length - 1).Replace("[", "").Split(']');
+
+                                foreach (string single_umrechnen in umrechnen)
                                 {
-                                    int von = Convert.ToInt32(single_umrechnen.Remove(single_umrechnen.IndexOf("|"), single_umrechnen.Length - single_umrechnen.IndexOf("|")));
-
-                                    string temp_bis = single_umrechnen.Remove(0, single_umrechnen.IndexOf("|") + 1);
-                                    int index = temp_bis.IndexOf("=");
-                                    int bis = Convert.ToInt32(temp_bis.Remove(index, temp_bis.Length - index));
-                                    int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, single_umrechnen.IndexOf("=") + 1));
-
-                                    if (von <= joyInputs[i] && joyInputs[i] <= bis)
+                                    if (single_umrechnen.Contains("|"))
                                     {
-                                        joyInputs[i] = entsprechendeNummer;
-                                        break;
+                                        int von = Convert.ToInt32(single_umrechnen.Remove(single_umrechnen.IndexOf("|"), single_umrechnen.Length - single_umrechnen.IndexOf("|")));
+
+                                        string temp_bis = single_umrechnen.Remove(0, single_umrechnen.IndexOf("|") + 1);
+                                        int index = temp_bis.IndexOf("=");
+                                        int bis = Convert.ToInt32(temp_bis.Remove(index, temp_bis.Length - index));
+                                        int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, single_umrechnen.IndexOf("=") + 1));
+
+                                        if (von <= joyInputs[i] && joyInputs[i] <= bis)
+                                        {
+                                            joyInputs[i] = entsprechendeNummer;
+                                            break;
+                                        }
+                                        else if (von >= joyInputs[i] && joyInputs[i] >= bis)
+                                        {
+                                            joyInputs[i] = entsprechendeNummer;
+                                            break;
+                                        }
                                     }
-                                    else if (von >= joyInputs[i] && joyInputs[i] >= bis)
+                                    else
                                     {
-                                        joyInputs[i] = entsprechendeNummer;
-                                        break;
-                                    }
-                                }
-                                else
-                                {
-                                    int index = single_umrechnen.IndexOf("=");
-                                    int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
-                                    int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
+                                        int index = single_umrechnen.IndexOf("=");
+                                        int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
+                                        int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
 
-                                    if (joyInputs[i] == gesuchteNummer)
-                                    {
-                                        joyInputs[i] = entsprechendeNummer;
-                                        break;
+                                        if (joyInputs[i] == gesuchteNummer)
+                                        {
+                                            joyInputs[i] = entsprechendeNummer;
+                                            break;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+
+                //Alle Knopf states bekommen
+                buttons = state.Buttons;
+
+                //Alle wichtigen Infos über den Joystick in Liste speichern
+                joystickStates.Add(new object[] { id, joyInputs, inputNames, buttons });
             }
-
-            //Alle Knopf states bekommen
-            buttons = state.GetButtons();
-
-            //Alle wichtigen Infos über den Joystick in Liste speichern
-            joystickStates.Add(new object[] { id, joyInputs, inputNames, buttons });
+            catch(Exception ex)
+            {
+                Log.ErrorException(ex);
+                MainSticks = getSticks();
+                MessageClass.Show(stick.Information.InstanceName + " nicht mehr angeschlossen!", stick.Information.InstanceName + " not connected anymore!");
+            }
         }
 
         public int GetJoystickStateByName(string id, string input)

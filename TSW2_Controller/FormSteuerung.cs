@@ -1,4 +1,4 @@
-﻿using SlimDX.DirectInput;
+﻿using SharpDX.DirectInput;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -435,15 +435,15 @@ namespace TSW2_Controller
                 joyInputs[0] = state.X;
                 joyInputs[1] = state.Y;
                 joyInputs[2] = state.Z;
-                joyInputs[3] = state.GetPointOfViewControllers()[0] + 1;
+                joyInputs[3] = state.PointOfViewControllers[0] + 1;
                 joyInputs[4] = state.RotationX;
                 joyInputs[5] = state.RotationY;
                 joyInputs[6] = state.RotationZ;
-                joyInputs[7] = state.GetSliders()[0];
+                joyInputs[7] = state.Sliders[0];
 
 
                 //Alle Knopf states bekommen
-                buttons = state.GetButtons();
+                buttons = state.Buttons;
 
 
                 for (int o = 0; o < buttons.Length; o++)
@@ -872,11 +872,11 @@ namespace TSW2_Controller
                 joyInputs[0] = state.X;
                 joyInputs[1] = state.Y;
                 joyInputs[2] = state.Z;
-                joyInputs[3] = state.GetPointOfViewControllers()[0] + 1;
+                joyInputs[3] = state.PointOfViewControllers[0] + 1;
                 joyInputs[4] = state.RotationX;
                 joyInputs[5] = state.RotationY;
                 joyInputs[6] = state.RotationZ;
-                joyInputs[7] = state.GetSliders()[0];
+                joyInputs[7] = state.Sliders[0];
 
 
                 for (int o = 0; o < joyInputs.Length; o++)
