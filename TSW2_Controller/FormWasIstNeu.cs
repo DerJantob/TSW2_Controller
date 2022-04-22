@@ -158,6 +158,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 1.1.1
+            if (new Version("1.1.1").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.1.1" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Windows 11 kompatibel");
+                }
+                else
+                {
+                    changelog.Add("- Windows 11 compatible");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
