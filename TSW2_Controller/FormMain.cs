@@ -22,7 +22,6 @@ namespace TSW2_Controller
     public partial class FormMain : Form
     {
         DirectInput input = new DirectInput();
-        Joystick mainStick;
         public static Joystick[] MainSticks;
 
         public Rectangle res = Screen.PrimaryScreen.Bounds;
