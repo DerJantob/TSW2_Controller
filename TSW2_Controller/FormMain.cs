@@ -130,7 +130,6 @@ namespace TSW2_Controller
             loadSettings();
 
             MainSticks = getSticks();
-            if (MainSticks.Length > 0) { comboBox_JoystickNumber.SelectedIndex = 0; }
 
             ReadTrainConfig();
 
@@ -1045,7 +1044,6 @@ namespace TSW2_Controller
             Log.Add("Search for joysticks:");
             //strg+c strg+v
             List<Joystick> sticks = new List<Joystick>();
-            int counter = 0;
             foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameControl, DeviceEnumerationFlags.AttachedOnly))
             {
                 Joystick stick = new Joystick(input, device.InstanceGuid);
@@ -1056,9 +1054,18 @@ namespace TSW2_Controller
                     stick.GetObjectPropertiesById(deviceObject.ObjectId).Range = new InputRange(-100, 100);
                 }
                 sticks.Add(stick);
-                comboBox_JoystickNumber.Items.Add(counter);
-                counter++;
             }
+
+            if (comboBox_JoystickNumber.Items.Count != sticks.Count)
+            {
+                comboBox_JoystickNumber.Items.Clear();
+                for (int i = 0; i < sticks.Count; i++)
+                {
+                    comboBox_JoystickNumber.Items.Add(i);
+                }
+                if (sticks.Count > 0 ) { comboBox_JoystickNumber.SelectedIndex = comboBox_JoystickNumber.Items.Count-1; }
+            }
+
             Log.Add(sticks.Count + " joysticks found", false, 1);
             return sticks.ToArray();
 
@@ -1073,10 +1080,10 @@ namespace TSW2_Controller
                 int[] joyInputs = new int[8];
 
                 JoystickState state = new JoystickState();
-                
+
                 //Bekomme alle Infos über den mit id ausgewählten Stick
                 state = stick.GetCurrentState();
-                
+
                 joyInputs[0] = state.X;
                 joyInputs[1] = state.Y;
                 joyInputs[2] = state.Z;
