@@ -72,7 +72,7 @@ namespace TSW2_Controller
                 txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
                 txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
 
-                if (Sprache.SprachenName == "Deutsch")
+                if (Sprache.isGerman())
                 {
                     deutschToolStripMenuItem.Checked = true;
                 }
@@ -83,7 +83,7 @@ namespace TSW2_Controller
 
                 if (newestVersion != "")
                 {
-                    sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Installiere v" + newestVersion, "Install v" + newestVersion);
+                    sucheNachUpdatesToolStripMenuItem1.Text = Sprache.Translate("Installiere v" + newestVersion, "Install v" + newestVersion);
                 }
 
                 string[] files = Directory.GetFiles(Tcfg.configSammelungPfad);
@@ -131,7 +131,7 @@ namespace TSW2_Controller
                         progressBar_updater.Show();
                         DownloadNewestVersion(latestGitHubVersion);
                     }
-                    else if (MessageBox.Show("Version " + latestGitHubVersion + Sprache.ist_verfuegbar_Moechtest_du_aktualisieren, "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    else if (MessageBox.Show("Version " + latestGitHubVersion + Sprache.Translate(" ist verfügbar! Möchtest du aktualisieren?", " is available! Do you want to update?"), "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         progressBar_updater.Show();
                         DownloadNewestVersion(latestGitHubVersion);
@@ -145,13 +145,13 @@ namespace TSW2_Controller
                 {
                     //This local Version and the Version on GitHub are equal
                     Log.Add("No update available");
-                    MessageBox.Show(Sprache.Du_hast_die_neueste_Version);
+                    Sprache.ShowMessageBox("Du hast die neuste Version", "You have the latest version");
                 }
             }
             catch (Exception ex)
             {
                 Log.ErrorException(ex);
-                if (Sprache.SprachenName == "Deutsch")
+                if (Sprache.isGerman())
                 {
                     MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden.\n\nDas kann eventuell daran liegen dass das Anfragelimit überschritten wurde. Das wird nach einer Stunde zurückgesetzt.");
                 }
@@ -165,7 +165,7 @@ namespace TSW2_Controller
         {
             Log.Add("Download \"" + @"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + "/TSW2_Controller_Setup.exe\"");
 
-            sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Installiere...", "Installing...");
+            sucheNachUpdatesToolStripMenuItem1.Text = Sprache.Translate("Installiere...", "Installing...");
             sucheNachUpdatesToolStripMenuItem1.Enabled = false;
             Uri uri = new Uri(@"https://github.com/DerJantob/TSW2_Controller/releases/download/" + version + @"/TSW2_Controller_Setup.exe");
             var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp/TSW2_Controller_Setup.exe");
@@ -207,7 +207,7 @@ namespace TSW2_Controller
             {
                 MessageBox.Show("Unable to download exe", "Download failed!");
                 progressBar_updater.Hide();
-                sucheNachUpdatesToolStripMenuItem1.Text = MessageClass.Convert("Download gescheitert", "Download failed");
+                sucheNachUpdatesToolStripMenuItem1.Text = Sprache.Translate("Download gescheitert", "Download failed");
                 sucheNachUpdatesToolStripMenuItem1.Enabled = true;
             }
         }
@@ -254,7 +254,7 @@ namespace TSW2_Controller
 
         private void comboBox_Schub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_Schub.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_Schub.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_Schub.Items.RemoveAt(comboBox_Schub.SelectedIndex);
             }
@@ -262,7 +262,7 @@ namespace TSW2_Controller
 
         private void comboBox_Bremse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_Bremse.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_Bremse.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_Bremse.Items.RemoveAt(comboBox_Bremse.SelectedIndex);
             }
@@ -270,7 +270,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiSchub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_kombiSchub.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_kombiSchub.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_kombiSchub.Items.RemoveAt(comboBox_kombiSchub.SelectedIndex);
             }
@@ -278,7 +278,7 @@ namespace TSW2_Controller
 
         private void comboBox_kombiBremse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Sprache.Moechtest_du + comboBox_kombiBremse.SelectedItem + Sprache.entfernen, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_kombiBremse.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 comboBox_kombiBremse.Items.RemoveAt(comboBox_kombiBremse.SelectedIndex);
             }
@@ -337,7 +337,7 @@ namespace TSW2_Controller
                 if (!comboBox_TrainConfig.Items.Contains(comboBox_TrainConfig.Text))
                 {
                     //Hinzufügen
-                    if (MessageBox.Show(Sprache.Einstellungen_von + Settings.Default.selectedTrainConfig + Sprache.uebernehmen + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Translate("Einstellungen von ", "Transfer the data of ") + Settings.Default.selectedTrainConfig + Sprache.Translate(" übernehmen?", "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", true);
                     }
@@ -353,7 +353,7 @@ namespace TSW2_Controller
             }
             else
             {
-                MessageBox.Show(Sprache.Das_Feld_darf_nicht_leer_sein);
+                MessageBox.Show(Sprache.Translate("Das Feld darf nicht leer sein", "The text field cannot be empty"));
             }
         }
 
@@ -363,7 +363,7 @@ namespace TSW2_Controller
             {
                 if (File.Exists(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv"))
                 {
-                    if (MessageBox.Show(Sprache.Moechtest_du + comboBox_TrainConfig.Text + Sprache.loeschen + "\n" + Sprache.Alle_Zuege_gehen_dabei_verloren, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_TrainConfig.Text + Sprache.Translate("\" löschen?", "\"?") + "\n" + Sprache.Translate("Alle Züge gehen dabei verloren!", "All trains will be deleted!"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         File.Delete(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv");
                         Settings.Default.selectedTrainConfig = "_Standard";
@@ -412,7 +412,7 @@ namespace TSW2_Controller
             catch (Exception ex)
             {
                 Log.ErrorException(ex);
-                MessageBox.Show(Sprache.Fehler_bei_Aufloesung);
+                MessageBox.Show(Sprache.Translate("Fehler bei der Auflösung", "Error with resolution!"));
             }
 
             try
@@ -432,7 +432,7 @@ namespace TSW2_Controller
             catch (Exception ex)
             {
                 Log.ErrorException(ex);
-                MessageBox.Show(Sprache.Fehler_beim_Textindikator);
+                MessageBox.Show(Sprache.Translate("Fehler beim Textindikator", "Error with text indicator!"));
             }
 
             try
@@ -445,7 +445,7 @@ namespace TSW2_Controller
             catch (Exception ex)
             {
                 Log.ErrorException(ex);
-                MessageClass.Show("Fehler bei der Tastenbelegung", "Error with keybindings");
+                Sprache.ShowMessageBox("Fehler bei der Tastenbelegung", "Error with keybindings");
             }
 
             Settings.Default.showDebug = check_showDebug.Checked;
@@ -534,7 +534,7 @@ namespace TSW2_Controller
             comboBox_kombiSchub.Items.Clear();
             comboBox_kombiBremse.Items.Clear();
 
-            if (Sprache.SprachenName == "Deutsch")
+            if (Sprache.isGerman())
             {
                 comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_DE.Cast<string>().ToArray());
                 comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_DE.Cast<string>().ToArray());
@@ -580,7 +580,7 @@ namespace TSW2_Controller
             if (File.Exists(finishedFile)) { File.Delete(finishedFile); }
             ZipFile.CreateFromDirectory(startfolder, finishedFile, CompressionLevel.Fastest, true);
             Process.Start("explorer.exe", "/select, \"" + finishedFile + "\"");
-            MessageClass.Show("Datei wurde auf dem Desktop erstellt!", "File has been created on the desktop!");
+            Sprache.ShowMessageBox("Datei wurde auf dem Desktop erstellt!", "File has been created on the desktop!");
             Close();
             System.Windows.Forms.Application.Exit();
         }

@@ -107,7 +107,7 @@
     </Compile>
     <Compile Include="Keyboard.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="MessageClass.cs" />
+    <Compile Include="Sprache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FormSettings.cs">
@@ -120,16 +120,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Sprache.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Sprache.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Sprache.en.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Sprache.en.resx</DependentUpon>
     </Compile>
     <Compile Include="ShiftEmulator.cs" />
     <Compile Include="Tcfg.cs" />
@@ -176,14 +166,6 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Sprache.en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Sprache.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Sprache.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Sprache.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="tessdata\.gitmodules">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

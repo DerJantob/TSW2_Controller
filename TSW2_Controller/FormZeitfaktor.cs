@@ -94,7 +94,7 @@ namespace TSW2_Controller
                     }
                     else
                     {
-                        MessageBox.Show(Sprache.Du_hast_noch_keinen_Startwert_eingetragen);
+                        MessageBox.Show(Sprache.Translate("Du hast noch keinen Startwert eingetragen!", "You didn't enter any starting value!"));
                     }
                 }
                 catch (Exception ex)
@@ -176,12 +176,12 @@ namespace TSW2_Controller
                         Keyboard.HoldKey(Keys.Escape, 300);
                         this.Focus();
                         Interaction.Beep();
-                        DialogResult dialog = MessageBox.Show(Sprache.Keine_Nummer_erkannt_Kann_es_sein_dass_du_beim_Maximum_gelandet_bist, Sprache.Fehler, MessageBoxButtons.YesNo);
+                        DialogResult dialog = MessageBox.Show(Sprache.Translate("Keine Nummer erkannt. Kann es sein, dass du beim Maximum gelandet bist?", "No number detected. Could it be that you have reached the maximum?"), Sprache.Translate("Fehler","Error"), MessageBoxButtons.YesNo);
 
                         if (dialog == DialogResult.Yes)
                         {
-                            MessageBox.Show(Sprache.OK_dann_stelle_den_Regler_nochmal_auf + startNumber + "%" + Sprache.und_bestaetige_mit_OK);
-                            MessageBox.Show(Sprache.Druecke_nochmal_auf_OK_wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte);
+                            MessageBox.Show(Sprache.Translate("OK, dann stelle den Regler nochmal auf ", "OK, than set the controller back to ") + startNumber + "%" + Sprache.Translate(" und bestätige mit OK", " and press OK"));
+                            MessageBox.Show(Sprache.Translate("Drücke nochmal auf OK, wechsel innerhalb von 7 Sekunden zum TSW und warte", "Press OK again, switch to TSW within 7 seconds and wait"));
                             Thread.Sleep(7000);
                             delay = 800;
                             //Versuche es nochmal
@@ -192,7 +192,7 @@ namespace TSW2_Controller
                             {
                                 try
                                 {
-                                    string userinput = Interaction.InputBox(Sprache.Auf_welcher_Zahl_bist_du_gelandet);
+                                    string userinput = Interaction.InputBox(Sprache.Translate("Auf welcher Zahl bist du gelandet?", "What number did you land on?"));
                                     endNumber = Convert.ToInt32(userinput);
                                     wait = false;
                                     nothingDetected = true;
@@ -209,13 +209,13 @@ namespace TSW2_Controller
                     if (!nothingDetected) { Keyboard.HoldKey(Keys.Escape, 300); }
                     this.Focus();
                     Interaction.Beep();
-                    MessageBox.Show(Sprache.Fertig + "\n" + Sprache.Als_Wert_für_den_Zeitfaktor_kannst_du_nun + Math.Round(Convert.ToDouble(endNumber - startNumber) * (1000.0 / delay), 0) + Sprache.eintragen);
+                    MessageBox.Show(Sprache.Translate("Fertig!","Done!") + "\n" + Sprache.Translate("Als Wert für den Zeitfaktor kannst du nun ", "You can now set the time factor to ") + Math.Round(Convert.ToDouble(endNumber - startNumber) * (1000.0 / delay), 0) + Sprache.Translate(" eintragen"));
                 }
                 else if (endNumber != -1)
                 {
                     this.Focus();
                     Interaction.Beep();
-                    MessageBox.Show(Sprache.Hmm_da_hast_du_wohl_etwas_falsch_gemacht_Die_Startzahl_sollte_groeßer_als_die_Endzahl_sein);
+                    MessageBox.Show(Sprache.Translate("Hmm da hast du wohl etwas falsch gemacht Die Startzahl sollte groeßer als die Endzahl sein", "Hmm, you must have done something wrong. The starting number should be greater than the ending number."));
                 }
             }
             else
@@ -291,14 +291,14 @@ namespace TSW2_Controller
                     Keyboard.HoldKey(Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
-                    MessageBox.Show(Sprache.Fertig + "\n" + Sprache.Als_Wert_für_den_Zeitfaktor_kannst_du_nun + Math.Round((Convert.ToDouble(overskip_Value - nextStep_Value) / 2) + nextStep_Value, 0) + Sprache.eintragen);
+                    MessageBox.Show(Sprache.Translate("Fertig!", "Done!") + "\n" + Sprache.Translate("Als Wert für den Zeitfaktor kannst du nun ", "You can now set the time factor to ") + Math.Round((Convert.ToDouble(overskip_Value - nextStep_Value) / 2) + nextStep_Value, 0) + Sprache.Translate(" eintragen"));
                 }
                 else
                 {
                     Keyboard.HoldKey(Keys.Escape, 300);
                     this.Focus();
                     Interaction.Beep();
-                    MessageBox.Show(Sprache.Hmm_da_hast_du_wohl_etwas_falsch_gemacht_Die_Startzahl_sollte_groeßer_als_die_Endzahl_sein);
+                    MessageBox.Show(Sprache.Translate("Hmm da hast du wohl etwas falsch gemacht Die Startzahl sollte groeßer als die Endzahl sein", "Hmm, you must have done something wrong. The starting number should be greater than the ending number."));
                 }
             }
 
@@ -328,8 +328,8 @@ namespace TSW2_Controller
             Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
             Interaction.Beep();
-            MessageBox.Show(Sprache.Stelle_den_Regler_nun_auf_den_bremswert);
-            MessageBox.Show(Sprache.Druecke_nochmal_auf_OK_wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte);
+            MessageBox.Show(Sprache.Translate("Stelle den Regler nun auf den bremswert", "Now set the controller to the braking value"));
+            MessageBox.Show(Sprache.Translate("Drücke nochmal auf OK, wechsel innerhalb von 7 Sekunden zum TSW und warte", "Press OK again, switch to TSW within 7 seconds and wait"));
             Thread.Sleep(7000);
 
             Keyboard.HoldKey(Keyboard.decreaseThrottle, 0);
@@ -350,7 +350,7 @@ namespace TSW2_Controller
             Keyboard.HoldKey(Keys.Escape, 300);
             this.Focus();
             Interaction.Beep();
-            MessageBox.Show(Sprache.Fertig + "\n" + Sprache.Als_Wert_für_den_Zeitfaktor_kannst_du_nun + ersterZeitwert + "|" + zweiterZeitwert + Sprache.eintragen);
+            MessageBox.Show(Sprache.Translate("Fertig!", "Done!") + "\n" + Sprache.Translate("Als Wert für den Zeitfaktor kannst du nun ", "You can now set the time factor to ") + ersterZeitwert + "|" + zweiterZeitwert + Sprache.Translate(" eintragen"));
             Close();
         }
 
@@ -360,13 +360,13 @@ namespace TSW2_Controller
             SetUI(true);
             if (radio_Stufenlos.Checked)
             {
-                if (Sprache.SprachenName == "Deutsch") { lbl_anleitung.Text = "- Stufenlosen Regler auf kleinen Wert stellen, vondem man mit konstanter Geschwindigkeit bis aufs Maximum kommen kann.\n\n- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
+                if (Sprache.isGerman()) { lbl_anleitung.Text = "- Stufenlosen Regler auf kleinen Wert stellen, vondem man mit konstanter Geschwindigkeit bis aufs Maximum kommen kann.\n\n- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
                 else { lbl_anleitung.Text = "- Set the continuously variable controller to a small value, from which you can reach the maximum at a constant speed.\n\n- Enter the corresponding percentage value in the text box. (e.g. if min = 5%)\n\n- Press start and switch to TSW2 within 7 seconds.\n\n- Wait for pause screen.\n"; }
             }
 
             if (radio_Stufen.Checked)
             {
-                if (Sprache.SprachenName == "Deutsch") { lbl_anleitung.Text = "- Stufenregler auf Mittelwert stellen (die Stufe drüber und drunter sollten mit normaler Tastendrucklänge zu erreichen sein)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
+                if (Sprache.isGerman()) { lbl_anleitung.Text = "- Stufenregler auf Mittelwert stellen (die Stufe drüber und drunter sollten mit normaler Tastendrucklänge zu erreichen sein)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
                 else { lbl_anleitung.Text = "- Set the notch control to midpoint (the level above and below should be within a normal key press length)\n\n- Press start and switch to the TSW2 within 7 seconds.\n\n- Wait for the pause screen.\n"; }
                 txt_Startwert.Text = "";
                 txt_Startwert.Enabled = false;
@@ -374,7 +374,7 @@ namespace TSW2_Controller
 
             if (radio_kombihebel.Checked)
             {
-                if (Sprache.SprachenName == "Deutsch") { lbl_anleitung.Text = "- Kombihebel im Schubbereich auf kleinen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- Start drücken und innerhalb von 7 Sekunden zum TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n\n- Kombihebel im Bremsbereich auf kleinstmöglichen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- OK drücken\n\n- Auf Pause-Bildschirm warten"; }
+                if (Sprache.isGerman()) { lbl_anleitung.Text = "- Kombihebel im Schubbereich auf kleinen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- Start drücken und innerhalb von 7 Sekunden zum TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n\n- Kombihebel im Bremsbereich auf kleinstmöglichen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- OK drücken\n\n- Auf Pause-Bildschirm warten"; }
                 else { lbl_anleitung.Text = "- Set the master controller in the thrust range to a small value displayed in %. (e.g. 10%,13%,18%)\n\n- Press start and switch to TSW2 within 7 seconds.\n\n- Wait for pause screen.\n\n- Master controller in brake range to a small value displayed in %. (e.g. 10%,13%,18%)\n\n- Press OK\n\n- Wait for pause screen "; }
                 radio_Schub.Checked = true;
                 radio_Bremse.Enabled = false;
@@ -411,7 +411,7 @@ namespace TSW2_Controller
 
         private void btn_start_longpress_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Sprache.Wechsel_innerhalb_von_7_Sekunden_zum_TSW_und_warte);
+            MessageBox.Show(Sprache.Translate("Drücke nochmal auf OK, wechsel innerhalb von 7 Sekunden zum TSW und warte", "Press OK again, switch to TSW within 7 seconds and wait"));
             Thread.Sleep(7000);
             try
             {
