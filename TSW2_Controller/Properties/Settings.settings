@@ -84,5 +84,8 @@
     <Setting Name="selectedTrainConfig" Type="System.String" Scope="User">
       <Value Profile="(Default)">yourConfig</Value>
     </Setting>
+    <Setting Name="DeleteLogsAfter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

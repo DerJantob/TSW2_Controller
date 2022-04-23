@@ -16,12 +16,20 @@ namespace TSW2_Controller
         {
         }
 
-        public static void Clear()
+        public static void RemoveUnnecessaryLogs()
         {
             CheckPath();
-            if (File.Exists(Tcfg.vollerlogpfad))
+            foreach(string filePath in Directory.GetFiles(Tcfg.logOrdnerpfad))
             {
-                File.WriteAllText(Tcfg.vollerlogpfad, "");
+                string setting = Properties.Settings.Default.DeleteLogsAfter;
+                if (setting != "/")
+                {
+                    int days = Convert.ToInt32(setting);
+                    if (File.GetLastWriteTime(filePath) < DateTime.Now.AddDays(-days))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
             }
         }
 

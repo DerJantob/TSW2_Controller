@@ -72,6 +72,8 @@ namespace TSW2_Controller
                 txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
                 txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
 
+                comboBox_DeleteLogsAfterXDays.Text = Settings.Default.DeleteLogsAfter;
+
                 if (Sprache.isGerman())
                 {
                     deutschToolStripMenuItem.Checked = true;
@@ -446,6 +448,15 @@ namespace TSW2_Controller
             {
                 Log.ErrorException(ex);
                 Sprache.ShowMessageBox("Fehler bei der Tastenbelegung", "Error with keybindings");
+            }
+
+            try
+            {
+                Settings.Default.DeleteLogsAfter = comboBox_DeleteLogsAfterXDays.Text;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException(ex);
             }
 
             Settings.Default.showDebug = check_showDebug.Checked;
