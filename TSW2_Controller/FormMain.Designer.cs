@@ -53,6 +53,7 @@
             this.lbl_requests = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_updateAvailable = new System.Windows.Forms.Label();
+            this.timer_checkConnections = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.groupBox_ScanErgebnisse.SuspendLayout();
@@ -199,6 +200,12 @@
             this.lbl_updateAvailable.Name = "lbl_updateAvailable";
             this.lbl_updateAvailable.Click += new System.EventHandler(this.lbl_updateAvailable_Click);
             // 
+            // timer_checkConnections
+            // 
+            this.timer_checkConnections.Enabled = true;
+            this.timer_checkConnections.Interval = 500;
+            this.timer_checkConnections.Tick += new System.EventHandler(this.timer_checkConnections_Tick);
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -258,6 +265,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_updateAvailable;
         private System.Windows.Forms.ListBox listBox_debugInfo;
+        private System.Windows.Forms.Timer timer_checkConnections;
     }
 }
 

@@ -125,7 +125,6 @@ namespace TSW2_Controller
 
             CheckGitHubNewerVersion();
 
-
             Keyboard.initKeylist();
 
             loadSettings();
@@ -268,7 +267,7 @@ namespace TSW2_Controller
                 {
                     //The version on GitHub is more up to date than this local release.
                     Log.Add("Update available", false, 1);
-                    lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.Translate("ist verfügbar","is available");
+                    lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.Translate("ist verfügbar", "is available");
                     FormSettings.newestVersion = latestGitHubVersion.ToString();
                 }
                 else
@@ -479,6 +478,20 @@ namespace TSW2_Controller
             }
             ocrtext = ocrtext.Replace(",", ".");
             return ocrtext;
+        }
+
+        public static string GetVersion(bool removeLastDigit)
+        {
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            if (removeLastDigit)
+            {
+                return version.Split('.')[0] + "." + version.Split('.')[1] + "." + version.Split('.')[2];
+            }
+            else
+            {
+                return version;
+            }
         }
         #endregion
 
@@ -1058,12 +1071,12 @@ namespace TSW2_Controller
                 Joystick test = stick;
                 bool[] buttons;
                 int[] joyInputs = new int[8];
-                
-                JoystickState state = new JoystickState();
 
+                JoystickState state = new JoystickState();
+                
                 //Bekomme alle Infos über den mit id ausgewählten Stick
                 state = stick.GetCurrentState();
-
+                
                 joyInputs[0] = state.X;
                 joyInputs[1] = state.Y;
                 joyInputs[2] = state.Z;
@@ -1144,11 +1157,21 @@ namespace TSW2_Controller
                 //Alle wichtigen Infos über den Joystick in Liste speichern
                 joystickStates.Add(new object[] { id, joyInputs, inputNames, buttons });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.ErrorException(ex);
                 MainSticks = getSticks();
                 Sprache.ShowMessageBox(stick.Information.InstanceName + " nicht mehr angeschlossen!", stick.Information.InstanceName + " not connected anymore!");
+            }
+        }
+
+        private void timer_checkConnections_Tick(object sender, EventArgs e)
+        {
+            Joystick[] sticks = getSticks();
+
+            if (sticks.Count() != MainSticks.Count())
+            {
+                MainSticks = sticks;
             }
         }
 
@@ -1794,7 +1817,7 @@ namespace TSW2_Controller
         }
         private void bgw_readScreen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            lbl_schub.Text = Sprache.Translate("Schub ist ", "Thrust is ") + schubIst.ToString() + Sprache.Translate(" und soll "," and should be ") + schubSoll.ToString();
+            lbl_schub.Text = Sprache.Translate("Schub ist ", "Thrust is ") + schubIst.ToString() + Sprache.Translate(" und soll ", " and should be ") + schubSoll.ToString();
             lbl_bremse.Text = Sprache.Translate("Bremse ist ", "Brake is ") + bremseIst.ToString() + Sprache.Translate(" und soll ", " and should be ") + bremseSoll.ToString();
         }
 

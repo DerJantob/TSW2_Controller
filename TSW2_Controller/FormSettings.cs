@@ -27,9 +27,9 @@ namespace TSW2_Controller
 
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-            if (version.EndsWith("0"))
+            if (version.Split('.')[3] == "0")
             {
-                lbl_version.Text = "v" + version.Remove(version.Length - 2, 2);
+                lbl_version.Text = "v" + FormMain.GetVersion(true);
             }
             else
             {
