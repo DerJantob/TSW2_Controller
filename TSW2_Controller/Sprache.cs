@@ -8,9 +8,14 @@ using TSW2_Controller.Properties;
 
 namespace TSW2_Controller
 {
-    internal class MessageClass
+    internal class Sprache
     {
-        public static void Show(string Deutsch, string Englisch)
+        public static string Zugauswahl()
+        {
+            return Translate("_Zugauswahl", "_Select train");
+        }
+
+        public static void ShowMessageBox(string Deutsch, string Englisch)
         {
             if(Settings.Default.Sprache == "de-DE")
             {
@@ -21,7 +26,20 @@ namespace TSW2_Controller
                 MessageBox.Show(Englisch);
             }
         }
-        public static string Convert(string Deutsch, string Englisch)
+
+        public static bool isGerman()
+        {
+            if(Settings.Default.Sprache == "de-DE")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static string Translate(string Deutsch, string Englisch="")
         {
             if (Settings.Default.Sprache == "de-DE")
             {

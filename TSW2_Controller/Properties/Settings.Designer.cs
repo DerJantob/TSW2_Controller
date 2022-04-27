@@ -293,5 +293,17 @@ namespace TSW2_Controller.Properties {
                 this["selectedTrainConfig"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string DeleteLogsAfter {
+            get {
+                return ((string)(this["DeleteLogsAfter"]));
+            }
+            set {
+                this["DeleteLogsAfter"] = value;
+            }
+        }
     }
 }

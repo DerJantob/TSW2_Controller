@@ -125,13 +125,11 @@ namespace TSW2_Controller
 
             CheckGitHubNewerVersion();
 
-
             Keyboard.initKeylist();
 
             loadSettings();
 
             MainSticks = getSticks();
-            if (MainSticks.Length > 0) { comboBox_JoystickNumber.SelectedIndex = 0; }
 
             ReadTrainConfig();
 
@@ -268,7 +266,7 @@ namespace TSW2_Controller
                 {
                     //The version on GitHub is more up to date than this local release.
                     Log.Add("Update available", false, 1);
-                    lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.ist_verfuegbar;
+                    lbl_updateAvailable.Text = "Version " + latestGitHubVersion + "\n" + Sprache.Translate("ist verfügbar", "is available");
                     FormSettings.newestVersion = latestGitHubVersion.ToString();
                 }
                 else
@@ -480,6 +478,20 @@ namespace TSW2_Controller
             ocrtext = ocrtext.Replace(",", ".");
             return ocrtext;
         }
+
+        public static string GetVersion(bool removeLastDigit)
+        {
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            if (removeLastDigit)
+            {
+                return version.Split('.')[0] + "." + version.Split('.')[1] + "." + version.Split('.')[2];
+            }
+            else
+            {
+                return version;
+            }
+        }
         #endregion
 
         #region Versions überprüfung
@@ -526,7 +538,7 @@ namespace TSW2_Controller
                             {
                                 //Backup
                                 File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
-                                MessageClass.Show("Backup has been created on the Desktop", "Ein Backup wurde auf dem Desktop erstellt");
+                                Sprache.ShowMessageBox("Backup has been created on the Desktop", "Ein Backup wurde auf dem Desktop erstellt");
 
                                 //Neue Tastenbenennung
                                 string[] file = File.ReadAllLines(Tcfg.configpfad);
@@ -655,7 +667,7 @@ namespace TSW2_Controller
                         Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
                         Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
 
-                        if (Sprache.SprachenName == "Deutsch")
+                        if (Sprache.isGerman())
                         {
                             Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe); Settings.Default.Save();
                             Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe); Settings.Default.Save();
@@ -746,9 +758,9 @@ namespace TSW2_Controller
                 Log.Add("load text indicators", false, 1);
                 if (Settings.Default.SchubIndexe.Count == 0)
                 {
-                    if (MessageBox.Show(Sprache.Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Translate("Schubindikator leer! Standard laden?", "Throttle indicator empty! Load standard?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (Sprache.SprachenName == "Deutsch")
+                        if (Sprache.isGerman())
                         {
                             Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe);
                         }
@@ -761,9 +773,9 @@ namespace TSW2_Controller
                 }
                 if (Settings.Default.BremsIndexe.Count == 0)
                 {
-                    if (MessageBox.Show(Sprache.Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Translate("Bremsindikator leer! Standard laden?", "Brake indicator empty! Load standard?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (Sprache.SprachenName == "Deutsch")
+                        if (Sprache.isGerman())
                         {
                             Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe);
                         }
@@ -776,9 +788,9 @@ namespace TSW2_Controller
                 }
                 if (Settings.Default.Kombihebel_SchubIndexe.Count == 0)
                 {
-                    if (MessageBox.Show(Sprache.Kombihebel_Schubindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Translate("Kombihebel_Schubindikator leer! Standard laden?", "Master controller throttle indicator empty! Load standard?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (Sprache.SprachenName == "Deutsch")
+                        if (Sprache.isGerman())
                         {
                             Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultDE_kombihebel_schubIndexe);
                         }
@@ -791,9 +803,9 @@ namespace TSW2_Controller
                 }
                 if (Settings.Default.Kombihebel_BremsIndexe.Count == 0)
                 {
-                    if (MessageBox.Show(Sprache.Kombihebel_Bremsindikator_Leer__Standard_Laden, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Sprache.Translate("Kombihebel_Bremsindikator leer! Standard laden?", "Master controller brake indicator empty! Load standard?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (Sprache.SprachenName == "Deutsch")
+                        if (Sprache.isGerman())
                         {
                             Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultDE_kombihebel_bremsIndexe);
                         }
@@ -876,7 +888,7 @@ namespace TSW2_Controller
                 else
                 {
                     check_active.Checked = false;
-                    MessageBox.Show(Sprache.Kein_Joystick_angeschlossen);
+                    Sprache.ShowMessageBox("Kein Joystick angeschlossen!", "No joystick connected!");
                 }
             }
             else
@@ -942,8 +954,8 @@ namespace TSW2_Controller
         {
             trainNames.Clear();
             comboBox_Zugauswahl.Items.Clear();
-            comboBox_Zugauswahl.Items.Add(Sprache.Zugauswahl);
-            comboBox_Zugauswahl.SelectedItem = Sprache.Zugauswahl;
+            comboBox_Zugauswahl.Items.Add(Sprache.Translate("_Zugauswahl", "_Select train"));
+            comboBox_Zugauswahl.SelectedItem = Sprache.Translate("_Zugauswahl", "_Select train");
 
             foreach (string[] str in trainConfig)
             {
@@ -1032,7 +1044,6 @@ namespace TSW2_Controller
             Log.Add("Search for joysticks:");
             //strg+c strg+v
             List<Joystick> sticks = new List<Joystick>();
-            int counter = 0;
             foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameControl, DeviceEnumerationFlags.AttachedOnly))
             {
                 Joystick stick = new Joystick(input, device.InstanceGuid);
@@ -1043,9 +1054,18 @@ namespace TSW2_Controller
                     stick.GetObjectPropertiesById(deviceObject.ObjectId).Range = new InputRange(-100, 100);
                 }
                 sticks.Add(stick);
-                comboBox_JoystickNumber.Items.Add(counter);
-                counter++;
             }
+
+            if (comboBox_JoystickNumber.Items.Count != sticks.Count)
+            {
+                comboBox_JoystickNumber.Items.Clear();
+                for (int i = 0; i < sticks.Count; i++)
+                {
+                    comboBox_JoystickNumber.Items.Add(i);
+                }
+                if (sticks.Count > 0 ) { comboBox_JoystickNumber.SelectedIndex = comboBox_JoystickNumber.Items.Count-1; }
+            }
+
             Log.Add(sticks.Count + " joysticks found", false, 1);
             return sticks.ToArray();
 
@@ -1058,7 +1078,7 @@ namespace TSW2_Controller
                 Joystick test = stick;
                 bool[] buttons;
                 int[] joyInputs = new int[8];
-                
+
                 JoystickState state = new JoystickState();
 
                 //Bekomme alle Infos über den mit id ausgewählten Stick
@@ -1144,11 +1164,21 @@ namespace TSW2_Controller
                 //Alle wichtigen Infos über den Joystick in Liste speichern
                 joystickStates.Add(new object[] { id, joyInputs, inputNames, buttons });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.ErrorException(ex);
                 MainSticks = getSticks();
-                MessageClass.Show(stick.Information.InstanceName + " nicht mehr angeschlossen!", stick.Information.InstanceName + " not connected anymore!");
+                Sprache.ShowMessageBox(stick.Information.InstanceName + " nicht mehr angeschlossen!", stick.Information.InstanceName + " not connected anymore!");
+            }
+        }
+
+        private void timer_checkConnections_Tick(object sender, EventArgs e)
+        {
+            Joystick[] sticks = getSticks();
+
+            if (sticks.Count() != MainSticks.Count())
+            {
+                MainSticks = sticks;
             }
         }
 
@@ -1794,8 +1824,8 @@ namespace TSW2_Controller
         }
         private void bgw_readScreen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            lbl_schub.Text = Sprache.Schub_ist + " " + schubIst.ToString() + " " + Sprache.und_soll + " " + schubSoll.ToString();
-            lbl_bremse.Text = Sprache.Bremse_ist + " " + bremseIst.ToString() + " " + Sprache.und_soll + " " + bremseSoll.ToString();
+            lbl_schub.Text = Sprache.Translate("Schub ist ", "Thrust is ") + schubIst.ToString() + Sprache.Translate(" und soll ", " and should be ") + schubSoll.ToString();
+            lbl_bremse.Text = Sprache.Translate("Bremse ist ", "Brake is ") + bremseIst.ToString() + Sprache.Translate(" und soll ", " and should be ") + bremseSoll.ToString();
         }
 
         int TextZuZahl_readScreen(string original_result, string alternative_result, string[] config)
