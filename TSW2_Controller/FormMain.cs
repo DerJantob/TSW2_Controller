@@ -2011,5 +2011,11 @@ namespace TSW2_Controller
             return textinput;
         }
         #endregion
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            FormSteuerung2 formSteuerung2 = new FormSteuerung2();
+            formSteuerung2.ShowDialog();
+        }
     }
 }
