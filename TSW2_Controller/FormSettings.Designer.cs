@@ -109,9 +109,9 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.btn_textindikator_StandardLaden);
             this.groupBox1.Controls.Add(this.tabControl1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -124,19 +124,19 @@
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tab_schubLeistung);
             this.tabControl1.Controls.Add(this.tab_kombihebel);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tab_schubLeistung
             // 
-            resources.ApplyResources(this.tab_schubLeistung, "tab_schubLeistung");
             this.tab_schubLeistung.Controls.Add(this.label3);
             this.tab_schubLeistung.Controls.Add(this.comboBox_Bremse);
             this.tab_schubLeistung.Controls.Add(this.label2);
             this.tab_schubLeistung.Controls.Add(this.comboBox_Schub);
+            resources.ApplyResources(this.tab_schubLeistung, "tab_schubLeistung");
             this.tab_schubLeistung.Name = "tab_schubLeistung";
             this.tab_schubLeistung.UseVisualStyleBackColor = true;
             // 
@@ -147,8 +147,8 @@
             // 
             // comboBox_Bremse
             // 
-            resources.ApplyResources(this.comboBox_Bremse, "comboBox_Bremse");
             this.comboBox_Bremse.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Bremse, "comboBox_Bremse");
             this.comboBox_Bremse.Name = "comboBox_Bremse";
             this.comboBox_Bremse.Sorted = true;
             this.comboBox_Bremse.SelectedIndexChanged += new System.EventHandler(this.comboBox_Bremse_SelectedIndexChanged);
@@ -161,8 +161,8 @@
             // 
             // comboBox_Schub
             // 
-            resources.ApplyResources(this.comboBox_Schub, "comboBox_Schub");
             this.comboBox_Schub.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Schub, "comboBox_Schub");
             this.comboBox_Schub.Name = "comboBox_Schub";
             this.comboBox_Schub.Sorted = true;
             this.comboBox_Schub.SelectedIndexChanged += new System.EventHandler(this.comboBox_Schub_SelectedIndexChanged);
@@ -170,11 +170,11 @@
             // 
             // tab_kombihebel
             // 
-            resources.ApplyResources(this.tab_kombihebel, "tab_kombihebel");
             this.tab_kombihebel.Controls.Add(this.label4);
             this.tab_kombihebel.Controls.Add(this.comboBox_kombiBremse);
             this.tab_kombihebel.Controls.Add(this.label5);
             this.tab_kombihebel.Controls.Add(this.comboBox_kombiSchub);
+            resources.ApplyResources(this.tab_kombihebel, "tab_kombihebel");
             this.tab_kombihebel.Name = "tab_kombihebel";
             this.tab_kombihebel.UseVisualStyleBackColor = true;
             // 
@@ -185,8 +185,8 @@
             // 
             // comboBox_kombiBremse
             // 
-            resources.ApplyResources(this.comboBox_kombiBremse, "comboBox_kombiBremse");
             this.comboBox_kombiBremse.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_kombiBremse, "comboBox_kombiBremse");
             this.comboBox_kombiBremse.Name = "comboBox_kombiBremse";
             this.comboBox_kombiBremse.Sorted = true;
             this.comboBox_kombiBremse.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiBremse_SelectedIndexChanged);
@@ -199,8 +199,8 @@
             // 
             // comboBox_kombiSchub
             // 
-            resources.ApplyResources(this.comboBox_kombiSchub, "comboBox_kombiSchub");
             this.comboBox_kombiSchub.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_kombiSchub, "comboBox_kombiSchub");
             this.comboBox_kombiSchub.Name = "comboBox_kombiSchub";
             this.comboBox_kombiSchub.Sorted = true;
             this.comboBox_kombiSchub.SelectedIndexChanged += new System.EventHandler(this.comboBox_kombiSchub_SelectedIndexChanged);
@@ -222,12 +222,12 @@
             // 
             // comboBox_resolution
             // 
-            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
             this.comboBox_resolution.FormattingEnabled = true;
             this.comboBox_resolution.Items.AddRange(new object[] {
             resources.GetString("comboBox_resolution.Items"),
             resources.GetString("comboBox_resolution.Items1"),
             resources.GetString("comboBox_resolution.Items2")});
+            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
             this.comboBox_resolution.Name = "comboBox_resolution";
             // 
             // progressBar_updater
@@ -237,7 +237,6 @@
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
@@ -246,6 +245,7 @@
             this.groupBox2.Controls.Add(this.txt_increaseBrake);
             this.groupBox2.Controls.Add(this.txt_decreaseThrottle);
             this.groupBox2.Controls.Add(this.txt_increaseThrottle);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -299,8 +299,8 @@
             // 
             // comboBox_TrainConfig
             // 
-            resources.ApplyResources(this.comboBox_TrainConfig, "comboBox_TrainConfig");
             this.comboBox_TrainConfig.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_TrainConfig, "comboBox_TrainConfig");
             this.comboBox_TrainConfig.Name = "comboBox_TrainConfig";
             this.comboBox_TrainConfig.SelectedIndexChanged += new System.EventHandler(this.comboBox_TrainConfig_SelectedIndexChanged);
             this.comboBox_TrainConfig.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_TrainConfig_KeyUp);
@@ -335,71 +335,71 @@
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wasIstNeuToolStripMenuItem,
             this.sucheNachUpdatesToolStripMenuItem,
             this.spracheToolStripMenuItem,
             this.hilfeToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // wasIstNeuToolStripMenuItem
             // 
-            resources.ApplyResources(this.wasIstNeuToolStripMenuItem, "wasIstNeuToolStripMenuItem");
             this.wasIstNeuToolStripMenuItem.Name = "wasIstNeuToolStripMenuItem";
+            resources.ApplyResources(this.wasIstNeuToolStripMenuItem, "wasIstNeuToolStripMenuItem");
             this.wasIstNeuToolStripMenuItem.Click += new System.EventHandler(this.wasIstNeuToolStripMenuItem_Click);
             // 
             // sucheNachUpdatesToolStripMenuItem
             // 
-            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem, "sucheNachUpdatesToolStripMenuItem");
             this.sucheNachUpdatesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sucheNachUpdatesToolStripMenuItem1});
             this.sucheNachUpdatesToolStripMenuItem.Name = "sucheNachUpdatesToolStripMenuItem";
+            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem, "sucheNachUpdatesToolStripMenuItem");
             // 
             // sucheNachUpdatesToolStripMenuItem1
             // 
-            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem1, "sucheNachUpdatesToolStripMenuItem1");
             this.sucheNachUpdatesToolStripMenuItem1.Name = "sucheNachUpdatesToolStripMenuItem1";
+            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem1, "sucheNachUpdatesToolStripMenuItem1");
             this.sucheNachUpdatesToolStripMenuItem1.Click += new System.EventHandler(this.sucheNachUpdatesToolStripMenuItem1_Click);
             // 
             // spracheToolStripMenuItem
             // 
-            resources.ApplyResources(this.spracheToolStripMenuItem, "spracheToolStripMenuItem");
             this.spracheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deutschToolStripMenuItem,
             this.englischToolStripMenuItem});
             this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
+            resources.ApplyResources(this.spracheToolStripMenuItem, "spracheToolStripMenuItem");
             // 
             // deutschToolStripMenuItem
             // 
-            resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
             this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
+            resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
             this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
             // 
             // englischToolStripMenuItem
             // 
-            resources.ApplyResources(this.englischToolStripMenuItem, "englischToolStripMenuItem");
             this.englischToolStripMenuItem.Name = "englischToolStripMenuItem";
+            resources.ApplyResources(this.englischToolStripMenuItem, "englischToolStripMenuItem");
             this.englischToolStripMenuItem.Click += new System.EventHandler(this.englischToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
             // 
-            resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.informationsdateiErstellenToolStripMenuItem,
             this.zurConfigGehenToolStripMenuItem});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
+            resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
             // 
             // informationsdateiErstellenToolStripMenuItem
             // 
-            resources.ApplyResources(this.informationsdateiErstellenToolStripMenuItem, "informationsdateiErstellenToolStripMenuItem");
             this.informationsdateiErstellenToolStripMenuItem.Name = "informationsdateiErstellenToolStripMenuItem";
+            resources.ApplyResources(this.informationsdateiErstellenToolStripMenuItem, "informationsdateiErstellenToolStripMenuItem");
             this.informationsdateiErstellenToolStripMenuItem.Click += new System.EventHandler(this.informationsdateiErstellenToolStripMenuItem_Click);
             // 
             // zurConfigGehenToolStripMenuItem
             // 
-            resources.ApplyResources(this.zurConfigGehenToolStripMenuItem, "zurConfigGehenToolStripMenuItem");
             this.zurConfigGehenToolStripMenuItem.Name = "zurConfigGehenToolStripMenuItem";
+            resources.ApplyResources(this.zurConfigGehenToolStripMenuItem, "zurConfigGehenToolStripMenuItem");
             this.zurConfigGehenToolStripMenuItem.Click += new System.EventHandler(this.zurConfigGehenToolStripMenuItem_Click);
             // 
             // label11
@@ -409,7 +409,6 @@
             // 
             // comboBox_DeleteLogsAfterXDays
             // 
-            resources.ApplyResources(this.comboBox_DeleteLogsAfterXDays, "comboBox_DeleteLogsAfterXDays");
             this.comboBox_DeleteLogsAfterXDays.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_DeleteLogsAfterXDays.FormattingEnabled = true;
             this.comboBox_DeleteLogsAfterXDays.Items.AddRange(new object[] {
@@ -422,6 +421,7 @@
             resources.GetString("comboBox_DeleteLogsAfterXDays.Items6"),
             resources.GetString("comboBox_DeleteLogsAfterXDays.Items7"),
             resources.GetString("comboBox_DeleteLogsAfterXDays.Items8")});
+            resources.ApplyResources(this.comboBox_DeleteLogsAfterXDays, "comboBox_DeleteLogsAfterXDays");
             this.comboBox_DeleteLogsAfterXDays.Name = "comboBox_DeleteLogsAfterXDays";
             // 
             // FormSettings
@@ -443,7 +443,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FormSettings";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Load += new System.EventHandler(this.SettingsForm_Load);

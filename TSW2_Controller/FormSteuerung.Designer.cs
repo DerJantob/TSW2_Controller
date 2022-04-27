@@ -659,7 +659,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl_Anzeige);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FormSteuerung";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.tabControl_Anzeige.ResumeLayout(false);
