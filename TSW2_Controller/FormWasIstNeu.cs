@@ -166,7 +166,7 @@ namespace TSW2_Controller
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Windows 11 kompatibel");
-                    changelog.Add("- Hinzugefügt: Joysticks können jetzt angeschlossen werden, während das Programm läuft");
+                    changelog.Add("- Hinzugefügt: Joysticks können jetzt auch angeschlossen werden, während das Programm läuft");
                     changelog.Add("- Verbessert: Alte Logdateien werden automatisch gelöscht");
                 }
                 else
