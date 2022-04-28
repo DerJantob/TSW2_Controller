@@ -46,6 +46,8 @@
             this.listBox_ShowJoystickStates = new System.Windows.Forms.ListBox();
             this.tabControl_ReglerKnopf = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtR_InputUmrechnen = new System.Windows.Forms.TextBox();
             this.lblR_ReglerStand = new System.Windows.Forms.Label();
             this.btnR_Speichern = new System.Windows.Forms.Button();
             this.btn_R_eigenes = new System.Windows.Forms.Button();
@@ -64,7 +66,7 @@
             this.lblR_AnzahlStufen = new System.Windows.Forms.Label();
             this.txtR_Sonderfaelle = new System.Windows.Forms.TextBox();
             this.txtR_AnzahlStufen = new System.Windows.Forms.TextBox();
-            this.btn_R_Erkennen = new System.Windows.Forms.Button();
+            this.btnR_Erkennen = new System.Windows.Forms.Button();
             this.progressBar_Joystick = new System.Windows.Forms.ProgressBar();
             this.radioR_Stufenlos = new System.Windows.Forms.RadioButton();
             this.btnR_m100 = new System.Windows.Forms.Button();
@@ -72,7 +74,6 @@
             this.btnR_0 = new System.Windows.Forms.Button();
             this.btnR_100 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnB_Speichern = new System.Windows.Forms.Button();
             this.btnB_entfernen = new System.Windows.Forms.Button();
             this.lblB_Bedingung = new System.Windows.Forms.Label();
             this.txtB_Bedingung = new System.Windows.Forms.TextBox();
@@ -82,7 +83,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtB_Aktion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnB_Hinzufuegen_ersetzen = new System.Windows.Forms.Button();
             this.comboBoxB_KnopfAuswahl = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtB_JoystickNr = new System.Windows.Forms.TextBox();
@@ -93,8 +93,7 @@
             this.radioB_normal = new System.Windows.Forms.RadioButton();
             this.lblT1_TrainName = new System.Windows.Forms.Label();
             this.timer_CheckJoysticks = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtR_InputUmrechnen = new System.Windows.Forms.TextBox();
+            this.btnB_Speichern = new System.Windows.Forms.Button();
             this.tabControl_main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -129,6 +128,7 @@
             resources.ApplyResources(this.btnT0_Delete, "btnT0_Delete");
             this.btnT0_Delete.Name = "btnT0_Delete";
             this.btnT0_Delete.UseVisualStyleBackColor = true;
+            this.btnT0_Delete.Click += new System.EventHandler(this.btnT0_Delete_Click);
             // 
             // btnT0_Add
             // 
@@ -181,6 +181,7 @@
             resources.ApplyResources(this.listBoxT1_ControllerList, "listBoxT1_ControllerList");
             this.listBoxT1_ControllerList.Name = "listBoxT1_ControllerList";
             this.listBoxT1_ControllerList.SelectedIndexChanged += new System.EventHandler(this.listBoxT1_ControllerList_SelectedIndexChanged);
+            this.listBoxT1_ControllerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT1_ControllerList_KeyDown);
             // 
             // comboBoxT1_Controllers
             // 
@@ -237,7 +238,7 @@
             this.tabPage4.Controls.Add(this.lblR_AnzahlStufen);
             this.tabPage4.Controls.Add(this.txtR_Sonderfaelle);
             this.tabPage4.Controls.Add(this.txtR_AnzahlStufen);
-            this.tabPage4.Controls.Add(this.btn_R_Erkennen);
+            this.tabPage4.Controls.Add(this.btnR_Erkennen);
             this.tabPage4.Controls.Add(this.progressBar_Joystick);
             this.tabPage4.Controls.Add(this.radioR_Stufenlos);
             this.tabPage4.Controls.Add(this.btnR_m100);
@@ -247,6 +248,16 @@
             resources.ApplyResources(this.tabPage4, "tabPage4");
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // txtR_InputUmrechnen
+            // 
+            resources.ApplyResources(this.txtR_InputUmrechnen, "txtR_InputUmrechnen");
+            this.txtR_InputUmrechnen.Name = "txtR_InputUmrechnen";
             // 
             // lblR_ReglerStand
             // 
@@ -349,11 +360,12 @@
             resources.ApplyResources(this.txtR_AnzahlStufen, "txtR_AnzahlStufen");
             this.txtR_AnzahlStufen.Name = "txtR_AnzahlStufen";
             // 
-            // btn_R_Erkennen
+            // btnR_Erkennen
             // 
-            resources.ApplyResources(this.btn_R_Erkennen, "btn_R_Erkennen");
-            this.btn_R_Erkennen.Name = "btn_R_Erkennen";
-            this.btn_R_Erkennen.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnR_Erkennen, "btnR_Erkennen");
+            this.btnR_Erkennen.Name = "btnR_Erkennen";
+            this.btnR_Erkennen.UseVisualStyleBackColor = true;
+            this.btnR_Erkennen.Click += new System.EventHandler(this.btnR_Erkennen_Click);
             // 
             // progressBar_Joystick
             // 
@@ -411,7 +423,6 @@
             this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.txtB_Aktion);
             this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.btnB_Hinzufuegen_ersetzen);
             this.tabPage3.Controls.Add(this.comboBoxB_KnopfAuswahl);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.txtB_JoystickNr);
@@ -424,18 +435,12 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // btnB_Speichern
-            // 
-            resources.ApplyResources(this.btnB_Speichern, "btnB_Speichern");
-            this.btnB_Speichern.Name = "btnB_Speichern";
-            this.btnB_Speichern.UseVisualStyleBackColor = true;
-            this.btnB_Speichern.Click += new System.EventHandler(this.btnB_Speichern_Click);
-            // 
             // btnB_entfernen
             // 
             resources.ApplyResources(this.btnB_entfernen, "btnB_entfernen");
             this.btnB_entfernen.Name = "btnB_entfernen";
             this.btnB_entfernen.UseVisualStyleBackColor = true;
+            this.btnB_entfernen.Click += new System.EventHandler(this.btnB_entfernen_Click);
             // 
             // lblB_Bedingung
             // 
@@ -478,12 +483,6 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // btnB_Hinzufuegen_ersetzen
-            // 
-            resources.ApplyResources(this.btnB_Hinzufuegen_ersetzen, "btnB_Hinzufuegen_ersetzen");
-            this.btnB_Hinzufuegen_ersetzen.Name = "btnB_Hinzufuegen_ersetzen";
-            this.btnB_Hinzufuegen_ersetzen.UseVisualStyleBackColor = true;
-            // 
             // comboBoxB_KnopfAuswahl
             // 
             this.comboBoxB_KnopfAuswahl.FormattingEnabled = true;
@@ -506,6 +505,7 @@
             resources.ApplyResources(this.btnB_Erkennen, "btnB_Erkennen");
             this.btnB_Erkennen.Name = "btnB_Erkennen";
             this.btnB_Erkennen.UseVisualStyleBackColor = true;
+            this.btnB_Erkennen.Click += new System.EventHandler(this.btnB_Erkennen_Click);
             // 
             // lblR_KnopfNr
             // 
@@ -543,15 +543,12 @@
             this.timer_CheckJoysticks.Enabled = true;
             this.timer_CheckJoysticks.Tick += new System.EventHandler(this.timer_CheckJoysticks_Tick);
             // 
-            // label2
+            // btnB_Speichern
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // txtR_InputUmrechnen
-            // 
-            resources.ApplyResources(this.txtR_InputUmrechnen, "txtR_InputUmrechnen");
-            this.txtR_InputUmrechnen.Name = "txtR_InputUmrechnen";
+            resources.ApplyResources(this.btnB_Speichern, "btnB_Speichern");
+            this.btnB_Speichern.Name = "btnB_Speichern";
+            this.btnB_Speichern.UseVisualStyleBackColor = true;
+            this.btnB_Speichern.Click += new System.EventHandler(this.btnB_Speichern_Click);
             // 
             // FormSteuerung2
             // 
@@ -595,7 +592,7 @@
         private System.Windows.Forms.Button btnR_0;
         private System.Windows.Forms.Button btnR_m100;
         private System.Windows.Forms.ProgressBar progressBar_Joystick;
-        private System.Windows.Forms.Button btn_R_Erkennen;
+        private System.Windows.Forms.Button btnR_Erkennen;
         private System.Windows.Forms.TextBox txtR_AnzahlStufen;
         private System.Windows.Forms.Label lblR_AnzahlStufen;
         private System.Windows.Forms.TextBox txtR_JoyNr;
@@ -623,7 +620,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtB_Aktion;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnB_Hinzufuegen_ersetzen;
         private System.Windows.Forms.ComboBox comboBoxB_KnopfAuswahl;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtB_JoystickNr;
@@ -638,10 +634,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Output;
         private System.Windows.Forms.Button btnR_Speichern;
         private System.Windows.Forms.GroupBox groupBoxT1_Regler;
-        private System.Windows.Forms.Button btnB_Speichern;
         private System.Windows.Forms.Timer timer_CheckJoysticks;
         private System.Windows.Forms.Label lblR_ReglerStand;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtR_InputUmrechnen;
+        private System.Windows.Forms.Button btnB_Speichern;
     }
 }

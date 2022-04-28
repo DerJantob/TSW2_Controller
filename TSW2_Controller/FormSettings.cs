@@ -468,9 +468,9 @@ namespace TSW2_Controller
         private void btn_steuerung_Click(object sender, EventArgs e)
         {
             Log.Add("Going to controls");
-            FormSteuerung formSteuerung = new FormSteuerung();
-            formSteuerung.Location = this.Location;
-            formSteuerung.ShowDialog();
+            FormSteuerung2 formSteuerung2 = new FormSteuerung2();
+            formSteuerung2.Location = this.Location;
+            formSteuerung2.ShowDialog();
             Log.Add("Leaving controls");
 
             if (Settings.Default.selectedTrainConfig == "_Standard")
