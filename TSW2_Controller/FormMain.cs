@@ -93,6 +93,11 @@ namespace TSW2_Controller
                     Log.Add("Copy :" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
                 }
             }
+            if (!File.Exists(Tcfg.controllersConfigPfad))
+            {
+                File.Create(Tcfg.controllersConfigPfad);
+                Log.Add("Create File:" + Tcfg.controllersConfigPfad);
+            }
             if (!Directory.Exists(Tcfg.configSammelungPfad))
             {
                 Directory.CreateDirectory(Tcfg.configSammelungPfad);
@@ -1075,7 +1080,6 @@ namespace TSW2_Controller
         {
             try
             {
-                Joystick test = stick;
                 bool[] buttons;
                 int[] joyInputs = new int[8];
 
