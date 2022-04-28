@@ -74,6 +74,7 @@
             this.btnR_0 = new System.Windows.Forms.Button();
             this.btnR_100 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnB_Speichern = new System.Windows.Forms.Button();
             this.btnB_entfernen = new System.Windows.Forms.Button();
             this.lblB_Bedingung = new System.Windows.Forms.Label();
             this.txtB_Bedingung = new System.Windows.Forms.TextBox();
@@ -93,7 +94,6 @@
             this.radioB_normal = new System.Windows.Forms.RadioButton();
             this.lblT1_TrainName = new System.Windows.Forms.Label();
             this.timer_CheckJoysticks = new System.Windows.Forms.Timer(this.components);
-            this.btnB_Speichern = new System.Windows.Forms.Button();
             this.tabControl_main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -369,6 +369,8 @@
             // 
             // progressBar_Joystick
             // 
+            this.progressBar_Joystick.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBar_Joystick.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.progressBar_Joystick, "progressBar_Joystick");
             this.progressBar_Joystick.Maximum = 200;
             this.progressBar_Joystick.Name = "progressBar_Joystick";
@@ -435,6 +437,13 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnB_Speichern
+            // 
+            resources.ApplyResources(this.btnB_Speichern, "btnB_Speichern");
+            this.btnB_Speichern.Name = "btnB_Speichern";
+            this.btnB_Speichern.UseVisualStyleBackColor = true;
+            this.btnB_Speichern.Click += new System.EventHandler(this.btnB_Speichern_Click);
+            // 
             // btnB_entfernen
             // 
             resources.ApplyResources(this.btnB_entfernen, "btnB_entfernen");
@@ -477,6 +486,9 @@
             // 
             resources.ApplyResources(this.txtB_Aktion, "txtB_Aktion");
             this.txtB_Aktion.Name = "txtB_Aktion";
+            this.txtB_Aktion.Click += new System.EventHandler(this.txtB_Aktion_Click);
+            this.txtB_Aktion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtB_Aktion_KeyDown);
+            this.txtB_Aktion.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtB_Aktion_PreviewKeyDown);
             // 
             // label4
             // 
@@ -499,6 +511,7 @@
             // 
             resources.ApplyResources(this.txtB_JoystickNr, "txtB_JoystickNr");
             this.txtB_JoystickNr.Name = "txtB_JoystickNr";
+            this.txtB_JoystickNr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_OnlyNumbers_KeyPress);
             // 
             // btnB_Erkennen
             // 
@@ -542,13 +555,6 @@
             // 
             this.timer_CheckJoysticks.Enabled = true;
             this.timer_CheckJoysticks.Tick += new System.EventHandler(this.timer_CheckJoysticks_Tick);
-            // 
-            // btnB_Speichern
-            // 
-            resources.ApplyResources(this.btnB_Speichern, "btnB_Speichern");
-            this.btnB_Speichern.Name = "btnB_Speichern";
-            this.btnB_Speichern.UseVisualStyleBackColor = true;
-            this.btnB_Speichern.Click += new System.EventHandler(this.btnB_Speichern_Click);
             // 
             // FormSteuerung2
             // 

@@ -536,37 +536,44 @@ namespace TSW2_Controller
         }
         private void btnR_ControllerValues_Click(object sender, EventArgs e)
         {
-            bool didSomething = false;
-            int realJoyState = Convert.ToInt32(lblR_ReglerStand.Text.Remove(lblR_ReglerStand.Text.IndexOf(" "), lblR_ReglerStand.Text.Length - (lblR_ReglerStand.Text.IndexOf(" "))));
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            try
             {
-                if (dataGridView1.Rows[i].Cells[1].Value.ToString() != "100" && dataGridView1.Rows[i].Cells[1].Value.ToString() != "-100" && dataGridView1.Rows[i].Cells[1].Value.ToString() != "0")
+                bool didSomething = false;
+                int realJoyState = Convert.ToInt32(lblR_ReglerStand.Text.Remove(lblR_ReglerStand.Text.IndexOf(" "), lblR_ReglerStand.Text.Length - (lblR_ReglerStand.Text.IndexOf(" "))));
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
-                    dataGridView1.Rows.RemoveAt(i);
-                }
-                else
-                {
-                    if (dataGridView1.Rows[i].Cells[1].Value.ToString() == ((Button)sender).Text)
+                    if (dataGridView1.Rows[i].Cells[1].Value.ToString() != "100" && dataGridView1.Rows[i].Cells[1].Value.ToString() != "-100" && dataGridView1.Rows[i].Cells[1].Value.ToString() != "0")
                     {
-                        dataGridView1.Rows[i].Cells[0].Value = realJoyState;
-                        didSomething = true;
-                        break;
+                        dataGridView1.Rows.RemoveAt(i);
+                    }
+                    else
+                    {
+                        if (dataGridView1.Rows[i].Cells[1].Value.ToString() == ((Button)sender).Text)
+                        {
+                            dataGridView1.Rows[i].Cells[0].Value = realJoyState;
+                            didSomething = true;
+                            break;
+                        }
                     }
                 }
-            }
-            if (!didSomething)
-            {
-                dataGridView1.Rows.Add(realJoyState, ((Button)sender).Text);
-            }
-
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
-            {
-                if (dataGridView1.Rows[i].Cells[0].Value.ToString() == realJoyState.ToString() && dataGridView1.Rows[i].Cells[1].Value.ToString() != ((Button)sender).Text)
+                if (!didSomething)
                 {
-                    dataGridView1.Rows.RemoveAt(i);
+                    dataGridView1.Rows.Add(realJoyState, ((Button)sender).Text);
                 }
+
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == realJoyState.ToString() && dataGridView1.Rows[i].Cells[1].Value.ToString() != ((Button)sender).Text)
+                    {
+                        dataGridView1.Rows.RemoveAt(i);
+                    }
+                }
+                ReadDataGrid();
             }
-            ReadDataGrid();
+            catch(Exception ex)
+            {
+                Log.ErrorException(ex);
+            }
         }
         private void listBoxT1_ControllerList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -741,6 +748,26 @@ namespace TSW2_Controller
         #endregion
 
         #region Knöpfe
+        #region txtAktion
+        private void txtB_Aktion_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
+            //PreviewKeyDown um auch tab-Taste zu erlauben
+            txtB_Aktion.Text = Keyboard.ConvertKeyToString(e.KeyCode);
+            SelectNextControl((Control)sender, true, false, true, true);
+        }
+
+        private void txtB_Aktion_Click(object sender, EventArgs e)
+        {
+            txtB_Aktion.Text = "";
+        }
+
+        private void txtB_Aktion_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Verhindert, dass die gedrückte Taste ins Textfeld geschrieben wird
+            e.SuppressKeyPress = true;
+        }
+        #endregion
         private void btnB_Erkennen_Click(object sender, EventArgs e)
         {
             string[] output = new string[] { "", "" };
