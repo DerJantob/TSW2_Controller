@@ -202,7 +202,6 @@
             // 
             // timer_checkConnections
             // 
-            this.timer_checkConnections.Enabled = true;
             this.timer_checkConnections.Interval = 500;
             this.timer_checkConnections.Tick += new System.EventHandler(this.timer_checkConnections_Tick);
             // 
