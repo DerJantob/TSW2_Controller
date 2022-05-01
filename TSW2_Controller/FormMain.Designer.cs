@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.lst_inputs = new System.Windows.Forms.ListBox();
             this.check_active = new System.Windows.Forms.CheckBox();
-            this.btn_reloadConfig = new System.Windows.Forms.Button();
             this.comboBox_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.timer_CheckSticks = new System.Windows.Forms.Timer(this.components);
             this.comboBox_JoystickNumber = new System.Windows.Forms.ComboBox();
@@ -53,7 +52,7 @@
             this.lbl_requests = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_updateAvailable = new System.Windows.Forms.Label();
-            this.timer_checkConnections = new System.Windows.Forms.Timer(this.components);
+            this.btn_checkJoysticks = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.groupBox_ScanErgebnisse.SuspendLayout();
@@ -61,8 +60,8 @@
             // 
             // lst_inputs
             // 
-            this.lst_inputs.FormattingEnabled = true;
             resources.ApplyResources(this.lst_inputs, "lst_inputs");
+            this.lst_inputs.FormattingEnabled = true;
             this.lst_inputs.Name = "lst_inputs";
             // 
             // check_active
@@ -73,18 +72,11 @@
             this.check_active.UseVisualStyleBackColor = false;
             this.check_active.CheckedChanged += new System.EventHandler(this.check_active_CheckedChanged);
             // 
-            // btn_reloadConfig
-            // 
-            resources.ApplyResources(this.btn_reloadConfig, "btn_reloadConfig");
-            this.btn_reloadConfig.Name = "btn_reloadConfig";
-            this.btn_reloadConfig.UseVisualStyleBackColor = true;
-            this.btn_reloadConfig.Click += new System.EventHandler(this.btn_reloadConfig_Click);
-            // 
             // comboBox_Zugauswahl
             // 
+            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Zugauswahl.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.Name = "comboBox_Zugauswahl";
             this.comboBox_Zugauswahl.Sorted = true;
             this.comboBox_Zugauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBox_Zugauswahl_SelectedIndexChanged);
@@ -96,9 +88,9 @@
             // 
             // comboBox_JoystickNumber
             // 
+            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_JoystickNumber.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
             // 
             // bgw_Throttle
@@ -130,8 +122,8 @@
             // 
             // listBox_debugInfo
             // 
-            this.listBox_debugInfo.FormattingEnabled = true;
             resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
+            this.listBox_debugInfo.FormattingEnabled = true;
             this.listBox_debugInfo.Name = "listBox_debugInfo";
             // 
             // lbl_resolution
@@ -177,9 +169,9 @@
             // 
             // groupBox_ScanErgebnisse
             // 
+            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_alternativeResult);
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_originalResult);
-            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Name = "groupBox_ScanErgebnisse";
             this.groupBox_ScanErgebnisse.TabStop = false;
             // 
@@ -200,15 +192,18 @@
             this.lbl_updateAvailable.Name = "lbl_updateAvailable";
             this.lbl_updateAvailable.Click += new System.EventHandler(this.lbl_updateAvailable_Click);
             // 
-            // timer_checkConnections
+            // btn_checkJoysticks
             // 
-            this.timer_checkConnections.Interval = 500;
-            this.timer_checkConnections.Tick += new System.EventHandler(this.timer_checkConnections_Tick);
+            resources.ApplyResources(this.btn_checkJoysticks, "btn_checkJoysticks");
+            this.btn_checkJoysticks.Name = "btn_checkJoysticks";
+            this.btn_checkJoysticks.UseVisualStyleBackColor = true;
+            this.btn_checkJoysticks.Click += new System.EventHandler(this.btn_checkJoysticks_Click);
             // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_checkJoysticks);
             this.Controls.Add(this.lbl_updateAvailable);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_requests);
@@ -223,7 +218,6 @@
             this.Controls.Add(this.lbl_schub);
             this.Controls.Add(this.comboBox_JoystickNumber);
             this.Controls.Add(this.comboBox_Zugauswahl);
-            this.Controls.Add(this.btn_reloadConfig);
             this.Controls.Add(this.check_active);
             this.Controls.Add(this.lst_inputs);
             this.MaximizeBox = false;
@@ -243,7 +237,6 @@
         #endregion
         private System.Windows.Forms.ListBox lst_inputs;
         private System.Windows.Forms.CheckBox check_active;
-        private System.Windows.Forms.Button btn_reloadConfig;
         private System.Windows.Forms.ComboBox comboBox_Zugauswahl;
         private System.Windows.Forms.Timer timer_CheckSticks;
         private System.Windows.Forms.ComboBox comboBox_JoystickNumber;
@@ -264,7 +257,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_updateAvailable;
         private System.Windows.Forms.ListBox listBox_debugInfo;
-        private System.Windows.Forms.Timer timer_checkConnections;
+        private System.Windows.Forms.Button btn_checkJoysticks;
     }
 }
 
