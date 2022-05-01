@@ -127,9 +127,6 @@
   <data name="check_active.Text" xml:space="preserve">
     <value>Active</value>
   </data>
-  <data name="btn_reloadConfig.Text" xml:space="preserve">
-    <value>Reload Config</value>
-  </data>
   <data name="btn_einstellungen.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -147,6 +144,9 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Joystick No.</value>
+  </data>
+  <data name="btn_checkJoysticks.Text" xml:space="preserve">
+    <value>Reload joysticks</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

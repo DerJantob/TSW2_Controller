@@ -240,10 +240,14 @@ namespace TSW2_Controller
             ReadTrainConfig();
         }
 
-        private void btn_reloadConfig_Click(object sender, EventArgs e)
+        private void btn_checkJoysticks_Click(object sender, EventArgs e)
         {
-            check_active.Checked = false;
-            ReadTrainConfig();
+            Joystick[] sticks = getSticks();
+
+            if (sticks.Count() != MainSticks.Count())
+            {
+                MainSticks = sticks;
+            }
         }
 
         private async void CheckGitHubNewerVersion()
@@ -1169,16 +1173,6 @@ namespace TSW2_Controller
                 Log.ErrorException(ex);
                 MainSticks = getSticks();
                 Sprache.ShowMessageBox(stick.Information.InstanceName + " nicht mehr angeschlossen!", stick.Information.InstanceName + " not connected anymore!");
-            }
-        }
-
-        private void timer_checkConnections_Tick(object sender, EventArgs e)
-        {
-            Joystick[] sticks = getSticks();
-
-            if (sticks.Count() != MainSticks.Count())
-            {
-                MainSticks = sticks;
             }
         }
 
