@@ -51,7 +51,7 @@ Video tutorial:
 
 Contributions are always welcome!
 
-If you want to contribute to this project, just create a branch and if you are finished, create a pull request into the `develop` branch.
+If you want to contribute to this project, just create a branch and if you are finished, create a pull request into the most recent release.
 
 The code doesn't really look that nice since I only do programming as a hobby, but that shouldn't bother too much.
 
