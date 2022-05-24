@@ -58,6 +58,8 @@ namespace TSW2_Controller
             keyList.Add(new object[] { "oem6", Keys.Oem6 });
             keyList.Add(new object[] { "oem7", Keys.Oem7 });
             keyList.Add(new object[] { "oem8", Keys.Oem8 });
+            keyList.Add(new object[] { "oemquotes", Keys.OemQuotes });
+            keyList.Add(new object[] { "oemsemicolon", Keys.OemSemicolon });
             keyList.Add(new object[] { "+", Keys.Oemplus });
             keyList.Add(new object[] { "comma", Keys.Oemcomma });
             keyList.Add(new object[] { ".", Keys.OemPeriod });
