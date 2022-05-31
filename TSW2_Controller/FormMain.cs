@@ -30,7 +30,6 @@ namespace TSW2_Controller
         List<string[]> activeTrain = new List<string[]>();
         public List<string> trainNames = new List<string>();
         List<object[]> joystickStates = new List<object[]>(); // id, joyInputs, inputNames, buttons
-        List<string> logData = new List<string>();
         List<string> schubIndexe = new List<string>();
         List<string> bremsIndexe = new List<string>();
         List<string> kombihebel_schubIndexe = new List<string>();

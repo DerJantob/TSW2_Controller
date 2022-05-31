@@ -745,6 +745,10 @@ namespace TSW2_Controller
             File.WriteAllLines(Tcfg.configpfad, line);
 
         }
+        private void btnT1_editController_Click(object sender, EventArgs e)
+        {
+          
+        }
         #endregion
 
         #region Knöpfe
