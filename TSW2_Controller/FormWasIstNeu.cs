@@ -179,6 +179,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 1.1.2
+            if (new Version("1.1.2").CompareTo(version) > 0)
+            {
+                changelog.Add("v1.1.2" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Verändert: Statt automatischem erkennen von neuen Joysticks gibt es jetzt einen Knopf dafür, da es Probleme damit gab");
+                }
+                else
+                {
+                    changelog.Add("- Changed: Instead of automatic detection of new joysticks, there is now a button for it, since there were problems with it");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
