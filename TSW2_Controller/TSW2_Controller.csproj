@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="ShiftEmulator.cs" />
     <Compile Include="Tcfg.cs" />
+    <Compile Include="VirtualController.cs" />
     <EmbeddedResource Include="FormMain.en.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

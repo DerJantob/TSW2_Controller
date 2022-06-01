@@ -747,7 +747,8 @@ namespace TSW2_Controller
         }
         private void btnT1_editController_Click(object sender, EventArgs e)
         {
-          
+            resetControllerBearbeiten();
+            tabControl_main.SelectedIndex = 2;
         }
         #endregion
 
@@ -966,6 +967,7 @@ namespace TSW2_Controller
         private void btnB_Speichern_Click(object sender, EventArgs e)
         {
             Buttons_Speichern();
+            comboBoxB_KnopfAuswahl.Items.Add(comboBoxB_KnopfAuswahl.Text);
         }
 
         private void Buttons_Speichern(bool justWriteFile = false)
@@ -1063,6 +1065,39 @@ namespace TSW2_Controller
         }
         #endregion
 
+        #endregion
+
+        #region Regler bearbeiten
+        private void resetControllerBearbeiten()
+        {
+            comboBoxT2_Reglerauswahl.Items.Clear();
+            txtT2_increase.Text = "";
+            txtT2_decrease.Text = "";
+            comboBoxT2_mainIndicator.Items.Clear();
+            comboBoxT2_brakearea.Items.Clear();
+            comboBoxT2_throttlearea.Items.Clear();
+
+            if (File.Exists(Tcfg.controllersConfigPfad))
+            {
+                using (var reader = new StreamReader(Tcfg.controllersConfigPfad))
+                {
+                    bool skipFirst = true;
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+                        if (!skipFirst)
+                        {
+                            comboBoxT2_Reglerauswahl.Items.Add(values[0]);
+                        }
+                        else
+                        {
+                            skipFirst = false;
+                        }
+                    }
+                }
+            }
+        }
         #endregion
 
         private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
