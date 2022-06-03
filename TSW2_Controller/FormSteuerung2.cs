@@ -1153,7 +1153,6 @@ namespace TSW2_Controller
             ComboBox cb = comboBoxT2_Reglerauswahl;
             if (cb.Items.Contains(cb.Text))
             {
-
                 for (int i = 0; i < controllerConfig.Count; i++)
                 {
                     if (controllerConfig[i].name == cb.Text)
@@ -1162,6 +1161,28 @@ namespace TSW2_Controller
                     }
                 }
                 cb.Items.Remove(cb.Text);
+                //Schreibe Datei
+                string[] line = new string[controllerConfig.Count + 1];
+                line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+                for (int i = 1; i < controllerConfig.Count + 1; i++)
+                {
+                    VirtualController vc = controllerConfig[i - 1];
+
+                    string combined = "";
+
+                    combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+
+                    line[i] = combined;
+                }
+
+                File.WriteAllLines(Tcfg.controllersConfigPfad, line);
+
+                ComboBox cb2 = comboBoxT2_Reglerauswahl;
+                if (!cb2.Items.Contains(cb2.Text))
+                {
+                    cb2.Items.Add(cb2.Text);
+                }
+                resetControllerBearbeiten();
             }
         }
         private void txt_Aktion_KeyDown(object sender, KeyEventArgs e)
@@ -1196,12 +1217,9 @@ namespace TSW2_Controller
         private void comboBoxT2_Indicators_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
-            if (cb.Text != "")
+            if (MessageBox.Show(Sprache.Translate("Willst du " + cb.Text + " ENTFERNEN?", "Do you want to REMOVE " + cb.Text + "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (MessageBox.Show(Sprache.Translate("Willst du " + cb.Text + " ENTFERNEN?", "Do you want to REMOVE " + cb.Text + "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    cb.Items.Remove(cb.Text);
-                }
+                cb.Items.Remove(cb.Text);
             }
         }
         private void btnT2_Save_Click(object sender, EventArgs e)
