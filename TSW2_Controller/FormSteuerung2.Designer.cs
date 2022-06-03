@@ -97,23 +97,23 @@
             this.comboBoxT0_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtT2_increase = new System.Windows.Forms.TextBox();
-            this.txtT2_decrease = new System.Windows.Forms.TextBox();
+            this.btnT2_remove = new System.Windows.Forms.Button();
+            this.btnT2_Save = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBoxT2_mainIndicator = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBoxT2_throttlearea = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxT2_brakearea = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.btnT2_Save = new System.Windows.Forms.Button();
-            this.btnT2_remove = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBoxT2_throttlearea = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxT2_mainIndicator = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtT2_decrease = new System.Windows.Forms.TextBox();
+            this.txtT2_increase = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -125,9 +125,9 @@
             this.tabPage1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_CheckJoysticks
@@ -612,41 +612,22 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // comboBoxT2_Reglerauswahl
+            // btnT2_remove
             // 
-            this.comboBoxT2_Reglerauswahl.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBoxT2_Reglerauswahl, "comboBoxT2_Reglerauswahl");
-            this.comboBoxT2_Reglerauswahl.Name = "comboBoxT2_Reglerauswahl";
+            resources.ApplyResources(this.btnT2_remove, "btnT2_remove");
+            this.btnT2_remove.Name = "btnT2_remove";
+            this.btnT2_remove.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // btnT2_Save
             // 
-            this.groupBox1.Controls.Add(this.txtT2_decrease);
-            this.groupBox1.Controls.Add(this.txtT2_increase);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label9);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            resources.ApplyResources(this.btnT2_Save, "btnT2_Save");
+            this.btnT2_Save.Name = "btnT2_Save";
+            this.btnT2_Save.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // label17
             // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // txtT2_increase
-            // 
-            resources.ApplyResources(this.txtT2_increase, "txtT2_increase");
-            this.txtT2_increase.Name = "txtT2_increase";
-            // 
-            // txtT2_decrease
-            // 
-            resources.ApplyResources(this.txtT2_decrease, "txtT2_decrease");
-            this.txtT2_decrease.Name = "txtT2_decrease";
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
             // 
             // groupBox2
             // 
@@ -657,17 +638,6 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
-            // comboBoxT2_mainIndicator
-            // 
-            this.comboBoxT2_mainIndicator.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBoxT2_mainIndicator, "comboBoxT2_mainIndicator");
-            this.comboBoxT2_mainIndicator.Name = "comboBoxT2_mainIndicator";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label13);
@@ -677,17 +647,6 @@
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // comboBoxT2_throttlearea
-            // 
-            this.comboBoxT2_throttlearea.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBoxT2_throttlearea, "comboBoxT2_throttlearea");
-            this.comboBoxT2_throttlearea.Name = "comboBoxT2_throttlearea";
             // 
             // label13
             // 
@@ -700,22 +659,70 @@
             resources.ApplyResources(this.comboBoxT2_brakearea, "comboBoxT2_brakearea");
             this.comboBoxT2_brakearea.Name = "comboBoxT2_brakearea";
             // 
-            // label17
+            // label12
             // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
             // 
-            // btnT2_Save
+            // comboBoxT2_throttlearea
             // 
-            resources.ApplyResources(this.btnT2_Save, "btnT2_Save");
-            this.btnT2_Save.Name = "btnT2_Save";
-            this.btnT2_Save.UseVisualStyleBackColor = true;
+            this.comboBoxT2_throttlearea.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_throttlearea, "comboBoxT2_throttlearea");
+            this.comboBoxT2_throttlearea.Name = "comboBoxT2_throttlearea";
             // 
-            // btnT2_remove
+            // label10
             // 
-            resources.ApplyResources(this.btnT2_remove, "btnT2_remove");
-            this.btnT2_remove.Name = "btnT2_remove";
-            this.btnT2_remove.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // comboBoxT2_mainIndicator
+            // 
+            this.comboBoxT2_mainIndicator.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_mainIndicator, "comboBoxT2_mainIndicator");
+            this.comboBoxT2_mainIndicator.Name = "comboBoxT2_mainIndicator";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtT2_decrease);
+            this.groupBox1.Controls.Add(this.txtT2_increase);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label9);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // txtT2_decrease
+            // 
+            resources.ApplyResources(this.txtT2_decrease, "txtT2_decrease");
+            this.txtT2_decrease.Name = "txtT2_decrease";
+            this.txtT2_decrease.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Aktion_KeyDown);
+            this.txtT2_decrease.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txt_Aktion_MouseDown);
+            this.txtT2_decrease.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txt_Aktion_PreviewKeyDown);
+            // 
+            // txtT2_increase
+            // 
+            resources.ApplyResources(this.txtT2_increase, "txtT2_increase");
+            this.txtT2_increase.Name = "txtT2_increase";
+            this.txtT2_increase.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Aktion_KeyDown);
+            this.txtT2_increase.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txt_Aktion_MouseDown);
+            this.txtT2_increase.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txt_Aktion_PreviewKeyDown);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // comboBoxT2_Reglerauswahl
+            // 
+            this.comboBoxT2_Reglerauswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_Reglerauswahl, "comboBoxT2_Reglerauswahl");
+            this.comboBoxT2_Reglerauswahl.Name = "comboBoxT2_Reglerauswahl";
+            this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             // 
             // FormSteuerung2
             // 
@@ -740,12 +747,12 @@
             this.tabControl_main.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }

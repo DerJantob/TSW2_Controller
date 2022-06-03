@@ -16,6 +16,7 @@ namespace TSW2_Controller
     public partial class FormSteuerung2 : Form
     {
         List<string[]> trainConfig = new List<string[]>();
+        List<string[]> controllerConfig = new List<string[]>();
         List<string[]> customController = new List<string[]>();
         string selectedTrain = "";
         string selectedRegler = "";
@@ -570,7 +571,7 @@ namespace TSW2_Controller
                 }
                 ReadDataGrid();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.ErrorException(ex);
             }
@@ -1068,35 +1069,87 @@ namespace TSW2_Controller
         #endregion
 
         #region Regler bearbeiten
-        private void resetControllerBearbeiten()
+        private void resetControllerBearbeiten(bool fullReset = true)
         {
-            comboBoxT2_Reglerauswahl.Items.Clear();
+
             txtT2_increase.Text = "";
             txtT2_decrease.Text = "";
             comboBoxT2_mainIndicator.Items.Clear();
             comboBoxT2_brakearea.Items.Clear();
             comboBoxT2_throttlearea.Items.Clear();
 
-            if (File.Exists(Tcfg.controllersConfigPfad))
+            if (fullReset)
             {
-                using (var reader = new StreamReader(Tcfg.controllersConfigPfad))
+                controllerConfig.Clear();
+                comboBoxT2_Reglerauswahl.Items.Clear();
+                if (File.Exists(Tcfg.controllersConfigPfad))
                 {
-                    bool skipFirst = true;
-                    while (!reader.EndOfStream)
+                    using (var reader = new StreamReader(Tcfg.controllersConfigPfad))
                     {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
-                        if (!skipFirst)
+                        bool skipFirst = true;
+                        while (!reader.EndOfStream)
                         {
-                            comboBoxT2_Reglerauswahl.Items.Add(values[0]);
-                        }
-                        else
-                        {
-                            skipFirst = false;
+                            var line = reader.ReadLine();
+                            var values = line.Split(',');
+                            if (!skipFirst)
+                            {
+                                controllerConfig.Add(values);
+                                comboBoxT2_Reglerauswahl.Items.Add(values[0]);
+                            }
+                            else
+                            {
+                                skipFirst = false;
+                            }
                         }
                     }
                 }
             }
+        }
+        private void comboBoxT2_Reglerauswahl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            resetControllerBearbeiten(false);
+            string selection = comboBoxT2_Reglerauswahl.SelectedItem.ToString();
+
+            foreach (string[] singleController in controllerConfig)
+            {
+                if (selection == singleController[0])
+                {
+                    txtT2_increase.Text = singleController[1];
+                    txtT2_decrease.Text = singleController[2];
+
+                    string[] textindicators = singleController[3].Split('|');
+                    foreach (string singleTextindicator in textindicators)
+                    {
+                        comboBoxT2_mainIndicator.Items.Add(singleTextindicator);
+                    }
+                    textindicators = singleController[4].Split('|');
+                    foreach( string singleTextindicator in textindicators)
+                    {
+                        comboBoxT2_throttlearea.Items.Add(singleTextindicator);
+                    }
+                    textindicators = singleController[5].Split('|');
+                    foreach(string singleTextindicator in textindicators)
+                    {
+                        comboBoxT2_brakearea.Items.Add(singleTextindicator);
+                    }
+                }
+            }
+        }
+        private void txt_Aktion_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Verhindert, dass die gedrückte Taste ins Textfeld geschrieben wird
+            e.SuppressKeyPress = true;
+        }
+        private void txt_Aktion_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
+            //PreviewKeyDown um auch tab-Taste zu erlauben
+            ((TextBox)sender).Text = Keyboard.ConvertKeyToString(e.KeyCode);
+            SelectNextControl((Control)sender, true, false, true, true);
+        }
+        private void txt_Aktion_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((TextBox)sender).Text = "";
         }
         #endregion
 
