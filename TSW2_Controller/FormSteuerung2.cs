@@ -1151,6 +1151,27 @@ namespace TSW2_Controller
         {
             ((TextBox)sender).Text = "";
         }
+        private void comboBoxT2_Indicators_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                //add
+                if(!cb.Items.Contains(cb.Text) && cb.Text != "")
+                {
+                    cb.Items.Add(cb.Text);
+                    cb.Text = "";
+                }
+            }
+        }
+        private void comboBoxT2_Indicators_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if (MessageBox.Show(Sprache.Translate("Willst du "+cb.Text+" ENTFERNEN?", "Do you want to REMOVE " + cb.Text + "?"),"",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                cb.Items.Remove(cb.Text);
+            }
+        }
         #endregion
 
         private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)

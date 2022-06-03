@@ -658,6 +658,7 @@
             this.comboBoxT2_brakearea.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxT2_brakearea, "comboBoxT2_brakearea");
             this.comboBoxT2_brakearea.Name = "comboBoxT2_brakearea";
+            this.comboBoxT2_brakearea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
             // 
             // label12
             // 
@@ -669,6 +670,7 @@
             this.comboBoxT2_throttlearea.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxT2_throttlearea, "comboBoxT2_throttlearea");
             this.comboBoxT2_throttlearea.Name = "comboBoxT2_throttlearea";
+            this.comboBoxT2_throttlearea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
             // 
             // label10
             // 
@@ -680,6 +682,8 @@
             this.comboBoxT2_mainIndicator.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxT2_mainIndicator, "comboBoxT2_mainIndicator");
             this.comboBoxT2_mainIndicator.Name = "comboBoxT2_mainIndicator";
+            this.comboBoxT2_mainIndicator.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Indicators_SelectedIndexChanged);
+            this.comboBoxT2_mainIndicator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
             // 
             // groupBox1
             // 
