@@ -1749,11 +1749,38 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnT2_add.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnT2_add.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 22</value>
+  </data>
+  <data name="btnT2_add.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
+  </data>
+  <data name="btnT2_add.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="btnT2_add.Text" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="&gt;&gt;btnT2_add.Name" xml:space="preserve">
+    <value>btnT2_add</value>
+  </data>
+  <data name="&gt;&gt;btnT2_add.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT2_add.Parent" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;btnT2_add.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnT2_remove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnT2_remove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="btnT2_remove.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -1774,7 +1801,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;btnT2_remove.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnT2_Save.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 272</value>
@@ -1798,7 +1825,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;btnT2_Save.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label17.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1825,7 +1852,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2026,7 +2053,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="txtT2_decrease.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 47</value>
@@ -2158,7 +2185,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="comboBoxT2_Reglerauswahl.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 22</value>
@@ -2179,7 +2206,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;comboBoxT2_Reglerauswahl.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

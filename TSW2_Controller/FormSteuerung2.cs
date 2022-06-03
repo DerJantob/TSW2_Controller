@@ -16,7 +16,7 @@ namespace TSW2_Controller
     public partial class FormSteuerung2 : Form
     {
         List<string[]> trainConfig = new List<string[]>();
-        List<string[]> controllerConfig = new List<string[]>();
+        List<VirtualController> controllerConfig = new List<VirtualController>();
         List<string[]> customController = new List<string[]>();
         string selectedTrain = "";
         string selectedRegler = "";
@@ -1074,6 +1074,9 @@ namespace TSW2_Controller
 
             txtT2_increase.Text = "";
             txtT2_decrease.Text = "";
+            comboBoxT2_mainIndicator.Text = "";
+            comboBoxT2_brakearea.Text = "";
+            comboBoxT2_throttlearea.Text = "";
             comboBoxT2_mainIndicator.Items.Clear();
             comboBoxT2_brakearea.Items.Clear();
             comboBoxT2_throttlearea.Items.Clear();
@@ -1081,6 +1084,7 @@ namespace TSW2_Controller
             if (fullReset)
             {
                 controllerConfig.Clear();
+                comboBoxT2_Reglerauswahl.Text = "";
                 comboBoxT2_Reglerauswahl.Items.Clear();
                 if (File.Exists(Tcfg.controllersConfigPfad))
                 {
@@ -1093,7 +1097,15 @@ namespace TSW2_Controller
                             var values = line.Split(',');
                             if (!skipFirst)
                             {
-                                controllerConfig.Add(values);
+                                VirtualController vc = new VirtualController();
+                                vc.name = values[0];
+                                vc.increaseKey = values[1];
+                                vc.decreaseKey = values[2];
+                                vc.textindicators = vc.ConvertStringToArray(values[3]);
+                                vc.textindicators_throttlearea = vc.ConvertStringToArray(values[4]);
+                                vc.textindicators_brakearea = vc.ConvertStringToArray(values[5]);
+
+                                controllerConfig.Add(vc);
                                 comboBoxT2_Reglerauswahl.Items.Add(values[0]);
                             }
                             else
@@ -1110,29 +1122,46 @@ namespace TSW2_Controller
             resetControllerBearbeiten(false);
             string selection = comboBoxT2_Reglerauswahl.SelectedItem.ToString();
 
-            foreach (string[] singleController in controllerConfig)
+            foreach (VirtualController singleController in controllerConfig)
             {
-                if (selection == singleController[0])
+                if (selection == singleController.name)
                 {
-                    txtT2_increase.Text = singleController[1];
-                    txtT2_decrease.Text = singleController[2];
+                    txtT2_increase.Text = singleController.increaseKey;
+                    txtT2_decrease.Text = singleController.decreaseKey;
 
-                    string[] textindicators = singleController[3].Split('|');
-                    foreach (string singleTextindicator in textindicators)
+                    comboBoxT2_mainIndicator.Items.AddRange(singleController.textindicators);
+                    comboBoxT2_throttlearea.Items.AddRange(singleController.textindicators_throttlearea);
+                    comboBoxT2_brakearea.Items.AddRange(singleController.textindicators_brakearea);
+                }
+            }
+        }
+        private void btnT2_add_Click(object sender, EventArgs e)
+        {
+            ComboBox cb = comboBoxT2_Reglerauswahl;
+            if (!cb.Items.Contains(cb.Text))
+            {
+                cb.Items.Add(cb.Text);
+                resetControllerBearbeiten(false);
+            }
+            else
+            {
+                resetControllerBearbeiten(false);
+            }
+        }
+        private void btnT2_remove_Click(object sender, EventArgs e)
+        {
+            ComboBox cb = comboBoxT2_Reglerauswahl;
+            if (cb.Items.Contains(cb.Text))
+            {
+
+                for (int i = 0; i < controllerConfig.Count; i++)
+                {
+                    if (controllerConfig[i].name == cb.Text)
                     {
-                        comboBoxT2_mainIndicator.Items.Add(singleTextindicator);
-                    }
-                    textindicators = singleController[4].Split('|');
-                    foreach( string singleTextindicator in textindicators)
-                    {
-                        comboBoxT2_throttlearea.Items.Add(singleTextindicator);
-                    }
-                    textindicators = singleController[5].Split('|');
-                    foreach(string singleTextindicator in textindicators)
-                    {
-                        comboBoxT2_brakearea.Items.Add(singleTextindicator);
+                        controllerConfig.RemoveAt(i);
                     }
                 }
+                cb.Items.Remove(cb.Text);
             }
         }
         private void txt_Aktion_KeyDown(object sender, KeyEventArgs e)
@@ -1154,10 +1183,10 @@ namespace TSW2_Controller
         private void comboBoxT2_Indicators_KeyPress(object sender, KeyPressEventArgs e)
         {
             ComboBox cb = sender as ComboBox;
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 //add
-                if(!cb.Items.Contains(cb.Text) && cb.Text != "")
+                if (!cb.Items.Contains(cb.Text) && cb.Text != "")
                 {
                     cb.Items.Add(cb.Text);
                     cb.Text = "";
@@ -1167,10 +1196,65 @@ namespace TSW2_Controller
         private void comboBoxT2_Indicators_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
-            if (MessageBox.Show(Sprache.Translate("Willst du "+cb.Text+" ENTFERNEN?", "Do you want to REMOVE " + cb.Text + "?"),"",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (cb.Text != "")
             {
-                cb.Items.Remove(cb.Text);
+                if (MessageBox.Show(Sprache.Translate("Willst du " + cb.Text + " ENTFERNEN?", "Do you want to REMOVE " + cb.Text + "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    cb.Items.Remove(cb.Text);
+                }
             }
+        }
+        private void btnT2_Save_Click(object sender, EventArgs e)
+        {
+            if (txtT2_increase.Text != "" && txtT2_decrease.Text != "")
+            {
+                VirtualController vc = new VirtualController();
+                vc.name = comboBoxT2_Reglerauswahl.Text;
+                vc.increaseKey = txtT2_increase.Text;
+                vc.decreaseKey = txtT2_decrease.Text;
+                vc.textindicators = comboBoxT2_mainIndicator.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                vc.textindicators_throttlearea = comboBoxT2_throttlearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                vc.textindicators_brakearea = comboBoxT2_brakearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+
+                bool aleardyExists = false;
+                for (int i = 0; i < controllerConfig.Count; i++)
+                {
+                    if (controllerConfig[i].name == comboBoxT2_Reglerauswahl.Text)
+                    {
+                        aleardyExists = true;
+                        controllerConfig[i] = vc;
+
+                        break;
+                    }
+                }
+                if (!aleardyExists)
+                {
+                    controllerConfig.Add(vc);
+                }
+            }
+
+            //Schreibe Datei
+            string[] line = new string[controllerConfig.Count + 1];
+            line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+            for (int i = 1; i < controllerConfig.Count + 1; i++)
+            {
+                VirtualController vc = controllerConfig[i - 1];
+
+                string combined = "";
+
+                combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+
+                line[i] = combined;
+            }
+
+            File.WriteAllLines(Tcfg.controllersConfigPfad, line);
+
+            ComboBox cb = comboBoxT2_Reglerauswahl;
+            if (!cb.Items.Contains(cb.Text))
+            {
+                cb.Items.Add(cb.Text);
+            }
+            resetControllerBearbeiten();
         }
         #endregion
 

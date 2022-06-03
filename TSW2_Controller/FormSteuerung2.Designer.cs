@@ -97,6 +97,7 @@
             this.comboBoxT0_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnT2_add = new System.Windows.Forms.Button();
             this.btnT2_remove = new System.Windows.Forms.Button();
             this.btnT2_Save = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -602,6 +603,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnT2_add);
             this.tabPage5.Controls.Add(this.btnT2_remove);
             this.tabPage5.Controls.Add(this.btnT2_Save);
             this.tabPage5.Controls.Add(this.label17);
@@ -612,17 +614,26 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btnT2_add
+            // 
+            resources.ApplyResources(this.btnT2_add, "btnT2_add");
+            this.btnT2_add.Name = "btnT2_add";
+            this.btnT2_add.UseVisualStyleBackColor = true;
+            this.btnT2_add.Click += new System.EventHandler(this.btnT2_add_Click);
+            // 
             // btnT2_remove
             // 
             resources.ApplyResources(this.btnT2_remove, "btnT2_remove");
             this.btnT2_remove.Name = "btnT2_remove";
             this.btnT2_remove.UseVisualStyleBackColor = true;
+            this.btnT2_remove.Click += new System.EventHandler(this.btnT2_remove_Click);
             // 
             // btnT2_Save
             // 
             resources.ApplyResources(this.btnT2_Save, "btnT2_Save");
             this.btnT2_Save.Name = "btnT2_Save";
             this.btnT2_Save.UseVisualStyleBackColor = true;
+            this.btnT2_Save.Click += new System.EventHandler(this.btnT2_Save_Click);
             // 
             // label17
             // 
@@ -658,6 +669,7 @@
             this.comboBoxT2_brakearea.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxT2_brakearea, "comboBoxT2_brakearea");
             this.comboBoxT2_brakearea.Name = "comboBoxT2_brakearea";
+            this.comboBoxT2_brakearea.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Indicators_SelectedIndexChanged);
             this.comboBoxT2_brakearea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
             // 
             // label12
@@ -670,6 +682,7 @@
             this.comboBoxT2_throttlearea.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxT2_throttlearea, "comboBoxT2_throttlearea");
             this.comboBoxT2_throttlearea.Name = "comboBoxT2_throttlearea";
+            this.comboBoxT2_throttlearea.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Indicators_SelectedIndexChanged);
             this.comboBoxT2_throttlearea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
             // 
             // label10
@@ -846,5 +859,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnT2_remove;
         private System.Windows.Forms.Button btnT2_Save;
+        private System.Windows.Forms.Button btnT2_add;
     }
 }

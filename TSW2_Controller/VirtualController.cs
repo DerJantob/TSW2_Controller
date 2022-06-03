@@ -14,5 +14,20 @@ namespace TSW2_Controller
         public string[] textindicators_brakearea;
         public string increaseKey;
         public string decreaseKey;
+
+        public string[] ConvertStringToArray(string input)
+        {
+            string[] result;
+
+            result = input.Split('|');
+            if (result.Count() == 1)
+            {
+                if (result[0] == "")
+                {
+                    result = new string[0];
+                }
+            }
+            return result;
+        }
     }
 }
