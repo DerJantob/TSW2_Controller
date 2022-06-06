@@ -35,6 +35,8 @@ namespace TSW2_Controller
         List<string> kombihebel_schubIndexe = new List<string>();
         List<string> kombihebel_bremsIndexe = new List<string>();
 
+        static TesseractEngine TCengine = new TesseractEngine(@"./tessdata", "deu", EngineMode.Default);
+
         bool[] currentlyPressedButtons = new bool[128];
         bool[] previouslyPressedButtons = new bool[128];
 
@@ -470,17 +472,14 @@ namespace TSW2_Controller
         public static string GetText(Bitmap imgsource)
         {
             var ocrtext = string.Empty;
-            using (var engine = new TesseractEngine(@"./tessdata", "deu", EngineMode.Default))
+            //engine.SetVariable("load_system_dawg", true);
+            //engine.SetVariable("language_model_penalty_non_dict_word", 1);
+            //engine.SetVariable("language_model_penalty_non_freq_dict_word", 1);
+            using (var img = PixConverter.ToPix(imgsource))
             {
-                //engine.SetVariable("load_system_dawg", true);
-                //engine.SetVariable("language_model_penalty_non_dict_word", 1);
-                //engine.SetVariable("language_model_penalty_non_freq_dict_word", 1);
-                using (var img = PixConverter.ToPix(imgsource))
+                using (var page = TCengine.Process(img))
                 {
-                    using (var page = engine.Process(img))
-                    {
-                        ocrtext = page.GetText();
-                    }
+                    ocrtext = page.GetText();
                 }
             }
             ocrtext = ocrtext.Replace(",", ".");
@@ -1071,7 +1070,7 @@ namespace TSW2_Controller
                 {
                     comboBox_JoystickNumber.Items.Add(i);
                 }
-                if (sticks.Count > 0 ) { comboBox_JoystickNumber.SelectedIndex = comboBox_JoystickNumber.Items.Count-1; }
+                if (sticks.Count > 0) { comboBox_JoystickNumber.SelectedIndex = comboBox_JoystickNumber.Items.Count - 1; }
             }
 
             Log.Add(sticks.Count + " joysticks found", false, 1);
@@ -1804,8 +1803,15 @@ namespace TSW2_Controller
         }
         private void bgw_readScreen_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (((Bitmap)((object[])e.UserState)[0]).Height != 1) { pictureBox_Screenshot_original.Image = (Bitmap)((object[])e.UserState)[0]; }
-            if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
+            try //Prevent crash that randomly happens here
+            {
+                if (((Bitmap)((object[])e.UserState)[0]).Height != 1) { pictureBox_Screenshot_original.Image = (Bitmap)((object[])e.UserState)[0]; }
+                if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException(ex);
+            }
             if (((string)((object[])e.UserState)[2]) != null) { lbl_originalResult.Text = ((string)((object[])e.UserState)[2]); }
             if (((string)((object[])e.UserState)[3]) != null) { lbl_alternativeResult.Text = ((string)((object[])e.UserState)[3]); }
             if (((int)((object[])e.UserState)[4]) != -1) { lbl_requests.Text = "reqT:" + (((int)((object[])e.UserState)[4]) - 1).ToString() + " reqB:" + (((int)((object[])e.UserState)[5]) - 1).ToString(); }
