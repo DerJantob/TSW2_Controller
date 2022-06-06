@@ -37,6 +37,12 @@ namespace TSW2_Controller
             lblR_KnopfNr.Text = Sprache.Translate("KnopfNr.", "Button no.");
 
             dataGridView1.Size = new Size(254, 205);
+
+            //Verstecke die Auswahl der Tab-Buttons
+            tabControl_main.Appearance = TabAppearance.FlatButtons;
+            tabControl_main.ItemSize = new Size(0, 1);
+            tabControl_main.SizeMode = TabSizeMode.Fixed;
+            tabControl_main.Size = new Size(313, 104);
         }
 
         #region Allgemeines
@@ -396,7 +402,7 @@ namespace TSW2_Controller
                     }
                 }
                 selectedRegler = listBoxT1_ControllerList.Text;
-                tabControl_ReglerKnopf.Enabled = true;
+                panel_Regler.Enabled = true;
             }
         }
 
@@ -592,7 +598,7 @@ namespace TSW2_Controller
                     }
                     listBoxT1_ControllerList.Items.Remove(listBoxT1_ControllerList.SelectedItem);
                     ReglerSpeichern(true);
-                    tabControl_ReglerKnopf.Enabled = false;
+                    panel_Regler.Enabled = false;
                 }
             }
         }
@@ -1303,6 +1309,17 @@ namespace TSW2_Controller
             else
             {
                 groupBoxT1_Regler.Visible = false;
+            }
+        }
+        private void tabControl_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_main.SelectedIndex == 0)
+            {
+                tabControl_main.Size = new Size(313, 104);
+            }
+            else
+            {
+                tabControl_main.Size = new Size(647, 348);
             }
         }
     }

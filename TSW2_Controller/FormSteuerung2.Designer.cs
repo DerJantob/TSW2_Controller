@@ -116,6 +116,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
             this.panel_main = new System.Windows.Forms.Panel();
+            this.panel_Regler = new System.Windows.Forms.Panel();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -131,6 +132,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel_main.SuspendLayout();
+            this.panel_Regler.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_CheckJoysticks
@@ -204,33 +206,7 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.progressBar_Joystick);
-            this.tabPage4.Controls.Add(this.pictureBox2);
-            this.tabPage4.Controls.Add(this.pictureBox1);
-            this.tabPage4.Controls.Add(this.label2);
-            this.tabPage4.Controls.Add(this.txtR_InputUmrechnen);
-            this.tabPage4.Controls.Add(this.lblR_ReglerStand);
-            this.tabPage4.Controls.Add(this.btnR_Speichern);
-            this.tabPage4.Controls.Add(this.btn_R_eigenes);
-            this.tabPage4.Controls.Add(this.dataGridView1);
-            this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.txtR_LongPress);
-            this.tabPage4.Controls.Add(this.label3);
-            this.tabPage4.Controls.Add(this.label15);
-            this.tabPage4.Controls.Add(this.txtR_JoyAchse);
-            this.tabPage4.Controls.Add(this.txtR_Zeitfaktor);
-            this.tabPage4.Controls.Add(this.txtR_JoyNr);
-            this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.lblR_AnzahlStufen);
-            this.tabPage4.Controls.Add(this.txtR_Sonderfaelle);
-            this.tabPage4.Controls.Add(this.txtR_AnzahlStufen);
-            this.tabPage4.Controls.Add(this.btnR_Erkennen);
-            this.tabPage4.Controls.Add(this.radioR_Stufenlos);
-            this.tabPage4.Controls.Add(this.btnR_m100);
-            this.tabPage4.Controls.Add(this.radioR_Stufen);
-            this.tabPage4.Controls.Add(this.btnR_0);
-            this.tabPage4.Controls.Add(this.btnR_100);
+            this.tabPage4.Controls.Add(this.panel_Regler);
             resources.ApplyResources(this.tabPage4, "tabPage4");
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -602,6 +578,7 @@
             resources.ApplyResources(this.tabControl_main, "tabControl_main");
             this.tabControl_main.Name = "tabControl_main";
             this.tabControl_main.SelectedIndex = 0;
+            this.tabControl_main.SelectedIndexChanged += new System.EventHandler(this.tabControl_main_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -750,11 +727,44 @@
             resources.ApplyResources(this.panel_main, "panel_main");
             this.panel_main.Name = "panel_main";
             // 
+            // panel_Regler
+            // 
+            this.panel_Regler.Controls.Add(this.progressBar_Joystick);
+            this.panel_Regler.Controls.Add(this.label11);
+            this.panel_Regler.Controls.Add(this.pictureBox2);
+            this.panel_Regler.Controls.Add(this.btnR_100);
+            this.panel_Regler.Controls.Add(this.pictureBox1);
+            this.panel_Regler.Controls.Add(this.btnR_0);
+            this.panel_Regler.Controls.Add(this.label2);
+            this.panel_Regler.Controls.Add(this.radioR_Stufen);
+            this.panel_Regler.Controls.Add(this.txtR_InputUmrechnen);
+            this.panel_Regler.Controls.Add(this.btnR_m100);
+            this.panel_Regler.Controls.Add(this.lblR_ReglerStand);
+            this.panel_Regler.Controls.Add(this.radioR_Stufenlos);
+            this.panel_Regler.Controls.Add(this.btnR_Speichern);
+            this.panel_Regler.Controls.Add(this.btnR_Erkennen);
+            this.panel_Regler.Controls.Add(this.btn_R_eigenes);
+            this.panel_Regler.Controls.Add(this.txtR_AnzahlStufen);
+            this.panel_Regler.Controls.Add(this.dataGridView1);
+            this.panel_Regler.Controls.Add(this.txtR_Sonderfaelle);
+            this.panel_Regler.Controls.Add(this.label16);
+            this.panel_Regler.Controls.Add(this.lblR_AnzahlStufen);
+            this.panel_Regler.Controls.Add(this.label14);
+            this.panel_Regler.Controls.Add(this.txtR_LongPress);
+            this.panel_Regler.Controls.Add(this.txtR_JoyNr);
+            this.panel_Regler.Controls.Add(this.label3);
+            this.panel_Regler.Controls.Add(this.txtR_Zeitfaktor);
+            this.panel_Regler.Controls.Add(this.label15);
+            this.panel_Regler.Controls.Add(this.txtR_JoyAchse);
+            resources.ApplyResources(this.panel_Regler, "panel_Regler");
+            this.panel_Regler.Name = "panel_Regler";
+            // 
             // FormSteuerung2
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl_main);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormSteuerung2";
             this.tabPage2.ResumeLayout(false);
@@ -762,7 +772,6 @@
             this.groupBoxT1_Regler.ResumeLayout(false);
             this.tabControl_ReglerKnopf.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -780,6 +789,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel_main.ResumeLayout(false);
+            this.panel_Regler.ResumeLayout(false);
+            this.panel_Regler.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -871,5 +882,6 @@
         private System.Windows.Forms.Button btnT2_Save;
         private System.Windows.Forms.Button btnT2_add;
         private System.Windows.Forms.Panel panel_main;
+        private System.Windows.Forms.Panel panel_Regler;
     }
 }
