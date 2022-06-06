@@ -40,35 +40,36 @@
             this.listBox_ShowJoystickStates = new System.Windows.Forms.ListBox();
             this.tabControl_ReglerKnopf = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel_Regler = new System.Windows.Forms.Panel();
             this.progressBar_Joystick = new System.Windows.Forms.ProgressBar();
+            this.label11 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnR_100 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnR_0 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.radioR_Stufen = new System.Windows.Forms.RadioButton();
             this.txtR_InputUmrechnen = new System.Windows.Forms.TextBox();
+            this.btnR_m100 = new System.Windows.Forms.Button();
             this.lblR_ReglerStand = new System.Windows.Forms.Label();
+            this.radioR_Stufenlos = new System.Windows.Forms.RadioButton();
             this.btnR_Speichern = new System.Windows.Forms.Button();
+            this.btnR_Erkennen = new System.Windows.Forms.Button();
             this.btn_R_eigenes = new System.Windows.Forms.Button();
+            this.txtR_AnzahlStufen = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Joystick = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Output = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtR_Sonderfaelle = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblR_AnzahlStufen = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.txtR_LongPress = new System.Windows.Forms.TextBox();
+            this.txtR_JoyNr = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtR_Zeitfaktor = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtR_JoyAchse = new System.Windows.Forms.TextBox();
-            this.txtR_Zeitfaktor = new System.Windows.Forms.TextBox();
-            this.txtR_JoyNr = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.lblR_AnzahlStufen = new System.Windows.Forms.Label();
-            this.txtR_Sonderfaelle = new System.Windows.Forms.TextBox();
-            this.txtR_AnzahlStufen = new System.Windows.Forms.TextBox();
-            this.btnR_Erkennen = new System.Windows.Forms.Button();
-            this.radioR_Stufenlos = new System.Windows.Forms.RadioButton();
-            this.btnR_m100 = new System.Windows.Forms.Button();
-            this.radioR_Stufen = new System.Windows.Forms.RadioButton();
-            this.btnR_0 = new System.Windows.Forms.Button();
-            this.btnR_100 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnB_Speichern = new System.Windows.Forms.Button();
             this.btnB_entfernen = new System.Windows.Forms.Button();
@@ -97,10 +98,7 @@
             this.comboBoxT0_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnT2_add = new System.Windows.Forms.Button();
-            this.btnT2_remove = new System.Windows.Forms.Button();
-            this.btnT2_Save = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
+            this.panel_main = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -114,13 +112,17 @@
             this.txtT2_increase = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnT2_add = new System.Windows.Forms.Button();
+            this.btnT2_remove = new System.Windows.Forms.Button();
+            this.btnT2_Save = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
-            this.panel_main = new System.Windows.Forms.Panel();
-            this.panel_Regler = new System.Windows.Forms.Panel();
+            this.btnT1_back = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel_Regler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -128,11 +130,10 @@
             this.tabPage1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.panel_main.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel_main.SuspendLayout();
-            this.panel_Regler.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_CheckJoysticks
@@ -142,6 +143,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnT1_back);
             this.tabPage2.Controls.Add(this.groupBoxT1_Regler);
             this.tabPage2.Controls.Add(this.listBox_ShowJoystickStates);
             this.tabPage2.Controls.Add(this.tabControl_ReglerKnopf);
@@ -211,6 +213,38 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // panel_Regler
+            // 
+            this.panel_Regler.Controls.Add(this.progressBar_Joystick);
+            this.panel_Regler.Controls.Add(this.label11);
+            this.panel_Regler.Controls.Add(this.pictureBox2);
+            this.panel_Regler.Controls.Add(this.btnR_100);
+            this.panel_Regler.Controls.Add(this.pictureBox1);
+            this.panel_Regler.Controls.Add(this.btnR_0);
+            this.panel_Regler.Controls.Add(this.label2);
+            this.panel_Regler.Controls.Add(this.radioR_Stufen);
+            this.panel_Regler.Controls.Add(this.txtR_InputUmrechnen);
+            this.panel_Regler.Controls.Add(this.btnR_m100);
+            this.panel_Regler.Controls.Add(this.lblR_ReglerStand);
+            this.panel_Regler.Controls.Add(this.radioR_Stufenlos);
+            this.panel_Regler.Controls.Add(this.btnR_Speichern);
+            this.panel_Regler.Controls.Add(this.btnR_Erkennen);
+            this.panel_Regler.Controls.Add(this.btn_R_eigenes);
+            this.panel_Regler.Controls.Add(this.txtR_AnzahlStufen);
+            this.panel_Regler.Controls.Add(this.dataGridView1);
+            this.panel_Regler.Controls.Add(this.txtR_Sonderfaelle);
+            this.panel_Regler.Controls.Add(this.label16);
+            this.panel_Regler.Controls.Add(this.lblR_AnzahlStufen);
+            this.panel_Regler.Controls.Add(this.label14);
+            this.panel_Regler.Controls.Add(this.txtR_LongPress);
+            this.panel_Regler.Controls.Add(this.txtR_JoyNr);
+            this.panel_Regler.Controls.Add(this.label3);
+            this.panel_Regler.Controls.Add(this.txtR_Zeitfaktor);
+            this.panel_Regler.Controls.Add(this.label15);
+            this.panel_Regler.Controls.Add(this.txtR_JoyAchse);
+            resources.ApplyResources(this.panel_Regler, "panel_Regler");
+            this.panel_Regler.Name = "panel_Regler";
+            // 
             // progressBar_Joystick
             // 
             this.progressBar_Joystick.BackColor = System.Drawing.SystemColors.Control;
@@ -220,12 +254,24 @@
             this.progressBar_Joystick.Name = "progressBar_Joystick";
             this.progressBar_Joystick.Value = 50;
             // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.DodgerBlue;
             resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
+            // 
+            // btnR_100
+            // 
+            resources.ApplyResources(this.btnR_100, "btnR_100");
+            this.btnR_100.Name = "btnR_100";
+            this.btnR_100.UseVisualStyleBackColor = true;
+            this.btnR_100.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
             // 
             // pictureBox1
             // 
@@ -234,20 +280,50 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
+            // btnR_0
+            // 
+            resources.ApplyResources(this.btnR_0, "btnR_0");
+            this.btnR_0.Name = "btnR_0";
+            this.btnR_0.UseVisualStyleBackColor = true;
+            this.btnR_0.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
+            // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
+            // 
+            // radioR_Stufen
+            // 
+            resources.ApplyResources(this.radioR_Stufen, "radioR_Stufen");
+            this.radioR_Stufen.Checked = true;
+            this.radioR_Stufen.Name = "radioR_Stufen";
+            this.radioR_Stufen.TabStop = true;
+            this.radioR_Stufen.UseVisualStyleBackColor = true;
+            this.radioR_Stufen.CheckedChanged += new System.EventHandler(this.radioR_CheckedChanged);
             // 
             // txtR_InputUmrechnen
             // 
             resources.ApplyResources(this.txtR_InputUmrechnen, "txtR_InputUmrechnen");
             this.txtR_InputUmrechnen.Name = "txtR_InputUmrechnen";
             // 
+            // btnR_m100
+            // 
+            resources.ApplyResources(this.btnR_m100, "btnR_m100");
+            this.btnR_m100.Name = "btnR_m100";
+            this.btnR_m100.UseVisualStyleBackColor = true;
+            this.btnR_m100.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
+            // 
             // lblR_ReglerStand
             // 
             resources.ApplyResources(this.lblR_ReglerStand, "lblR_ReglerStand");
             this.lblR_ReglerStand.Name = "lblR_ReglerStand";
+            // 
+            // radioR_Stufenlos
+            // 
+            resources.ApplyResources(this.radioR_Stufenlos, "radioR_Stufenlos");
+            this.radioR_Stufenlos.Name = "radioR_Stufenlos";
+            this.radioR_Stufenlos.UseVisualStyleBackColor = true;
+            this.radioR_Stufenlos.CheckedChanged += new System.EventHandler(this.radioR_CheckedChanged);
             // 
             // btnR_Speichern
             // 
@@ -256,12 +332,24 @@
             this.btnR_Speichern.UseVisualStyleBackColor = true;
             this.btnR_Speichern.Click += new System.EventHandler(this.btnR_Speichern_Click);
             // 
+            // btnR_Erkennen
+            // 
+            resources.ApplyResources(this.btnR_Erkennen, "btnR_Erkennen");
+            this.btnR_Erkennen.Name = "btnR_Erkennen";
+            this.btnR_Erkennen.UseVisualStyleBackColor = true;
+            this.btnR_Erkennen.Click += new System.EventHandler(this.btnR_Erkennen_Click);
+            // 
             // btn_R_eigenes
             // 
             resources.ApplyResources(this.btn_R_eigenes, "btn_R_eigenes");
             this.btn_R_eigenes.Name = "btn_R_eigenes";
             this.btn_R_eigenes.UseVisualStyleBackColor = true;
             this.btn_R_eigenes.Click += new System.EventHandler(this.btn_R_eigenes_Click);
+            // 
+            // txtR_AnzahlStufen
+            // 
+            resources.ApplyResources(this.txtR_AnzahlStufen, "txtR_AnzahlStufen");
+            this.txtR_AnzahlStufen.Name = "txtR_AnzahlStufen";
             // 
             // dataGridView1
             // 
@@ -284,25 +372,46 @@
             this.Output.Name = "Output";
             this.Output.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // txtR_Sonderfaelle
+            // 
+            resources.ApplyResources(this.txtR_Sonderfaelle, "txtR_Sonderfaelle");
+            this.txtR_Sonderfaelle.Name = "txtR_Sonderfaelle";
+            // 
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
             // 
-            // label11
+            // lblR_AnzahlStufen
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
+            resources.ApplyResources(this.lblR_AnzahlStufen, "lblR_AnzahlStufen");
+            this.lblR_AnzahlStufen.Name = "lblR_AnzahlStufen";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
             // 
             // txtR_LongPress
             // 
             resources.ApplyResources(this.txtR_LongPress, "txtR_LongPress");
             this.txtR_LongPress.Name = "txtR_LongPress";
             // 
+            // txtR_JoyNr
+            // 
+            resources.ApplyResources(this.txtR_JoyNr, "txtR_JoyNr");
+            this.txtR_JoyNr.Name = "txtR_JoyNr";
+            this.txtR_JoyNr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_OnlyNumbers_KeyPress);
+            // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
+            // 
+            // txtR_Zeitfaktor
+            // 
+            resources.ApplyResources(this.txtR_Zeitfaktor, "txtR_Zeitfaktor");
+            this.txtR_Zeitfaktor.Name = "txtR_Zeitfaktor";
             // 
             // label15
             // 
@@ -313,81 +422,6 @@
             // 
             resources.ApplyResources(this.txtR_JoyAchse, "txtR_JoyAchse");
             this.txtR_JoyAchse.Name = "txtR_JoyAchse";
-            // 
-            // txtR_Zeitfaktor
-            // 
-            resources.ApplyResources(this.txtR_Zeitfaktor, "txtR_Zeitfaktor");
-            this.txtR_Zeitfaktor.Name = "txtR_Zeitfaktor";
-            // 
-            // txtR_JoyNr
-            // 
-            resources.ApplyResources(this.txtR_JoyNr, "txtR_JoyNr");
-            this.txtR_JoyNr.Name = "txtR_JoyNr";
-            this.txtR_JoyNr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_OnlyNumbers_KeyPress);
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            // 
-            // lblR_AnzahlStufen
-            // 
-            resources.ApplyResources(this.lblR_AnzahlStufen, "lblR_AnzahlStufen");
-            this.lblR_AnzahlStufen.Name = "lblR_AnzahlStufen";
-            // 
-            // txtR_Sonderfaelle
-            // 
-            resources.ApplyResources(this.txtR_Sonderfaelle, "txtR_Sonderfaelle");
-            this.txtR_Sonderfaelle.Name = "txtR_Sonderfaelle";
-            // 
-            // txtR_AnzahlStufen
-            // 
-            resources.ApplyResources(this.txtR_AnzahlStufen, "txtR_AnzahlStufen");
-            this.txtR_AnzahlStufen.Name = "txtR_AnzahlStufen";
-            // 
-            // btnR_Erkennen
-            // 
-            resources.ApplyResources(this.btnR_Erkennen, "btnR_Erkennen");
-            this.btnR_Erkennen.Name = "btnR_Erkennen";
-            this.btnR_Erkennen.UseVisualStyleBackColor = true;
-            this.btnR_Erkennen.Click += new System.EventHandler(this.btnR_Erkennen_Click);
-            // 
-            // radioR_Stufenlos
-            // 
-            resources.ApplyResources(this.radioR_Stufenlos, "radioR_Stufenlos");
-            this.radioR_Stufenlos.Name = "radioR_Stufenlos";
-            this.radioR_Stufenlos.UseVisualStyleBackColor = true;
-            this.radioR_Stufenlos.CheckedChanged += new System.EventHandler(this.radioR_CheckedChanged);
-            // 
-            // btnR_m100
-            // 
-            resources.ApplyResources(this.btnR_m100, "btnR_m100");
-            this.btnR_m100.Name = "btnR_m100";
-            this.btnR_m100.UseVisualStyleBackColor = true;
-            this.btnR_m100.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
-            // 
-            // radioR_Stufen
-            // 
-            resources.ApplyResources(this.radioR_Stufen, "radioR_Stufen");
-            this.radioR_Stufen.Checked = true;
-            this.radioR_Stufen.Name = "radioR_Stufen";
-            this.radioR_Stufen.TabStop = true;
-            this.radioR_Stufen.UseVisualStyleBackColor = true;
-            this.radioR_Stufen.CheckedChanged += new System.EventHandler(this.radioR_CheckedChanged);
-            // 
-            // btnR_0
-            // 
-            resources.ApplyResources(this.btnR_0, "btnR_0");
-            this.btnR_0.Name = "btnR_0";
-            this.btnR_0.UseVisualStyleBackColor = true;
-            this.btnR_0.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
-            // 
-            // btnR_100
-            // 
-            resources.ApplyResources(this.btnR_100, "btnR_100");
-            this.btnR_100.Name = "btnR_100";
-            this.btnR_100.UseVisualStyleBackColor = true;
-            this.btnR_100.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
             // 
             // tabPage3
             // 
@@ -592,31 +626,12 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // btnT2_add
+            // panel_main
             // 
-            resources.ApplyResources(this.btnT2_add, "btnT2_add");
-            this.btnT2_add.Name = "btnT2_add";
-            this.btnT2_add.UseVisualStyleBackColor = true;
-            this.btnT2_add.Click += new System.EventHandler(this.btnT2_add_Click);
-            // 
-            // btnT2_remove
-            // 
-            resources.ApplyResources(this.btnT2_remove, "btnT2_remove");
-            this.btnT2_remove.Name = "btnT2_remove";
-            this.btnT2_remove.UseVisualStyleBackColor = true;
-            this.btnT2_remove.Click += new System.EventHandler(this.btnT2_remove_Click);
-            // 
-            // btnT2_Save
-            // 
-            resources.ApplyResources(this.btnT2_Save, "btnT2_Save");
-            this.btnT2_Save.Name = "btnT2_Save";
-            this.btnT2_Save.UseVisualStyleBackColor = true;
-            this.btnT2_Save.Click += new System.EventHandler(this.btnT2_Save_Click);
-            // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
+            this.panel_main.Controls.Add(this.groupBox2);
+            this.panel_main.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.panel_main, "panel_main");
+            this.panel_main.Name = "panel_main";
             // 
             // groupBox2
             // 
@@ -712,6 +727,32 @@
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
+            // btnT2_add
+            // 
+            resources.ApplyResources(this.btnT2_add, "btnT2_add");
+            this.btnT2_add.Name = "btnT2_add";
+            this.btnT2_add.UseVisualStyleBackColor = true;
+            this.btnT2_add.Click += new System.EventHandler(this.btnT2_add_Click);
+            // 
+            // btnT2_remove
+            // 
+            resources.ApplyResources(this.btnT2_remove, "btnT2_remove");
+            this.btnT2_remove.Name = "btnT2_remove";
+            this.btnT2_remove.UseVisualStyleBackColor = true;
+            this.btnT2_remove.Click += new System.EventHandler(this.btnT2_remove_Click);
+            // 
+            // btnT2_Save
+            // 
+            resources.ApplyResources(this.btnT2_Save, "btnT2_Save");
+            this.btnT2_Save.Name = "btnT2_Save";
+            this.btnT2_Save.UseVisualStyleBackColor = true;
+            this.btnT2_Save.Click += new System.EventHandler(this.btnT2_Save_Click);
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
             // comboBoxT2_Reglerauswahl
             // 
             this.comboBoxT2_Reglerauswahl.FormattingEnabled = true;
@@ -720,44 +761,12 @@
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
             // 
-            // panel_main
+            // btnT1_back
             // 
-            this.panel_main.Controls.Add(this.groupBox2);
-            this.panel_main.Controls.Add(this.groupBox1);
-            resources.ApplyResources(this.panel_main, "panel_main");
-            this.panel_main.Name = "panel_main";
-            // 
-            // panel_Regler
-            // 
-            this.panel_Regler.Controls.Add(this.progressBar_Joystick);
-            this.panel_Regler.Controls.Add(this.label11);
-            this.panel_Regler.Controls.Add(this.pictureBox2);
-            this.panel_Regler.Controls.Add(this.btnR_100);
-            this.panel_Regler.Controls.Add(this.pictureBox1);
-            this.panel_Regler.Controls.Add(this.btnR_0);
-            this.panel_Regler.Controls.Add(this.label2);
-            this.panel_Regler.Controls.Add(this.radioR_Stufen);
-            this.panel_Regler.Controls.Add(this.txtR_InputUmrechnen);
-            this.panel_Regler.Controls.Add(this.btnR_m100);
-            this.panel_Regler.Controls.Add(this.lblR_ReglerStand);
-            this.panel_Regler.Controls.Add(this.radioR_Stufenlos);
-            this.panel_Regler.Controls.Add(this.btnR_Speichern);
-            this.panel_Regler.Controls.Add(this.btnR_Erkennen);
-            this.panel_Regler.Controls.Add(this.btn_R_eigenes);
-            this.panel_Regler.Controls.Add(this.txtR_AnzahlStufen);
-            this.panel_Regler.Controls.Add(this.dataGridView1);
-            this.panel_Regler.Controls.Add(this.txtR_Sonderfaelle);
-            this.panel_Regler.Controls.Add(this.label16);
-            this.panel_Regler.Controls.Add(this.lblR_AnzahlStufen);
-            this.panel_Regler.Controls.Add(this.label14);
-            this.panel_Regler.Controls.Add(this.txtR_LongPress);
-            this.panel_Regler.Controls.Add(this.txtR_JoyNr);
-            this.panel_Regler.Controls.Add(this.label3);
-            this.panel_Regler.Controls.Add(this.txtR_Zeitfaktor);
-            this.panel_Regler.Controls.Add(this.label15);
-            this.panel_Regler.Controls.Add(this.txtR_JoyAchse);
-            resources.ApplyResources(this.panel_Regler, "panel_Regler");
-            this.panel_Regler.Name = "panel_Regler";
+            resources.ApplyResources(this.btnT1_back, "btnT1_back");
+            this.btnT1_back.Name = "btnT1_back";
+            this.btnT1_back.UseVisualStyleBackColor = true;
+            this.btnT1_back.Click += new System.EventHandler(this.btnT1_back_Click);
             // 
             // FormSteuerung2
             // 
@@ -772,6 +781,8 @@
             this.groupBoxT1_Regler.ResumeLayout(false);
             this.tabControl_ReglerKnopf.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.panel_Regler.ResumeLayout(false);
+            this.panel_Regler.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -782,15 +793,13 @@
             this.tabControl_main.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.panel_main.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel_main.ResumeLayout(false);
-            this.panel_Regler.ResumeLayout(false);
-            this.panel_Regler.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -883,5 +892,6 @@
         private System.Windows.Forms.Button btnT2_add;
         private System.Windows.Forms.Panel panel_main;
         private System.Windows.Forms.Panel panel_Regler;
+        private System.Windows.Forms.Button btnT1_back;
     }
 }

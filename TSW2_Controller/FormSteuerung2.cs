@@ -326,6 +326,8 @@ namespace TSW2_Controller
             txtB_JoystickNr.Text = "";
             txtB_Tastenkombination.Text = "";
 
+            comboBoxB_KnopfAuswahl.Text = "";
+
             if (clearLists)
             {
                 listBoxT1_ControllerList.Items.Clear();
@@ -404,6 +406,10 @@ namespace TSW2_Controller
                 selectedRegler = listBoxT1_ControllerList.Text;
                 panel_Regler.Enabled = true;
             }
+        }
+        private void btnT1_back_Click(object sender, EventArgs e)
+        {
+            tabControl_main.SelectedIndex = 0;
         }
 
         #region Regler
@@ -959,18 +965,21 @@ namespace TSW2_Controller
         }
         private void btnB_entfernen_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < trainConfig.Count; i++)
+            if (comboBoxB_KnopfAuswahl.SelectedItem != null)
             {
-                string[] singleTrain = trainConfig[i];
-                if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.beschreibung] == comboBoxB_KnopfAuswahl.SelectedItem.ToString())
+                for (int i = 0; i < trainConfig.Count; i++)
                 {
-                    trainConfig.RemoveAt(i);
-                    comboBoxB_KnopfAuswahl.Items.Remove(comboBoxB_KnopfAuswahl.SelectedItem);
-                    break;
+                    string[] singleTrain = trainConfig[i];
+                    if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.beschreibung] == comboBoxB_KnopfAuswahl.SelectedItem.ToString())
+                    {
+                        trainConfig.RemoveAt(i);
+                        comboBoxB_KnopfAuswahl.Items.Remove(comboBoxB_KnopfAuswahl.SelectedItem);
+                        break;
+                    }
                 }
+                Buttons_Speichern(true);
+                ResetKonfiguration();
             }
-            Buttons_Speichern(true);
-            ResetKonfiguration();
         }
         private void btnB_Speichern_Click(object sender, EventArgs e)
         {

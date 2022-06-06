@@ -121,13 +121,37 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnT1_back.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 293</value>
+  </data>
+  <data name="btnT1_back.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnT1_back.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnT1_back.Text" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="&gt;&gt;btnT1_back.Name" xml:space="preserve">
+    <value>btnT1_back</value>
+  </data>
+  <data name="&gt;&gt;btnT1_back.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT1_back.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;btnT1_back.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="listBoxT1_ControllerList.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 46</value>
   </data>
   <data name="listBoxT1_ControllerList.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 82</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="listBoxT1_ControllerList.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -241,7 +265,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBoxT1_Regler.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="listBox_ShowJoystickStates.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 38</value>
@@ -262,7 +286,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;listBox_ShowJoystickStates.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="progressBar_Joystick.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1552,7 +1576,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;tabControl_ReglerKnopf.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lblT1_TrainName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1585,7 +1609,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;lblT1_TrainName.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
