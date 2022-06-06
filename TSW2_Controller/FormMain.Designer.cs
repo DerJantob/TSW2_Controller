@@ -35,10 +35,8 @@
             this.comboBox_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.timer_CheckSticks = new System.Windows.Forms.Timer(this.components);
             this.comboBox_JoystickNumber = new System.Windows.Forms.ComboBox();
-            this.bgw_Throttle = new System.ComponentModel.BackgroundWorker();
             this.bgw_readScreen = new System.ComponentModel.BackgroundWorker();
             this.lbl_schub = new System.Windows.Forms.Label();
-            this.bgw_Brake = new System.ComponentModel.BackgroundWorker();
             this.lbl_bremse = new System.Windows.Forms.Label();
             this.listBox_debugInfo = new System.Windows.Forms.ListBox();
             this.lbl_resolution = new System.Windows.Forms.Label();
@@ -60,8 +58,8 @@
             // 
             // lst_inputs
             // 
-            resources.ApplyResources(this.lst_inputs, "lst_inputs");
             this.lst_inputs.FormattingEnabled = true;
+            resources.ApplyResources(this.lst_inputs, "lst_inputs");
             this.lst_inputs.Name = "lst_inputs";
             // 
             // check_active
@@ -74,9 +72,9 @@
             // 
             // comboBox_Zugauswahl
             // 
-            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Zugauswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.Name = "comboBox_Zugauswahl";
             this.comboBox_Zugauswahl.Sorted = true;
             this.comboBox_Zugauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBox_Zugauswahl_SelectedIndexChanged);
@@ -88,15 +86,10 @@
             // 
             // comboBox_JoystickNumber
             // 
-            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_JoystickNumber.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
-            // 
-            // bgw_Throttle
-            // 
-            this.bgw_Throttle.WorkerReportsProgress = true;
-            this.bgw_Throttle.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_Throttle_DoWork);
             // 
             // bgw_readScreen
             // 
@@ -110,11 +103,6 @@
             resources.ApplyResources(this.lbl_schub, "lbl_schub");
             this.lbl_schub.Name = "lbl_schub";
             // 
-            // bgw_Brake
-            // 
-            this.bgw_Brake.WorkerReportsProgress = true;
-            this.bgw_Brake.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_Brake_DoWork);
-            // 
             // lbl_bremse
             // 
             resources.ApplyResources(this.lbl_bremse, "lbl_bremse");
@@ -122,8 +110,8 @@
             // 
             // listBox_debugInfo
             // 
-            resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
             this.listBox_debugInfo.FormattingEnabled = true;
+            resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
             this.listBox_debugInfo.Name = "listBox_debugInfo";
             // 
             // lbl_resolution
@@ -169,9 +157,9 @@
             // 
             // groupBox_ScanErgebnisse
             // 
-            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_alternativeResult);
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_originalResult);
+            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Name = "groupBox_ScanErgebnisse";
             this.groupBox_ScanErgebnisse.TabStop = false;
             // 
@@ -240,10 +228,8 @@
         private System.Windows.Forms.ComboBox comboBox_Zugauswahl;
         private System.Windows.Forms.Timer timer_CheckSticks;
         private System.Windows.Forms.ComboBox comboBox_JoystickNumber;
-        private System.ComponentModel.BackgroundWorker bgw_Throttle;
         private System.ComponentModel.BackgroundWorker bgw_readScreen;
         private System.Windows.Forms.Label lbl_schub;
-        private System.ComponentModel.BackgroundWorker bgw_Brake;
         private System.Windows.Forms.Label lbl_bremse;
         private System.Windows.Forms.Label lbl_resolution;
         private System.Windows.Forms.Button btn_einstellungen;

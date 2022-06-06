@@ -397,7 +397,7 @@ namespace TSW2_Controller
                             string[] split = singleTrain[Tcfg.invertieren].Split('|');
                             for (int i = 0; i < split.Count() - 1; i += 2)
                             {
-                                dataGridView1.Rows.Add(new object[] { split[i], split[i + 1] });
+                                dataGridView1.Rows.Add(new string[] { split[i], split[i + 1] });
                             }
                             ReadDataGrid();
                         }
@@ -1110,16 +1110,11 @@ namespace TSW2_Controller
                         while (!reader.EndOfStream)
                         {
                             var line = reader.ReadLine();
-                            var values = line.Split(',');
+                            string[] values = line.Split(',');
                             if (!skipFirst)
                             {
                                 VirtualController vc = new VirtualController();
-                                vc.name = values[0];
-                                vc.increaseKey = values[1];
-                                vc.decreaseKey = values[2];
-                                vc.textindicators = vc.ConvertStringToArray(values[3]);
-                                vc.textindicators_throttlearea = vc.ConvertStringToArray(values[4]);
-                                vc.textindicators_brakearea = vc.ConvertStringToArray(values[5]);
+                                vc.InsertFileArray(values);
 
                                 controllerConfig.Add(vc);
                                 comboBoxT2_Reglerauswahl.Items.Add(values[0]);
@@ -1145,7 +1140,7 @@ namespace TSW2_Controller
                     txtT2_increase.Text = singleController.increaseKey;
                     txtT2_decrease.Text = singleController.decreaseKey;
 
-                    comboBoxT2_mainIndicator.Items.AddRange(singleController.textindicators);
+                    comboBoxT2_mainIndicator.Items.AddRange(singleController.mainIndicators);
                     comboBoxT2_throttlearea.Items.AddRange(singleController.textindicators_throttlearea);
                     comboBoxT2_brakearea.Items.AddRange(singleController.textindicators_brakearea);
                 }
@@ -1194,7 +1189,7 @@ namespace TSW2_Controller
 
                         string combined = "";
 
-                        combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+                        combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.mainIndicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
 
                         line[i] = combined;
                     }
@@ -1256,7 +1251,7 @@ namespace TSW2_Controller
                 vc.name = comboBoxT2_Reglerauswahl.Text;
                 vc.increaseKey = txtT2_increase.Text;
                 vc.decreaseKey = txtT2_decrease.Text;
-                vc.textindicators = comboBoxT2_mainIndicator.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                vc.mainIndicators = comboBoxT2_mainIndicator.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
                 vc.textindicators_throttlearea = comboBoxT2_throttlearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
                 vc.textindicators_brakearea = comboBoxT2_brakearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
 
@@ -1286,7 +1281,7 @@ namespace TSW2_Controller
 
                 string combined = "";
 
-                combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+                combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.mainIndicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
 
                 line[i] = combined;
             }
