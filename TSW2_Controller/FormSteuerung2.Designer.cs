@@ -115,6 +115,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
+            this.panel_main = new System.Windows.Forms.Panel();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -129,6 +130,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel_main.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_CheckJoysticks
@@ -603,12 +605,11 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.panel_main);
             this.tabPage5.Controls.Add(this.btnT2_add);
             this.tabPage5.Controls.Add(this.btnT2_remove);
             this.tabPage5.Controls.Add(this.btnT2_Save);
             this.tabPage5.Controls.Add(this.label17);
-            this.tabPage5.Controls.Add(this.groupBox2);
-            this.tabPage5.Controls.Add(this.groupBox1);
             this.tabPage5.Controls.Add(this.comboBoxT2_Reglerauswahl);
             resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Name = "tabPage5";
@@ -740,6 +741,14 @@
             resources.ApplyResources(this.comboBoxT2_Reglerauswahl, "comboBoxT2_Reglerauswahl");
             this.comboBoxT2_Reglerauswahl.Name = "comboBoxT2_Reglerauswahl";
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
+            this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
+            // 
+            // panel_main
+            // 
+            this.panel_main.Controls.Add(this.groupBox2);
+            this.panel_main.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.panel_main, "panel_main");
+            this.panel_main.Name = "panel_main";
             // 
             // FormSteuerung2
             // 
@@ -770,6 +779,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel_main.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -860,5 +870,6 @@
         private System.Windows.Forms.Button btnT2_remove;
         private System.Windows.Forms.Button btnT2_Save;
         private System.Windows.Forms.Button btnT2_add;
+        private System.Windows.Forms.Panel panel_main;
     }
 }

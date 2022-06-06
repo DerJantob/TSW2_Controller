@@ -36,9 +36,6 @@ namespace TSW2_Controller
             txtB_Bedingung.Hide();
             lblR_KnopfNr.Text = Sprache.Translate("KnopfNr.", "Button no.");
 
-
-            ReadControllersFile();
-
             dataGridView1.Size = new Size(254, 205);
         }
 
@@ -46,6 +43,7 @@ namespace TSW2_Controller
 
         private void ReadControllersFile()
         {
+            comboBoxT1_Controllers.Items.Clear();
             if (File.Exists(Tcfg.controllersConfigPfad))
             {
                 using (var reader = new StreamReader(Tcfg.controllersConfigPfad))
@@ -305,6 +303,7 @@ namespace TSW2_Controller
         #region Konfiguration
         private void ResetKonfiguration(bool clearLists = true)
         {
+            ReadControllersFile();
             lblT1_TrainName.Text = selectedTrain;
 
             txtR_AnzahlStufen.Text = "";
@@ -397,6 +396,7 @@ namespace TSW2_Controller
                     }
                 }
                 selectedRegler = listBoxT1_ControllerList.Text;
+                tabControl_ReglerKnopf.Enabled = true;
             }
         }
 
@@ -592,6 +592,7 @@ namespace TSW2_Controller
                     }
                     listBoxT1_ControllerList.Items.Remove(listBoxT1_ControllerList.SelectedItem);
                     ReglerSpeichern(true);
+                    tabControl_ReglerKnopf.Enabled = false;
                 }
             }
         }
@@ -1134,6 +1135,11 @@ namespace TSW2_Controller
                     comboBoxT2_brakearea.Items.AddRange(singleController.textindicators_brakearea);
                 }
             }
+            panel_main.Enabled = true;
+        }
+        private void comboBoxT2_Reglerauswahl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            panel_main.Enabled = false;
         }
         private void btnT2_add_Click(object sender, EventArgs e)
         {
@@ -1147,42 +1153,47 @@ namespace TSW2_Controller
             {
                 resetControllerBearbeiten(false);
             }
+            panel_main.Enabled = true;
         }
         private void btnT2_remove_Click(object sender, EventArgs e)
         {
-            ComboBox cb = comboBoxT2_Reglerauswahl;
-            if (cb.Items.Contains(cb.Text))
+            if (MessageBox.Show(Sprache.Translate("Möchtest du wirklich den Regler " + comboBoxT2_Reglerauswahl.Text + " löschen?", "Do you really want to remove " + comboBoxT2_Reglerauswahl.Text + "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                for (int i = 0; i < controllerConfig.Count; i++)
+                ComboBox cb = comboBoxT2_Reglerauswahl;
+                if (cb.Items.Contains(cb.Text))
                 {
-                    if (controllerConfig[i].name == cb.Text)
+                    for (int i = 0; i < controllerConfig.Count; i++)
                     {
-                        controllerConfig.RemoveAt(i);
+                        if (controllerConfig[i].name == cb.Text)
+                        {
+                            controllerConfig.RemoveAt(i);
+                        }
                     }
+                    cb.Items.Remove(cb.Text);
+                    //Schreibe Datei
+                    string[] line = new string[controllerConfig.Count + 1];
+                    line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+                    for (int i = 1; i < controllerConfig.Count + 1; i++)
+                    {
+                        VirtualController vc = controllerConfig[i - 1];
+
+                        string combined = "";
+
+                        combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+
+                        line[i] = combined;
+                    }
+
+                    File.WriteAllLines(Tcfg.controllersConfigPfad, line);
+
+                    ComboBox cb2 = comboBoxT2_Reglerauswahl;
+                    if (!cb2.Items.Contains(cb2.Text))
+                    {
+                        cb2.Items.Add(cb2.Text);
+                    }
+                    resetControllerBearbeiten();
                 }
-                cb.Items.Remove(cb.Text);
-                //Schreibe Datei
-                string[] line = new string[controllerConfig.Count + 1];
-                line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
-                for (int i = 1; i < controllerConfig.Count + 1; i++)
-                {
-                    VirtualController vc = controllerConfig[i - 1];
-
-                    string combined = "";
-
-                    combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
-
-                    line[i] = combined;
-                }
-
-                File.WriteAllLines(Tcfg.controllersConfigPfad, line);
-
-                ComboBox cb2 = comboBoxT2_Reglerauswahl;
-                if (!cb2.Items.Contains(cb2.Text))
-                {
-                    cb2.Items.Add(cb2.Text);
-                }
-                resetControllerBearbeiten();
+                panel_main.Enabled = false;
             }
         }
         private void txt_Aktion_KeyDown(object sender, KeyEventArgs e)
@@ -1273,6 +1284,9 @@ namespace TSW2_Controller
                 cb.Items.Add(cb.Text);
             }
             resetControllerBearbeiten();
+
+            ResetKonfiguration();
+            tabControl_main.SelectedIndex = 1;
         }
         #endregion
 
