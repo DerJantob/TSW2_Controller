@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Net;
 using Octokit;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace TSW2_Controller
 {
@@ -307,31 +308,8 @@ namespace TSW2_Controller
         #region Allgemeine Funktionen
         public bool ContainsWord(string stringToCheck, string word)
         {
-            if (word != null)
-            {
-                string[] split_stringTC = stringToCheck.Split(' ');
-                int countOfWordsGiven = word.Count(x => x == ' ') + 1;
-
-                if (stringToCheck != "")
-                {
-                    for (int i = 0; i < split_stringTC.Length - countOfWordsGiven + 1; i++)
-                    {
-                        string str = "";
-                        for (int o = 0; o < countOfWordsGiven; o++)
-                        {
-                            str += split_stringTC[o + i] + " ";
-                        }
-                        str = str.Trim();
-
-                        if (str.ToLower() == word.ToLower())
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-
+            //by asdf1280
+            return Regex.IsMatch(stringToCheck, $@"\b{word}\b", RegexOptions.IgnoreCase);
         }
 
         public static double GetDamerauLevenshteinDistanceInPercent(string string_to_check, string string_to_check_from, int maxLengthDiff)
@@ -457,7 +435,7 @@ namespace TSW2_Controller
             }
 
             if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1), null, null, -1, -1 }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot, null, null, -1, -1 }); } }
-
+            if (normal) { pictureBox_Screenshot_original.Image = bmpScreenshot; } else { pictureBox_Screenshot_alternativ.Image = bmpScreenshot; }
             return bmpScreenshot;
         }
         private int ConvertHeight(int height)
@@ -482,7 +460,7 @@ namespace TSW2_Controller
                     ocrtext = page.GetText();
                 }
             }
-            ocrtext = ocrtext.Replace(",", ".");
+            ocrtext = ocrtext.Replace(",", ".").Replace("\n", "");
             return ocrtext;
         }
 
@@ -806,6 +784,9 @@ namespace TSW2_Controller
                     //Überprüfe die einzelnen Regler
                     checkVControllers();
 
+                    //Überprüfe ob Text zu lesen ist
+                    ReadScreen();
+
                     //Überprüfe die einzelnen Joystick knöpfe
                     HandleButtons();
                 }
@@ -814,11 +795,6 @@ namespace TSW2_Controller
                     check_active.Checked = false;
                     Sprache.ShowMessageBox("Kein Joystick angeschlossen!", "No joystick connected!");
                 }
-            }
-            else
-            {
-                //Wenn nicht Aktiv entferne die Anfrage an den bgw_readScreen
-
             }
 
 
@@ -845,27 +821,28 @@ namespace TSW2_Controller
         {
             for (int i = 0; i < activeVControllers.Count; i++)
             {
-                VirtualController vs = activeVControllers[i];
-                if (vs.istStufenlos)
+                VirtualController vc = activeVControllers[i];
+                if (vc.istStufenlos)
                 {
                     //Stufenlos
-                    if (Math.Abs(vs.currentJoystickValue - vs.currentSimValue) > 1 && vs.waitToFinishMovement == false)
+                    int diff = vc.currentJoystickValue - vc.currentSimValue;
+                    if (Math.Abs(diff) > 1 && vc.waitToFinishMovement == false)
                     {
-                        int diff = vs.currentJoystickValue - vs.currentSimValue;
+                        vc.cancelScan = 1;
                         new Thread(() =>
                         {
-                            vs.waitToFinishMovement = true;
+                            vc.waitToFinishMovement = true;
                             if (diff > 0)
                             {
                                 //mehr
                                 if (diff < 4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
                                 {
                                     //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vs.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vs.timefactor * 1.5))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor * 1.5))));
                                 }
                                 else
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vs.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vs.timefactor))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor))));
                                 }
                             }
                             else if (diff < 0)
@@ -874,44 +851,68 @@ namespace TSW2_Controller
                                 if (diff > -4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
                                 {
                                     //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vs.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vs.timefactor * 1.5))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor * 1.5))));
                                 }
                                 else
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vs.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vs.timefactor))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor))));
                                 }
                             }
-                            vs.waitToFinishMovement = false;
+                            vc.waitToFinishMovement = false;
+                            vc.cancelScan = -1;
+                            vc.getText = 3;
                         }).Start();
-                        vs.currentSimValue = vs.currentJoystickValue;
+                        vc.currentSimValue = vc.currentJoystickValue;
                     }
                 }
                 else
                 {
                     //Stufen
-                    if (vs.waitToFinishMovement == false)
+                    if (vc.waitToFinishMovement == false)
                     {
                         //Zahl zu Stufe umwandeln
-                        int currentNotch = Convert.ToInt32(Math.Round(vs.currentJoystickValue * (Convert.ToDouble(vs.stufen) / 100), 0));
-                        int diff = currentNotch - vs.currentSimValue;
-
-                        new Thread(() =>
+                        int currentNotch = Convert.ToInt32(Math.Round(vc.currentJoystickValue * (Convert.ToDouble(vc.stufen) / 100), 0));
+                        int diff = currentNotch - vc.currentSimValue;
+                        if (diff != 0)
                         {
-                            vs.waitToFinishMovement = true;
-                            if (diff > 0)
+                            vc.cancelScan = 1;
+                            new Thread(() =>
                             {
-                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vs.increaseKey), vs.timefactor * Math.Abs(diff));
-                            }
-                            else if (diff < 0)
-                            {
-                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vs.decreaseKey), vs.timefactor * Math.Abs(diff));
-                            }
-                            Thread.Sleep(80);
-                            vs.waitToFinishMovement = false;
-                        }).Start();
-                        vs.currentSimValue = currentNotch;
+                                vc.waitToFinishMovement = true;
+                                if (diff > 0)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), vc.timefactor * Math.Abs(diff));
+                                }
+                                else if (diff < 0)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), vc.timefactor * Math.Abs(diff));
+                                }
+                                Thread.Sleep(80);
+                                vc.waitToFinishMovement = false;
+                                vc.cancelScan = -1;
+                                vc.getText = 3;
+                            }).Start();
+                            vc.currentSimValue = currentNotch;
+                        }
                     }
                 }
+            }
+        }
+        private void ReadScreen()
+        {
+            int requestcount = 0;
+            for (int i = 0; i < activeVControllers.Count; i++)
+            {
+                VirtualController vc = activeVControllers[i];
+                if (vc.getText > 0)
+                {
+                    requestcount++;
+                }
+            }
+
+            if (requestcount > 0)
+            {
+
             }
         }
         #endregion
@@ -1411,11 +1412,6 @@ namespace TSW2_Controller
         #endregion
 
         #region ChangeGameState
-        private void ChangeGameState(bool isThrottle)
-        {
-
-        }
-
         public void ConvertLongPress(bool isThrottle, bool isStufenlos)
         {
 

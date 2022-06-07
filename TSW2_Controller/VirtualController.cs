@@ -18,9 +18,11 @@ namespace TSW2_Controller
 
         public int currentJoystickValue;
         public int currentSimValue;
+        public int cancelScan; //0=false 1=true -1=wait til current scan is done
+        public int stufen;
+        public int getText;
         public bool waitToFinishMovement;
         public bool istStufenlos = false;
-        public int stufen;
 
 
         public void InsertFileArray(string[] stringArray)
