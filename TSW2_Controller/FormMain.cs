@@ -75,11 +75,6 @@ namespace TSW2_Controller
             checkVersion();
             checkLanguageSetting();
 
-            bool test = ContainsWord("Test", "Test");
-            bool test1 = ContainsWord("das ist ein Test", "Test");
-            bool test2 = ContainsWord("das Test das", "Test");
-            bool test3 = ContainsWord("Test.", "Test.");
-
             Log.Add("Init components");
             InitializeComponent();
 
@@ -148,10 +143,13 @@ namespace TSW2_Controller
         }
 
         #region UI
+        #region Haupttimer
         private void timer_CheckSticks_Tick(object sender, EventArgs e)
         {
             Main();
         }
+        #endregion
+        #region Zugauswahl
         private void comboBox_Zugauswahl_SelectedIndexChanged(object sender, EventArgs e)
         {
             check_active.Checked = false;
@@ -181,7 +179,8 @@ namespace TSW2_Controller
             getActiveTrain();
             getActiveVControllers();
         }
-
+        #endregion
+        #region Checkbox Aktiv
         private void check_active_CheckedChanged(object sender, EventArgs e)
         {
             if (check_active.Checked)
@@ -208,7 +207,7 @@ namespace TSW2_Controller
                 Log.Add("KeyboardLayout:" + InputLanguage.CurrentInputLanguage.LayoutName);
                 Log.Add("");
 
-                foreach(VirtualController vc in activeVControllers)
+                foreach (VirtualController vc in activeVControllers)
                 {
                     vc.currentSimValue = vc.currentJoystickValue;
                     vc.getText = 0;
@@ -222,7 +221,8 @@ namespace TSW2_Controller
                 Log.Add("----------------------------------------------------------------------------------------------------");
             }
         }
-
+        #endregion
+        #region Deaktiviere Global
         private void check_deactivateGlobal_CheckedChanged(object sender, EventArgs e)
         {
             if (check_deactivateGlobal.Checked)
@@ -243,7 +243,8 @@ namespace TSW2_Controller
             }
             getActiveTrain();
         }
-
+        #endregion
+        #region Einstellungen
         private void btn_einstellungen_Click(object sender, EventArgs e)
         {
             Log.Add("Going to settings:");
@@ -258,7 +259,8 @@ namespace TSW2_Controller
             ReadTrainConfig();
             ReadVControllers();
         }
-
+        #endregion
+        #region Joysticks überprüfen
         private void btn_checkJoysticks_Click(object sender, EventArgs e)
         {
             Joystick[] sticks = getSticks();
@@ -268,7 +270,8 @@ namespace TSW2_Controller
                 MainSticks = sticks;
             }
         }
-
+        #endregion
+        #region CheckGitHubVersion
         private async void CheckGitHubNewerVersion()
         {
             try
@@ -302,7 +305,8 @@ namespace TSW2_Controller
                 Log.ErrorException(ex);
             }
         }
-
+        #endregion
+        #region lbl Update verfügbar
         private void lbl_updateAvailable_Click(object sender, EventArgs e)
         {
             FormSettings formSettings = new FormSettings();
@@ -310,11 +314,13 @@ namespace TSW2_Controller
             formSettings.CheckGitHubNewerVersion();
             formSettings.ShowDialog();
         }
-
+        #endregion
+        #region FormClose
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
 
         }
+        #endregion
         #endregion
 
         #region Allgemeine Funktionen
@@ -747,15 +753,11 @@ namespace TSW2_Controller
                 if (Settings.Default.showDebug)
                 {
                     listBox_debugInfo.Show();
-                    lbl_bremse.Show();
-                    lbl_schub.Show();
                     lbl_requests.Show();
                 }
                 else
                 {
                     listBox_debugInfo.Hide();
-                    lbl_bremse.Hide();
-                    lbl_schub.Hide();
                     lbl_requests.Hide();
                 }
                 #endregion
@@ -794,228 +796,7 @@ namespace TSW2_Controller
         }
         #endregion
 
-
-        #region Main
-        private void Main()
-        {
-            //Lösche alle Infos über die Joysticks
-            joystickStates.Clear();
-
-            for (int i = 0; i < MainSticks.Length; i++)
-            {
-                //Speichere die Infos von jedem einzelnen Joystick
-                stickHandle(MainSticks[i], i);
-            }
-
-            //Zeige Infos über den Joystick dem Nutzer an
-            ShowJoystickData();
-
-
-            //Wenn Aktiv
-            if (check_active.Checked)
-            {
-                if (MainSticks.Length > 0)
-                {
-                    //Überprüfe die einzelnen Regler
-                    checkVControllers();
-
-                    if (!bgw_readScreen.IsBusy)
-                    {
-                        //Überprüfe ob Text zu lesen ist
-                        bgw_readScreen.RunWorkerAsync();
-                    }
-
-                    //Überprüfe die einzelnen Joystick knöpfe
-                    HandleButtons();
-                }
-                else
-                {
-                    check_active.Checked = false;
-                    Sprache.ShowMessageBox("Kein Joystick angeschlossen!", "No joystick connected!");
-                }
-            }
-
-
-            if (Log.DebugInfoList.Count > listBox_debugInfo.Items.Count)
-            {
-                bool autoScroll = false;
-                if (listBox_debugInfo.TopIndex == listBox_debugInfo.Items.Count - 38)
-                {
-                    autoScroll = true;
-                }
-
-                for (int i = listBox_debugInfo.Items.Count; i < Log.DebugInfoList.Count; i++)
-                {
-                    listBox_debugInfo.Items.Add(Log.DebugInfoList[i]);
-                }
-
-                if (autoScroll)
-                {
-                    listBox_debugInfo.TopIndex = listBox_debugInfo.Items.Count - 1;
-                }
-            }
-        }
-        private void checkVControllers()
-        {
-            for (int i = 0; i < activeVControllers.Count; i++)
-            {
-                VirtualController vc = activeVControllers[i];
-                int timefactornumber = 0;
-
-                if (vc.currentJoystickValue < 0)
-                {
-                    if (!vc.isMasterController)
-                    {
-                        vc.currentJoystickValue = 0;
-                    }
-                    else
-                    {
-                        timefactornumber = 1;
-                    }
-                }
-
-                ConvertLongPress(vc);
-                if (vc.istStufenlos)
-                {
-                    //Stufenlos
-                    int diff = vc.currentJoystickValue - vc.currentSimValue;
-                    if (Math.Abs(diff) > 1 && vc.waitToFinishMovement == false)
-                    {
-                        vc.cancelScan = 1;
-                        new Thread(() =>
-                        {
-                            vc.waitToFinishMovement = true;
-                            if (diff > 0)
-                            {
-                                //mehr
-                                if (diff < 4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
-                                {
-                                    //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber] * 1.5))));
-                                }
-                                else
-                                {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber]))));
-                                }
-                            }
-                            else if (diff < 0)
-                            {
-                                //weniger
-                                if (diff > -4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
-                                {
-                                    //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber] * 1.5))));
-                                }
-                                else
-                                {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber]))));
-                                }
-                            }
-                            vc.waitToFinishMovement = false;
-                            vc.cancelScan = -1;
-                            vc.getText = 3;
-                        }).Start();
-                        vc.currentSimValue = vc.currentJoystickValue;
-                    }
-                    else if(Math.Abs(diff) == 1 && vc.waitToFinishMovement == false)
-                    {
-                        vc.currentSimValue = vc.currentJoystickValue;
-                        Log.Add("ForceSet", true);
-                    }
-                }
-                else
-                {
-                    //Stufen
-                    if (vc.waitToFinishMovement == false)
-                    {
-                        //Zahl zu Stufe umwandeln
-                        int currentNotch = Convert.ToInt32(Math.Round(vc.currentJoystickValue * (Convert.ToDouble(vc.stufen) / 100), 0));
-                        int diff = currentNotch - vc.currentSimValue;
-                        if (diff != 0)
-                        {
-                            vc.cancelScan = 1;
-                            new Thread(() =>
-                            {
-                                vc.waitToFinishMovement = true;
-                                if (diff > 0)
-                                {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), vc.timefactor[timefactornumber] * Math.Abs(diff));
-                                }
-                                else if (diff < 0)
-                                {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), vc.timefactor[timefactornumber] * Math.Abs(diff));
-                                }
-                                Thread.Sleep(80);
-                                vc.waitToFinishMovement = false;
-                                vc.cancelScan = -1;
-                                vc.getText = 3;
-                            }).Start();
-                            vc.currentSimValue = currentNotch;
-                        }
-                    }
-                }
-            }
-
-            void ConvertLongPress(VirtualController vc)
-            {
-                foreach (int[] singleLongPress in vc.longPress)
-                {
-                    if (!vc.waitToFinishMovement)
-                    {
-                        int ist = vc.currentSimValue;
-                        int soll = vc.currentJoystickValue;
-                        int untere_grenze = singleLongPress[0];
-                        int obere_grenze = singleLongPress[1];
-                        int dauer = singleLongPress[2];
-
-                        if (ist <= untere_grenze && obere_grenze <= soll)
-                        {
-                            if (ist == untere_grenze)
-                            {
-                                Log.Add("Long press " + vc.name + " \"up\"", true);
-                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), dauer);
-                                vc.currentSimValue = obere_grenze;
-                                vc.getText = VirtualController.getTextDefault;
-                                Thread.Sleep(100);
-                            }
-                            else if (ist < untere_grenze)
-                            {
-                                Log.Add("Set " + vc.name + " to " + untere_grenze + " moving up", true);
-                                if (vc.istStufenlos)
-                                {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
-                                    vc.currentJoystickValue = untere_grenze;
-                                }
-                            }
-                        }
-                        else if (soll <= untere_grenze && obere_grenze <= ist)
-                        {
-                            //Weniger
-                            if (ist == obere_grenze)
-                            {
-                                Log.Add("Long press " + vc.name + " \"down\"", true);
-                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), dauer);
-                                vc.currentSimValue = untere_grenze;
-                                vc.getText = VirtualController.getTextDefault;
-                                Thread.Sleep(100);
-                            }
-                            else if (ist > obere_grenze)
-                            {
-                                Log.Add("Set " + vc.name + " to " + obere_grenze + " moving down", true);
-                                if (vc.istStufenlos)
-                                {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);
-                                    vc.currentJoystickValue = obere_grenze;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
-
-        #region Trainconfig
+        #region Trainconfig und VControllers
         public void ReadTrainConfig()
         {
             Log.Add("Read TrainConfig");
@@ -1167,7 +948,7 @@ namespace TSW2_Controller
                                 }
                                 else
                                 {
-                                    vc.timefactor = new int[] { Convert.ToInt32(singleTrain[Tcfg.zeitfaktor]), 0 };
+                                    vc.timefactor = new int[] { Convert.ToInt32(singleTrain[Tcfg.zeitfaktor]), Convert.ToInt32(singleTrain[Tcfg.zeitfaktor]) };
                                 }
 
                                 if (singleTrain[Tcfg.schritte] != "")
@@ -1221,7 +1002,7 @@ namespace TSW2_Controller
         }
         #endregion
 
-        #region Joystick
+        #region Joystick und Buttons
         public Joystick[] getSticks()
         {
             Log.Add("Search for joysticks:");
@@ -1549,22 +1330,269 @@ namespace TSW2_Controller
         }
         #endregion
 
+        #region Main
+        private void Main()
+        {
+            //Lösche alle Infos über die Joysticks
+            joystickStates.Clear();
+
+            for (int i = 0; i < MainSticks.Length; i++)
+            {
+                //Speichere die Infos von jedem einzelnen Joystick
+                stickHandle(MainSticks[i], i);
+            }
+
+            //Zeige dem Nutzer Infos über die Joysticks
+            ShowJoystickData();
+
+
+            //Wenn Aktiv
+            if (check_active.Checked)
+            {
+                if (MainSticks.Length > 0)
+                {
+                    //Überprüfe die einzelnen Regler
+                    handleVControllers();
+
+                    if (!bgw_readScreen.IsBusy)
+                    {
+                        //Überprüfe ob Text zu lesen ist
+                        bgw_readScreen.RunWorkerAsync();
+                    }
+
+                    //Überprüfe die einzelnen Joystick knöpfe
+                    HandleButtons();
+                }
+                else
+                {
+                    check_active.Checked = false;
+                    Sprache.ShowMessageBox("Kein Joystick angeschlossen!", "No joystick connected!");
+                }
+            }
+
+
+            if (Log.DebugInfoList.Count > listBox_debugInfo.Items.Count)
+            {
+                bool autoScroll = false;
+                if (listBox_debugInfo.TopIndex == listBox_debugInfo.Items.Count - 38)
+                {
+                    autoScroll = true;
+                }
+
+                for (int i = listBox_debugInfo.Items.Count; i < Log.DebugInfoList.Count; i++)
+                {
+                    listBox_debugInfo.Items.Add(Log.DebugInfoList[i]);
+                }
+
+                if (autoScroll)
+                {
+                    listBox_debugInfo.TopIndex = listBox_debugInfo.Items.Count - 1;
+                }
+            }
+        }
+        #endregion
+
+        #region handleVControllers
+        private void handleVControllers()
+        {
+            //Alle aktiven VControllers durchgehen
+            for (int i = 0; i < activeVControllers.Count; i++)
+            {
+                VirtualController vc = activeVControllers[i];
+                int timefactornumber = 0;
+
+                if (vc.currentJoystickValue < 0)
+                {
+                    if (!vc.isMasterController)
+                    {
+                        //Wenn kein Kombihebel dann darf der Wert nicht kleiner null
+                        vc.currentJoystickValue = 0;
+                    }
+                    else
+                    {
+                        //Wenn es ein MasterController ist, dann nehme im Bremsbereich den 2. Zeitfaktor
+                        timefactornumber = 1;
+                    }
+                }
+
+                ConvertLongPress(vc);
+                if (vc.istStufenlos)
+                {
+                    //Stufenlos
+                    //Differenz berechnen
+                    int diff = vc.currentJoystickValue - vc.currentSimValue;
+                    if (Math.Abs(diff) > 1 && vc.waitToFinishMovement == false)
+                    {
+                        Log.Add(vc.name + ":[CV] move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
+                        vc.cancelScan = 1;
+                        new Thread(() =>
+                        {
+                            vc.waitToFinishMovement = true;
+                            if (diff > 0)
+                            {
+                                //mehr
+                                if (diff < 4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
+                                {
+                                    //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber] * 1.5))));
+                                }
+                                else
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber]))));
+                                }
+                            }
+                            else if (diff < 0)
+                            {
+                                //weniger
+                                if (diff > -4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
+                                {
+                                    //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber] * 1.5))));
+                                }
+                                else
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber]))));
+                                }
+                            }
+                            vc.waitToFinishMovement = false;
+                            vc.cancelScan = -1;
+                            vc.getText = 3;
+                        }).Start();
+                        vc.currentSimValue = vc.currentJoystickValue;
+                    }
+                    else if (Math.Abs(diff) == 1 && vc.waitToFinishMovement == false)
+                    {
+                        Log.Add(vc.name + ":No movement because of tolerance of +-1");
+                        vc.currentSimValue = vc.currentJoystickValue;
+                    }
+                }
+                else
+                {
+                    //Stufen
+                    if (vc.waitToFinishMovement == false)
+                    {
+                        //Zahl zu Stufe umwandeln
+                        int currentNotch = Convert.ToInt32(Math.Round(vc.currentJoystickValue * (Convert.ToDouble(vc.stufen) / 100), 0));
+                        //Differenz berechnen
+                        int diff = currentNotch - vc.currentSimValue;
+                        if (diff != 0)
+                        {
+                            Log.Add(vc.name + ":[N] move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
+                            vc.cancelScan = 1;
+                            new Thread(() =>
+                            {
+                                vc.waitToFinishMovement = true;
+                                if (diff > 0)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), vc.timefactor[timefactornumber] * Math.Abs(diff));
+                                }
+                                else if (diff < 0)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), vc.timefactor[timefactornumber] * Math.Abs(diff));
+                                }
+                                Thread.Sleep(80);
+                                vc.waitToFinishMovement = false;
+                                vc.cancelScan = -1;
+                                vc.getText = 3; //Anfrage für 3x Texterkennung
+                            }).Start();
+                            vc.currentSimValue = currentNotch;
+                        }
+                    }
+                }
+            }
+
+            void ConvertLongPress(VirtualController vc)
+            {
+                foreach (int[] singleLongPress in vc.longPress)
+                {
+                    if (!vc.waitToFinishMovement)
+                    {
+                        int ist = vc.currentSimValue;
+                        int soll = vc.currentJoystickValue;
+                        int untere_grenze = singleLongPress[0];
+                        int obere_grenze = singleLongPress[1];
+                        int dauer = singleLongPress[2];
+
+                        if (ist <= untere_grenze && obere_grenze <= soll)
+                        {
+                            //Mehr
+                            //Der Joystick kommt an der Langdruckstelle vorbei
+                            if (ist == untere_grenze)
+                            {
+                                //Der sim-Regler ist genau an der Grenze zur Langdruckstelle
+                                Log.Add(vc.name + ":Long press from " + untere_grenze + " to " + obere_grenze, true);
+                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), dauer);
+                                vc.currentSimValue = obere_grenze;
+                                vc.getText = VirtualController.getTextDefault;
+                                Thread.Sleep(100);
+                            }
+                            else if (ist < untere_grenze)
+                            {
+                                //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
+                                Log.Add(vc.name + ":Set value to " + untere_grenze + " insted of " + vc.currentJoystickValue + " (moving up)", true);
+                                if (vc.istStufenlos)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
+                                    vc.currentJoystickValue = untere_grenze;
+                                }
+                            }
+                        }
+                        else if (soll <= untere_grenze && obere_grenze <= ist)
+                        {
+                            //Weniger
+                            //Der Joystick kommt an der Langdruckstelle vorbei
+                            if (ist == obere_grenze)
+                            {
+                                //Der sim-Regler ist genau an der Grenze zur Langdruckstelle
+                                Log.Add(vc.name + ":Long press from " + obere_grenze + " to " + untere_grenze, true);
+                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), dauer);
+                                vc.currentSimValue = untere_grenze;
+                                vc.getText = VirtualController.getTextDefault;
+                                Thread.Sleep(100);
+                            }
+                            else if (ist > obere_grenze)
+                            {
+                                //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
+                                Log.Add(vc.name + ":Set value to " + obere_grenze + " insted of " + vc.currentJoystickValue + " (moving down)", true);
+                                if (vc.istStufenlos)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);
+                                    vc.currentJoystickValue = obere_grenze;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
         #region ReadScreen
         private void bgw_readScreen_DoWork(object sender, DoWorkEventArgs e)
         {
+            int noResultValue = -99999;
+
             int requestcount = 0;
             for (int i = 0; i < activeVControllers.Count; i++)
             {
                 VirtualController vc = activeVControllers[i];
                 if (vc.getText > 0)
                 {
+                    //Anzahl der verschiedenen Anfragen
                     requestcount++;
                 }
             }
 
+            lbl_requests.Invoke((MethodInvoker)delegate { lbl_requests.Text = "Text requests:" + requestcount.ToString(); });
+
             if (requestcount > 0)
             {
+                //Die erste Zeile lesen
                 string result = GetText(Screenshot(true));
+                string second_result = "";
+
+                lbl_originalResult.Invoke((MethodInvoker)delegate { lbl_originalResult.Text = result; });
+                groupBox_ScanErgebnisse.Invoke((MethodInvoker)delegate { groupBox_ScanErgebnisse.Show(); });
 
                 for (int i = 0; i < activeVControllers.Count; i++)
                 {
@@ -1574,58 +1602,70 @@ namespace TSW2_Controller
                     {
                         if (vc.cancelScan == 0)
                         {
+                            //Finde den Indikator vom gelesenen Text
                             string indicator = GetBestMainIndicator(result, vc);
+
                             if (indicator == "")
                             {
-                                result = GetText(Screenshot(false));
+                                //Falls kein Indikator gefunden und die 2. Zeile noch nicht gelesen wurde, lese die 2. Zeile
+                                if (second_result == "") { second_result = GetText(Screenshot(false)); lbl_alternativeResult.Invoke((MethodInvoker)delegate { lbl_alternativeResult.Text = second_result; }); }
+                                //Überprüfe das 2. Ergebnis
+                                result = second_result;
                                 indicator = GetBestMainIndicator(result, vc);
+                            }
+                            else
+                            {
+                                lbl_alternativeResult.Invoke((MethodInvoker)delegate { lbl_alternativeResult.Text = ""; });
                             }
 
                             if (indicator != "")
                             {
+                                //Wenn ein Indikator gefunden
                                 int factor = 1;
                                 if (ContainsBrakingArea(result, vc))
                                 {
+                                    //Bremsbereich
                                     factor = -1;
                                 }
+                                //Entferne den Indikator
                                 result = result.Replace(indicator, "").Trim();
 
-                                int detectedNumber = -99999;
+                                int detectedNumber = noResultValue;
                                 int wordlength = 0;
-                                foreach (string[] specialCase in vc.specialCases)
+                                foreach (string[] specialCase in vc.specialCases) //Sonderfälle
                                 {
                                     if (ContainsWord(result, specialCase[0]))
                                     {
                                         if (specialCase[0].Length > wordlength)
                                         {
+                                            //Den am besten passenden Sonderfall finden
+                                            if (wordlength == 0) { Log.Add(vc.name + ":Special case->[" + specialCase[0] + "=" + specialCase[1] + "]", true); } else { Log.Add(vc.name + ":better one->[" + specialCase[0] + "=" + specialCase[1] + "]", true); }
                                             wordlength = specialCase[0].Length;
-                                            detectedNumber = Convert.ToInt32(specialCase[1])*factor;//Der faktor soll entgegenwirken sodass die Specialcases wörtlich genommen werden
+                                            detectedNumber = Convert.ToInt32(specialCase[1]) * factor;//Der faktor soll entgegenwirken sodass die Specialcases wörtlich genommen werden
                                         }
                                     }
                                 }
 
-                                if (detectedNumber == -99999)
+                                if (detectedNumber == noResultValue)
                                 {
-                                    int indexOfPercent = result.IndexOf("%");
-                                    if (indexOfPercent != -1)
-                                    {
-                                        result = result.Remove(indexOfPercent, result.Length - indexOfPercent);
-                                    }
+                                    //Kein SpecialCase gefunden
                                     try
                                     {
-                                        int number = Convert.ToInt32(result);
+                                        //Isoliere die Zahl
+                                        int number = Convert.ToInt32(Regex.Match(result, @"\d+").Value);
                                         if (vc.cancelScan == 0)
                                         {
                                             detectedNumber = number;
                                         }
                                     }
-                                    catch
+                                    catch (Exception ex)
                                     {
-
+                                        Log.Error("Could not get a number out of " + result);
+                                        Log.ErrorException(ex);
                                     }
 
                                 }
-                                if (detectedNumber != -99999)
+                                if (detectedNumber != noResultValue)
                                 {
                                     vc.currentSimValue = detectedNumber * factor;
                                     Log.Add(vc.name + ":" + detectedNumber, true);
@@ -1643,6 +1683,10 @@ namespace TSW2_Controller
                     }
                 }
             }
+            else
+            {
+                groupBox_ScanErgebnisse.Invoke((MethodInvoker)delegate { groupBox_ScanErgebnisse.Hide(); });
+            }
 
             string GetBestMainIndicator(string result, VirtualController virtualController)
             {
@@ -1650,16 +1694,19 @@ namespace TSW2_Controller
                 double bestMatchDistance = 0;
                 string bestMatchWord = "";
 
-
+                //Gehe alle Indikatoren durch
                 foreach (string indicator in vc.mainIndicators)
                 {
                     if (ContainsWord(result, indicator))
                     {
+                        //Indikator 1 zu 1 gefunden
                         bestMatchWord = indicator;
                         break;
                     }
                     else
                     {
+                        //Wenn kein Indikator 1 zu 1 gefunden wurde, versuche etwas zu finden, was ähnlich ist
+
                         int indicatorWordCount = indicator.Split(' ').Count();
                         string[] splitResult = result.Split(' ');
 
@@ -1697,16 +1744,18 @@ namespace TSW2_Controller
                 double bestMatchDistance = 0;
                 string bestMatchWord = "";
 
-
+                //Gehe alle Indikatoren durch
                 foreach (string indicator in vc.textindicators_brakearea)
                 {
                     if (ContainsWord(result, indicator))
                     {
+                        //Indikator 1 zu 1 gefunden
                         bestMatchWord = indicator;
                         break;
                     }
                     else
                     {
+                        //Wenn kein Indikator 1 zu 1 gefunden wurde, versuche etwas zu finden, was ähnlich ist
                         int indicatorWordCount = indicator.Split(' ').Count();
                         string[] splitResult = result.Split(' ');
 
@@ -1731,6 +1780,7 @@ namespace TSW2_Controller
 
                 if (bestMatchWord != "")
                 {
+                    Log.Add(vc.name + ":Is braking area [" + bestMatchWord + "]", true);
                     return true;
                 }
                 else
@@ -1741,6 +1791,7 @@ namespace TSW2_Controller
         }
         private void bgw_readScreen_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            //Update Picturebox
             if (((Bitmap)((object[])e.UserState)[0]).Height != 1) { pictureBox_Screenshot_original.Image = (Bitmap)((object[])e.UserState)[0]; }
             if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
         }
@@ -1748,17 +1799,7 @@ namespace TSW2_Controller
         {
 
         }
-
-        int TextZuZahl_readScreen(string original_result, string alternative_result, string[] config)
-        {
-            return 0;
-        }
         #endregion
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            //FormSteuerung2 formSteuerung2 = new FormSteuerung2();
-            //formSteuerung2.ShowDialog();
-        }
     }
 }

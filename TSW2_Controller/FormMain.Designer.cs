@@ -36,8 +36,6 @@
             this.timer_CheckSticks = new System.Windows.Forms.Timer(this.components);
             this.comboBox_JoystickNumber = new System.Windows.Forms.ComboBox();
             this.bgw_readScreen = new System.ComponentModel.BackgroundWorker();
-            this.lbl_schub = new System.Windows.Forms.Label();
-            this.lbl_bremse = new System.Windows.Forms.Label();
             this.listBox_debugInfo = new System.Windows.Forms.ListBox();
             this.lbl_resolution = new System.Windows.Forms.Label();
             this.btn_einstellungen = new System.Windows.Forms.Button();
@@ -97,16 +95,6 @@
             this.bgw_readScreen.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_readScreen_DoWork);
             this.bgw_readScreen.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgw_readScreen_ProgressChanged);
             this.bgw_readScreen.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_readScreen_RunWorkerCompleted);
-            // 
-            // lbl_schub
-            // 
-            resources.ApplyResources(this.lbl_schub, "lbl_schub");
-            this.lbl_schub.Name = "lbl_schub";
-            // 
-            // lbl_bremse
-            // 
-            resources.ApplyResources(this.lbl_bremse, "lbl_bremse");
-            this.lbl_bremse.Name = "lbl_bremse";
             // 
             // listBox_debugInfo
             // 
@@ -202,8 +190,6 @@
             this.Controls.Add(this.btn_einstellungen);
             this.Controls.Add(this.lbl_resolution);
             this.Controls.Add(this.listBox_debugInfo);
-            this.Controls.Add(this.lbl_bremse);
-            this.Controls.Add(this.lbl_schub);
             this.Controls.Add(this.comboBox_JoystickNumber);
             this.Controls.Add(this.comboBox_Zugauswahl);
             this.Controls.Add(this.check_active);
@@ -212,7 +198,6 @@
             this.Name = "FormMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
-            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).EndInit();
             this.groupBox_ScanErgebnisse.ResumeLayout(false);
@@ -229,8 +214,6 @@
         private System.Windows.Forms.Timer timer_CheckSticks;
         private System.Windows.Forms.ComboBox comboBox_JoystickNumber;
         private System.ComponentModel.BackgroundWorker bgw_readScreen;
-        private System.Windows.Forms.Label lbl_schub;
-        private System.Windows.Forms.Label lbl_bremse;
         private System.Windows.Forms.Label lbl_resolution;
         private System.Windows.Forms.Button btn_einstellungen;
         private System.Windows.Forms.PictureBox pictureBox_Screenshot_original;

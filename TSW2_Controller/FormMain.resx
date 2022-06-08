@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lst_inputs.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>14</value>
   </data>
   <data name="check_active.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -168,7 +168,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;check_active.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="comboBox_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
     <value>71, 13</value>
@@ -189,7 +189,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <metadata name="timer_CheckSticks.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -213,65 +213,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_JoystickNumber.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>11</value>
   </data>
   <metadata name="bgw_readScreen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>167, 17</value>
   </metadata>
-  <data name="lbl_schub.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl_schub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 253</value>
-  </data>
-  <data name="lbl_schub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
-  </data>
-  <data name="lbl_schub.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="lbl_schub.Text" xml:space="preserve">
-    <value>Schub ist X und soll X</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.Name" xml:space="preserve">
-    <value>lbl_schub</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lbl_schub.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="lbl_bremse.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl_bremse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 266</value>
-  </data>
-  <data name="lbl_bremse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 13</value>
-  </data>
-  <data name="lbl_bremse.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="lbl_bremse.Text" xml:space="preserve">
-    <value>Bremse ist X und soll X</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.Name" xml:space="preserve">
-    <value>lbl_bremse</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lbl_bremse.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="listBox_debugInfo.HorizontalScrollbar" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -523,16 +469,16 @@
     <value>True</value>
   </data>
   <data name="lbl_requests.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 266</value>
+    <value>12, 266</value>
   </data>
   <data name="lbl_requests.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+    <value>80, 13</value>
   </data>
   <data name="lbl_requests.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
   </data>
   <data name="lbl_requests.Text" xml:space="preserve">
-    <value>reqT:0 reqB:0</value>
+    <value>Text requests:0</value>
   </data>
   <data name="&gt;&gt;lbl_requests.Name" xml:space="preserve">
     <value>lbl_requests</value>
