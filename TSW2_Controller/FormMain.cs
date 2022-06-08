@@ -17,6 +17,7 @@ using System.Net;
 using Octokit;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace TSW2_Controller
 {
@@ -1423,7 +1424,7 @@ namespace TSW2_Controller
                     int diff = vc.currentJoystickValue - vc.currentSimValue;
                     if (Math.Abs(diff) > 1 && vc.waitToFinishMovement == false)
                     {
-                        Log.Add(vc.name + ":[CV] move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
+                        Log.Add(vc.name + ":move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
                         vc.cancelScan = 1;
                         new Thread(() =>
                         {
@@ -1477,7 +1478,7 @@ namespace TSW2_Controller
                         int diff = currentNotch - vc.currentSimValue;
                         if (diff != 0)
                         {
-                            Log.Add(vc.name + ":[N] move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
+                            Log.Add(vc.name + ":move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
                             vc.cancelScan = 1;
                             new Thread(() =>
                             {
@@ -1516,6 +1517,7 @@ namespace TSW2_Controller
                         if (ist <= untere_grenze && obere_grenze <= soll)
                         {
                             //Mehr
+                            vc.cancelScan = 1;
                             //Der Joystick kommt an der Langdruckstelle vorbei
                             if (ist == untere_grenze)
                             {
@@ -1536,10 +1538,12 @@ namespace TSW2_Controller
                                     vc.currentJoystickValue = untere_grenze;
                                 }
                             }
+                            vc.cancelScan = -1;
                         }
                         else if (soll <= untere_grenze && obere_grenze <= ist)
                         {
                             //Weniger
+                            vc.cancelScan = 1;
                             //Der Joystick kommt an der Langdruckstelle vorbei
                             if (ist == obere_grenze)
                             {
@@ -1560,6 +1564,7 @@ namespace TSW2_Controller
                                     vc.currentJoystickValue = obere_grenze;
                                 }
                             }
+                            vc.cancelScan = -1;
                         }
                     }
                 }
@@ -1588,11 +1593,15 @@ namespace TSW2_Controller
             if (requestcount > 0)
             {
                 //Die erste Zeile lesen
+                Stopwatch stopwatch = Stopwatch.StartNew();
                 string result = GetText(Screenshot(true));
+                stopwatch.Stop();
+
                 string second_result = "";
 
                 lbl_originalResult.Invoke((MethodInvoker)delegate { lbl_originalResult.Text = result; });
                 groupBox_ScanErgebnisse.Invoke((MethodInvoker)delegate { groupBox_ScanErgebnisse.Show(); });
+                lbl_scantime.Invoke((MethodInvoker)delegate { lbl_scantime.Text = Sprache.Translate("Scanzeit:", "Scantime:") + stopwatch.ElapsedMilliseconds + "ms"; });
 
                 for (int i = 0; i < activeVControllers.Count; i++)
                 {
@@ -1600,6 +1609,11 @@ namespace TSW2_Controller
 
                     if (vc.getText > 0)
                     {
+                        if (vc.requestStartTime == new DateTime())
+                        {
+                            vc.requestStartTime = DateTime.Now;
+                        }
+
                         if (vc.cancelScan == 0)
                         {
                             //Finde den Indikator vom gelesenen Text
@@ -1628,7 +1642,7 @@ namespace TSW2_Controller
                                     factor = -1;
                                 }
                                 //Entferne den Indikator
-                                result = result.Replace(indicator, "").Trim();
+                                result = result.Remove(0, result.IndexOf(indicator) + indicator.Length).Trim();
 
                                 int detectedNumber = noResultValue;
                                 int wordlength = 0;
@@ -1649,27 +1663,57 @@ namespace TSW2_Controller
                                 if (detectedNumber == noResultValue)
                                 {
                                     //Kein SpecialCase gefunden
+                                    int indexOfPercent = result.IndexOf("%");
+                                    string result_withoutPercent = "";
+
+                                    if (indexOfPercent != -1)
+                                    {
+                                        result_withoutPercent = result.Remove(indexOfPercent, result.Length - indexOfPercent);
+                                    }
                                     try
                                     {
-                                        //Isoliere die Zahl
-                                        int number = Convert.ToInt32(Regex.Match(result, @"\d+").Value);
+                                        int number = Convert.ToInt32(result_withoutPercent);
                                         if (vc.cancelScan == 0)
                                         {
                                             detectedNumber = number;
                                         }
                                     }
-                                    catch (Exception ex)
+                                    catch
                                     {
-                                        Log.Error("Could not get a number out of " + result);
-                                        Log.ErrorException(ex);
+                                        Log.Error("Could not get a number out of (removing percent method) " + result_withoutPercent);
+                                        try
+                                        {
+                                            //Isoliere die Zahl
+                                            int number = Convert.ToInt32(Regex.Match(result, @"\d+").Value);
+                                            if (vc.cancelScan == 0)
+                                            {
+                                                detectedNumber = number;
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Log.Error("Could not get a number out of (isolating method)" + result);
+                                            Log.ErrorException(ex);
+                                        }
                                     }
-
                                 }
-                                if (detectedNumber != noResultValue)
+                                if (detectedNumber != noResultValue && vc.cancelScan == 0)
                                 {
                                     vc.currentSimValue = detectedNumber * factor;
-                                    Log.Add(vc.name + ":" + detectedNumber, true);
+                                    Log.Add(vc.name + ":" + detectedNumber + " (" + result + ")", true);
                                     vc.getText--;
+                                    //Reset Time
+                                    vc.requestStartTime = new DateTime();
+                                }
+                            }
+                            else
+                            {
+                                //Wenn nichts gefunden dann drücke eine Taste vom Regler
+                                if (vc.requestStartTime != new DateTime() && DateTime.Now.Subtract(vc.requestStartTime).TotalMilliseconds >= 3000)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 1);
+                                    vc.requestStartTime = DateTime.Now;
+                                    Log.Add(vc.name + ":Nothing found! Trying to show Text again");
                                 }
                             }
                         }

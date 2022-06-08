@@ -22,6 +22,7 @@ namespace TSW2_Controller
         public int cancelScan; //0=false 1=true -1=wait til current scan is done
         public int stufen;
         public int getText;
+        public DateTime requestStartTime;
         public List<string[]> specialCases = new List<string[]>();
         public List<int[]> longPress=new List<int[]>();
         public bool waitToFinishMovement;
