@@ -261,6 +261,22 @@ namespace TSW2_Controller
                 tabControl_ReglerKnopf.SelectedIndex = 1;
             }
             tabControl_main.SelectedIndex = 1;
+            panel_Regler.Enabled = false;
+        }
+        private void btnT0_Add_Click(object sender, EventArgs e)
+        {
+            ComboBox cb = comboBoxT0_Zugauswahl;
+            if (!cb.Items.Contains(cb.Text))
+            {
+                cb.Items.Add(cb.Text);
+                cb.SelectedItem = cb.Text;
+                resetControllerBearbeiten(false);
+            }
+            else
+            {
+                resetControllerBearbeiten(false);
+            }
+            panel_main.Enabled = true;
         }
         private void btnT0_Delete_Click(object sender, EventArgs e)
         {
@@ -415,6 +431,8 @@ namespace TSW2_Controller
         #region Regler
         private void btnR_Erkennen_Click(object sender, EventArgs e)
         {
+            getNumberAndJoy();//First one may contain false information
+            Thread.Sleep(30);
             string[] output = getNumberAndJoy();
 
             txtR_JoyNr.Text = output[0];
@@ -763,6 +781,13 @@ namespace TSW2_Controller
         {
             resetControllerBearbeiten();
             tabControl_main.SelectedIndex = 2;
+            if (listBoxT1_ControllerList.SelectedItem != null)
+            {
+                if (comboBoxT2_Reglerauswahl.Items.Contains(listBoxT1_ControllerList.SelectedItem))
+                {
+                    comboBoxT2_Reglerauswahl.SelectedItem = listBoxT1_ControllerList.SelectedItem;
+                }
+            }
         }
         #endregion
 
@@ -1314,6 +1339,11 @@ namespace TSW2_Controller
             resetControllerBearbeiten();
 
             ResetKonfiguration();
+            tabControl_main.SelectedIndex = 1;
+        }
+        private void btnT2_back_Click(object sender, EventArgs e)
+        {
+            resetControllerBearbeiten(true);
             tabControl_main.SelectedIndex = 1;
         }
         #endregion

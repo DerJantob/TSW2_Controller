@@ -101,6 +101,7 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel_main = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkboxT2_Kombihebel = new System.Windows.Forms.CheckBox();
             this.groupBox_kombihebel = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxT2_brakearea = new System.Windows.Forms.ComboBox();
@@ -118,7 +119,7 @@
             this.btnT2_Save = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
-            this.checkboxT2_Kombihebel = new System.Windows.Forms.CheckBox();
+            this.btnT2_back = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -592,6 +593,7 @@
             resources.ApplyResources(this.btnT0_Add, "btnT0_Add");
             this.btnT0_Add.Name = "btnT0_Add";
             this.btnT0_Add.UseVisualStyleBackColor = true;
+            this.btnT0_Add.Click += new System.EventHandler(this.btnT0_Add_Click);
             // 
             // btnT0_edit
             // 
@@ -624,6 +626,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnT2_back);
             this.tabPage5.Controls.Add(this.panel_main);
             this.tabPage5.Controls.Add(this.btnT2_add);
             this.tabPage5.Controls.Add(this.btnT2_remove);
@@ -650,6 +653,13 @@
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // checkboxT2_Kombihebel
+            // 
+            resources.ApplyResources(this.checkboxT2_Kombihebel, "checkboxT2_Kombihebel");
+            this.checkboxT2_Kombihebel.Name = "checkboxT2_Kombihebel";
+            this.checkboxT2_Kombihebel.UseVisualStyleBackColor = true;
+            this.checkboxT2_Kombihebel.CheckedChanged += new System.EventHandler(this.checkboxT2_Kombihebel_CheckedChanged);
             // 
             // groupBox_kombihebel
             // 
@@ -770,12 +780,12 @@
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
             // 
-            // checkboxT2_Kombihebel
+            // btnT2_back
             // 
-            resources.ApplyResources(this.checkboxT2_Kombihebel, "checkboxT2_Kombihebel");
-            this.checkboxT2_Kombihebel.Name = "checkboxT2_Kombihebel";
-            this.checkboxT2_Kombihebel.UseVisualStyleBackColor = true;
-            this.checkboxT2_Kombihebel.CheckedChanged += new System.EventHandler(this.checkboxT2_Kombihebel_CheckedChanged);
+            resources.ApplyResources(this.btnT2_back, "btnT2_back");
+            this.btnT2_back.Name = "btnT2_back";
+            this.btnT2_back.UseVisualStyleBackColor = true;
+            this.btnT2_back.Click += new System.EventHandler(this.btnT2_back_Click);
             // 
             // FormSteuerung2
             // 
@@ -903,5 +913,6 @@
         private System.Windows.Forms.Panel panel_Regler;
         private System.Windows.Forms.Button btnT1_back;
         private System.Windows.Forms.CheckBox checkboxT2_Kombihebel;
+        private System.Windows.Forms.Button btnT2_back;
     }
 }

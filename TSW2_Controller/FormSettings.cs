@@ -55,23 +55,6 @@ namespace TSW2_Controller
                     comboBox_resolution.SelectedItem = resName;
                 }
 
-
-                comboBox_Schub.Items.Clear();
-                comboBox_Bremse.Items.Clear();
-                comboBox_kombiSchub.Items.Clear();
-                comboBox_kombiBremse.Items.Clear();
-                comboBox_TrainConfig.Items.Clear();
-
-                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
-                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
-                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
-                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
-
-                txt_increaseThrottle.Text = Settings.Default.Tastenbelegung[0];
-                txt_decreaseThrottle.Text = Settings.Default.Tastenbelegung[1];
-                txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
-                txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
-
                 comboBox_DeleteLogsAfterXDays.Text = Settings.Default.DeleteLogsAfter;
 
                 if (Sprache.isGerman())
@@ -215,77 +198,6 @@ namespace TSW2_Controller
         }
         #endregion
 
-        #region Textindex
-        private void comboBox_Schub_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_Schub.Items.Add(comboBox_Schub.Text);
-                comboBox_Schub.Text = "";
-            }
-        }
-
-        private void comboBox_Bremse_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_Bremse.Items.Add(comboBox_Bremse.Text);
-                comboBox_Bremse.Text = "";
-            }
-        }
-
-        private void comboBox_kombiSchub_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_kombiSchub.Items.Add(comboBox_kombiSchub.Text);
-                comboBox_kombiSchub.Text = "";
-            }
-        }
-
-        private void comboBox_kombiBremse_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_kombiBremse.Items.Add(comboBox_kombiBremse.Text);
-                comboBox_kombiBremse.Text = "";
-            }
-        }
-
-
-
-        private void comboBox_Schub_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_Schub.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_Schub.Items.RemoveAt(comboBox_Schub.SelectedIndex);
-            }
-        }
-
-        private void comboBox_Bremse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_Bremse.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_Bremse.Items.RemoveAt(comboBox_Bremse.SelectedIndex);
-            }
-        }
-
-        private void comboBox_kombiSchub_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_kombiSchub.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_kombiSchub.Items.RemoveAt(comboBox_kombiSchub.SelectedIndex);
-            }
-        }
-
-        private void comboBox_kombiBremse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_kombiBremse.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_kombiBremse.Items.RemoveAt(comboBox_kombiBremse.SelectedIndex);
-            }
-        }
-        #endregion
 
         #region TrainConfig wechseln
         private void comboBox_TrainConfig_KeyUp(object sender, KeyEventArgs e)
@@ -419,39 +331,6 @@ namespace TSW2_Controller
 
             try
             {
-                Settings.Default.SchubIndexe.Clear();
-                Settings.Default.SchubIndexe.AddRange(comboBox_Schub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.BremsIndexe.Clear();
-                Settings.Default.BremsIndexe.AddRange(comboBox_Bremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.Kombihebel_SchubIndexe.Clear();
-                Settings.Default.Kombihebel_SchubIndexe.AddRange(comboBox_kombiSchub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.Kombihebel_BremsIndexe.Clear();
-                Settings.Default.Kombihebel_BremsIndexe.AddRange(comboBox_kombiBremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorException(ex);
-                MessageBox.Show(Sprache.Translate("Fehler beim Textindikator", "Error with text indicator!"));
-            }
-
-            try
-            {
-                Settings.Default.Tastenbelegung[0] = txt_increaseThrottle.Text;
-                Settings.Default.Tastenbelegung[1] = txt_decreaseThrottle.Text;
-                Settings.Default.Tastenbelegung[2] = txt_increaseBrake.Text;
-                Settings.Default.Tastenbelegung[3] = txt_decreaseBrake.Text;
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorException(ex);
-                Sprache.ShowMessageBox("Fehler bei der Tastenbelegung", "Error with keybindings");
-            }
-
-            try
-            {
                 Settings.Default.DeleteLogsAfter = comboBox_DeleteLogsAfterXDays.Text;
             }
             catch (Exception ex)
@@ -535,31 +414,6 @@ namespace TSW2_Controller
                 Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_EN;
                 Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_EN;
                 Settings.Default.Kombihebel_BremsIndexe = Settings.Default.Kombihebel_BremsIndexe_EN;
-            }
-        }
-
-        private void btn_textindikator_StandardLaden_Click(object sender, EventArgs e)
-        {
-            comboBox_Schub.Items.Clear();
-            comboBox_Bremse.Items.Clear();
-            comboBox_kombiSchub.Items.Clear();
-            comboBox_kombiBremse.Items.Clear();
-
-            if (Sprache.isGerman())
-            {
-                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_DE.Cast<string>().ToArray());
-                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_DE.Cast<string>().ToArray());
-                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe_DE.Cast<string>().ToArray());
-                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_DE.Cast<string>().ToArray());
-                MessageBox.Show("Textindikatoren wurden zurückgesetzt!");
-            }
-            else
-            {
-                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_EN.Cast<string>().ToArray());
-                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_EN.Cast<string>().ToArray());
-                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe_EN.Cast<string>().ToArray());
-                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_EN.Cast<string>().ToArray());
-                MessageBox.Show("Text indicators have been reset!");
             }
         }
 
