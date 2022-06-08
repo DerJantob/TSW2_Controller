@@ -46,7 +46,17 @@ namespace TSW2_Controller
         }
 
         #region Allgemeines
-
+        private void tabControl_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_main.SelectedIndex == 0)
+            {
+                tabControl_main.Size = new Size(313, 104);
+            }
+            else
+            {
+                tabControl_main.Size = new Size(647, 348);
+            }
+        }
         private void ReadControllersFile()
         {
             comboBoxT1_Controllers.Items.Clear();
@@ -426,6 +436,22 @@ namespace TSW2_Controller
         private void btnT1_back_Click(object sender, EventArgs e)
         {
             tabControl_main.SelectedIndex = 0;
+        }
+
+        private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (selectedTrain == Tcfg.nameForGlobal)
+            {
+                tabControl_ReglerKnopf.SelectedIndex = 1;
+            }
+            if (tabControl_ReglerKnopf.SelectedIndex == 0)
+            {
+                groupBoxT1_Regler.Visible = true;
+            }
+            else
+            {
+                groupBoxT1_Regler.Visible = false;
+            }
         }
 
         #region Regler
@@ -1281,6 +1307,18 @@ namespace TSW2_Controller
         }
         private void btnT2_Save_Click(object sender, EventArgs e)
         {
+            void checkCombobox(ComboBox comboBox)
+            {
+                if (comboBox.SelectedItem == null && comboBox.Text != "")
+                {
+                    comboBox.Items.Add(comboBox.Text);
+                }
+            }
+
+            checkCombobox(comboBoxT2_mainIndicator);
+            checkCombobox(comboBoxT2_throttlearea);
+            checkCombobox(comboBoxT2_brakearea);
+
             if (txtT2_increase.Text != "" && txtT2_decrease.Text != "")
             {
                 VirtualController vc = new VirtualController();
@@ -1347,32 +1385,5 @@ namespace TSW2_Controller
             tabControl_main.SelectedIndex = 1;
         }
         #endregion
-
-        private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (selectedTrain == Tcfg.nameForGlobal)
-            {
-                tabControl_ReglerKnopf.SelectedIndex = 1;
-            }
-            if (tabControl_ReglerKnopf.SelectedIndex == 0)
-            {
-                groupBoxT1_Regler.Visible = true;
-            }
-            else
-            {
-                groupBoxT1_Regler.Visible = false;
-            }
-        }
-        private void tabControl_main_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl_main.SelectedIndex == 0)
-            {
-                tabControl_main.Size = new Size(313, 104);
-            }
-            else
-            {
-                tabControl_main.Size = new Size(647, 348);
-            }
-        }
     }
 }

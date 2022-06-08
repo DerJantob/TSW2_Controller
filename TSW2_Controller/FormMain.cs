@@ -207,6 +207,12 @@ namespace TSW2_Controller
                 Log.Add("WindowsLanguage:" + InputLanguage.CurrentInputLanguage.Culture.Name);
                 Log.Add("KeyboardLayout:" + InputLanguage.CurrentInputLanguage.LayoutName);
                 Log.Add("");
+
+                foreach(VirtualController vc in activeVControllers)
+                {
+                    vc.currentSimValue = vc.currentJoystickValue;
+                    vc.getText = 0;
+                }
             }
             else
             {

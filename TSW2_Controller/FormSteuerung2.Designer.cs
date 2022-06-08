@@ -99,6 +99,7 @@
             this.comboBoxT0_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnT2_back = new System.Windows.Forms.Button();
             this.panel_main = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkboxT2_Kombihebel = new System.Windows.Forms.CheckBox();
@@ -119,7 +120,6 @@
             this.btnT2_Save = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
-            this.btnT2_back = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -637,6 +637,13 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btnT2_back
+            // 
+            resources.ApplyResources(this.btnT2_back, "btnT2_back");
+            this.btnT2_back.Name = "btnT2_back";
+            this.btnT2_back.UseVisualStyleBackColor = true;
+            this.btnT2_back.Click += new System.EventHandler(this.btnT2_back_Click);
+            // 
             // panel_main
             // 
             this.panel_main.Controls.Add(this.groupBox2);
@@ -779,13 +786,6 @@
             this.comboBoxT2_Reglerauswahl.Name = "comboBoxT2_Reglerauswahl";
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
-            // 
-            // btnT2_back
-            // 
-            resources.ApplyResources(this.btnT2_back, "btnT2_back");
-            this.btnT2_back.Name = "btnT2_back";
-            this.btnT2_back.UseVisualStyleBackColor = true;
-            this.btnT2_back.Click += new System.EventHandler(this.btnT2_back_Click);
             // 
             // FormSteuerung2
             // 
