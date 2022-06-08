@@ -216,7 +216,7 @@
     <value>13</value>
   </data>
   <metadata name="bgw_readScreen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>399, 17</value>
+    <value>167, 17</value>
   </metadata>
   <data name="lbl_schub.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -366,6 +366,9 @@
   <data name="pictureBox_Screenshot_original.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
+  <data name="pictureBox_Screenshot_original.WaitOnLoad" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;pictureBox_Screenshot_original.Name" xml:space="preserve">
     <value>pictureBox_Screenshot_original</value>
   </data>
@@ -389,6 +392,9 @@
   </data>
   <data name="pictureBox_Screenshot_alternativ.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="pictureBox_Screenshot_alternativ.WaitOnLoad" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;pictureBox_Screenshot_alternativ.Name" xml:space="preserve">
     <value>pictureBox_Screenshot_alternativ</value>

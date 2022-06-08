@@ -75,6 +75,11 @@ namespace TSW2_Controller
             checkVersion();
             checkLanguageSetting();
 
+            bool test = ContainsWord("Test", "Test");
+            bool test1 = ContainsWord("das ist ein Test", "Test");
+            bool test2 = ContainsWord("das Test das", "Test");
+            bool test3 = ContainsWord("Test.", "Test.");
+
             Log.Add("Init components");
             InitializeComponent();
 
@@ -245,6 +250,7 @@ namespace TSW2_Controller
             loadSettings();
 
             ReadTrainConfig();
+            ReadVControllers();
         }
 
         private void btn_checkJoysticks_Click(object sender, EventArgs e)
@@ -308,14 +314,38 @@ namespace TSW2_Controller
         #region Allgemeine Funktionen
         public bool ContainsWord(string stringToCheck, string word)
         {
-            //by asdf1280
-            return Regex.IsMatch(stringToCheck, $@"\b{word}\b", RegexOptions.IgnoreCase);
+            if (word != null)
+            {
+                string[] split_stringTC = stringToCheck.Split(' ');
+                int countOfWordsGiven = word.Count(x => x == ' ') + 1;
+
+                if (stringToCheck != "")
+                {
+                    for (int i = 0; i < split_stringTC.Length - countOfWordsGiven + 1; i++)
+                    {
+                        string str = "";
+                        for (int o = 0; o < countOfWordsGiven; o++)
+                        {
+                            str += split_stringTC[o + i] + " ";
+                        }
+                        str = str.Trim();
+
+                        if (str.ToLower() == word.ToLower())
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
-        public static double GetDamerauLevenshteinDistanceInPercent(string string_to_check, string string_to_check_from, int maxLengthDiff)
+        public static double GetDamerauLevenshteinDistanceInPercent(string string_to_check, string string_to_check_from, int maxLengthDiff, bool checkCase = false)
         {
             try
             {
+                if (checkCase == false) { string_to_check = string_to_check.ToLower(); string_to_check_from = string_to_check_from.ToLower(); }
+
                 if (string.IsNullOrEmpty(string_to_check) || Math.Abs(string_to_check.Length - string_to_check_from.Length) > maxLengthDiff)
                 {
                     return 0;
@@ -434,8 +464,7 @@ namespace TSW2_Controller
                 }
             }
 
-            if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1), null, null, -1, -1 }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot, null, null, -1, -1 }); } }
-            if (normal) { pictureBox_Screenshot_original.Image = bmpScreenshot; } else { pictureBox_Screenshot_alternativ.Image = bmpScreenshot; }
+            if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1), null, null, -1, -1 }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot, null, null, -1, -1 }); } Thread.Sleep(50); }//Thread.Sleep(50) prevents crash with picturebox
             return bmpScreenshot;
         }
         private int ConvertHeight(int height)
@@ -784,8 +813,11 @@ namespace TSW2_Controller
                     //Überprüfe die einzelnen Regler
                     checkVControllers();
 
-                    //Überprüfe ob Text zu lesen ist
-                    ReadScreen();
+                    if (!bgw_readScreen.IsBusy)
+                    {
+                        //Überprüfe ob Text zu lesen ist
+                        bgw_readScreen.RunWorkerAsync();
+                    }
 
                     //Überprüfe die einzelnen Joystick knöpfe
                     HandleButtons();
@@ -822,6 +854,21 @@ namespace TSW2_Controller
             for (int i = 0; i < activeVControllers.Count; i++)
             {
                 VirtualController vc = activeVControllers[i];
+                int timefactornumber = 0;
+
+                if (vc.currentJoystickValue < 0)
+                {
+                    if (!vc.isMasterController)
+                    {
+                        vc.currentJoystickValue = 0;
+                    }
+                    else
+                    {
+                        timefactornumber = 1;
+                    }
+                }
+
+                ConvertLongPress(vc);
                 if (vc.istStufenlos)
                 {
                     //Stufenlos
@@ -838,11 +885,11 @@ namespace TSW2_Controller
                                 if (diff < 4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
                                 {
                                     //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor * 1.5))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber] * 1.5))));
                                 }
                                 else
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), Convert.ToInt32(diff * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber]))));
                                 }
                             }
                             else if (diff < 0)
@@ -851,11 +898,11 @@ namespace TSW2_Controller
                                 if (diff > -4 || false)//Ach keine Ahnung irgendwie mal ist es ungenau und manchmal ist es mit dieser Funktion genauer
                                 {
                                     //(Gedacht ist) Wenn der Knopfdruck sehr kurz ist dann ist ein niedriger Zeitwert besser
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor * 1.5))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber] * 1.5))));
                                 }
                                 else
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor))));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), Convert.ToInt32(diff * (-1) * (1000.0 / Convert.ToDouble(vc.timefactor[timefactornumber]))));
                                 }
                             }
                             vc.waitToFinishMovement = false;
@@ -863,6 +910,11 @@ namespace TSW2_Controller
                             vc.getText = 3;
                         }).Start();
                         vc.currentSimValue = vc.currentJoystickValue;
+                    }
+                    else if(Math.Abs(diff) == 1 && vc.waitToFinishMovement == false)
+                    {
+                        vc.currentSimValue = vc.currentJoystickValue;
+                        Log.Add("ForceSet", true);
                     }
                 }
                 else
@@ -881,11 +933,11 @@ namespace TSW2_Controller
                                 vc.waitToFinishMovement = true;
                                 if (diff > 0)
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), vc.timefactor * Math.Abs(diff));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), vc.timefactor[timefactornumber] * Math.Abs(diff));
                                 }
                                 else if (diff < 0)
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), vc.timefactor * Math.Abs(diff));
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), vc.timefactor[timefactornumber] * Math.Abs(diff));
                                 }
                                 Thread.Sleep(80);
                                 vc.waitToFinishMovement = false;
@@ -897,22 +949,62 @@ namespace TSW2_Controller
                     }
                 }
             }
-        }
-        private void ReadScreen()
-        {
-            int requestcount = 0;
-            for (int i = 0; i < activeVControllers.Count; i++)
+
+            void ConvertLongPress(VirtualController vc)
             {
-                VirtualController vc = activeVControllers[i];
-                if (vc.getText > 0)
+                foreach (int[] singleLongPress in vc.longPress)
                 {
-                    requestcount++;
+                    if (!vc.waitToFinishMovement)
+                    {
+                        int ist = vc.currentSimValue;
+                        int soll = vc.currentJoystickValue;
+                        int untere_grenze = singleLongPress[0];
+                        int obere_grenze = singleLongPress[1];
+                        int dauer = singleLongPress[2];
+
+                        if (ist <= untere_grenze && obere_grenze <= soll)
+                        {
+                            if (ist == untere_grenze)
+                            {
+                                Log.Add("Long press " + vc.name + " \"up\"", true);
+                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), dauer);
+                                vc.currentSimValue = obere_grenze;
+                                vc.getText = VirtualController.getTextDefault;
+                                Thread.Sleep(100);
+                            }
+                            else if (ist < untere_grenze)
+                            {
+                                Log.Add("Set " + vc.name + " to " + untere_grenze + " moving up", true);
+                                if (vc.istStufenlos)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
+                                    vc.currentJoystickValue = untere_grenze;
+                                }
+                            }
+                        }
+                        else if (soll <= untere_grenze && obere_grenze <= ist)
+                        {
+                            //Weniger
+                            if (ist == obere_grenze)
+                            {
+                                Log.Add("Long press " + vc.name + " \"down\"", true);
+                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), dauer);
+                                vc.currentSimValue = untere_grenze;
+                                vc.getText = VirtualController.getTextDefault;
+                                Thread.Sleep(100);
+                            }
+                            else if (ist > obere_grenze)
+                            {
+                                Log.Add("Set " + vc.name + " to " + obere_grenze + " moving down", true);
+                                if (vc.istStufenlos)
+                                {
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);
+                                    vc.currentJoystickValue = obere_grenze;
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-
-            if (requestcount > 0)
-            {
-
             }
         }
         #endregion
@@ -951,13 +1043,11 @@ namespace TSW2_Controller
                     {
                         var line = reader.ReadLine();
                         string[] values = line.Split(',');
-
-                        VirtualController vc = new VirtualController();
-                        vc.InsertFileArray(values);
-
                         if (counter > 0)
                         {
                             //Skip first line
+                            VirtualController vc = new VirtualController();
+                            vc.InsertFileArray(values);
                             vControllerList.Add(vc);
                         }
                         counter++;
@@ -1065,7 +1155,15 @@ namespace TSW2_Controller
                         {
                             if (vc.name == selected_vControllername)
                             {
-                                vc.timefactor = Convert.ToInt32(singleTrain[Tcfg.zeitfaktor]);
+                                if (singleTrain[Tcfg.zeitfaktor].Contains("|"))
+                                {
+                                    vc.timefactor = new int[] { Convert.ToInt32(singleTrain[Tcfg.zeitfaktor].Split('|')[0]), Convert.ToInt32(singleTrain[Tcfg.zeitfaktor].Split('|')[1]) };
+                                }
+                                else
+                                {
+                                    vc.timefactor = new int[] { Convert.ToInt32(singleTrain[Tcfg.zeitfaktor]), 0 };
+                                }
+
                                 if (singleTrain[Tcfg.schritte] != "")
                                 {
                                     vc.stufen = Convert.ToInt32(singleTrain[Tcfg.schritte]);
@@ -1074,6 +1172,40 @@ namespace TSW2_Controller
                                 {
                                     vc.istStufenlos = true;
                                 }
+                                else
+                                {
+                                    vc.istStufenlos = false;
+                                }
+
+                                if (singleTrain[Tcfg.specials].Contains("=") && singleTrain[Tcfg.specials] != "")
+                                {
+                                    string[] specialCases = singleTrain[Tcfg.specials].Remove(singleTrain[Tcfg.specials].Length - 1, 1).Replace("[", "").Split(']');
+                                    foreach (string specialCase in specialCases)
+                                    {
+                                        int index = specialCase.IndexOf("=");
+                                        string word = specialCase.Remove(index, specialCase.Length - index);
+                                        int entsprechendeNummer = Convert.ToInt32(specialCase.Remove(0, index + 1));
+                                        vc.specialCases.Add(new string[] { word, entsprechendeNummer.ToString() });
+                                    }
+                                }
+
+                                if (singleTrain[Tcfg.laengerDruecken].Contains(":") && singleTrain[Tcfg.laengerDruecken] != "")
+                                {
+                                    string[] longPressArray = singleTrain[Tcfg.laengerDruecken].Remove(singleTrain[Tcfg.laengerDruecken].Length - 1, 1).Replace("[", "").Split(']');
+                                    foreach (string singleLongPress in longPressArray)
+                                    {
+                                        int index_Gerade = singleLongPress.IndexOf("|");
+                                        int index_doppelpnkt = singleLongPress.IndexOf(":");
+
+                                        int untere_grenze = Convert.ToInt32(singleLongPress.Remove(index_Gerade, singleLongPress.Length - index_Gerade));
+                                        int obere_grenze = Convert.ToInt32(singleLongPress.Remove(0, index_Gerade + 1).Remove(singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":"), singleLongPress.Remove(0, index_Gerade + 1).Length - singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":")));
+                                        int dauer = Convert.ToInt32(singleLongPress.Remove(0, singleLongPress.IndexOf(":") + 1));
+                                        vc.longPress.Add(new int[] { untere_grenze, obere_grenze, dauer });
+                                    }
+                                }
+
+
+
                                 activeVControllers.Add(vc);
                             }
                         }
@@ -1411,21 +1543,200 @@ namespace TSW2_Controller
         }
         #endregion
 
-        #region ChangeGameState
-        public void ConvertLongPress(bool isThrottle, bool isStufenlos)
-        {
-
-        }
-        #endregion
-
         #region ReadScreen
         private void bgw_readScreen_DoWork(object sender, DoWorkEventArgs e)
         {
+            int requestcount = 0;
+            for (int i = 0; i < activeVControllers.Count; i++)
+            {
+                VirtualController vc = activeVControllers[i];
+                if (vc.getText > 0)
+                {
+                    requestcount++;
+                }
+            }
 
+            if (requestcount > 0)
+            {
+                string result = GetText(Screenshot(true));
+
+                for (int i = 0; i < activeVControllers.Count; i++)
+                {
+                    VirtualController vc = activeVControllers[i];
+
+                    if (vc.getText > 0)
+                    {
+                        if (vc.cancelScan == 0)
+                        {
+                            string indicator = GetBestMainIndicator(result, vc);
+                            if (indicator == "")
+                            {
+                                result = GetText(Screenshot(false));
+                                indicator = GetBestMainIndicator(result, vc);
+                            }
+
+                            if (indicator != "")
+                            {
+                                int factor = 1;
+                                if (ContainsBrakingArea(result, vc))
+                                {
+                                    factor = -1;
+                                }
+                                result = result.Replace(indicator, "").Trim();
+
+                                int detectedNumber = -99999;
+                                int wordlength = 0;
+                                foreach (string[] specialCase in vc.specialCases)
+                                {
+                                    if (ContainsWord(result, specialCase[0]))
+                                    {
+                                        if (specialCase[0].Length > wordlength)
+                                        {
+                                            wordlength = specialCase[0].Length;
+                                            detectedNumber = Convert.ToInt32(specialCase[1])*factor;//Der faktor soll entgegenwirken sodass die Specialcases wörtlich genommen werden
+                                        }
+                                    }
+                                }
+
+                                if (detectedNumber == -99999)
+                                {
+                                    int indexOfPercent = result.IndexOf("%");
+                                    if (indexOfPercent != -1)
+                                    {
+                                        result = result.Remove(indexOfPercent, result.Length - indexOfPercent);
+                                    }
+                                    try
+                                    {
+                                        int number = Convert.ToInt32(result);
+                                        if (vc.cancelScan == 0)
+                                        {
+                                            detectedNumber = number;
+                                        }
+                                    }
+                                    catch
+                                    {
+
+                                    }
+
+                                }
+                                if (detectedNumber != -99999)
+                                {
+                                    vc.currentSimValue = detectedNumber * factor;
+                                    Log.Add(vc.name + ":" + detectedNumber, true);
+                                    vc.getText--;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (vc.cancelScan == -1)
+                            {
+                                vc.cancelScan = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            string GetBestMainIndicator(string result, VirtualController virtualController)
+            {
+                VirtualController vc = virtualController;
+                double bestMatchDistance = 0;
+                string bestMatchWord = "";
+
+
+                foreach (string indicator in vc.mainIndicators)
+                {
+                    if (ContainsWord(result, indicator))
+                    {
+                        bestMatchWord = indicator;
+                        break;
+                    }
+                    else
+                    {
+                        int indicatorWordCount = indicator.Split(' ').Count();
+                        string[] splitResult = result.Split(' ');
+
+                        for (int j = 0; j < splitResult.Length - indicatorWordCount; j++)
+                        {
+                            string str = "";
+                            for (int o = 0; o < indicatorWordCount; o++)
+                            {
+                                str += splitResult[o + j] + " ";
+                            }
+                            str = str.Trim();
+
+                            double distance = GetDamerauLevenshteinDistanceInPercent(str, indicator, 3);
+                            if (distance > bestMatchDistance && distance >= 0.8)
+                            {
+                                bestMatchDistance = distance;
+                                bestMatchWord = str;
+                            }
+                        }
+                    }
+                }
+
+                if (bestMatchWord != "")
+                {
+                    return bestMatchWord;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            bool ContainsBrakingArea(string result, VirtualController virtualController)
+            {
+                VirtualController vc = virtualController;
+                double bestMatchDistance = 0;
+                string bestMatchWord = "";
+
+
+                foreach (string indicator in vc.textindicators_brakearea)
+                {
+                    if (ContainsWord(result, indicator))
+                    {
+                        bestMatchWord = indicator;
+                        break;
+                    }
+                    else
+                    {
+                        int indicatorWordCount = indicator.Split(' ').Count();
+                        string[] splitResult = result.Split(' ');
+
+                        for (int j = 0; j < splitResult.Length - indicatorWordCount; j++)
+                        {
+                            string str = "";
+                            for (int o = 0; o < indicatorWordCount; o++)
+                            {
+                                str += splitResult[o + j] + " ";
+                            }
+                            str = str.Trim();
+
+                            double distance = GetDamerauLevenshteinDistanceInPercent(str, indicator, 3);
+                            if (distance > bestMatchDistance && distance >= 0.8)
+                            {
+                                bestMatchDistance = distance;
+                                bestMatchWord = str;
+                            }
+                        }
+                    }
+                }
+
+                if (bestMatchWord != "")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
         private void bgw_readScreen_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            if (((Bitmap)((object[])e.UserState)[0]).Height != 1) { pictureBox_Screenshot_original.Image = (Bitmap)((object[])e.UserState)[0]; }
+            if (((Bitmap)((object[])e.UserState)[1]).Height != 1) { pictureBox_Screenshot_alternativ.Image = (Bitmap)((object[])e.UserState)[1]; }
         }
         private void bgw_readScreen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {

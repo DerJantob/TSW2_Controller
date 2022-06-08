@@ -1143,6 +1143,7 @@ namespace TSW2_Controller
                     comboBoxT2_mainIndicator.Items.AddRange(singleController.mainIndicators);
                     comboBoxT2_throttlearea.Items.AddRange(singleController.textindicators_throttlearea);
                     comboBoxT2_brakearea.Items.AddRange(singleController.textindicators_brakearea);
+                    checkboxT2_Kombihebel.Checked = singleController.isMasterController;
                 }
             }
             panel_main.Enabled = true;
@@ -1180,16 +1181,15 @@ namespace TSW2_Controller
                         }
                     }
                     cb.Items.Remove(cb.Text);
+
                     //Schreibe Datei
                     string[] line = new string[controllerConfig.Count + 1];
-                    line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+                    line[0] = VirtualController.firstLine;
                     for (int i = 1; i < controllerConfig.Count + 1; i++)
                     {
                         VirtualController vc = controllerConfig[i - 1];
 
-                        string combined = "";
-
-                        combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.mainIndicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+                        string combined = vc.combineToString();
 
                         line[i] = combined;
                     }
@@ -1243,6 +1243,17 @@ namespace TSW2_Controller
                 cb.Items.Remove(cb.Text);
             }
         }
+        private void checkboxT2_Kombihebel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkboxT2_Kombihebel.Checked)
+            {
+                groupBox_kombihebel.Enabled = true;
+            }
+            else
+            {
+                groupBox_kombihebel.Enabled = false;
+            }
+        }
         private void btnT2_Save_Click(object sender, EventArgs e)
         {
             if (txtT2_increase.Text != "" && txtT2_decrease.Text != "")
@@ -1251,9 +1262,18 @@ namespace TSW2_Controller
                 vc.name = comboBoxT2_Reglerauswahl.Text;
                 vc.increaseKey = txtT2_increase.Text;
                 vc.decreaseKey = txtT2_decrease.Text;
+                vc.isMasterController = checkboxT2_Kombihebel.Checked;
                 vc.mainIndicators = comboBoxT2_mainIndicator.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
-                vc.textindicators_throttlearea = comboBoxT2_throttlearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
-                vc.textindicators_brakearea = comboBoxT2_brakearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                if (vc.isMasterController)
+                {
+                    vc.textindicators_throttlearea = comboBoxT2_throttlearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                    vc.textindicators_brakearea = comboBoxT2_brakearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                }
+                else
+                {
+                    vc.textindicators_throttlearea = new string[0];
+                    vc.textindicators_brakearea = new string[0];
+                }
 
                 bool aleardyExists = false;
                 for (int i = 0; i < controllerConfig.Count; i++)
@@ -1274,14 +1294,12 @@ namespace TSW2_Controller
 
             //Schreibe Datei
             string[] line = new string[controllerConfig.Count + 1];
-            line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+            line[0] = VirtualController.firstLine;
             for (int i = 1; i < controllerConfig.Count + 1; i++)
             {
                 VirtualController vc = controllerConfig[i - 1];
 
-                string combined = "";
-
-                combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.mainIndicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+                string combined = vc.combineToString();
 
                 line[i] = combined;
             }
