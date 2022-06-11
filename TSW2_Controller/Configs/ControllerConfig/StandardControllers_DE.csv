@@ -1,0 +1,5 @@
+name,increase,decrease,main indicators,masterController,throttle_area,brake_area
+Schub,a,d,Leistung|Fahrschalter|Leistungsregler|Fahrstufenschalter,False,,
+Bremse,oem7,oem3,Zugbremse|Führerbremsventil|Fahrerbremsventil,False,,
+AFB,r,f,AFB,False,,
+Kombihebel,a,d,Kombihebel,True,Leistung,Bremse|Bremsleistung

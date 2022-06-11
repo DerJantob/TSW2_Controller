@@ -24,7 +24,7 @@ namespace TSW2_Controller
         public int getText;
         public DateTime requestStartTime;
         public List<string[]> specialCases = new List<string[]>();
-        public List<int[]> longPress=new List<int[]>();
+        public List<int[]> longPress = new List<int[]>();
         public bool waitToFinishMovement;
         public bool istStufenlos = false;
 
