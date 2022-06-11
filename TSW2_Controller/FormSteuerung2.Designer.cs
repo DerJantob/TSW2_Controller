@@ -99,6 +99,7 @@
             this.comboBoxT0_Zugauswahl = new System.Windows.Forms.ComboBox();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnT2_defaultSettings = new System.Windows.Forms.Button();
             this.btnT2_back = new System.Windows.Forms.Button();
             this.panel_main = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -120,6 +121,7 @@
             this.btnT2_Save = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
+            this.btnT0_globalKeybinds = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -572,6 +574,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnT0_globalKeybinds);
             this.tabPage1.Controls.Add(this.btnT0_Delete);
             this.tabPage1.Controls.Add(this.btnT0_Add);
             this.tabPage1.Controls.Add(this.btnT0_edit);
@@ -626,6 +629,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnT2_defaultSettings);
             this.tabPage5.Controls.Add(this.btnT2_back);
             this.tabPage5.Controls.Add(this.panel_main);
             this.tabPage5.Controls.Add(this.btnT2_add);
@@ -636,6 +640,13 @@
             resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnT2_defaultSettings
+            // 
+            resources.ApplyResources(this.btnT2_defaultSettings, "btnT2_defaultSettings");
+            this.btnT2_defaultSettings.Name = "btnT2_defaultSettings";
+            this.btnT2_defaultSettings.UseVisualStyleBackColor = true;
+            this.btnT2_defaultSettings.Click += new System.EventHandler(this.btnT2_defaultSettings_Click);
             // 
             // btnT2_back
             // 
@@ -787,6 +798,13 @@
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
             // 
+            // btnT0_globalKeybinds
+            // 
+            resources.ApplyResources(this.btnT0_globalKeybinds, "btnT0_globalKeybinds");
+            this.btnT0_globalKeybinds.Name = "btnT0_globalKeybinds";
+            this.btnT0_globalKeybinds.UseVisualStyleBackColor = true;
+            this.btnT0_globalKeybinds.Click += new System.EventHandler(this.btnT0_globalKeybinds_Click);
+            // 
             // FormSteuerung2
             // 
             resources.ApplyResources(this, "$this");
@@ -914,5 +932,7 @@
         private System.Windows.Forms.Button btnT1_back;
         private System.Windows.Forms.CheckBox checkboxT2_Kombihebel;
         private System.Windows.Forms.Button btnT2_back;
+        private System.Windows.Forms.Button btnT2_defaultSettings;
+        private System.Windows.Forms.Button btnT0_globalKeybinds;
     }
 }

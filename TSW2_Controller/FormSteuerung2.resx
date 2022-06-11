@@ -1638,6 +1638,30 @@
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnT0_globalKeybinds.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 51</value>
+  </data>
+  <data name="btnT0_globalKeybinds.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="btnT0_globalKeybinds.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnT0_globalKeybinds.Text" xml:space="preserve">
+    <value>Globale Tastenbelegung</value>
+  </data>
+  <data name="&gt;&gt;btnT0_globalKeybinds.Name" xml:space="preserve">
+    <value>btnT0_globalKeybinds</value>
+  </data>
+  <data name="&gt;&gt;btnT0_globalKeybinds.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT0_globalKeybinds.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;btnT0_globalKeybinds.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnT0_Delete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1663,7 +1687,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_Delete.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnT0_Add.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1690,13 +1714,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_Add.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnT0_edit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnT0_edit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 49</value>
+    <value>6, 51</value>
   </data>
   <data name="btnT0_edit.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1717,7 +1741,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_edit.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1747,7 +1771,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="comboBoxT0_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 22</value>
@@ -1768,7 +1792,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;comboBoxT0_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1797,6 +1821,33 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnT2_defaultSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnT2_defaultSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 303</value>
+  </data>
+  <data name="btnT2_defaultSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 23</value>
+  </data>
+  <data name="btnT2_defaultSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="btnT2_defaultSettings.Text" xml:space="preserve">
+    <value>Standard Einstellungen</value>
+  </data>
+  <data name="&gt;&gt;btnT2_defaultSettings.Name" xml:space="preserve">
+    <value>btnT2_defaultSettings</value>
+  </data>
+  <data name="&gt;&gt;btnT2_defaultSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT2_defaultSettings.Parent" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;btnT2_defaultSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnT2_back.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1822,7 +1873,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;btnT2_back.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="checkboxT2_Kombihebel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2206,7 +2257,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;panel_main.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnT2_add.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2233,7 +2284,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;btnT2_add.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnT2_remove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2260,7 +2311,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;btnT2_remove.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnT2_Save.Location" type="System.Drawing.Point, System.Drawing">
     <value>154, 272</value>
@@ -2284,7 +2335,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;btnT2_Save.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label17.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2311,7 +2362,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="comboBoxT2_Reglerauswahl.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 22</value>
@@ -2332,7 +2383,7 @@
     <value>tabPage5</value>
   </data>
   <data name="&gt;&gt;comboBoxT2_Reglerauswahl.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2392,7 +2443,10 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>696, 382</value>
+    <value>715, 416</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>Manual</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>FormSteuerung2</value>

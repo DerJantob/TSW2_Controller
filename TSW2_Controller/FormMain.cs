@@ -96,8 +96,16 @@ namespace TSW2_Controller
             }
             if (!File.Exists(Tcfg.controllersConfigPfad))
             {
-                File.Create(Tcfg.controllersConfigPfad);
-                Log.Add("Create File:" + Tcfg.controllersConfigPfad);
+                if (Sprache.isGerman())
+                {
+                    File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, false);
+                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
+                }
+                else
+                {
+                    File.Copy(Tcfg.controllersstandardpfad_EN, Tcfg.controllersConfigPfad, false);
+                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_EN + " to " + Tcfg.controllersConfigPfad);
+                }
             }
             if (!Directory.Exists(Tcfg.configOrdnerPfad))
             {
@@ -257,8 +265,8 @@ namespace TSW2_Controller
 
             loadSettings();
 
-            ReadTrainConfig();
             ReadVControllers();
+            ReadTrainConfig();
         }
         #endregion
         #region Joysticks überprüfen
@@ -675,39 +683,28 @@ namespace TSW2_Controller
                     }
                     else
                     {
-                        //Neuinstallation 321321
-                        //CultureInfo ci = CultureInfo.InstalledUICulture;
-                        //if (ci.Name == "de-DE")
-                        //{
-                        //    //Sprache von Windows
-                        //    Settings.Default.Sprache = "de-DE";
-                        //    Settings.Default.Save();
-                        //}
+                        //Neuinstallation
+                        CultureInfo ci = CultureInfo.InstalledUICulture;
+                        if (ci.Name == "de-DE")
+                        {
+                            //Sprache von Windows
+                            Settings.Default.Sprache = "de-DE";
+                            Settings.Default.Save();
+                        }
 
-                        //Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
-                        //Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
-                        //Settings.Default.Kombihebel_SchubIndexe_EN.AddRange(defaultEN_kombihebel_schubIndexe);
-                        //Settings.Default.Kombihebel_BremsIndexe_EN.AddRange(defaultEN_kombihebel_bremsIndexe);
-
-                        //Settings.Default.SchubIndexe_DE.AddRange(defaultDE_schubIndexe);
-                        //Settings.Default.BremsIndexe_DE.AddRange(defaultDE_bremsIndexe);
-                        //Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
-                        //Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
-
-                        //if (Sprache.isGerman())
-                        //{
-                        //    Settings.Default.SchubIndexe.AddRange(defaultDE_schubIndexe); Settings.Default.Save();
-                        //    Settings.Default.BremsIndexe.AddRange(defaultDE_bremsIndexe); Settings.Default.Save();
-                        //    Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultDE_kombihebel_schubIndexe); Settings.Default.Save();
-                        //    Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultDE_kombihebel_bremsIndexe); Settings.Default.Save();
-                        //}
-                        //else
-                        //{
-                        //    Settings.Default.SchubIndexe.AddRange(defaultEN_schubIndexe); Settings.Default.Save();
-                        //    Settings.Default.BremsIndexe.AddRange(defaultEN_bremsIndexe); Settings.Default.Save();
-                        //    Settings.Default.Kombihebel_SchubIndexe.AddRange(defaultEN_kombihebel_schubIndexe); Settings.Default.Save();
-                        //    Settings.Default.Kombihebel_BremsIndexe.AddRange(defaultEN_kombihebel_bremsIndexe); Settings.Default.Save();
-                        //}
+                        if (!File.Exists(Tcfg.controllersConfigPfad))
+                        {
+                            if (Sprache.isGerman())
+                            {
+                                File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, false);
+                                Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
+                            }
+                            else
+                            {
+                                File.Copy(Tcfg.controllersstandardpfad_EN, Tcfg.controllersConfigPfad, false);
+                                Log.Add("Copy :" + Tcfg.controllersstandardpfad_EN + " to " + Tcfg.controllersConfigPfad);
+                            }
+                        }
                     }
 
                     Settings.Default.UpdateErforderlich = false;
@@ -801,6 +798,7 @@ namespace TSW2_Controller
         public void ReadTrainConfig()
         {
             Log.Add("Read TrainConfig");
+            groupBox_ScanErgebnisse.Hide();
             if (File.Exists(Tcfg.configpfad))
             {
                 trainConfig.Clear();
@@ -810,6 +808,21 @@ namespace TSW2_Controller
                     {
                         var line = reader.ReadLine();
                         var values = line.Split(',');
+
+                        bool found = false;
+                        foreach (VirtualController vc in vControllerList)
+                        {
+                            if (vc.name == values[Tcfg.reglerName])
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found && values[Tcfg.reglerName] != "" && values[Tcfg.zug] != "Zug")
+                        {
+                            groupBox_ScanErgebnisse.Show();
+                            lbl_originalResult.Text = values[Tcfg.zug] + ":\"" + values[Tcfg.reglerName] + "\" not found!";
+                        }
 
                         trainConfig.Add(values);
                     }

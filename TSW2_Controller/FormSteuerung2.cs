@@ -269,6 +269,15 @@ namespace TSW2_Controller
             if (selectedTrain == Tcfg.nameForGlobal)
             {
                 tabControl_ReglerKnopf.SelectedIndex = 1;
+                btnT1_Controller_Add.Enabled = false;
+            }
+            if(tabControl_ReglerKnopf.SelectedIndex == 1)
+            {
+                groupBoxT1_Regler.Hide();
+            }
+            else
+            {
+                groupBoxT1_Regler.Show();
             }
             tabControl_main.SelectedIndex = 1;
             panel_Regler.Enabled = false;
@@ -329,6 +338,12 @@ namespace TSW2_Controller
                     MessageBox.Show(counter + Sprache.Translate(" Einträge gelöscht!", " entries deleted!"));
                 }
             }
+        }
+        private void btnT0_globalKeybinds_Click(object sender, EventArgs e)
+        {
+            selectedTrain = "";
+            resetControllerBearbeiten();
+            tabControl_main.SelectedIndex = 2;
         }
         #endregion
 
@@ -888,7 +903,7 @@ namespace TSW2_Controller
                         Log.ErrorException(ex);
                     }
                     counter++;
-                    if (counter > 500)
+                    if (counter > 200)
                     {
                         wait = false;
                     }
@@ -966,7 +981,7 @@ namespace TSW2_Controller
                         Log.ErrorException(ex);
                     }
                     counter++;
-                    if (counter > 500)
+                    if (counter > 200)
                     {
                         wait = false;
                     }
@@ -1209,13 +1224,9 @@ namespace TSW2_Controller
             if (!cb.Items.Contains(cb.Text))
             {
                 cb.Items.Add(cb.Text);
-                resetControllerBearbeiten(false);
+                panel_main.Enabled = true;
             }
-            else
-            {
-                resetControllerBearbeiten(false);
-            }
-            panel_main.Enabled = true;
+            resetControllerBearbeiten(false);
         }
         private void btnT2_remove_Click(object sender, EventArgs e)
         {
@@ -1381,8 +1392,32 @@ namespace TSW2_Controller
         }
         private void btnT2_back_Click(object sender, EventArgs e)
         {
-            resetControllerBearbeiten(true);
-            tabControl_main.SelectedIndex = 1;
+            if (selectedTrain != "")
+            {
+                resetControllerBearbeiten(true);
+                tabControl_main.SelectedIndex = 1;
+            }
+            else
+            {
+                tabControl_main.SelectedIndex = 0;
+            }
+        }
+        private void btnT2_defaultSettings_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Sprache.Translate("Möchtest du wirklich alle Regler auf die Standardeinstellungen zurücksetzen? (Ohne speichern wirksam)", "Do you really want to reset all controllers to default settings?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (Sprache.isGerman())
+                {
+                    File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, true);
+                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
+                }
+                else
+                {
+                    File.Copy(Tcfg.controllersstandardpfad_EN, Tcfg.controllersConfigPfad, true);
+                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_EN + " to " + Tcfg.controllersConfigPfad);
+                }
+                resetControllerBearbeiten();
+            }
         }
         #endregion
     }
