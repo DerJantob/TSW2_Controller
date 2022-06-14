@@ -44,9 +44,7 @@
             this.panel_Regler = new System.Windows.Forms.Panel();
             this.progressBar_Joystick = new System.Windows.Forms.ProgressBar();
             this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnR_100 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnR_0 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.radioR_Stufen = new System.Windows.Forms.RadioButton();
@@ -92,6 +90,7 @@
             this.radioB_normal = new System.Windows.Forms.RadioButton();
             this.lblT1_TrainName = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnT0_globalKeybinds = new System.Windows.Forms.Button();
             this.btnT0_Delete = new System.Windows.Forms.Button();
             this.btnT0_Add = new System.Windows.Forms.Button();
             this.btnT0_edit = new System.Windows.Forms.Button();
@@ -121,14 +120,13 @@
             this.btnT2_Save = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
-            this.btnT0_globalKeybinds = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel_Regler.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -138,6 +136,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox_kombihebel.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer_CheckJoysticks
@@ -270,26 +270,12 @@
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.DodgerBlue;
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
             // btnR_100
             // 
             resources.ApplyResources(this.btnR_100, "btnR_100");
             this.btnR_100.Name = "btnR_100";
             this.btnR_100.UseVisualStyleBackColor = true;
             this.btnR_100.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
             // 
             // btnR_0
             // 
@@ -584,6 +570,13 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnT0_globalKeybinds
+            // 
+            resources.ApplyResources(this.btnT0_globalKeybinds, "btnT0_globalKeybinds");
+            this.btnT0_globalKeybinds.Name = "btnT0_globalKeybinds";
+            this.btnT0_globalKeybinds.UseVisualStyleBackColor = true;
+            this.btnT0_globalKeybinds.Click += new System.EventHandler(this.btnT0_globalKeybinds_Click);
+            // 
             // btnT0_Delete
             // 
             resources.ApplyResources(this.btnT0_Delete, "btnT0_Delete");
@@ -798,12 +791,19 @@
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
             // 
-            // btnT0_globalKeybinds
+            // pictureBox2
             // 
-            resources.ApplyResources(this.btnT0_globalKeybinds, "btnT0_globalKeybinds");
-            this.btnT0_globalKeybinds.Name = "btnT0_globalKeybinds";
-            this.btnT0_globalKeybinds.UseVisualStyleBackColor = true;
-            this.btnT0_globalKeybinds.Click += new System.EventHandler(this.btnT0_globalKeybinds_Click);
+            this.pictureBox2.BackColor = System.Drawing.Color.DodgerBlue;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
             // 
             // FormSteuerung2
             // 
@@ -820,16 +820,12 @@
             this.tabPage4.ResumeLayout(false);
             this.panel_Regler.ResumeLayout(false);
             this.panel_Regler.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabControl_main.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
             this.panel_main.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -837,6 +833,8 @@
             this.groupBox_kombihebel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -9,14 +9,14 @@ namespace TSW2_Controller
     internal class VirtualController
     {
         public string name;
+        public string increaseKey;
+        public string decreaseKey;
         public string[] mainIndicators;
         public string[] textindicators_throttlearea;
         public string[] textindicators_brakearea;
-        public string increaseKey;
-        public string decreaseKey;
-        public int[] timefactor;
-        public bool isMasterController;
+        public bool isMasterController = false;
 
+        public int[] timefactor;
         public int currentJoystickValue;
         public int currentSimValue;
         public int cancelScan; //0=false 1=true -1=wait til current scan is done

@@ -113,6 +113,11 @@
     </Compile>
     <Compile Include="Keyboard.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Sprache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +152,9 @@
     <EmbeddedResource Include="FormSteuerung.resx">
       <DependentUpon>FormSteuerung.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSteuerung2.en.resx">
+      <DependentUpon>FormSteuerung2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSteuerung2.resx">
       <DependentUpon>FormSteuerung2.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,18 +173,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Configs\ControllerConfig\StandardControllers_EN.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Configs\ControllerConfig\StandardControllers_DE.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

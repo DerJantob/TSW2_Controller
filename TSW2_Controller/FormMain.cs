@@ -573,7 +573,7 @@ namespace TSW2_Controller
                             {
                                 //Backup
                                 File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
-                                Sprache.ShowMessageBox("Backup has been created on the Desktop", "Ein Backup wurde auf dem Desktop erstellt");
+                                Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
 
                                 //Neue Tastenbenennung
                                 string[] file = File.ReadAllLines(Tcfg.configpfad);
@@ -677,6 +677,37 @@ namespace TSW2_Controller
 
 
                             Settings.Default.Save();
+                        }
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0)
+                        {
+                            Log.Add("2.0.0", false, 1);
+                            List<string> schubIndexe = new List<string>();
+                            List<string> bremsIndexe = new List<string>();
+                            List<string> kombihebel_schubIndexe = new List<string>();
+                            List<string> kombihebel_bremsIndexe = new List<string>();
+
+                            List<string> output_Text = new List<string>();
+
+                            schubIndexe.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                            bremsIndexe.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                            kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+                            kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+
+                            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info";
+
+                            Directory.CreateDirectory(folderPath);
+
+                            File.Copy(Tcfg.configpfad, folderPath + @"\backupTrainConfig.csv", true);
+                            Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
+
+                            output_Text.Add("");
+                            output_Text.Add("");
+                            output_Text.Add("");
+                            output_Text.Add("");
+                            output_Text.Add("");
+                            output_Text.Add("");
+                            output_Text.Add("");
+
                         }
                         #endregion
 
@@ -1696,8 +1727,8 @@ namespace TSW2_Controller
                                         Log.Error("Could not get a number out of (removing percent method) " + result_withoutPercent);
                                         try
                                         {
-                                            //Isoliere die Zahl
-                                            int number = Convert.ToInt32(Regex.Match(result, @"\d+").Value);
+                                            //Isoliere die letzte Zahl
+                                            int number = Convert.ToInt32(Regex.Matches(result, @"\d+")[Regex.Matches(result, @"\d+").Count - 1].Value);
                                             if (vc.cancelScan == 0)
                                             {
                                                 detectedNumber = number;

@@ -52,6 +52,10 @@ namespace TSW2_Controller
             {
                 tabControl_main.Size = new Size(313, 104);
             }
+            else if (tabControl_main.SelectedIndex == 2)
+            {
+                tabControl_main.Size = new Size(313, 348);
+            }
             else
             {
                 tabControl_main.Size = new Size(647, 348);
@@ -271,7 +275,7 @@ namespace TSW2_Controller
                 tabControl_ReglerKnopf.SelectedIndex = 1;
                 btnT1_Controller_Add.Enabled = false;
             }
-            if(tabControl_ReglerKnopf.SelectedIndex == 1)
+            if (tabControl_ReglerKnopf.SelectedIndex == 1)
             {
                 groupBoxT1_Regler.Hide();
             }
@@ -1162,6 +1166,7 @@ namespace TSW2_Controller
             comboBoxT2_mainIndicator.Items.Clear();
             comboBoxT2_brakearea.Items.Clear();
             comboBoxT2_throttlearea.Items.Clear();
+            checkboxT2_Kombihebel.Checked = false;
 
             if (fullReset)
             {
@@ -1388,7 +1393,15 @@ namespace TSW2_Controller
             resetControllerBearbeiten();
 
             ResetKonfiguration();
-            tabControl_main.SelectedIndex = 1;
+
+            if (selectedTrain != "")
+            {
+                tabControl_main.SelectedIndex = 1;
+            }
+            else
+            {
+                tabControl_main.SelectedIndex = 0;
+            }
         }
         private void btnT2_back_Click(object sender, EventArgs e)
         {
