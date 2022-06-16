@@ -44,7 +44,9 @@
             this.panel_Regler = new System.Windows.Forms.Panel();
             this.progressBar_Joystick = new System.Windows.Forms.ProgressBar();
             this.label11 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnR_100 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnR_0 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.radioR_Stufen = new System.Windows.Forms.RadioButton();
@@ -120,13 +122,29 @@
             this.btnT2_Save = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.comboBoxT2_Reglerauswahl = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnT3_Fertig = new System.Windows.Forms.Button();
+            this.btnT3_Hinzufügen = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtT3_Wartezeit = new System.Windows.Forms.TextBox();
+            this.lblT3_haltezeit = new System.Windows.Forms.Label();
+            this.txtT3_Haltezeit = new System.Windows.Forms.TextBox();
+            this.radioT3_Loslassen = new System.Windows.Forms.RadioButton();
+            this.radioT3_Druecken = new System.Windows.Forms.RadioButton();
+            this.radioT3_Halten = new System.Windows.Forms.RadioButton();
+            this.radioT3_einmalDruecken = new System.Windows.Forms.RadioButton();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtT3_Taste = new System.Windows.Forms.TextBox();
+            this.listBoxT3_Output = new System.Windows.Forms.ListBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel_Regler.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -136,8 +154,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox_kombihebel.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_CheckJoysticks
@@ -270,12 +288,26 @@
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.DodgerBlue;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
             // btnR_100
             // 
             resources.ApplyResources(this.btnR_100, "btnR_100");
             this.btnR_100.Name = "btnR_100";
             this.btnR_100.UseVisualStyleBackColor = true;
             this.btnR_100.Click += new System.EventHandler(this.btnR_ControllerValues_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
             // 
             // btnR_0
             // 
@@ -473,6 +505,7 @@
             resources.ApplyResources(this.btnB_Editor, "btnB_Editor");
             this.btnB_Editor.Name = "btnB_Editor";
             this.btnB_Editor.UseVisualStyleBackColor = true;
+            this.btnB_Editor.Click += new System.EventHandler(this.btnB_Editor_Click);
             // 
             // label6
             // 
@@ -493,9 +526,9 @@
             // 
             resources.ApplyResources(this.txtB_Aktion, "txtB_Aktion");
             this.txtB_Aktion.Name = "txtB_Aktion";
-            this.txtB_Aktion.Click += new System.EventHandler(this.txtB_Aktion_Click);
-            this.txtB_Aktion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtB_Aktion_KeyDown);
-            this.txtB_Aktion.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtB_Aktion_PreviewKeyDown);
+            this.txtB_Aktion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Aktion_KeyDown);
+            this.txtB_Aktion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txt_Aktion_MouseDown);
+            this.txtB_Aktion.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txt_Aktion_PreviewKeyDown);
             // 
             // label4
             // 
@@ -615,6 +648,7 @@
             this.tabControl_main.Controls.Add(this.tabPage1);
             this.tabControl_main.Controls.Add(this.tabPage2);
             this.tabControl_main.Controls.Add(this.tabPage5);
+            this.tabControl_main.Controls.Add(this.tabPage6);
             resources.ApplyResources(this.tabControl_main, "tabControl_main");
             this.tabControl_main.Name = "tabControl_main";
             this.tabControl_main.SelectedIndex = 0;
@@ -791,26 +825,133 @@
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
             // 
-            // pictureBox2
+            // tabPage6
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.DodgerBlue;
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
+            this.tabPage6.Controls.Add(this.btnT3_Fertig);
+            this.tabPage6.Controls.Add(this.btnT3_Hinzufügen);
+            this.tabPage6.Controls.Add(this.label18);
+            this.tabPage6.Controls.Add(this.txtT3_Wartezeit);
+            this.tabPage6.Controls.Add(this.lblT3_haltezeit);
+            this.tabPage6.Controls.Add(this.txtT3_Haltezeit);
+            this.tabPage6.Controls.Add(this.radioT3_Loslassen);
+            this.tabPage6.Controls.Add(this.radioT3_Druecken);
+            this.tabPage6.Controls.Add(this.radioT3_Halten);
+            this.tabPage6.Controls.Add(this.radioT3_einmalDruecken);
+            this.tabPage6.Controls.Add(this.label19);
+            this.tabPage6.Controls.Add(this.txtT3_Taste);
+            this.tabPage6.Controls.Add(this.listBoxT3_Output);
+            resources.ApplyResources(this.tabPage6, "tabPage6");
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // btnT3_Fertig
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            resources.ApplyResources(this.btnT3_Fertig, "btnT3_Fertig");
+            this.btnT3_Fertig.Name = "btnT3_Fertig";
+            this.btnT3_Fertig.UseVisualStyleBackColor = true;
+            this.btnT3_Fertig.Click += new System.EventHandler(this.btnT3_Fertig_Click);
+            // 
+            // btnT3_Hinzufügen
+            // 
+            resources.ApplyResources(this.btnT3_Hinzufügen, "btnT3_Hinzufügen");
+            this.btnT3_Hinzufügen.Name = "btnT3_Hinzufügen";
+            this.btnT3_Hinzufügen.UseVisualStyleBackColor = true;
+            this.btnT3_Hinzufügen.Click += new System.EventHandler(this.btnT3_Hinzufügen_Click);
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // txtT3_Wartezeit
+            // 
+            resources.ApplyResources(this.txtT3_Wartezeit, "txtT3_Wartezeit");
+            this.txtT3_Wartezeit.Name = "txtT3_Wartezeit";
+            // 
+            // lblT3_haltezeit
+            // 
+            resources.ApplyResources(this.lblT3_haltezeit, "lblT3_haltezeit");
+            this.lblT3_haltezeit.Name = "lblT3_haltezeit";
+            // 
+            // txtT3_Haltezeit
+            // 
+            resources.ApplyResources(this.txtT3_Haltezeit, "txtT3_Haltezeit");
+            this.txtT3_Haltezeit.Name = "txtT3_Haltezeit";
+            // 
+            // radioT3_Loslassen
+            // 
+            resources.ApplyResources(this.radioT3_Loslassen, "radioT3_Loslassen");
+            this.radioT3_Loslassen.Name = "radioT3_Loslassen";
+            this.radioT3_Loslassen.TabStop = true;
+            this.radioT3_Loslassen.UseVisualStyleBackColor = true;
+            this.radioT3_Loslassen.CheckedChanged += new System.EventHandler(this.radio_Changed);
+            // 
+            // radioT3_Druecken
+            // 
+            resources.ApplyResources(this.radioT3_Druecken, "radioT3_Druecken");
+            this.radioT3_Druecken.Name = "radioT3_Druecken";
+            this.radioT3_Druecken.TabStop = true;
+            this.radioT3_Druecken.UseVisualStyleBackColor = true;
+            this.radioT3_Druecken.CheckedChanged += new System.EventHandler(this.radio_Changed);
+            // 
+            // radioT3_Halten
+            // 
+            resources.ApplyResources(this.radioT3_Halten, "radioT3_Halten");
+            this.radioT3_Halten.Name = "radioT3_Halten";
+            this.radioT3_Halten.TabStop = true;
+            this.radioT3_Halten.UseVisualStyleBackColor = true;
+            this.radioT3_Halten.CheckedChanged += new System.EventHandler(this.radio_Changed);
+            // 
+            // radioT3_einmalDruecken
+            // 
+            resources.ApplyResources(this.radioT3_einmalDruecken, "radioT3_einmalDruecken");
+            this.radioT3_einmalDruecken.Checked = true;
+            this.radioT3_einmalDruecken.Name = "radioT3_einmalDruecken";
+            this.radioT3_einmalDruecken.TabStop = true;
+            this.radioT3_einmalDruecken.UseVisualStyleBackColor = true;
+            this.radioT3_einmalDruecken.CheckedChanged += new System.EventHandler(this.radio_Changed);
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // txtT3_Taste
+            // 
+            resources.ApplyResources(this.txtT3_Taste, "txtT3_Taste");
+            this.txtT3_Taste.Name = "txtT3_Taste";
+            this.txtT3_Taste.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Aktion_KeyDown);
+            this.txtT3_Taste.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txt_Aktion_MouseDown);
+            this.txtT3_Taste.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txt_Aktion_PreviewKeyDown);
+            // 
+            // listBoxT3_Output
+            // 
+            this.listBoxT3_Output.FormattingEnabled = true;
+            resources.ApplyResources(this.listBoxT3_Output, "listBoxT3_Output");
+            this.listBoxT3_Output.Name = "listBoxT3_Output";
+            this.listBoxT3_Output.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT3_Output_KeyDown);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hilfeToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // hilfeToolStripMenuItem
+            // 
+            this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
+            resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
+            this.hilfeToolStripMenuItem.Click += new System.EventHandler(this.hilfeToolStripMenuItem_Click);
             // 
             // FormSteuerung2
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl_main);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FormSteuerung2";
             this.tabPage2.ResumeLayout(false);
@@ -820,6 +961,8 @@
             this.tabPage4.ResumeLayout(false);
             this.panel_Regler.ResumeLayout(false);
             this.panel_Regler.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -833,9 +976,12 @@
             this.groupBox_kombihebel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -932,5 +1078,21 @@
         private System.Windows.Forms.Button btnT2_back;
         private System.Windows.Forms.Button btnT2_defaultSettings;
         private System.Windows.Forms.Button btnT0_globalKeybinds;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button btnT3_Fertig;
+        private System.Windows.Forms.Button btnT3_Hinzufügen;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtT3_Wartezeit;
+        private System.Windows.Forms.Label lblT3_haltezeit;
+        private System.Windows.Forms.TextBox txtT3_Haltezeit;
+        private System.Windows.Forms.RadioButton radioT3_Loslassen;
+        private System.Windows.Forms.RadioButton radioT3_Druecken;
+        private System.Windows.Forms.RadioButton radioT3_Halten;
+        private System.Windows.Forms.RadioButton radioT3_einmalDruecken;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtT3_Taste;
+        private System.Windows.Forms.ListBox listBoxT3_Output;
     }
 }

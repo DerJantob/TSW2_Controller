@@ -1621,7 +1621,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 322</value>
+    <value>639, 322</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2424,8 +2424,386 @@
   <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="btnT3_Fertig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnT3_Fertig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>387, 205</value>
+  </data>
+  <data name="btnT3_Fertig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="btnT3_Fertig.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="btnT3_Fertig.Text" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Fertig.Name" xml:space="preserve">
+    <value>btnT3_Fertig</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Fertig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Fertig.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Fertig.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnT3_Hinzufügen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnT3_Hinzufügen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 205</value>
+  </data>
+  <data name="btnT3_Hinzufügen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnT3_Hinzufügen.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="btnT3_Hinzufügen.Text" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Hinzufügen.Name" xml:space="preserve">
+    <value>btnT3_Hinzufügen</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Hinzufügen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Hinzufügen.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;btnT3_Hinzufügen.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 163</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 13</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Wartezeit [ms]</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtT3_Wartezeit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 179</value>
+  </data>
+  <data name="txtT3_Wartezeit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 20</value>
+  </data>
+  <data name="txtT3_Wartezeit.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="txtT3_Wartezeit.Text" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Wartezeit.Name" xml:space="preserve">
+    <value>txtT3_Wartezeit</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Wartezeit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Wartezeit.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Wartezeit.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblT3_haltezeit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblT3_haltezeit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblT3_haltezeit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 117</value>
+  </data>
+  <data name="lblT3_haltezeit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 13</value>
+  </data>
+  <data name="lblT3_haltezeit.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="lblT3_haltezeit.Text" xml:space="preserve">
+    <value>Dauer Halten [ms]</value>
+  </data>
+  <data name="&gt;&gt;lblT3_haltezeit.Name" xml:space="preserve">
+    <value>lblT3_haltezeit</value>
+  </data>
+  <data name="&gt;&gt;lblT3_haltezeit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblT3_haltezeit.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;lblT3_haltezeit.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtT3_Haltezeit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 133</value>
+  </data>
+  <data name="txtT3_Haltezeit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 20</value>
+  </data>
+  <data name="txtT3_Haltezeit.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="txtT3_Haltezeit.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Haltezeit.Name" xml:space="preserve">
+    <value>txtT3_Haltezeit</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Haltezeit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Haltezeit.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Haltezeit.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="radioT3_Loslassen.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT3_Loslassen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioT3_Loslassen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 84</value>
+  </data>
+  <data name="radioT3_Loslassen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 17</value>
+  </data>
+  <data name="radioT3_Loslassen.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="radioT3_Loslassen.Text" xml:space="preserve">
+    <value>Loslassen</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Loslassen.Name" xml:space="preserve">
+    <value>radioT3_Loslassen</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Loslassen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Loslassen.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Loslassen.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="radioT3_Druecken.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT3_Druecken.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioT3_Druecken.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 61</value>
+  </data>
+  <data name="radioT3_Druecken.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 17</value>
+  </data>
+  <data name="radioT3_Druecken.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="radioT3_Druecken.Text" xml:space="preserve">
+    <value>Gedrückt halten</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Druecken.Name" xml:space="preserve">
+    <value>radioT3_Druecken</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Druecken.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Druecken.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Druecken.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="radioT3_Halten.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT3_Halten.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioT3_Halten.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 84</value>
+  </data>
+  <data name="radioT3_Halten.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
+  <data name="radioT3_Halten.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="radioT3_Halten.Text" xml:space="preserve">
+    <value>Halten</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Halten.Name" xml:space="preserve">
+    <value>radioT3_Halten</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Halten.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Halten.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;radioT3_Halten.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="radioT3_einmalDruecken.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioT3_einmalDruecken.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioT3_einmalDruecken.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 61</value>
+  </data>
+  <data name="radioT3_einmalDruecken.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 17</value>
+  </data>
+  <data name="radioT3_einmalDruecken.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="radioT3_einmalDruecken.Text" xml:space="preserve">
+    <value>Kurz drücken</value>
+  </data>
+  <data name="&gt;&gt;radioT3_einmalDruecken.Name" xml:space="preserve">
+    <value>radioT3_einmalDruecken</value>
+  </data>
+  <data name="&gt;&gt;radioT3_einmalDruecken.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioT3_einmalDruecken.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;radioT3_einmalDruecken.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label19.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 19</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Taste</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="txtT3_Taste.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 35</value>
+  </data>
+  <data name="txtT3_Taste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
+  </data>
+  <data name="txtT3_Taste.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Taste.Name" xml:space="preserve">
+    <value>txtT3_Taste</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Taste.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Taste.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;txtT3_Taste.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="listBoxT3_Output.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="listBoxT3_Output.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 225</value>
+  </data>
+  <data name="listBoxT3_Output.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;listBoxT3_Output.Name" xml:space="preserve">
+    <value>listBoxT3_Output</value>
+  </data>
+  <data name="&gt;&gt;listBoxT3_Output.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listBoxT3_Output.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;listBoxT3_Output.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>639, 322</value>
+  </data>
+  <data name="tabPage6.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>Tastenkombination</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Name" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Parent" xml:space="preserve">
+    <value>tabControl_main</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="tabControl_main.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+    <value>12, 27</value>
   </data>
   <data name="tabControl_main.Size" type="System.Drawing.Size, System.Drawing">
     <value>647, 348</value>
@@ -2445,6 +2823,39 @@
   <data name="&gt;&gt;tabControl_main.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>182, 17</value>
+  </metadata>
+  <data name="hilfeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="hilfeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>715, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2459,9 +2870,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>715, 416</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>Manual</value>
@@ -2486,6 +2894,12 @@
   </data>
   <data name="&gt;&gt;Output.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hilfeToolStripMenuItem.Name" xml:space="preserve">
+    <value>hilfeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;hilfeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormSteuerung2</value>
