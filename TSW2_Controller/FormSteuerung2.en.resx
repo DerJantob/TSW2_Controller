@@ -130,6 +130,9 @@
   <data name="lblT1_TrainName.Text" xml:space="preserve">
     <value>Train</value>
   </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Controller</value>
+  </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
   </data>
@@ -163,6 +166,9 @@
   <data name="btnR_Erkennen.Text" xml:space="preserve">
     <value>Detect</value>
   </data>
+  <data name="btn_R_eigenes.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
   </data>
@@ -192,6 +198,9 @@
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Time factor</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Buttons</value>
   </data>
   <data name="btnB_Speichern.Text" xml:space="preserve">
     <value>Save</value>
@@ -318,5 +327,50 @@
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Select controller</value>
+  </data>
+  <data name="btnT3_Fertig.Text" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="btnT3_Hinzufügen.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Wait for [ms]</value>
+  </data>
+  <data name="lblT3_haltezeit.Text" xml:space="preserve">
+    <value>Duration hold [ms]</value>
+  </data>
+  <data name="radioT3_Loslassen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 17</value>
+  </data>
+  <data name="radioT3_Loslassen.Text" xml:space="preserve">
+    <value>Release</value>
+  </data>
+  <data name="radioT3_Druecken.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="radioT3_Druecken.Text" xml:space="preserve">
+    <value>Press down</value>
+  </data>
+  <data name="radioT3_Halten.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 17</value>
+  </data>
+  <data name="radioT3_Halten.Text" xml:space="preserve">
+    <value>Hold down</value>
+  </data>
+  <data name="radioT3_einmalDruecken.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
+  </data>
+  <data name="radioT3_einmalDruecken.Text" xml:space="preserve">
+    <value>Short press</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Key</value>
   </data>
 </root>

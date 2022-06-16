@@ -1210,7 +1210,7 @@ namespace TSW2_Controller
                 else if (radioT3_Druecken.Checked)
                 {
                     tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[down]_[" + txtT3_Wartezeit.Text + "]");
-                    listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " gedrückt halten, danach " + txtT3_Wartezeit.Text + "ms warten", "hold down " + txtT3_Taste.Text + ", then wait " + txtT3_Wartezeit.Text + "ms"));
+                    listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " gedrückt halten, danach " + txtT3_Wartezeit.Text + "ms warten", "press " + txtT3_Taste.Text + " down, then wait " + txtT3_Wartezeit.Text + "ms"));
                 }
                 else if (radioT3_Loslassen.Checked)
                 {
