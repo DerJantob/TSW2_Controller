@@ -55,23 +55,6 @@ namespace TSW2_Controller
                     comboBox_resolution.SelectedItem = resName;
                 }
 
-
-                comboBox_Schub.Items.Clear();
-                comboBox_Bremse.Items.Clear();
-                comboBox_kombiSchub.Items.Clear();
-                comboBox_kombiBremse.Items.Clear();
-                comboBox_TrainConfig.Items.Clear();
-
-                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
-                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
-                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
-                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
-
-                txt_increaseThrottle.Text = Settings.Default.Tastenbelegung[0];
-                txt_decreaseThrottle.Text = Settings.Default.Tastenbelegung[1];
-                txt_increaseBrake.Text = Settings.Default.Tastenbelegung[2];
-                txt_decreaseBrake.Text = Settings.Default.Tastenbelegung[3];
-
                 comboBox_DeleteLogsAfterXDays.Text = Settings.Default.DeleteLogsAfter;
 
                 if (Sprache.isGerman())
@@ -88,14 +71,14 @@ namespace TSW2_Controller
                     sucheNachUpdatesToolStripMenuItem1.Text = Sprache.Translate("Installiere v" + newestVersion, "Install v" + newestVersion);
                 }
 
-                string[] files = Directory.GetFiles(Tcfg.configSammelungPfad);
+                string[] files = Directory.GetFiles(Tcfg.configOrdnerPfad);
                 comboBox_TrainConfig.Items.Add("_Standard");
                 foreach (string file in files)
                 {
                     comboBox_TrainConfig.Items.Add(Path.GetFileName(file).Replace(".csv", ""));
                 }
 
-                if (File.Exists(Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv"))
+                if (File.Exists(Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv"))
                 {
                     comboBox_TrainConfig.SelectedItem = Settings.Default.selectedTrainConfig;
                 }
@@ -215,77 +198,6 @@ namespace TSW2_Controller
         }
         #endregion
 
-        #region Textindex
-        private void comboBox_Schub_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_Schub.Items.Add(comboBox_Schub.Text);
-                comboBox_Schub.Text = "";
-            }
-        }
-
-        private void comboBox_Bremse_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_Bremse.Items.Add(comboBox_Bremse.Text);
-                comboBox_Bremse.Text = "";
-            }
-        }
-
-        private void comboBox_kombiSchub_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_kombiSchub.Items.Add(comboBox_kombiSchub.Text);
-                comboBox_kombiSchub.Text = "";
-            }
-        }
-
-        private void comboBox_kombiBremse_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ((ComboBox)sender).Text != "")
-            {
-                comboBox_kombiBremse.Items.Add(comboBox_kombiBremse.Text);
-                comboBox_kombiBremse.Text = "";
-            }
-        }
-
-
-
-        private void comboBox_Schub_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_Schub.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_Schub.Items.RemoveAt(comboBox_Schub.SelectedIndex);
-            }
-        }
-
-        private void comboBox_Bremse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_Bremse.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_Bremse.Items.RemoveAt(comboBox_Bremse.SelectedIndex);
-            }
-        }
-
-        private void comboBox_kombiSchub_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_kombiSchub.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_kombiSchub.Items.RemoveAt(comboBox_kombiSchub.SelectedIndex);
-            }
-        }
-
-        private void comboBox_kombiBremse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_kombiBremse.SelectedItem + Sprache.Translate("\" entfernen?", "\"?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                comboBox_kombiBremse.Items.RemoveAt(comboBox_kombiBremse.SelectedIndex);
-            }
-        }
-        #endregion
 
         #region TrainConfig wechseln
         private void comboBox_TrainConfig_KeyUp(object sender, KeyEventArgs e)
@@ -341,12 +253,12 @@ namespace TSW2_Controller
                     //Hinzufügen
                     if (MessageBox.Show(Sprache.Translate("Einstellungen von ", "Transfer the data of ") + Settings.Default.selectedTrainConfig + Sprache.Translate(" übernehmen?", "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", true);
+                        File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv", true);
                     }
                     else
                     {
-                        File.Create(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv").Close();
-                        File.WriteAllText(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", "Zug,Beschreibung,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken");
+                        File.Create(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv").Close();
+                        File.WriteAllText(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv", "Zug,Beschreibung,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken");
                     }
                     changeConfig();
                     comboBox_TrainConfig.Items.Add(comboBox_TrainConfig.Text);
@@ -363,11 +275,11 @@ namespace TSW2_Controller
         {
             if (comboBox_TrainConfig.Text != "_Standard")
             {
-                if (File.Exists(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv"))
+                if (File.Exists(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv"))
                 {
                     if (MessageBox.Show(Sprache.Translate("Möchtest du \"", "Do you want to remove \"") + comboBox_TrainConfig.Text + Sprache.Translate("\" löschen?", "\"?") + "\n" + Sprache.Translate("Alle Züge gehen dabei verloren!", "All trains will be deleted!"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        File.Delete(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv");
+                        File.Delete(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv");
                         Settings.Default.selectedTrainConfig = "_Standard";
                         Settings.Default.Save();
                         comboBox_TrainConfig.Items.Remove(comboBox_TrainConfig.Text);
@@ -385,14 +297,14 @@ namespace TSW2_Controller
                 {
                     if (Settings.Default.selectedTrainConfig != "_Standard")
                     {
-                        File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
+                        File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv", true);
                     }
                     File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
                     Settings.Default.selectedTrainConfig = "_Standard";
                 }
                 else
                 {
-                    File.Copy(Tcfg.configSammelungPfad + comboBox_TrainConfig.Text + ".csv", Tcfg.configpfad, true);
+                    File.Copy(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv", Tcfg.configpfad, true);
                     Settings.Default.selectedTrainConfig = comboBox_TrainConfig.Text;
                 }
             }
@@ -419,39 +331,6 @@ namespace TSW2_Controller
 
             try
             {
-                Settings.Default.SchubIndexe.Clear();
-                Settings.Default.SchubIndexe.AddRange(comboBox_Schub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.BremsIndexe.Clear();
-                Settings.Default.BremsIndexe.AddRange(comboBox_Bremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.Kombihebel_SchubIndexe.Clear();
-                Settings.Default.Kombihebel_SchubIndexe.AddRange(comboBox_kombiSchub.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-
-                Settings.Default.Kombihebel_BremsIndexe.Clear();
-                Settings.Default.Kombihebel_BremsIndexe.AddRange(comboBox_kombiBremse.Items.Cast<Object>().Select(item => item.ToString()).ToArray());
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorException(ex);
-                MessageBox.Show(Sprache.Translate("Fehler beim Textindikator", "Error with text indicator!"));
-            }
-
-            try
-            {
-                Settings.Default.Tastenbelegung[0] = txt_increaseThrottle.Text;
-                Settings.Default.Tastenbelegung[1] = txt_decreaseThrottle.Text;
-                Settings.Default.Tastenbelegung[2] = txt_increaseBrake.Text;
-                Settings.Default.Tastenbelegung[3] = txt_decreaseBrake.Text;
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorException(ex);
-                Sprache.ShowMessageBox("Fehler bei der Tastenbelegung", "Error with keybindings");
-            }
-
-            try
-            {
                 Settings.Default.DeleteLogsAfter = comboBox_DeleteLogsAfterXDays.Text;
             }
             catch (Exception ex)
@@ -468,9 +347,9 @@ namespace TSW2_Controller
         private void btn_steuerung_Click(object sender, EventArgs e)
         {
             Log.Add("Going to controls");
-            FormSteuerung formSteuerung = new FormSteuerung();
-            formSteuerung.Location = this.Location;
-            formSteuerung.ShowDialog();
+            FormSteuerung2 formSteuerung2 = new FormSteuerung2();
+            formSteuerung2.Location = this.Location;
+            formSteuerung2.ShowDialog();
             Log.Add("Leaving controls");
 
             if (Settings.Default.selectedTrainConfig == "_Standard")
@@ -480,9 +359,9 @@ namespace TSW2_Controller
                     //Die Datei hat sich geändert
                     Log.Add("Config has changed, but standard selected");
                     string name = "yourConfig";
-                    if (!File.Exists(Tcfg.configSammelungPfad + name + ".csv"))
+                    if (!File.Exists(Tcfg.configOrdnerPfad + name + ".csv"))
                     {
-                        File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + name + ".csv");
+                        File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + name + ".csv");
                         Settings.Default.selectedTrainConfig = name;
                         Settings.Default.Save();
                         comboBox_TrainConfig.Items.Add(name);
@@ -491,11 +370,11 @@ namespace TSW2_Controller
                     else
                     {
                         int counter = 0;
-                        while (File.Exists(Tcfg.configSammelungPfad + name + counter + ".csv"))
+                        while (File.Exists(Tcfg.configOrdnerPfad + name + counter + ".csv"))
                         { counter++; }
 
                         name = name + counter.ToString();
-                        File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + name + ".csv");
+                        File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + name + ".csv");
                         Settings.Default.selectedTrainConfig = name;
                         Settings.Default.Save();
                         comboBox_TrainConfig.Items.Add(name);
@@ -506,7 +385,7 @@ namespace TSW2_Controller
             }
             else
             {
-                File.Copy(Tcfg.configpfad, Tcfg.configSammelungPfad + Settings.Default.selectedTrainConfig + ".csv", true);
+                File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv", true);
             }
         }
 
@@ -535,31 +414,6 @@ namespace TSW2_Controller
                 Settings.Default.BremsIndexe = Settings.Default.BremsIndexe_EN;
                 Settings.Default.Kombihebel_SchubIndexe = Settings.Default.Kombihebel_SchubIndexe_EN;
                 Settings.Default.Kombihebel_BremsIndexe = Settings.Default.Kombihebel_BremsIndexe_EN;
-            }
-        }
-
-        private void btn_textindikator_StandardLaden_Click(object sender, EventArgs e)
-        {
-            comboBox_Schub.Items.Clear();
-            comboBox_Bremse.Items.Clear();
-            comboBox_kombiSchub.Items.Clear();
-            comboBox_kombiBremse.Items.Clear();
-
-            if (Sprache.isGerman())
-            {
-                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_DE.Cast<string>().ToArray());
-                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_DE.Cast<string>().ToArray());
-                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe_DE.Cast<string>().ToArray());
-                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_DE.Cast<string>().ToArray());
-                MessageBox.Show("Textindikatoren wurden zurückgesetzt!");
-            }
-            else
-            {
-                comboBox_Schub.Items.AddRange(Settings.Default.SchubIndexe_EN.Cast<string>().ToArray());
-                comboBox_Bremse.Items.AddRange(Settings.Default.BremsIndexe_EN.Cast<string>().ToArray());
-                comboBox_kombiSchub.Items.AddRange(Settings.Default.Kombihebel_SchubIndexe_EN.Cast<string>().ToArray());
-                comboBox_kombiBremse.Items.AddRange(Settings.Default.Kombihebel_BremsIndexe_EN.Cast<string>().ToArray());
-                MessageBox.Show("Text indicators have been reset!");
             }
         }
 

@@ -259,15 +259,6 @@
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 4</value>
   </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 223</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
   <data name="btnT3_leeren.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 39</value>
   </data>
@@ -305,7 +296,7 @@
     <value>255, 115</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 13</value>
+    <value>98, 13</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Reassign joy states</value>
@@ -340,9 +331,6 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Joy-Axis</value>
   </data>
-  <data name="panelT3_StufenStufenlos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 26</value>
-  </data>
   <data name="radioT3_Stufenlos.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 17</value>
   </data>
@@ -358,8 +346,8 @@
   <data name="radioT3_Stufen.Text" xml:space="preserve">
     <value>Notches</value>
   </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 26</value>
+  <data name="panelT3_StufenStufenlos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 26</value>
   </data>
   <data name="radioT3_Schub.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 17</value>
@@ -384,6 +372,9 @@
   </data>
   <data name="radioT3_Bremse.Text" xml:space="preserve">
     <value>Brake</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 26</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 16</value>

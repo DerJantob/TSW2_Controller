@@ -93,6 +93,12 @@
     <Compile Include="FormSteuerung.Designer.cs">
       <DependentUpon>FormSteuerung.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSteuerung2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSteuerung2.Designer.cs">
+      <DependentUpon>FormSteuerung2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWasIstNeu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,8 +111,19 @@
     <Compile Include="FormZeitfaktor.Designer.cs">
       <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormZeitfaktor2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormZeitfaktor2.Designer.cs">
+      <DependentUpon>FormZeitfaktor2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Keyboard.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Sprache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +140,7 @@
     </Compile>
     <Compile Include="ShiftEmulator.cs" />
     <Compile Include="Tcfg.cs" />
+    <Compile Include="VirtualController.cs" />
     <EmbeddedResource Include="FormMain.en.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +158,12 @@
     <EmbeddedResource Include="FormSteuerung.resx">
       <DependentUpon>FormSteuerung.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSteuerung2.en.resx">
+      <DependentUpon>FormSteuerung2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSteuerung2.resx">
+      <DependentUpon>FormSteuerung2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWasIstNeu.en.resx">
       <DependentUpon>FormWasIstNeu.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,20 +177,24 @@
     <EmbeddedResource Include="FormZeitfaktor.resx">
       <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormZeitfaktor2.resx">
+      <DependentUpon>FormZeitfaktor2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Configs\ControllerConfig\StandardControllers_EN.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\ControllerConfig\StandardControllers_DE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="tessdata\.gitmodules">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -187,7 +215,7 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="TrainConfigs\StandardTrainconfig.csv">
+    <None Include="Configs\TrainConfig\StandardTrainconfig.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Tutorial\Tutorial_DE.pdf">
