@@ -228,6 +228,14 @@ namespace TSW2_Controller
             }
         }
 
+        private void comboBox_TrainConfig_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar.ToString(), @"[^?,:\\/:*?\""<>|]"))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void comboBox_TrainConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox_TrainConfig.Text == "_Standard")

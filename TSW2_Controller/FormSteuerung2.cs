@@ -302,6 +302,7 @@ namespace TSW2_Controller
         private void btnT0_Add_Click(object sender, EventArgs e)
         {
             ComboBox cb = comboBoxT0_Zugauswahl;
+            cb.Text = cb.Text.Replace(",", "");
             if (!cb.Items.Contains(cb.Text))
             {
                 cb.Items.Add(cb.Text);
@@ -466,9 +467,9 @@ namespace TSW2_Controller
                 radioR_Stufen.Enabled = true;
                 foreach (VirtualController vc in virtualControllerList)
                 {
-                    if(selectedRegler == vc.name)
+                    if (selectedRegler == vc.name)
                     {
-                        if(vc.isMasterController)
+                        if (vc.isMasterController)
                         {
                             radioR_Stufen.Enabled = false;
                             radioR_Stufenlos.Checked = true;
@@ -718,6 +719,10 @@ namespace TSW2_Controller
                 if (txtR_JoyAchse.Text == "" && txtR_JoyNr.Text == "" && txtR_AnzahlStufen.Text == "" && txtR_InputUmrechnen.Text == "" && txtR_Zeitfaktor.Text == "" && txtR_LongPress.Text == "" && txtR_Sonderfaelle.Text == "")
                 {
                     ok = false;
+                }
+                else if (txtR_JoyAchse.Text.Contains(",") || txtR_JoyNr.Text.Contains(",") || txtR_AnzahlStufen.Text.Contains(",") || txtR_InputUmrechnen.Text.Contains(",") || txtR_Zeitfaktor.Text.Contains(",") || txtR_LongPress.Text.Contains(",") || txtR_Sonderfaelle.Text.Contains(","))
+                {
+                    Sprache.ShowMessageBox("Du darfst kein Komma benutzen! Das würde deine Config zerstören, also versuch es nicht zu umgehen :)", "You are not allowed to enter a comma! That would break your config, so don't try to work around it :)");
                 }
                 else
                 {
@@ -1076,43 +1081,51 @@ namespace TSW2_Controller
             {
                 bool ok = true;
                 #region Eingabeüberprüfung
-                if (comboBoxB_KnopfAuswahl.Text == "")
+                if (comboBoxB_KnopfAuswahl.Text.Contains(",") || txtB_Aktion.Text.Contains(",") || txtB_Bedingung.Text.Contains(",") || txtB_JoystickKnopf.Text.Contains(",") || txtB_Tastenkombination.Text.Contains(","))
                 {
                     ok = false;
-                    Sprache.ShowMessageBox("Kein Name eingegeben", "No name entered");
+                    Sprache.ShowMessageBox("Du darfst kein Komma benutzen! Das würde deine Config zerstören, also versuch es nicht zu umgehen :)", "You are not allowed to enter a comma! That would break your config, so don't try to work around it :)");
                 }
-                if (txtB_JoystickNr.Text == "" || !txtB_JoystickNr.Text.All(char.IsDigit))
+                else
                 {
-                    ok = false;
-                    Sprache.ShowMessageBox("Fehler bei Joystick Nr.", "Error with Joy no.");
-                }
-                if (txtB_JoystickKnopf.Text == "" || (!txtB_JoystickKnopf.Text.All(char.IsDigit) && radioB_normal.Checked) || (!FormMain.inputNames.Any(txtB_JoystickKnopf.Text.Equals) && radioB_regler.Checked))
-                {
-                    ok = false;
-                    if (radioB_normal.Checked)
+                    if (comboBoxB_KnopfAuswahl.Text == "")
                     {
-                        Sprache.ShowMessageBox("Fehler bei Knopf Nr.", "Error with Button-no.");
+                        ok = false;
+                        Sprache.ShowMessageBox("Kein Name eingegeben", "No name entered");
                     }
-                    else
+                    if (txtB_JoystickNr.Text == "" || !txtB_JoystickNr.Text.All(char.IsDigit))
                     {
-                        Sprache.ShowMessageBox("Fehler bei JoyName", "Error with Joyname");
+                        ok = false;
+                        Sprache.ShowMessageBox("Fehler bei Joystick Nr.", "Error with Joy no.");
                     }
-                }
-                if (txtB_Bedingung.Text != "" && (!(txtB_Bedingung.Text.Contains("<") || txtB_Bedingung.Text.Contains(">") || txtB_Bedingung.Text.Contains("=")) || txtB_Bedingung.Text.Any(char.IsLetter)))
-                {
-                    //txtB_Bedingung.Text != "" weil es leer sein darf
-                    ok = false;
-                    Sprache.ShowMessageBox("Fehler bei Bedingung", "Error with Condition");
-                }
-                if (txtB_Aktion.Text == "" && txtB_Tastenkombination.Text == "")
-                {
-                    ok = false;
-                    Sprache.ShowMessageBox("Keine Aktion oder Tastenkombination", "No action or keyboard shortcut");
-                }
-                if (txtB_Tastenkombination.Text != "" && !(txtB_Tastenkombination.Text.Split('_').Count() == 3 || txtB_Tastenkombination.Text.Split('_').Count() % 3 == 0))
-                {
-                    ok = false;
-                    Sprache.ShowMessageBox("Fehler bei Tastenkombination", "Error with keyboard shortcut");
+                    if (txtB_JoystickKnopf.Text == "" || (!txtB_JoystickKnopf.Text.All(char.IsDigit) && radioB_normal.Checked) || (!FormMain.inputNames.Any(txtB_JoystickKnopf.Text.Equals) && radioB_regler.Checked))
+                    {
+                        ok = false;
+                        if (radioB_normal.Checked)
+                        {
+                            Sprache.ShowMessageBox("Fehler bei Knopf Nr.", "Error with Button-no.");
+                        }
+                        else
+                        {
+                            Sprache.ShowMessageBox("Fehler bei JoyName", "Error with Joyname");
+                        }
+                    }
+                    if (txtB_Bedingung.Text != "" && (!(txtB_Bedingung.Text.Contains("<") || txtB_Bedingung.Text.Contains(">") || txtB_Bedingung.Text.Contains("=")) || txtB_Bedingung.Text.Any(char.IsLetter)))
+                    {
+                        //txtB_Bedingung.Text != "" weil es leer sein darf
+                        ok = false;
+                        Sprache.ShowMessageBox("Fehler bei Bedingung", "Error with Condition");
+                    }
+                    if (txtB_Aktion.Text == "" && txtB_Tastenkombination.Text == "")
+                    {
+                        ok = false;
+                        Sprache.ShowMessageBox("Keine Aktion oder Tastenkombination", "No action or keyboard shortcut");
+                    }
+                    if (txtB_Tastenkombination.Text != "" && !(txtB_Tastenkombination.Text.Split('_').Count() == 3 || txtB_Tastenkombination.Text.Split('_').Count() % 3 == 0))
+                    {
+                        ok = false;
+                        Sprache.ShowMessageBox("Fehler bei Tastenkombination", "Error with keyboard shortcut");
+                    }
                 }
                 #endregion
 
@@ -1367,6 +1380,10 @@ namespace TSW2_Controller
         }
         private void comboBoxT2_Reglerauswahl_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == ',')
+            {
+                e.Handled = true;
+            }
             panel_main.Enabled = false;
         }
         private void btnT2_add_Click(object sender, EventArgs e)
@@ -1446,6 +1463,10 @@ namespace TSW2_Controller
                     cb.Items.Add(cb.Text);
                     cb.Text = "";
                 }
+            }
+            if(e.KeyChar == ',')
+            {
+                e.Handled = true;
             }
         }
         private void comboBoxT2_Indicators_SelectedIndexChanged(object sender, EventArgs e)

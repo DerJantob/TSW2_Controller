@@ -568,332 +568,323 @@ namespace TSW2_Controller
                         formWasIstNeu.ShowDialog();
 
                         #region Update besonderheiten
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.0")) < 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.0.9")) < 0)
                         {
-                            Log.Add("1.0.0", false, 1);
-                            //Neue Einstellung muss mit Daten gefüllt werden 321321
-                            //Settings.Default.SchubIndexe_EN.AddRange(defaultEN_schubIndexe);
-                            //Settings.Default.BremsIndexe_EN.AddRange(defaultEN_bremsIndexe);
-                            //Settings.Default.Kombihebel_SchubIndexe_EN.AddRange(defaultEN_kombihebel_schubIndexe);
-                            //Settings.Default.Kombihebel_BremsIndexe_EN.AddRange(defaultEN_kombihebel_bremsIndexe);
-
-                            //Settings.Default.SchubIndexe_DE.AddRange(defaultDE_schubIndexe);
-                            //Settings.Default.BremsIndexe_DE.AddRange(defaultDE_bremsIndexe);
-                            //Settings.Default.Kombihebel_SchubIndexe_DE.AddRange(defaultDE_kombihebel_schubIndexe);
-                            //Settings.Default.Kombihebel_BremsIndexe_DE.AddRange(defaultDE_kombihebel_bremsIndexe);
-
-                            Settings.Default.Save();
+                            Sprache.ShowMessageBox("Deine vorherige Version ist wahrscheinlich zu alt und lässt sich nicht mehr automatisch konvertieren. Du musst das Programm deinstallieren (komplett) und die neuste Version wieder installieren.", "Your previous version is probably too old and cannot be converted automatically. You need to uninstall the program (completely) and reinstall the latest version.");
                         }
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("1.1.0")) < 0)
+                        else
                         {
-                            Log.Add("1.1.0", false, 1);
-                            if (File.Exists(Tcfg.configpfad))
+                            if (new Version(prevVersion.ToString()).CompareTo(new Version("1.1.0")) < 0)
                             {
-                                //Backup
-                                File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
-                                Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
-
-                                //Neue Tastenbenennung
-                                string[] file = File.ReadAllLines(Tcfg.configpfad);
-                                for (int i = 0; i < file.Count(); i++)
+                                Log.Add("1.1.0", false, 1);
+                                if (File.Exists(Tcfg.configpfad))
                                 {
-                                    //Veränderungen
-                                    string convertKey(string key)
+                                    //Backup
+                                    File.Copy(Tcfg.configpfad, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\backupTrainConfig.csv", true);
+                                    Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
+
+                                    //Neue Tastenbenennung
+                                    string[] file = File.ReadAllLines(Tcfg.configpfad);
+                                    for (int i = 0; i < file.Count(); i++)
                                     {
-                                        switch (key)
+                                        //Veränderungen
+                                        string convertKey(string key)
                                         {
-                                            case "einfg":
-                                                return "insert";
-                                            case "pos1":
-                                                return "home";
-                                            case "bildauf":
-                                                return "pageUp";
-                                            case "entf":
-                                                return "del";
-                                            case "ende":
-                                                return "end";
-                                            case "bildab":
-                                                return "pageDown";
-                                            case "hoch":
-                                                return "up";
-                                            case "runter":
-                                                return "down";
-                                            case "rechts":
-                                                return "right";
-                                            case "links":
-                                                return "left";
-                                            case "strg":
-                                                return "ctrl";
-                                            case "lstrg":
-                                                return "lctrl";
-                                            case "rstrg":
-                                                return "rctrl";
-                                            case "ü":
-                                                return "oem1";
-                                            case "#":
-                                                return "oem2";
-                                            case "ö":
-                                                return "oem3";
-                                            case "ß":
-                                                return "oem4";
-                                            case "^":
-                                                return "oem5";
-                                            case "´":
-                                                return "oem6";
-                                            case "ä":
-                                                return "oem7";
-                                            case "komma":
-                                                return "comma";
-                                            case "zurück":
-                                                return "back";
-                                            case "enter":
-                                                return "return";
-                                            case "drucken":
-                                                return "print";
-                                            case "rollen":
-                                                return "scroll";
-                                            default:
-                                                return key;
+                                            switch (key)
+                                            {
+                                                case "einfg":
+                                                    return "insert";
+                                                case "pos1":
+                                                    return "home";
+                                                case "bildauf":
+                                                    return "pageUp";
+                                                case "entf":
+                                                    return "del";
+                                                case "ende":
+                                                    return "end";
+                                                case "bildab":
+                                                    return "pageDown";
+                                                case "hoch":
+                                                    return "up";
+                                                case "runter":
+                                                    return "down";
+                                                case "rechts":
+                                                    return "right";
+                                                case "links":
+                                                    return "left";
+                                                case "strg":
+                                                    return "ctrl";
+                                                case "lstrg":
+                                                    return "lctrl";
+                                                case "rstrg":
+                                                    return "rctrl";
+                                                case "ü":
+                                                    return "oem1";
+                                                case "#":
+                                                    return "oem2";
+                                                case "ö":
+                                                    return "oem3";
+                                                case "ß":
+                                                    return "oem4";
+                                                case "^":
+                                                    return "oem5";
+                                                case "´":
+                                                    return "oem6";
+                                                case "ä":
+                                                    return "oem7";
+                                                case "komma":
+                                                    return "comma";
+                                                case "zurück":
+                                                    return "back";
+                                                case "enter":
+                                                    return "return";
+                                                case "drucken":
+                                                    return "print";
+                                                case "rollen":
+                                                    return "scroll";
+                                                default:
+                                                    return key;
+                                            }
                                         }
+
+                                        string[] single = file[i].Split(',');
+
+                                        //Aktion
+                                        single[8] = convertKey(single[8]);
+
+                                        //Tastenkombination
+                                        string[] tc = single[7].Split('_');
+                                        if (tc.Count() >= 3)
+                                        {
+                                            for (int o = 0; o < tc.Count(); o += 3)
+                                            {
+                                                tc[o] = convertKey(tc[o]);
+                                            }
+                                            single[7] = String.Join("_", tc);
+                                        }
+                                        //Einstellungen
+                                        Settings.Default.Tastenbelegung[0] = convertKey(Settings.Default.Tastenbelegung[0]);
+                                        Settings.Default.Tastenbelegung[1] = convertKey(Settings.Default.Tastenbelegung[1]);
+                                        Settings.Default.Tastenbelegung[2] = convertKey(Settings.Default.Tastenbelegung[2]);
+                                        Settings.Default.Tastenbelegung[3] = convertKey(Settings.Default.Tastenbelegung[3]);
+
+                                        file[i] = String.Join(",", single);
                                     }
 
-                                    string[] single = file[i].Split(',');
-
-                                    //Aktion
-                                    single[8] = convertKey(single[8]);
-
-                                    //Tastenkombination
-                                    string[] tc = single[7].Split('_');
-                                    if (tc.Count() >= 3)
-                                    {
-                                        for (int o = 0; o < tc.Count(); o += 3)
-                                        {
-                                            tc[o] = convertKey(tc[o]);
-                                        }
-                                        single[7] = String.Join("_", tc);
-                                    }
-                                    //Einstellungen
-                                    Settings.Default.Tastenbelegung[0] = convertKey(Settings.Default.Tastenbelegung[0]);
-                                    Settings.Default.Tastenbelegung[1] = convertKey(Settings.Default.Tastenbelegung[1]);
-                                    Settings.Default.Tastenbelegung[2] = convertKey(Settings.Default.Tastenbelegung[2]);
-                                    Settings.Default.Tastenbelegung[3] = convertKey(Settings.Default.Tastenbelegung[3]);
-
-                                    file[i] = String.Join(",", single);
+                                    File.WriteAllLines(Tcfg.configpfad, file);
                                 }
 
-                                File.WriteAllLines(Tcfg.configpfad, file);
-                            }
 
-
-                            bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
-                            if (!areEqual)
-                            {
-                                Directory.CreateDirectory(Tcfg.configOrdnerPfad);
-                                File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + "yourConfig.csv", true);
-                                Settings.Default.selectedTrainConfig = "yourConfig";
-                            }
-
-
-                            Settings.Default.Save();
-                        }
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0 || true)
-                        {
-                            Log.Add("2.0.0", false, 1);
-                            List<string> schubIndexe = new List<string>();
-                            List<string> bremsIndexe = new List<string>();
-                            List<string> kombihebel_schubIndexe = new List<string>();
-                            List<string> kombihebel_bremsIndexe = new List<string>();
-
-                            List<string> output_Text = new List<string>();
-
-                            schubIndexe.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
-                            bremsIndexe.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
-                            kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
-                            kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
-
-                            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info";
-
-                            if (Directory.Exists(folderPath))
-                            {
-                                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info2";
-                            }
-
-                            Directory.CreateDirectory(folderPath);
-                            Directory.CreateDirectory(folderPath + @"\backupTrainConfig.csv");
-
-                            CloneDirectory(Tcfg.configOrdnerPfad, folderPath + @"\backupTrainConfig.csv");
-
-                            Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
-
-                            List<List<string>> tempTrainconfig = new List<List<string>>();
-
-                            if (Directory.Exists(Tcfg.configOrdnerPfad) && Directory.GetFiles(Tcfg.configOrdnerPfad).Length > 0)
-                            {
-                                bool alreadyConverted = false;
-                                foreach (string filePath in Directory.GetFiles(Tcfg.configOrdnerPfad))
+                                bool areEqual = File.ReadLines(Tcfg.configpfad).SequenceEqual(File.ReadLines(Tcfg.configstandardpfad));
+                                if (!areEqual)
                                 {
-                                    tempTrainconfig.Clear();
-                                    using (var reader = new StreamReader(filePath))
-                                    {
-                                        while (!reader.EndOfStream)
-                                        {
-                                            var line = reader.ReadLine();
-                                            List<string> values = new List<string>();
-                                            values.AddRange(line.Split(','));
+                                    Directory.CreateDirectory(Tcfg.configOrdnerPfad);
+                                    File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + "yourConfig.csv", true);
+                                    Settings.Default.selectedTrainConfig = "yourConfig";
+                                }
 
-                                            tempTrainconfig.Add(values);
-                                        }
-                                    }
 
-                                    foreach (List<string> singleRow in tempTrainconfig)
+                                Settings.Default.Save();
+                            }
+                            if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0 || true)
+                            {
+                                Log.Add("2.0.0", false, 1);
+                                List<string> schubIndexe = new List<string>();
+                                List<string> bremsIndexe = new List<string>();
+                                List<string> kombihebel_schubIndexe = new List<string>();
+                                List<string> kombihebel_bremsIndexe = new List<string>();
+
+                                List<string> output_Text = new List<string>();
+
+                                schubIndexe.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                                bremsIndexe.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                                kombihebel_bremsIndexe.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+                                kombihebel_schubIndexe.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+
+                                string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info";
+
+                                if (Directory.Exists(folderPath))
+                                {
+                                    folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info2";
+                                }
+
+                                Directory.CreateDirectory(folderPath);
+                                Directory.CreateDirectory(folderPath + @"\backupTrainConfig.csv");
+
+                                CloneDirectory(Tcfg.configOrdnerPfad, folderPath + @"\backupTrainConfig.csv");
+
+                                Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
+
+                                List<List<string>> tempTrainconfig = new List<List<string>>();
+
+                                if (Directory.Exists(Tcfg.configOrdnerPfad) && Directory.GetFiles(Tcfg.configOrdnerPfad).Length > 0)
+                                {
+                                    bool alreadyConverted = false;
+                                    foreach (string filePath in Directory.GetFiles(Tcfg.configOrdnerPfad))
                                     {
-                                        if (singleRow.Count < 15)
+                                        tempTrainconfig.Clear();
+                                        using (var reader = new StreamReader(filePath))
                                         {
-                                            if (singleRow[2] == "JoystickNummer")
+                                            while (!reader.EndOfStream)
                                             {
-                                                singleRow.Insert(Tcfg.reglerName, "ReglerName");
+                                                var line = reader.ReadLine();
+                                                List<string> values = new List<string>();
+                                                values.AddRange(line.Split(','));
+
+                                                tempTrainconfig.Add(values);
                                             }
-                                            else
+                                        }
+
+                                        foreach (List<string> singleRow in tempTrainconfig)
+                                        {
+                                            if (singleRow.Count < 15)
                                             {
-                                                if (singleRow[7] == "Schub")
+                                                if (singleRow[2] == "JoystickNummer")
                                                 {
-                                                    if (Sprache.isGerman())
-                                                    {
-                                                        singleRow.Insert(Tcfg.reglerName, "Schub");
-                                                    }
-                                                    else
-                                                    {
-                                                        singleRow.Insert(Tcfg.reglerName, "Throttle");
-                                                    }
-                                                    singleRow[1] = "";
-                                                    singleRow[8] = "";
-                                                }
-                                                else if (singleRow[7] == "Bremse")
-                                                {
-                                                    if (Sprache.isGerman())
-                                                    {
-                                                        singleRow.Insert(Tcfg.reglerName, "Bremse");
-                                                    }
-                                                    else
-                                                    {
-                                                        singleRow.Insert(Tcfg.reglerName, "Brake");
-                                                    }
-                                                    singleRow[1] = "";
-                                                    singleRow[8] = "";
-                                                }
-                                                else if (singleRow[7] == "Kombihebel")
-                                                {
-                                                    if (Sprache.isGerman())
-                                                    {
-                                                        singleRow.Insert(Tcfg.reglerName, "Kombihebel");
-                                                    }
-                                                    else
-                                                    {
-                                                        singleRow.Insert(Tcfg.reglerName, "Master Controller");
-                                                    }
-                                                    singleRow[1] = "";
-                                                    singleRow[8] = "";
+                                                    singleRow.Insert(Tcfg.reglerName, "ReglerName");
                                                 }
                                                 else
                                                 {
-                                                    singleRow.Insert(Tcfg.reglerName, "");
-                                                }
-                                                if (singleRow[5] == "0")
-                                                {
-                                                    if (singleRow[6] == "1")
+                                                    if (singleRow[7] == "Schub")
                                                     {
-                                                        singleRow[5] = "-100|100|100|0";
+                                                        if (Sprache.isGerman())
+                                                        {
+                                                            singleRow.Insert(Tcfg.reglerName, "Schub");
+                                                        }
+                                                        else
+                                                        {
+                                                            singleRow.Insert(Tcfg.reglerName, "Throttle");
+                                                        }
+                                                        singleRow[1] = "";
+                                                        singleRow[8] = "";
                                                     }
-                                                }
-                                                else if (singleRow[5] == "1")
-                                                {
-                                                    if (singleRow[6] == "0")
+                                                    else if (singleRow[7] == "Bremse")
                                                     {
-                                                        singleRow[5] = "-100|100|0|0|100|-100";
+                                                        if (Sprache.isGerman())
+                                                        {
+                                                            singleRow.Insert(Tcfg.reglerName, "Bremse");
+                                                        }
+                                                        else
+                                                        {
+                                                            singleRow.Insert(Tcfg.reglerName, "Brake");
+                                                        }
+                                                        singleRow[1] = "";
+                                                        singleRow[8] = "";
                                                     }
-                                                    else if (singleRow[6] == "1")
+                                                    else if (singleRow[7] == "Kombihebel")
                                                     {
-                                                        singleRow[5] = "-100|0|100|100";
+                                                        if (Sprache.isGerman())
+                                                        {
+                                                            singleRow.Insert(Tcfg.reglerName, "Kombihebel");
+                                                        }
+                                                        else
+                                                        {
+                                                            singleRow.Insert(Tcfg.reglerName, "Master Controller");
+                                                        }
+                                                        singleRow[1] = "";
+                                                        singleRow[8] = "";
                                                     }
-                                                }
+                                                    else
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "");
+                                                    }
+                                                    if (singleRow[5] == "0")
+                                                    {
+                                                        if (singleRow[6] == "1")
+                                                        {
+                                                            singleRow[5] = "-100|100|100|0";
+                                                        }
+                                                    }
+                                                    else if (singleRow[5] == "1")
+                                                    {
+                                                        if (singleRow[6] == "0")
+                                                        {
+                                                            singleRow[5] = "-100|100|0|0|100|-100";
+                                                        }
+                                                        else if (singleRow[6] == "1")
+                                                        {
+                                                            singleRow[5] = "-100|0|100|100";
+                                                        }
+                                                    }
 
-                                                if (singleRow[5] != "")
-                                                {
-                                                    singleRow[6] = "";
+                                                    if (singleRow[5] != "")
+                                                    {
+                                                        singleRow[6] = "";
+                                                    }
                                                 }
                                             }
+                                            else
+                                            {
+                                                alreadyConverted = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!alreadyConverted)
+                                        {
+                                            List<string> output = new List<string>();
+
+                                            foreach (List<string> single in tempTrainconfig)
+                                            {
+                                                string line = string.Join(",", single);
+                                                output.Add(line);
+                                            }
+
+                                            File.WriteAllLines(filePath, output.ToArray());
                                         }
                                         else
                                         {
-                                            alreadyConverted = true;
+                                            MessageBox.Show("Already converted the TrainConfig");
                                             break;
                                         }
                                     }
-                                    if (!alreadyConverted)
-                                    {
-                                        List<string> output = new List<string>();
-
-                                        foreach (List<string> single in tempTrainconfig)
-                                        {
-                                            string line = string.Join(",", single);
-                                            output.Add(line);
-                                        }
-
-                                        File.WriteAllLines(filePath, output.ToArray());
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Already converted the TrainConfig");
-                                        break;
-                                    }
                                 }
+
+
+
+                                output_Text.Add("In der Version 2.0.0 hat sich viel geändert. Unter anderem die Art und Weise, wie Regler funktionieren.");
+                                output_Text.Add("Da ich mich dazu entschieden habe, Schubregler und Kombihebel seperat zu behandeln, kann ich die alten Textindikatoren");
+                                output_Text.Add("nicht einfach übernehmen.");
+                                output_Text.Add("");
+                                output_Text.Add("Was muss ich also tun, um meine alten Einstellungen in die neue Version zu übertragen?");
+                                output_Text.Add("");
+                                output_Text.Add("1. ");
+                                output_Text.Add("Klicke auf \"Einstellungen\"->\"Steuerung\"->\"Globale Tastenbelegung\".");
+                                output_Text.Add("Dort solltest du nun die Regler Schub, Bremse, AFB, und Kombihebel finden.");
+                                output_Text.Add("");
+                                output_Text.Add("2. ");
+                                output_Text.Add("Wähle Schub aus und überprüfe zuerst die Tastenbelegung.");
+                                output_Text.Add("Als nächstes überprüfst die Hauptindikatoren.");
+                                output_Text.Add("Hier solltest du aber nicht mehr die Textindikatoren für den Kombihebel eintragen!");
+                                output_Text.Add("Die Textindikatoren die du voher für den Schub und Kombihebel hattest sind die folgenden:");
+                                output_Text.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                                output_Text.Add("");
+                                output_Text.Add("3.");
+                                output_Text.Add("Das gleiche machst du nun für die Bremse.");
+                                output_Text.Add("Die Textindikatoren die du voher für die Bremse hattest sind die folgenden:");
+                                output_Text.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                                output_Text.Add("");
+                                output_Text.Add("4.");
+                                output_Text.Add("Jetzt guckst du dir den Regler \"Kombihebel\" an. Wie du siehst, ist hier der Haken bei \"Kombihebel\" gesetzt.");
+                                output_Text.Add("Das erlaubt dem Regler auch in den Bremsbereich (negative Zahlen) zu gehen.");
+                                output_Text.Add("Hier trägst du nun die Indikatoren für den Kombihebel ein und die für den Schub-/ und Bremsbereich.");
+                                output_Text.Add("Du hattest vorher die folgenden Indikatoren:");
+                                output_Text.Add("Schubbereich:");
+                                output_Text.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                                output_Text.Add("Bremsbereich:");
+                                output_Text.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+                                output_Text.Add("");
+                                output_Text.Add("Fertig!");
+                                output_Text.Add("Falls du irgendwelche Probleme beim Übertragen deiner alten Einstellungen, oder bei anderen Dingen bekommst, kannst du mir gerne");
+                                output_Text.Add("auf Github (https://github.com/DerJantob/TSW2_Controller/issues/new/choose) oder");
+                                output_Text.Add("im RailSim Forum (https://rail-sim.de/forum/thread/37646-tsw2-controller-den-tsw-mit-einem-joystick-steuern/) schreiben.");
+                                output_Text.Add("");
+                                output_Text.Add("LG");
+                                output_Text.Add("Jannik");
+
+                                File.WriteAllLines(folderPath + @"\UpdateInfo.txt", output_Text.ToArray());
+                                System.Diagnostics.Process.Start(folderPath + @"\UpdateInfo.txt");
+
                             }
-
-
-
-                            output_Text.Add("In der Version 2.0.0 hat sich viel geändert. Unter anderem die Art und Weise, wie Regler funktionieren.");
-                            output_Text.Add("Da ich mich dazu entschieden habe, Schubregler und Kombihebel seperat zu behandeln, kann ich die alten Textindikatoren");
-                            output_Text.Add("nicht einfach übernehmen.");
-                            output_Text.Add("");
-                            output_Text.Add("Was muss ich also tun, um meine alten Einstellungen in die neue Version zu übertragen?");
-                            output_Text.Add("");
-                            output_Text.Add("1. ");
-                            output_Text.Add("Klicke auf \"Einstellungen\"->\"Steuerung\"->\"Globale Tastenbelegung\".");
-                            output_Text.Add("Dort solltest du nun die Regler Schub, Bremse, AFB, und Kombihebel finden.");
-                            output_Text.Add("");
-                            output_Text.Add("2. ");
-                            output_Text.Add("Wähle Schub aus und überprüfe zuerst die Tastenbelegung.");
-                            output_Text.Add("Als nächstes überprüfst die Hauptindikatoren.");
-                            output_Text.Add("Hier solltest du aber nicht mehr die Textindikatoren für den Kombihebel eintragen!");
-                            output_Text.Add("Die Textindikatoren die du voher für den Schub und Kombihebel hattest sind die folgenden:");
-                            output_Text.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
-                            output_Text.Add("");
-                            output_Text.Add("3.");
-                            output_Text.Add("Das gleiche machst du nun für die Bremse.");
-                            output_Text.Add("Die Textindikatoren die du voher für die Bremse hattest sind die folgenden:");
-                            output_Text.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
-                            output_Text.Add("");
-                            output_Text.Add("4.");
-                            output_Text.Add("Jetzt guckst du dir den Regler \"Kombihebel\" an. Wie du siehst, ist hier der Haken bei \"Kombihebel\" gesetzt.");
-                            output_Text.Add("Das erlaubt dem Regler auch in den Bremsbereich (negative Zahlen) zu gehen.");
-                            output_Text.Add("Hier trägst du nun die Indikatoren für den Kombihebel ein und die für den Schub-/ und Bremsbereich.");
-                            output_Text.Add("Du hattest vorher die folgenden Indikatoren:");
-                            output_Text.Add("Schubbereich:");
-                            output_Text.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
-                            output_Text.Add("Bremsbereich:");
-                            output_Text.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
-                            output_Text.Add("");
-                            output_Text.Add("Fertig!");
-                            output_Text.Add("Falls du irgendwelche Probleme beim Übertragen deiner alten Einstellungen, oder bei anderen Dingen bekommst, kannst du mir gerne");
-                            output_Text.Add("auf Github (https://github.com/DerJantob/TSW2_Controller/issues/new/choose) oder");
-                            output_Text.Add("im RailSim Forum (https://rail-sim.de/forum/thread/37646-tsw2-controller-den-tsw-mit-einem-joystick-steuern/) schreiben.");
-                            output_Text.Add("");
-                            output_Text.Add("LG");
-                            output_Text.Add("Jannik");
-
-                            File.WriteAllLines(folderPath + @"\UpdateInfo.txt", output_Text.ToArray());
-                            System.Diagnostics.Process.Start(folderPath + @"\UpdateInfo.txt");
-
                         }
                         #endregion
 
