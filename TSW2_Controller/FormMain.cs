@@ -527,6 +527,24 @@ namespace TSW2_Controller
                 return version;
             }
         }
+
+        private static void CloneDirectory(string root, string dest)
+        {
+            foreach (var directory in Directory.GetDirectories(root))
+            {
+                string dirName = Path.GetFileName(directory);
+                if (!Directory.Exists(Path.Combine(dest, dirName)))
+                {
+                    Directory.CreateDirectory(Path.Combine(dest, dirName));
+                }
+                CloneDirectory(directory, Path.Combine(dest, dirName));
+            }
+
+            foreach (var file in Directory.GetFiles(root))
+            {
+                File.Copy(file, Path.Combine(dest, Path.GetFileName(file)), true);
+            }
+        }
         #endregion
 
         #region Versions überprüfung
@@ -678,7 +696,7 @@ namespace TSW2_Controller
 
                             Settings.Default.Save();
                         }
-                        if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0)
+                        if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0 || true)
                         {
                             Log.Add("2.0.0", false, 1);
                             List<string> schubIndexe = new List<string>();
@@ -695,18 +713,186 @@ namespace TSW2_Controller
 
                             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info";
 
-                            Directory.CreateDirectory(folderPath);
+                            if (Directory.Exists(folderPath))
+                            {
+                                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Update_Info2";
+                            }
 
-                            File.Copy(Tcfg.configpfad, folderPath + @"\backupTrainConfig.csv", true);
+                            Directory.CreateDirectory(folderPath);
+                            Directory.CreateDirectory(folderPath + @"\backupTrainConfig.csv");
+
+                            CloneDirectory(Tcfg.configOrdnerPfad, folderPath + @"\backupTrainConfig.csv");
+
                             Sprache.ShowMessageBox("Ein Backup wurde auf dem Desktop erstellt", "Backup has been created on the Desktop");
 
+                            List<List<string>> tempTrainconfig = new List<List<string>>();
+
+                            if (Directory.Exists(Tcfg.configOrdnerPfad) && Directory.GetFiles(Tcfg.configOrdnerPfad).Length > 0)
+                            {
+                                bool alreadyConverted = false;
+                                foreach (string filePath in Directory.GetFiles(Tcfg.configOrdnerPfad))
+                                {
+                                    tempTrainconfig.Clear();
+                                    using (var reader = new StreamReader(filePath))
+                                    {
+                                        while (!reader.EndOfStream)
+                                        {
+                                            var line = reader.ReadLine();
+                                            List<string> values = new List<string>();
+                                            values.AddRange(line.Split(','));
+
+                                            tempTrainconfig.Add(values);
+                                        }
+                                    }
+
+                                    foreach (List<string> singleRow in tempTrainconfig)
+                                    {
+                                        if (singleRow.Count < 15)
+                                        {
+                                            if (singleRow[2] == "JoystickNummer")
+                                            {
+                                                singleRow.Insert(Tcfg.reglerName, "ReglerName");
+                                            }
+                                            else
+                                            {
+                                                if (singleRow[7] == "Schub")
+                                                {
+                                                    if (Sprache.isGerman())
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "Schub");
+                                                    }
+                                                    else
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "Throttle");
+                                                    }
+                                                    singleRow[1] = "";
+                                                    singleRow[8] = "";
+                                                }
+                                                else if (singleRow[7] == "Bremse")
+                                                {
+                                                    if (Sprache.isGerman())
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "Bremse");
+                                                    }
+                                                    else
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "Brake");
+                                                    }
+                                                    singleRow[1] = "";
+                                                    singleRow[8] = "";
+                                                }
+                                                else if (singleRow[7] == "Kombihebel")
+                                                {
+                                                    if (Sprache.isGerman())
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "Kombihebel");
+                                                    }
+                                                    else
+                                                    {
+                                                        singleRow.Insert(Tcfg.reglerName, "Master Controller");
+                                                    }
+                                                    singleRow[1] = "";
+                                                    singleRow[8] = "";
+                                                }
+                                                else
+                                                {
+                                                    singleRow.Insert(Tcfg.reglerName, "");
+                                                }
+                                                if (singleRow[5] == "0")
+                                                {
+                                                    if (singleRow[6] == "1")
+                                                    {
+                                                        singleRow[5] = "-100|100|100|0";
+                                                    }
+                                                }
+                                                else if (singleRow[5] == "1")
+                                                {
+                                                    if (singleRow[6] == "0")
+                                                    {
+                                                        singleRow[5] = "-100|100|0|0|100|-100";
+                                                    }
+                                                    else if (singleRow[6] == "1")
+                                                    {
+                                                        singleRow[5] = "-100|0|100|100";
+                                                    }
+                                                }
+
+                                                if (singleRow[5] != "")
+                                                {
+                                                    singleRow[6] = "";
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            alreadyConverted = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!alreadyConverted)
+                                    {
+                                        List<string> output = new List<string>();
+
+                                        foreach (List<string> single in tempTrainconfig)
+                                        {
+                                            string line = string.Join(",", single);
+                                            output.Add(line);
+                                        }
+
+                                        File.WriteAllLines(filePath, output.ToArray());
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Already converted the TrainConfig");
+                                        break;
+                                    }
+                                }
+                            }
+
+
+
+                            output_Text.Add("In der Version 2.0.0 hat sich viel geändert. Unter anderem die Art und Weise, wie Regler funktionieren.");
+                            output_Text.Add("Da ich mich dazu entschieden habe, Schubregler und Kombihebel seperat zu behandeln, kann ich die alten Textindikatoren");
+                            output_Text.Add("nicht einfach übernehmen.");
                             output_Text.Add("");
+                            output_Text.Add("Was muss ich also tun, um meine alten Einstellungen in die neue Version zu übertragen?");
                             output_Text.Add("");
+                            output_Text.Add("1. ");
+                            output_Text.Add("Klicke auf \"Einstellungen\"->\"Steuerung\"->\"Globale Tastenbelegung\".");
+                            output_Text.Add("Dort solltest du nun die Regler Schub, Bremse, AFB, und Kombihebel finden.");
                             output_Text.Add("");
+                            output_Text.Add("2. ");
+                            output_Text.Add("Wähle Schub aus und überprüfe zuerst die Tastenbelegung.");
+                            output_Text.Add("Als nächstes überprüfst die Hauptindikatoren.");
+                            output_Text.Add("Hier solltest du aber nicht mehr die Textindikatoren für den Kombihebel eintragen!");
+                            output_Text.Add("Die Textindikatoren die du voher für den Schub und Kombihebel hattest sind die folgenden:");
+                            output_Text.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
                             output_Text.Add("");
+                            output_Text.Add("3.");
+                            output_Text.Add("Das gleiche machst du nun für die Bremse.");
+                            output_Text.Add("Die Textindikatoren die du voher für die Bremse hattest sind die folgenden:");
+                            output_Text.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
                             output_Text.Add("");
+                            output_Text.Add("4.");
+                            output_Text.Add("Jetzt guckst du dir den Regler \"Kombihebel\" an. Wie du siehst, ist hier der Haken bei \"Kombihebel\" gesetzt.");
+                            output_Text.Add("Das erlaubt dem Regler auch in den Bremsbereich (negative Zahlen) zu gehen.");
+                            output_Text.Add("Hier trägst du nun die Indikatoren für den Kombihebel ein und die für den Schub-/ und Bremsbereich.");
+                            output_Text.Add("Du hattest vorher die folgenden Indikatoren:");
+                            output_Text.Add("Schubbereich:");
+                            output_Text.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                            output_Text.Add("Bremsbereich:");
+                            output_Text.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
                             output_Text.Add("");
+                            output_Text.Add("Fertig!");
+                            output_Text.Add("Falls du irgendwelche Probleme beim Übertragen deiner alten Einstellungen, oder bei anderen Dingen bekommst, kannst du mir gerne");
+                            output_Text.Add("auf Github (https://github.com/DerJantob/TSW2_Controller/issues/new/choose) oder");
+                            output_Text.Add("im RailSim Forum (https://rail-sim.de/forum/thread/37646-tsw2-controller-den-tsw-mit-einem-joystick-steuern/) schreiben.");
                             output_Text.Add("");
+                            output_Text.Add("LG");
+                            output_Text.Add("Jannik");
+
+                            File.WriteAllLines(folderPath + @"\UpdateInfo.txt", output_Text.ToArray());
+                            System.Diagnostics.Process.Start(folderPath + @"\UpdateInfo.txt");
 
                         }
                         #endregion
@@ -783,11 +969,13 @@ namespace TSW2_Controller
                 {
                     listBox_debugInfo.Show();
                     lbl_requests.Show();
+                    lbl_scantime.Show();
                 }
                 else
                 {
                     listBox_debugInfo.Hide();
                     lbl_requests.Hide();
+                    lbl_scantime.Hide();
                 }
                 #endregion
 

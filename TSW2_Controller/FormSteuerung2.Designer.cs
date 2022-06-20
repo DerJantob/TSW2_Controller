@@ -42,6 +42,7 @@
             this.tabControl_ReglerKnopf = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel_Regler = new System.Windows.Forms.Panel();
+            this.btnR_GetTimeFactor = new System.Windows.Forms.Button();
             this.progressBar_Joystick = new System.Windows.Forms.ProgressBar();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -138,7 +139,6 @@
             this.listBoxT3_Output = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnR_GetTimeFactor = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -275,6 +275,13 @@
             this.panel_Regler.Controls.Add(this.txtR_JoyAchse);
             resources.ApplyResources(this.panel_Regler, "panel_Regler");
             this.panel_Regler.Name = "panel_Regler";
+            // 
+            // btnR_GetTimeFactor
+            // 
+            resources.ApplyResources(this.btnR_GetTimeFactor, "btnR_GetTimeFactor");
+            this.btnR_GetTimeFactor.Name = "btnR_GetTimeFactor";
+            this.btnR_GetTimeFactor.UseVisualStyleBackColor = true;
+            this.btnR_GetTimeFactor.Click += new System.EventHandler(this.btnR_GetTimeFactor_Click);
             // 
             // progressBar_Joystick
             // 
@@ -945,13 +952,6 @@
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
             resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
             this.hilfeToolStripMenuItem.Click += new System.EventHandler(this.hilfeToolStripMenuItem_Click);
-            // 
-            // btnR_GetTimeFactor
-            // 
-            resources.ApplyResources(this.btnR_GetTimeFactor, "btnR_GetTimeFactor");
-            this.btnR_GetTimeFactor.Name = "btnR_GetTimeFactor";
-            this.btnR_GetTimeFactor.UseVisualStyleBackColor = true;
-            this.btnR_GetTimeFactor.Click += new System.EventHandler(this.btnR_GetTimeFactor_Click);
             // 
             // FormSteuerung2
             // 

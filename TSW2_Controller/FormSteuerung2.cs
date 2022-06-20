@@ -16,7 +16,7 @@ namespace TSW2_Controller
     public partial class FormSteuerung2 : Form
     {
         List<string[]> trainConfig = new List<string[]>();
-        List<VirtualController> controllerConfig = new List<VirtualController>();
+        List<VirtualController> virtualControllerList = new List<VirtualController>();
         List<string[]> customController = new List<string[]>();
         string selectedTrain = "";
         string selectedRegler = "";
@@ -68,6 +68,7 @@ namespace TSW2_Controller
         private void ReadControllersFile()
         {
             comboBoxT1_Controllers.Items.Clear();
+            virtualControllerList.Clear();
             if (File.Exists(Tcfg.controllersConfigPfad))
             {
                 using (var reader = new StreamReader(Tcfg.controllersConfigPfad))
@@ -79,6 +80,10 @@ namespace TSW2_Controller
                         var values = line.Split(',');
                         if (!skipFirst)
                         {
+                            VirtualController vc = new VirtualController();
+                            vc.InsertFileArray(values);
+                            virtualControllerList.Add(vc);
+
                             comboBoxT1_Controllers.Items.Add(values[0]);
                         }
                         else
@@ -457,6 +462,21 @@ namespace TSW2_Controller
                     }
                 }
                 selectedRegler = listBoxT1_ControllerList.Text;
+
+                radioR_Stufen.Enabled = true;
+                foreach (VirtualController vc in virtualControllerList)
+                {
+                    if(selectedRegler == vc.name)
+                    {
+                        if(vc.isMasterController)
+                        {
+                            radioR_Stufen.Enabled = false;
+                            radioR_Stufenlos.Checked = true;
+                        }
+                        break;
+                    }
+                }
+
                 panel_Regler.Enabled = true;
             }
         }
@@ -1296,7 +1316,7 @@ namespace TSW2_Controller
 
             if (fullReset)
             {
-                controllerConfig.Clear();
+                virtualControllerList.Clear();
                 comboBoxT2_Reglerauswahl.Text = "";
                 comboBoxT2_Reglerauswahl.Items.Clear();
                 if (File.Exists(Tcfg.controllersConfigPfad))
@@ -1313,7 +1333,7 @@ namespace TSW2_Controller
                                 VirtualController vc = new VirtualController();
                                 vc.InsertFileArray(values);
 
-                                controllerConfig.Add(vc);
+                                virtualControllerList.Add(vc);
                                 comboBoxT2_Reglerauswahl.Items.Add(values[0]);
                             }
                             else
@@ -1330,7 +1350,7 @@ namespace TSW2_Controller
             resetControllerBearbeiten(false);
             string selection = comboBoxT2_Reglerauswahl.SelectedItem.ToString();
 
-            foreach (VirtualController singleController in controllerConfig)
+            foreach (VirtualController singleController in virtualControllerList)
             {
                 if (selection == singleController.name)
                 {
@@ -1366,21 +1386,21 @@ namespace TSW2_Controller
                 ComboBox cb = comboBoxT2_Reglerauswahl;
                 if (cb.Items.Contains(cb.Text))
                 {
-                    for (int i = 0; i < controllerConfig.Count; i++)
+                    for (int i = 0; i < virtualControllerList.Count; i++)
                     {
-                        if (controllerConfig[i].name == cb.Text)
+                        if (virtualControllerList[i].name == cb.Text)
                         {
-                            controllerConfig.RemoveAt(i);
+                            virtualControllerList.RemoveAt(i);
                         }
                     }
                     cb.Items.Remove(cb.Text);
 
                     //Schreibe Datei
-                    string[] line = new string[controllerConfig.Count + 1];
+                    string[] line = new string[virtualControllerList.Count + 1];
                     line[0] = VirtualController.firstLine;
-                    for (int i = 1; i < controllerConfig.Count + 1; i++)
+                    for (int i = 1; i < virtualControllerList.Count + 1; i++)
                     {
-                        VirtualController vc = controllerConfig[i - 1];
+                        VirtualController vc = virtualControllerList[i - 1];
 
                         string combined = vc.combineToString();
 
@@ -1481,28 +1501,28 @@ namespace TSW2_Controller
                 }
 
                 bool aleardyExists = false;
-                for (int i = 0; i < controllerConfig.Count; i++)
+                for (int i = 0; i < virtualControllerList.Count; i++)
                 {
-                    if (controllerConfig[i].name == comboBoxT2_Reglerauswahl.Text)
+                    if (virtualControllerList[i].name == comboBoxT2_Reglerauswahl.Text)
                     {
                         aleardyExists = true;
-                        controllerConfig[i] = vc;
+                        virtualControllerList[i] = vc;
 
                         break;
                     }
                 }
                 if (!aleardyExists)
                 {
-                    controllerConfig.Add(vc);
+                    virtualControllerList.Add(vc);
                 }
             }
 
             //Schreibe Datei
-            string[] line = new string[controllerConfig.Count + 1];
+            string[] line = new string[virtualControllerList.Count + 1];
             line[0] = VirtualController.firstLine;
-            for (int i = 1; i < controllerConfig.Count + 1; i++)
+            for (int i = 1; i < virtualControllerList.Count + 1; i++)
             {
-                VirtualController vc = controllerConfig[i - 1];
+                VirtualController vc = virtualControllerList[i - 1];
 
                 string combined = vc.combineToString();
 
