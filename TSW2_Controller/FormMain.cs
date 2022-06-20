@@ -26,7 +26,7 @@ namespace TSW2_Controller
         DirectInput input = new DirectInput();
         public static Joystick[] MainSticks;
 
-        public Rectangle res = Screen.PrimaryScreen.Bounds;
+        public static Rectangle res = Screen.PrimaryScreen.Bounds;
 
         public List<string[]> trainConfig = new List<string[]>();
         List<VirtualController> vControllerList = new List<VirtualController>();
@@ -333,7 +333,7 @@ namespace TSW2_Controller
         #endregion
 
         #region Allgemeine Funktionen
-        public bool ContainsWord(string stringToCheck, string word)
+        public static bool ContainsWord(string stringToCheck, string word)
         {
             if (word != null)
             {
@@ -488,11 +488,11 @@ namespace TSW2_Controller
             if (Settings.Default.showScanResult) { if (normal) { bgw_readScreen.ReportProgress(0, new object[] { bmpScreenshot, new Bitmap(1, 1), null, null, -1, -1 }); } else { bgw_readScreen.ReportProgress(0, new object[] { new Bitmap(1, 1), bmpScreenshot, null, null, -1, -1 }); } Thread.Sleep(50); }//Thread.Sleep(50) prevents crash with picturebox
             return bmpScreenshot;
         }
-        private int ConvertHeight(int height)
+        private static int ConvertHeight(int height)
         {
             return Convert.ToInt32(Math.Round((Convert.ToDouble(height) / 1440.0) * Convert.ToDouble(res.Height), 0));
         }
-        private int ConvertWidth(int width)
+        private static int ConvertWidth(int width)
         {
             return Convert.ToInt32(Math.Round((Convert.ToDouble(width) / 2560.0) * Convert.ToDouble(res.Width), 0));
         }

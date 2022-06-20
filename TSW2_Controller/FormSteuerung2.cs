@@ -659,6 +659,12 @@ namespace TSW2_Controller
                 Log.ErrorException(ex);
             }
         }
+        private void btnR_GetTimeFactor_Click(object sender, EventArgs e)
+        {
+            FormZeitfaktor2 formZeitfaktor2 = new FormZeitfaktor2(listBoxT1_ControllerList.SelectedItem.ToString(), radioR_Stufenlos.Checked);
+            if (formZeitfaktor2.DialogResult != DialogResult.Cancel) { formZeitfaktor2.ShowDialog(); }
+            txtR_Zeitfaktor.Text = formZeitfaktor2.resultString;
+        }
         private void listBoxT1_ControllerList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -1153,7 +1159,7 @@ namespace TSW2_Controller
                     }
                     else
                     {
-                        tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2] );
+                        tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2]);
                     }
 
                     splitted[i + 1] = splitted[i + 1].Replace("[", "").Replace("]", "");
