@@ -26,11 +26,17 @@ namespace TSW2_Controller
 
         public static string nameForGlobal = "_Global";
 
+
+        public static string configOrdnerPfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\TrainConfigs\";
+
         public static string configpfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\Trainconfig.csv";
         public static string controllersConfigPfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\Controllers.csv";
-        public static string configSammelungPfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\TrainConfigs\";
+
+        public static string configstandardpfad = @".\Configs\TrainConfig\StandardTrainconfig.csv";
+        public static string controllersstandardpfad_DE = @".\Configs\ControllerConfig\StandardControllers_DE.csv";
+        public static string controllersstandardpfad_EN = @".\Configs\ControllerConfig\StandardControllers_EN.csv";
+
         public static string vollerlogpfad;
         public static string logOrdnerpfad = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSW2_Controller\Log\";
-        public static string configstandardpfad = @".\TrainConfigs\StandardTrainconfig.csv";
     }
 }

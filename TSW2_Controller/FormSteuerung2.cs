@@ -46,7 +46,25 @@ namespace TSW2_Controller
         }
 
         #region Allgemeines
-
+        private void tabControl_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_main.SelectedIndex == 0)
+            {
+                tabControl_main.Size = new Size(313, 104);
+            }
+            else if (tabControl_main.SelectedIndex == 2)
+            {
+                tabControl_main.Size = new Size(313, 348);
+            }
+            else if (tabControl_main.SelectedIndex == 3)
+            {
+                tabControl_main.Size = new Size(474, 266);
+            }
+            else
+            {
+                tabControl_main.Size = new Size(647, 348);
+            }
+        }
         private void ReadControllersFile()
         {
             comboBoxT1_Controllers.Items.Clear();
@@ -249,6 +267,10 @@ namespace TSW2_Controller
                 listBox_ShowJoystickStates.TopIndex = topIndex;
             }
         }
+        private void hilfeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Zugauswahl
@@ -259,8 +281,33 @@ namespace TSW2_Controller
             if (selectedTrain == Tcfg.nameForGlobal)
             {
                 tabControl_ReglerKnopf.SelectedIndex = 1;
+                btnT1_Controller_Add.Enabled = false;
+            }
+            if (tabControl_ReglerKnopf.SelectedIndex == 1)
+            {
+                groupBoxT1_Regler.Hide();
+            }
+            else
+            {
+                groupBoxT1_Regler.Show();
             }
             tabControl_main.SelectedIndex = 1;
+            panel_Regler.Enabled = false;
+        }
+        private void btnT0_Add_Click(object sender, EventArgs e)
+        {
+            ComboBox cb = comboBoxT0_Zugauswahl;
+            if (!cb.Items.Contains(cb.Text))
+            {
+                cb.Items.Add(cb.Text);
+                cb.SelectedItem = cb.Text;
+                resetControllerBearbeiten(false);
+            }
+            else
+            {
+                resetControllerBearbeiten(false);
+            }
+            panel_main.Enabled = true;
         }
         private void btnT0_Delete_Click(object sender, EventArgs e)
         {
@@ -303,6 +350,12 @@ namespace TSW2_Controller
                     MessageBox.Show(counter + Sprache.Translate(" Einträge gelöscht!", " entries deleted!"));
                 }
             }
+        }
+        private void btnT0_globalKeybinds_Click(object sender, EventArgs e)
+        {
+            selectedTrain = "";
+            resetControllerBearbeiten();
+            tabControl_main.SelectedIndex = 2;
         }
         #endregion
 
@@ -397,7 +450,7 @@ namespace TSW2_Controller
                             string[] split = singleTrain[Tcfg.invertieren].Split('|');
                             for (int i = 0; i < split.Count() - 1; i += 2)
                             {
-                                dataGridView1.Rows.Add(new object[] { split[i], split[i + 1] });
+                                dataGridView1.Rows.Add(new string[] { split[i], split[i + 1] });
                             }
                             ReadDataGrid();
                         }
@@ -412,9 +465,27 @@ namespace TSW2_Controller
             tabControl_main.SelectedIndex = 0;
         }
 
+        private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (selectedTrain == Tcfg.nameForGlobal)
+            {
+                tabControl_ReglerKnopf.SelectedIndex = 1;
+            }
+            if (tabControl_ReglerKnopf.SelectedIndex == 0)
+            {
+                groupBoxT1_Regler.Visible = true;
+            }
+            else
+            {
+                groupBoxT1_Regler.Visible = false;
+            }
+        }
+
         #region Regler
         private void btnR_Erkennen_Click(object sender, EventArgs e)
         {
+            getNumberAndJoy();//First one may contain false information
+            Thread.Sleep(30);
             string[] output = getNumberAndJoy();
 
             txtR_JoyNr.Text = output[0];
@@ -587,6 +658,12 @@ namespace TSW2_Controller
             {
                 Log.ErrorException(ex);
             }
+        }
+        private void btnR_GetTimeFactor_Click(object sender, EventArgs e)
+        {
+            FormZeitfaktor2 formZeitfaktor2 = new FormZeitfaktor2(listBoxT1_ControllerList.SelectedItem.ToString(), radioR_Stufenlos.Checked);
+            if (formZeitfaktor2.DialogResult != DialogResult.Cancel) { formZeitfaktor2.ShowDialog(); }
+            txtR_Zeitfaktor.Text = formZeitfaktor2.resultString;
         }
         private void listBoxT1_ControllerList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -763,30 +840,17 @@ namespace TSW2_Controller
         {
             resetControllerBearbeiten();
             tabControl_main.SelectedIndex = 2;
+            if (listBoxT1_ControllerList.SelectedItem != null)
+            {
+                if (comboBoxT2_Reglerauswahl.Items.Contains(listBoxT1_ControllerList.SelectedItem))
+                {
+                    comboBoxT2_Reglerauswahl.SelectedItem = listBoxT1_ControllerList.SelectedItem;
+                }
+            }
         }
         #endregion
 
         #region Knöpfe
-        #region txtAktion
-        private void txtB_Aktion_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
-            //PreviewKeyDown um auch tab-Taste zu erlauben
-            txtB_Aktion.Text = Keyboard.ConvertKeyToString(e.KeyCode);
-            SelectNextControl((Control)sender, true, false, true, true);
-        }
-
-        private void txtB_Aktion_Click(object sender, EventArgs e)
-        {
-            txtB_Aktion.Text = "";
-        }
-
-        private void txtB_Aktion_KeyDown(object sender, KeyEventArgs e)
-        {
-            //Verhindert, dass die gedrückte Taste ins Textfeld geschrieben wird
-            e.SuppressKeyPress = true;
-        }
-        #endregion
         private void btnB_Erkennen_Click(object sender, EventArgs e)
         {
             string[] output = new string[] { "", "" };
@@ -837,7 +901,7 @@ namespace TSW2_Controller
                         Log.ErrorException(ex);
                     }
                     counter++;
-                    if (counter > 500)
+                    if (counter > 200)
                     {
                         wait = false;
                     }
@@ -915,7 +979,7 @@ namespace TSW2_Controller
                         Log.ErrorException(ex);
                     }
                     counter++;
-                    if (counter > 500)
+                    if (counter > 200)
                     {
                         wait = false;
                     }
@@ -986,7 +1050,6 @@ namespace TSW2_Controller
             Buttons_Speichern();
             comboBoxB_KnopfAuswahl.Items.Add(comboBoxB_KnopfAuswahl.Text);
         }
-
         private void Buttons_Speichern(bool justWriteFile = false)
         {
             if (!justWriteFile)
@@ -1080,6 +1143,139 @@ namespace TSW2_Controller
 
             File.WriteAllLines(Tcfg.configpfad, line);
         }
+        private void btnB_Editor_Click(object sender, EventArgs e)
+        {
+            resetTastenkombination();
+
+            if (txtB_Tastenkombination.Text != "" && (txtB_Tastenkombination.Text.Split('_').Count() == 3 || txtB_Tastenkombination.Text.Split('_').Count() % 3 == 0))
+            {
+                string[] splitted = txtB_Tastenkombination.Text.Split('_');
+
+                for (int i = 0; i < splitted.Count(); i += 3)
+                {
+                    if (i < splitted.Count() - 3)
+                    {
+                        tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2] + "_");
+                    }
+                    else
+                    {
+                        tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2]);
+                    }
+
+                    splitted[i + 1] = splitted[i + 1].Replace("[", "").Replace("]", "");
+                    splitted[i + 2] = splitted[i + 2].Replace("[", "").Replace("]", "");
+
+                    if (splitted[i + 1].Contains("press")) { listBoxT3_Output.Items.Add(Sprache.Translate(splitted[i] + " kurz drücken, danach " + splitted[i + 2] + "ms warten", splitted[i] + " short press, then wait " + splitted[i + 2] + "ms")); }
+                    if (splitted[i + 1].Contains("hold")) { listBoxT3_Output.Items.Add(Sprache.Translate(splitted[i] + " für " + splitted[i + 1].Replace("hold", "") + "ms halten, danach " + splitted[i + 2] + "ms warten", "hold " + splitted[i] + " for " + splitted[i + 1].Replace("hold", "") + "ms, then wait " + splitted[i + 2] + "ms")); }
+                    if (splitted[i + 1].Contains("down")) { listBoxT3_Output.Items.Add(Sprache.Translate(splitted[i] + " gedrückt halten, danach " + splitted[i + 2] + "ms warten", "hold down " + splitted[i] + ", then wait " + splitted[i + 2] + "ms")); }
+                    if (splitted[i + 1].Contains("up")) { listBoxT3_Output.Items.Add(Sprache.Translate(splitted[i] + " loslassen, danach " + splitted[i + 2] + "ms warten", "release " + splitted[i] + ", then wait " + splitted[i + 2] + "ms")); }
+                }
+                tastenkombiliste[0] = "_" + tastenkombiliste[0];
+            }
+
+            tabControl_main.SelectedIndex = 3;
+        }
+        #region Tastenkombination
+        List<string> tastenkombiliste = new List<string>();
+        private void resetTastenkombination()
+        {
+            listBoxT3_Output.Items.Clear();
+            txtT3_Haltezeit.Text = "0";
+            txtT3_Taste.Text = "";
+            txtT3_Wartezeit.Text = "10";
+            radioT3_einmalDruecken.Checked = true;
+            lblT3_haltezeit.Hide();
+            txtT3_Haltezeit.Hide();
+
+            tastenkombiliste.Clear();
+        }
+        private void btnT3_Hinzufügen_Click(object sender, EventArgs e)
+        {
+            int insertIndex = listBoxT3_Output.SelectedIndex + 1;
+            if (insertIndex == 0)
+            {
+                insertIndex = listBoxT3_Output.Items.Count;
+            }
+
+
+            if (txtT3_Taste.Text != "")
+            {
+                if (txtT3_Wartezeit.Text == "") { txtT3_Wartezeit.Text = "0"; }
+                if (txtT3_Haltezeit.Text == "") { txtT3_Haltezeit.Text = "0"; }
+
+                if (radioT3_einmalDruecken.Checked)
+                {
+                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[press]_[" + txtT3_Wartezeit.Text + "]");
+                    listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " kurz drücken, danach " + txtT3_Wartezeit.Text + "ms warten", txtT3_Taste.Text + " short press, then wait " + txtT3_Wartezeit.Text + "ms"));
+                }
+                else if (radioT3_Halten.Checked)
+                {
+                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[hold" + txtT3_Haltezeit.Text + "]_[" + txtT3_Wartezeit.Text + "]");
+                    listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " für " + txtT3_Haltezeit.Text + "ms halten, danach " + txtT3_Wartezeit.Text + "ms warten", "hold " + txtT3_Taste.Text + " for " + txtT3_Haltezeit.Text + "ms, then wait " + txtT3_Wartezeit.Text + "ms"));
+                }
+                else if (radioT3_Druecken.Checked)
+                {
+                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[down]_[" + txtT3_Wartezeit.Text + "]");
+                    listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " gedrückt halten, danach " + txtT3_Wartezeit.Text + "ms warten", "press " + txtT3_Taste.Text + " down, then wait " + txtT3_Wartezeit.Text + "ms"));
+                }
+                else if (radioT3_Loslassen.Checked)
+                {
+                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[up]_[" + txtT3_Wartezeit.Text + "]");
+                    listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " loslassen, danach " + txtT3_Wartezeit.Text + "ms warten", "release " + txtT3_Taste.Text + ", then wait " + txtT3_Wartezeit.Text + "ms"));
+                }
+                listBoxT3_Output.SelectedIndex = insertIndex;
+            }
+            else
+            {
+                Sprache.ShowMessageBox("Keine Taste", "No key");
+            }
+        }
+        private void btnT3_Fertig_Click(object sender, EventArgs e)
+        {
+            string combined = "";
+            foreach (string single in tastenkombiliste)
+            {
+                combined += single;
+            }
+            combined = combined.Remove(0, 1);
+            txtB_Tastenkombination.Text = combined;
+            tabControl_main.SelectedIndex = 1;
+        }
+        private void listBoxT3_Output_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    int index = listBoxT3_Output.SelectedIndex;
+                    tastenkombiliste.RemoveAt(index);
+                    listBoxT3_Output.Items.RemoveAt(index);
+                    if (listBoxT3_Output.Items.Count > 0)
+                    {
+                        listBoxT3_Output.SelectedIndex = index - 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException(ex);
+                MessageBox.Show("ERROR");
+            }
+        }
+        private void radio_Changed(object sender, EventArgs e)
+        {
+            if (radioT3_Halten.Checked)
+            {
+                lblT3_haltezeit.Show();
+                txtT3_Haltezeit.Show();
+            }
+            else
+            {
+                lblT3_haltezeit.Hide();
+                txtT3_Haltezeit.Hide();
+            }
+        }
+        #endregion
         #endregion
 
         #endregion
@@ -1096,6 +1292,7 @@ namespace TSW2_Controller
             comboBoxT2_mainIndicator.Items.Clear();
             comboBoxT2_brakearea.Items.Clear();
             comboBoxT2_throttlearea.Items.Clear();
+            checkboxT2_Kombihebel.Checked = false;
 
             if (fullReset)
             {
@@ -1110,16 +1307,11 @@ namespace TSW2_Controller
                         while (!reader.EndOfStream)
                         {
                             var line = reader.ReadLine();
-                            var values = line.Split(',');
+                            string[] values = line.Split(',');
                             if (!skipFirst)
                             {
                                 VirtualController vc = new VirtualController();
-                                vc.name = values[0];
-                                vc.increaseKey = values[1];
-                                vc.decreaseKey = values[2];
-                                vc.textindicators = vc.ConvertStringToArray(values[3]);
-                                vc.textindicators_throttlearea = vc.ConvertStringToArray(values[4]);
-                                vc.textindicators_brakearea = vc.ConvertStringToArray(values[5]);
+                                vc.InsertFileArray(values);
 
                                 controllerConfig.Add(vc);
                                 comboBoxT2_Reglerauswahl.Items.Add(values[0]);
@@ -1145,9 +1337,10 @@ namespace TSW2_Controller
                     txtT2_increase.Text = singleController.increaseKey;
                     txtT2_decrease.Text = singleController.decreaseKey;
 
-                    comboBoxT2_mainIndicator.Items.AddRange(singleController.textindicators);
+                    comboBoxT2_mainIndicator.Items.AddRange(singleController.mainIndicators);
                     comboBoxT2_throttlearea.Items.AddRange(singleController.textindicators_throttlearea);
                     comboBoxT2_brakearea.Items.AddRange(singleController.textindicators_brakearea);
+                    checkboxT2_Kombihebel.Checked = singleController.isMasterController;
                 }
             }
             panel_main.Enabled = true;
@@ -1162,13 +1355,9 @@ namespace TSW2_Controller
             if (!cb.Items.Contains(cb.Text))
             {
                 cb.Items.Add(cb.Text);
-                resetControllerBearbeiten(false);
+                panel_main.Enabled = true;
             }
-            else
-            {
-                resetControllerBearbeiten(false);
-            }
-            panel_main.Enabled = true;
+            resetControllerBearbeiten(false);
         }
         private void btnT2_remove_Click(object sender, EventArgs e)
         {
@@ -1185,16 +1374,15 @@ namespace TSW2_Controller
                         }
                     }
                     cb.Items.Remove(cb.Text);
+
                     //Schreibe Datei
                     string[] line = new string[controllerConfig.Count + 1];
-                    line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+                    line[0] = VirtualController.firstLine;
                     for (int i = 1; i < controllerConfig.Count + 1; i++)
                     {
                         VirtualController vc = controllerConfig[i - 1];
 
-                        string combined = "";
-
-                        combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+                        string combined = vc.combineToString();
 
                         line[i] = combined;
                     }
@@ -1248,17 +1436,49 @@ namespace TSW2_Controller
                 cb.Items.Remove(cb.Text);
             }
         }
+        private void checkboxT2_Kombihebel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkboxT2_Kombihebel.Checked)
+            {
+                groupBox_kombihebel.Enabled = true;
+            }
+            else
+            {
+                groupBox_kombihebel.Enabled = false;
+            }
+        }
         private void btnT2_Save_Click(object sender, EventArgs e)
         {
+            void checkCombobox(ComboBox comboBox)
+            {
+                if (comboBox.SelectedItem == null && comboBox.Text != "")
+                {
+                    comboBox.Items.Add(comboBox.Text);
+                }
+            }
+
+            checkCombobox(comboBoxT2_mainIndicator);
+            checkCombobox(comboBoxT2_throttlearea);
+            checkCombobox(comboBoxT2_brakearea);
+
             if (txtT2_increase.Text != "" && txtT2_decrease.Text != "")
             {
                 VirtualController vc = new VirtualController();
                 vc.name = comboBoxT2_Reglerauswahl.Text;
                 vc.increaseKey = txtT2_increase.Text;
                 vc.decreaseKey = txtT2_decrease.Text;
-                vc.textindicators = comboBoxT2_mainIndicator.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
-                vc.textindicators_throttlearea = comboBoxT2_throttlearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
-                vc.textindicators_brakearea = comboBoxT2_brakearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                vc.isMasterController = checkboxT2_Kombihebel.Checked;
+                vc.mainIndicators = comboBoxT2_mainIndicator.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                if (vc.isMasterController)
+                {
+                    vc.textindicators_throttlearea = comboBoxT2_throttlearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                    vc.textindicators_brakearea = comboBoxT2_brakearea.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+                }
+                else
+                {
+                    vc.textindicators_throttlearea = new string[0];
+                    vc.textindicators_brakearea = new string[0];
+                }
 
                 bool aleardyExists = false;
                 for (int i = 0; i < controllerConfig.Count; i++)
@@ -1279,14 +1499,12 @@ namespace TSW2_Controller
 
             //Schreibe Datei
             string[] line = new string[controllerConfig.Count + 1];
-            line[0] = "name,increase,decrease,main indicators,throttle_area,brake_area";
+            line[0] = VirtualController.firstLine;
             for (int i = 1; i < controllerConfig.Count + 1; i++)
             {
                 VirtualController vc = controllerConfig[i - 1];
 
-                string combined = "";
-
-                combined += vc.name + "," + vc.increaseKey + "," + vc.decreaseKey + "," + String.Join("|", vc.textindicators) + "," + String.Join("|", vc.textindicators_throttlearea) + "," + String.Join("|", vc.textindicators_brakearea);
+                string combined = vc.combineToString();
 
                 line[i] = combined;
             }
@@ -1301,35 +1519,45 @@ namespace TSW2_Controller
             resetControllerBearbeiten();
 
             ResetKonfiguration();
-            tabControl_main.SelectedIndex = 1;
+
+            if (selectedTrain != "")
+            {
+                tabControl_main.SelectedIndex = 1;
+            }
+            else
+            {
+                tabControl_main.SelectedIndex = 0;
+            }
+        }
+        private void btnT2_back_Click(object sender, EventArgs e)
+        {
+            if (selectedTrain != "")
+            {
+                resetControllerBearbeiten(true);
+                tabControl_main.SelectedIndex = 1;
+            }
+            else
+            {
+                tabControl_main.SelectedIndex = 0;
+            }
+        }
+        private void btnT2_defaultSettings_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Sprache.Translate("Möchtest du wirklich alle Regler auf die Standardeinstellungen zurücksetzen? (Ohne speichern wirksam)", "Do you really want to reset all controllers to default settings?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (Sprache.isGerman())
+                {
+                    File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, true);
+                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
+                }
+                else
+                {
+                    File.Copy(Tcfg.controllersstandardpfad_EN, Tcfg.controllersConfigPfad, true);
+                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_EN + " to " + Tcfg.controllersConfigPfad);
+                }
+                resetControllerBearbeiten();
+            }
         }
         #endregion
-
-        private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (selectedTrain == Tcfg.nameForGlobal)
-            {
-                tabControl_ReglerKnopf.SelectedIndex = 1;
-            }
-            if (tabControl_ReglerKnopf.SelectedIndex == 0)
-            {
-                groupBoxT1_Regler.Visible = true;
-            }
-            else
-            {
-                groupBoxT1_Regler.Visible = false;
-            }
-        }
-        private void tabControl_main_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl_main.SelectedIndex == 0)
-            {
-                tabControl_main.Size = new Size(313, 104);
-            }
-            else
-            {
-                tabControl_main.Size = new Size(647, 348);
-            }
-        }
     }
 }
