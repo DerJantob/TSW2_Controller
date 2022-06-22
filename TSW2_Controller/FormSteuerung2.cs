@@ -308,12 +308,16 @@ namespace TSW2_Controller
                 cb.Items.Add(cb.Text);
                 cb.SelectedItem = cb.Text;
                 resetControllerBearbeiten(false);
+                selectedTrain = comboBoxT0_Zugauswahl.Text;
+                ResetKonfiguration();
+                tabControl_main.SelectedIndex = 1;
+                panel_Regler.Enabled = false;
             }
             else
             {
                 resetControllerBearbeiten(false);
             }
-            panel_main.Enabled = true;
+            //panel_main.Enabled = true;
         }
         private void btnT0_Delete_Click(object sender, EventArgs e)
         {

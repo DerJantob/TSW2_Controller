@@ -1598,7 +1598,7 @@ namespace TSW2_Controller
             if (Log.DebugInfoList.Count > listBox_debugInfo.Items.Count)
             {
                 bool autoScroll = false;
-                if (listBox_debugInfo.TopIndex == listBox_debugInfo.Items.Count - 38)
+                if (listBox_debugInfo.TopIndex == listBox_debugInfo.Items.Count - (int)(listBox_debugInfo.Height / listBox_debugInfo.ItemHeight))
                 {
                     autoScroll = true;
                 }
@@ -2020,7 +2020,15 @@ namespace TSW2_Controller
                         bestMatchWord = indicator;
                         break;
                     }
-                    else
+                    else if (result.Contains(indicator))
+                    {
+                        if (ContainsWord(Regex.Replace(result, @"[\d-]", " "), indicator))
+                        {
+                            bestMatchWord = indicator;
+                        }
+                    }
+
+                    if (bestMatchWord == "")
                     {
                         //Wenn kein Indikator 1 zu 1 gefunden wurde, versuche etwas zu finden, was ähnlich ist
                         int indicatorWordCount = indicator.Split(' ').Count();
