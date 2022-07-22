@@ -851,7 +851,7 @@ namespace TSW2_Controller
                                     output_Text.Add("");
                                     output_Text.Add("1. ");
                                     output_Text.Add("Klicke auf \"Einstellungen\"->\"Steuerung\"->\"Globale Tastenbelegung\".");
-                                    output_Text.Add("Dort solltest du nun die Regler Schub, Bremse, und Kombihebel finden.");
+                                    output_Text.Add("Dort solltest du nun die Regler Schub, Bremse und Kombihebel finden.");
                                     output_Text.Add("");
                                     output_Text.Add("2. ");
                                     output_Text.Add("Wähle Schub aus und überprüfe zuerst die Tastenbelegung.");
@@ -885,7 +885,44 @@ namespace TSW2_Controller
                                 }
                                 else
                                 {
-
+                                    output_Text.Add("A lot has changed in version 2.0.0. Among other things, the way controllers work.");
+                                    output_Text.Add("Since I decided to treat Throttle and Master Controller separately, I can't just copy the old text indicators.");
+                                    output_Text.Add("");
+                                    output_Text.Add("So what do I need to do to transfer my old settings to the new version?");
+                                    output_Text.Add("");
+                                    output_Text.Add("1. ");
+                                    output_Text.Add("Go to \"Settings\"->\"Controls\"->\"Global keybinds\".");
+                                    output_Text.Add("There you should now find the controllers Throttle, Brake and Master Controller.");
+                                    output_Text.Add("");
+                                    output_Text.Add("2. ");
+                                    output_Text.Add("Select Throttle and check the keybinds first.");
+                                    output_Text.Add("Next check the main indicators.");
+                                    output_Text.Add("But you should no longer enter the text indicators for the Master Controller here!");
+                                    output_Text.Add("The text indicators you had before for the trottle and Master Controller are the following:");
+                                    output_Text.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("");
+                                    output_Text.Add("3.");
+                                    output_Text.Add("Do the same for the brake.");
+                                    output_Text.Add("The text indicators you had before for the brake are the following:");
+                                    output_Text.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("");
+                                    output_Text.Add("4.");
+                                    output_Text.Add("Now select \"Master Controller\". As you can see, the checkbox \"Master Controller\" is checked.");
+                                    output_Text.Add("This allows the controller to also go into the braking area (negative numbers).");
+                                    output_Text.Add("Here you now enter the indicators for the Master Controller and those for the throttle/ and brake area.");
+                                    output_Text.Add("You previously had the following indicators:");
+                                    output_Text.Add("Throttle area:");
+                                    output_Text.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("Brake area:");
+                                    output_Text.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("");
+                                    output_Text.Add("Done!");
+                                    output_Text.Add("If you get any problems converting your old settings, or anything else, feel free to contact me on");
+                                    output_Text.Add("Github (https://github.com/DerJantob/TSW2_Controller/issues/new/choose) or");
+                                    output_Text.Add("on the DTG Forum (https://forums.dovetailgames.com/threads/tsw2_controller-control-tsw2-with-a-joystick.52402/).");
+                                    output_Text.Add("");
+                                    output_Text.Add("Kind regards");
+                                    output_Text.Add("Jannik");
                                 }
 
                                 File.WriteAllLines(folderPath + @"\UpdateInfo.txt", output_Text.ToArray());
@@ -905,6 +942,7 @@ namespace TSW2_Controller
                             //Sprache von Windows
                             Settings.Default.Sprache = "de-DE";
                             Settings.Default.Save();
+                            Sprache.initLanguage();
                         }
 
                         if (!File.Exists(Tcfg.controllersConfigPfad))
