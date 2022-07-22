@@ -10,6 +10,7 @@ namespace TSW2_Controller
 {
     internal class Sprache
     {
+        public static bool isGerman;
         public static string Zugauswahl()
         {
             return Translate("_Zugauswahl", "_Select train");
@@ -17,7 +18,7 @@ namespace TSW2_Controller
 
         public static void ShowMessageBox(string Deutsch, string Englisch)
         {
-            if(Settings.Default.Sprache == "de-DE")
+            if (Settings.Default.Sprache == "de-DE")
             {
                 MessageBox.Show(Deutsch);
             }
@@ -27,19 +28,19 @@ namespace TSW2_Controller
             }
         }
 
-        public static bool isGerman()
+        public static void initLanguage()
         {
-            if(Settings.Default.Sprache == "de-DE")
+            if (Settings.Default.Sprache == "de-DE")
             {
-                return true;
+                isGerman = true;
             }
             else
             {
-                return false;
+                isGerman = false;
             }
         }
 
-        public static string Translate(string Deutsch, string Englisch="")
+        public static string Translate(string Deutsch, string Englisch = "")
         {
             if (Settings.Default.Sprache == "de-DE")
             {

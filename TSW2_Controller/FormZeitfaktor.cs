@@ -360,13 +360,13 @@ namespace TSW2_Controller
             SetUI(true);
             if (radio_Stufenlos.Checked)
             {
-                if (Sprache.isGerman()) { lbl_anleitung.Text = "- Stufenlosen Regler auf kleinen Wert stellen, vondem man mit konstanter Geschwindigkeit bis aufs Maximum kommen kann.\n\n- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
+                if (Sprache.isGerman) { lbl_anleitung.Text = "- Stufenlosen Regler auf kleinen Wert stellen, vondem man mit konstanter Geschwindigkeit bis aufs Maximum kommen kann.\n\n- In das Textfeld den entsprechenden Prozentwert eintragen. (z.B. wenn Min. = 5% entspricht)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
                 else { lbl_anleitung.Text = "- Set the continuously variable controller to a small value, from which you can reach the maximum at a constant speed.\n\n- Enter the corresponding percentage value in the text box. (e.g. if min = 5%)\n\n- Press start and switch to TSW2 within 7 seconds.\n\n- Wait for pause screen.\n"; }
             }
 
             if (radio_Stufen.Checked)
             {
-                if (Sprache.isGerman()) { lbl_anleitung.Text = "- Stufenregler auf Mittelwert stellen (die Stufe drüber und drunter sollten mit normaler Tastendrucklänge zu erreichen sein)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
+                if (Sprache.isGerman) { lbl_anleitung.Text = "- Stufenregler auf Mittelwert stellen (die Stufe drüber und drunter sollten mit normaler Tastendrucklänge zu erreichen sein)\n\n- Start drücken und innerhalb von 7 Sekunden auf den TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n"; }
                 else { lbl_anleitung.Text = "- Set the notch control to midpoint (the level above and below should be within a normal key press length)\n\n- Press start and switch to the TSW2 within 7 seconds.\n\n- Wait for the pause screen.\n"; }
                 txt_Startwert.Text = "";
                 txt_Startwert.Enabled = false;
@@ -374,7 +374,7 @@ namespace TSW2_Controller
 
             if (radio_kombihebel.Checked)
             {
-                if (Sprache.isGerman()) { lbl_anleitung.Text = "- Kombihebel im Schubbereich auf kleinen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- Start drücken und innerhalb von 7 Sekunden zum TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n\n- Kombihebel im Bremsbereich auf kleinstmöglichen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- OK drücken\n\n- Auf Pause-Bildschirm warten"; }
+                if (Sprache.isGerman) { lbl_anleitung.Text = "- Kombihebel im Schubbereich auf kleinen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- Start drücken und innerhalb von 7 Sekunden zum TSW2 wechseln.\n\n- Auf Pause-Bildschirm warten.\n\n- Kombihebel im Bremsbereich auf kleinstmöglichen, in % angezeigten Wert stellen. (z.B. 10%,13%,18%)\n\n- OK drücken\n\n- Auf Pause-Bildschirm warten"; }
                 else { lbl_anleitung.Text = "- Set the master controller in the thrust range to a small value displayed in %. (e.g. 10%,13%,18%)\n\n- Press start and switch to TSW2 within 7 seconds.\n\n- Wait for pause screen.\n\n- Master controller in brake range to a small value displayed in %. (e.g. 10%,13%,18%)\n\n- Press OK\n\n- Wait for pause screen "; }
                 radio_Schub.Checked = true;
                 radio_Bremse.Enabled = false;

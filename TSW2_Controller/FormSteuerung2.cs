@@ -1590,7 +1590,7 @@ namespace TSW2_Controller
         {
             if (MessageBox.Show(Sprache.Translate("Möchtest du wirklich alle Regler auf die Standardeinstellungen zurücksetzen? (Ohne speichern wirksam)", "Do you really want to reset all controllers to default settings?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (Sprache.isGerman())
+                if (Sprache.isGerman)
                 {
                     File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, true);
                     Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);

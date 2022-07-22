@@ -57,7 +57,7 @@ namespace TSW2_Controller
 
                 comboBox_DeleteLogsAfterXDays.Text = Settings.Default.DeleteLogsAfter;
 
-                if (Sprache.isGerman())
+                if (Sprache.isGerman)
                 {
                     deutschToolStripMenuItem.Checked = true;
                 }
@@ -136,7 +136,7 @@ namespace TSW2_Controller
             catch (Exception ex)
             {
                 Log.ErrorException(ex);
-                if (Sprache.isGerman())
+                if (Sprache.isGerman)
                 {
                     MessageBox.Show("Es konnte keine Verbindung zu \"github.com/DerJantob/TSW2_Controller\" hergestellt werden.\n\nDas kann eventuell daran liegen dass das Anfragelimit überschritten wurde. Das wird nach einer Stunde zurückgesetzt.");
                 }

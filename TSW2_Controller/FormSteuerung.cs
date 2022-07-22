@@ -845,7 +845,7 @@ namespace TSW2_Controller
             }
             else
             {
-                if (Sprache.isGerman())
+                if (Sprache.isGerman)
                 {
                     MessageBox.Show("Wähle noch \"" + radioT3_Stufenlos.Text + "\" oder \"" + radioT3_Stufen.Text + "\" aus");
                 }

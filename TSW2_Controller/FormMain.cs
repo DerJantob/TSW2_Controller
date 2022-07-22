@@ -96,7 +96,7 @@ namespace TSW2_Controller
             }
             if (!File.Exists(Tcfg.controllersConfigPfad))
             {
-                if (Sprache.isGerman())
+                if (Sprache.isGerman)
                 {
                     File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, false);
                     Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
@@ -439,6 +439,7 @@ namespace TSW2_Controller
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
             System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.Sprache);
+            Sprache.initLanguage();
         }
 
         public Bitmap Screenshot(bool normal)
@@ -747,7 +748,7 @@ namespace TSW2_Controller
                                                 {
                                                     if (singleRow[7] == "Schub")
                                                     {
-                                                        if (Sprache.isGerman())
+                                                        if (Sprache.isGerman)
                                                         {
                                                             singleRow.Insert(Tcfg.reglerName, "Schub");
                                                         }
@@ -760,7 +761,7 @@ namespace TSW2_Controller
                                                     }
                                                     else if (singleRow[7] == "Bremse")
                                                     {
-                                                        if (Sprache.isGerman())
+                                                        if (Sprache.isGerman)
                                                         {
                                                             singleRow.Insert(Tcfg.reglerName, "Bremse");
                                                         }
@@ -773,7 +774,7 @@ namespace TSW2_Controller
                                                     }
                                                     else if (singleRow[7] == "Kombihebel")
                                                     {
-                                                        if (Sprache.isGerman())
+                                                        if (Sprache.isGerman)
                                                         {
                                                             singleRow.Insert(Tcfg.reglerName, "Kombihebel");
                                                         }
@@ -840,46 +841,52 @@ namespace TSW2_Controller
                                 }
 
 
+                                if (Sprache.isGerman)
+                                {
+                                    output_Text.Add("In der Version 2.0.0 hat sich viel geändert. Unter anderem die Art und Weise, wie Regler funktionieren.");
+                                    output_Text.Add("Da ich mich dazu entschieden habe, Schubregler und Kombihebel seperat zu behandeln, kann ich die alten Textindikatoren");
+                                    output_Text.Add("nicht einfach übernehmen.");
+                                    output_Text.Add("");
+                                    output_Text.Add("Was muss ich also tun, um meine alten Einstellungen in die neue Version zu übertragen?");
+                                    output_Text.Add("");
+                                    output_Text.Add("1. ");
+                                    output_Text.Add("Klicke auf \"Einstellungen\"->\"Steuerung\"->\"Globale Tastenbelegung\".");
+                                    output_Text.Add("Dort solltest du nun die Regler Schub, Bremse, und Kombihebel finden.");
+                                    output_Text.Add("");
+                                    output_Text.Add("2. ");
+                                    output_Text.Add("Wähle Schub aus und überprüfe zuerst die Tastenbelegung.");
+                                    output_Text.Add("Als nächstes überprüfst die Hauptindikatoren.");
+                                    output_Text.Add("Hier solltest du aber nicht mehr die Textindikatoren für den Kombihebel eintragen!");
+                                    output_Text.Add("Die Textindikatoren die du voher für den Schub und Kombihebel hattest sind die folgenden:");
+                                    output_Text.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("");
+                                    output_Text.Add("3.");
+                                    output_Text.Add("Das gleiche machst du nun für die Bremse.");
+                                    output_Text.Add("Die Textindikatoren die du voher für die Bremse hattest sind die folgenden:");
+                                    output_Text.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("");
+                                    output_Text.Add("4.");
+                                    output_Text.Add("Jetzt guckst du dir den Regler \"Kombihebel\" an. Wie du siehst, ist hier der Haken bei \"Kombihebel\" gesetzt.");
+                                    output_Text.Add("Das erlaubt dem Regler auch in den Bremsbereich (negative Zahlen) zu gehen.");
+                                    output_Text.Add("Hier trägst du nun die Indikatoren für den Kombihebel ein und die für den Schub-/ und Bremsbereich.");
+                                    output_Text.Add("Du hattest vorher die folgenden Indikatoren:");
+                                    output_Text.Add("Schubbereich:");
+                                    output_Text.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("Bremsbereich:");
+                                    output_Text.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
+                                    output_Text.Add("");
+                                    output_Text.Add("Fertig!");
+                                    output_Text.Add("Falls du irgendwelche Probleme beim Übertragen deiner alten Einstellungen, oder bei anderen Dingen bekommst, kannst du mir gerne");
+                                    output_Text.Add("auf Github (https://github.com/DerJantob/TSW2_Controller/issues/new/choose) oder");
+                                    output_Text.Add("im RailSim Forum (https://rail-sim.de/forum/thread/37646-tsw2-controller-den-tsw-mit-einem-joystick-steuern/) schreiben.");
+                                    output_Text.Add("");
+                                    output_Text.Add("LG");
+                                    output_Text.Add("Jannik");
+                                }
+                                else
+                                {
 
-                                output_Text.Add("In der Version 2.0.0 hat sich viel geändert. Unter anderem die Art und Weise, wie Regler funktionieren.");
-                                output_Text.Add("Da ich mich dazu entschieden habe, Schubregler und Kombihebel seperat zu behandeln, kann ich die alten Textindikatoren");
-                                output_Text.Add("nicht einfach übernehmen.");
-                                output_Text.Add("");
-                                output_Text.Add("Was muss ich also tun, um meine alten Einstellungen in die neue Version zu übertragen?");
-                                output_Text.Add("");
-                                output_Text.Add("1. ");
-                                output_Text.Add("Klicke auf \"Einstellungen\"->\"Steuerung\"->\"Globale Tastenbelegung\".");
-                                output_Text.Add("Dort solltest du nun die Regler Schub, Bremse, AFB, und Kombihebel finden.");
-                                output_Text.Add("");
-                                output_Text.Add("2. ");
-                                output_Text.Add("Wähle Schub aus und überprüfe zuerst die Tastenbelegung.");
-                                output_Text.Add("Als nächstes überprüfst die Hauptindikatoren.");
-                                output_Text.Add("Hier solltest du aber nicht mehr die Textindikatoren für den Kombihebel eintragen!");
-                                output_Text.Add("Die Textindikatoren die du voher für den Schub und Kombihebel hattest sind die folgenden:");
-                                output_Text.AddRange(Settings.Default.SchubIndexe.Cast<string>().ToArray());
-                                output_Text.Add("");
-                                output_Text.Add("3.");
-                                output_Text.Add("Das gleiche machst du nun für die Bremse.");
-                                output_Text.Add("Die Textindikatoren die du voher für die Bremse hattest sind die folgenden:");
-                                output_Text.AddRange(Settings.Default.BremsIndexe.Cast<string>().ToArray());
-                                output_Text.Add("");
-                                output_Text.Add("4.");
-                                output_Text.Add("Jetzt guckst du dir den Regler \"Kombihebel\" an. Wie du siehst, ist hier der Haken bei \"Kombihebel\" gesetzt.");
-                                output_Text.Add("Das erlaubt dem Regler auch in den Bremsbereich (negative Zahlen) zu gehen.");
-                                output_Text.Add("Hier trägst du nun die Indikatoren für den Kombihebel ein und die für den Schub-/ und Bremsbereich.");
-                                output_Text.Add("Du hattest vorher die folgenden Indikatoren:");
-                                output_Text.Add("Schubbereich:");
-                                output_Text.AddRange(Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray());
-                                output_Text.Add("Bremsbereich:");
-                                output_Text.AddRange(Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray());
-                                output_Text.Add("");
-                                output_Text.Add("Fertig!");
-                                output_Text.Add("Falls du irgendwelche Probleme beim Übertragen deiner alten Einstellungen, oder bei anderen Dingen bekommst, kannst du mir gerne");
-                                output_Text.Add("auf Github (https://github.com/DerJantob/TSW2_Controller/issues/new/choose) oder");
-                                output_Text.Add("im RailSim Forum (https://rail-sim.de/forum/thread/37646-tsw2-controller-den-tsw-mit-einem-joystick-steuern/) schreiben.");
-                                output_Text.Add("");
-                                output_Text.Add("LG");
-                                output_Text.Add("Jannik");
+                                }
 
                                 File.WriteAllLines(folderPath + @"\UpdateInfo.txt", output_Text.ToArray());
                                 System.Diagnostics.Process.Start(folderPath + @"\UpdateInfo.txt");
@@ -902,7 +909,7 @@ namespace TSW2_Controller
 
                         if (!File.Exists(Tcfg.controllersConfigPfad))
                         {
-                            if (Sprache.isGerman())
+                            if (Sprache.isGerman)
                             {
                                 File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, false);
                                 Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
