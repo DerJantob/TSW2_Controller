@@ -174,18 +174,6 @@ namespace TSW2_Controller.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public string DeleteLogsAfter {
-            get {
-                return ((string)(this["DeleteLogsAfter"]));
-            }
-            set {
-                this["DeleteLogsAfter"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
   <string>a</string>
@@ -303,6 +291,18 @@ namespace TSW2_Controller.Properties {
             }
             set {
                 this["Kombihebel_SchubIndexe_DE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeleteLogsAutomatically {
+            get {
+                return ((bool)(this["DeleteLogsAutomatically"]));
+            }
+            set {
+                this["DeleteLogsAutomatically"] = value;
             }
         }
     }

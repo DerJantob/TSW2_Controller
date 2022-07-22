@@ -176,11 +176,11 @@
   <data name="hilfeToolStripMenuItem.Text" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 13</value>
+  <data name="checkBox_deleteLogsAutomatically.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 17</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Delete logs older than                    days</value>
+  <data name="checkBox_deleteLogsAutomatically.Text" xml:space="preserve">
+    <value>Delete logs automatically (after 30d)</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

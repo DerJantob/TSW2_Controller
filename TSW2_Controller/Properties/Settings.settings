@@ -43,9 +43,6 @@
     <Setting Name="selectedTrainConfig" Type="System.String" Scope="User">
       <Value Profile="(Default)">yourConfig</Value>
     </Setting>
-    <Setting Name="DeleteLogsAfter" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
     <Setting Name="Tastenbelegung" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
@@ -86,6 +83,9 @@
     <Setting Name="Kombihebel_SchubIndexe_DE" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" /&gt;</Value>
+    </Setting>
+    <Setting Name="DeleteLogsAutomatically" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

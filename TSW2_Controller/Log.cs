@@ -18,13 +18,12 @@ namespace TSW2_Controller
 
         public static void RemoveUnnecessaryLogs()
         {
-            CheckPath();
-            foreach(string filePath in Directory.GetFiles(Tcfg.logOrdnerpfad))
+            if (Properties.Settings.Default.DeleteLogsAutomatically)
             {
-                string setting = Properties.Settings.Default.DeleteLogsAfter;
-                if (setting != "/")
+                CheckPath();
+                foreach (string filePath in Directory.GetFiles(Tcfg.logOrdnerpfad))
                 {
-                    int days = Convert.ToInt32(setting);
+                    int days = 30;
                     if (File.GetLastWriteTime(filePath) < DateTime.Now.AddDays(-days))
                     {
                         File.Delete(filePath);

@@ -55,7 +55,7 @@ namespace TSW2_Controller
                     comboBox_resolution.SelectedItem = resName;
                 }
 
-                comboBox_DeleteLogsAfterXDays.Text = Settings.Default.DeleteLogsAfter;
+                checkBox_deleteLogsAutomatically.Checked = Settings.Default.DeleteLogsAutomatically;
 
                 if (Sprache.isGerman)
                 {
@@ -339,7 +339,7 @@ namespace TSW2_Controller
 
             try
             {
-                Settings.Default.DeleteLogsAfter = comboBox_DeleteLogsAfterXDays.Text;
+                Settings.Default.DeleteLogsAutomatically = checkBox_deleteLogsAutomatically.Checked;
             }
             catch (Exception ex)
             {
