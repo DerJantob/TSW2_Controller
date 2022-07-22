@@ -1468,7 +1468,7 @@ namespace TSW2_Controller
                     cb.Text = "";
                 }
             }
-            if(e.KeyChar == ',')
+            if (e.KeyChar == ',')
             {
                 e.Handled = true;
             }
@@ -1563,7 +1563,7 @@ namespace TSW2_Controller
             }
             resetControllerBearbeiten();
 
-            ResetKonfiguration();
+            ReadControllersFile();
 
             if (selectedTrain != "")
             {
