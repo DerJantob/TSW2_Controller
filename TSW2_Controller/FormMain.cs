@@ -445,10 +445,10 @@ namespace TSW2_Controller
         public Bitmap Screenshot(bool normal)
         {
             //Breite und Höhe des ScanFensters
-            int width = ConvertWidth(513);
+            int width = ConvertHeight(513); //ConvertHeight to prevent image strechd
             int height = ConvertHeight(30);
             //Startposition vom oberen Fenster
-            int x1 = ConvertWidth(1920);
+            int x1 = ConvertWidth(2560) - ConvertHeight(513) - ConvertHeight(127); //=1920
             int y1 = ConvertHeight(458);
             //Angepasste Höhe fürs untere Fenster
             int y2 = ConvertHeight(530);
