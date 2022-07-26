@@ -768,7 +768,7 @@ namespace TSW2_Controller
                         ok = false;
                         Sprache.ShowMessageBox("Fehler bei Zeitfaktor", "Error with Time factor");
                     }
-                    if ((txtR_LongPress.Text != "" && (txtR_LongPress.Text.Split(' ').Count() + 1 != txtR_LongPress.Text.Split(':').Count())) || !txtR_LongPress.Text.Contains("|"))
+                    if (txtR_LongPress.Text != "" && (txtR_LongPress.Text.Split(' ').Count() + 1 != txtR_LongPress.Text.Split(':').Count() && !txtR_LongPress.Text.Contains("|")))
                     {
                         //txtT3_Zeitfaktor.Text != "" weil es leer sein darf
                         ok = false;

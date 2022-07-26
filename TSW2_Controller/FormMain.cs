@@ -23,6 +23,7 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
+        //Todo: Überprüfen ob alle Configs convertiert werden!
         DirectInput input = new DirectInput();
         public static Joystick[] MainSticks;
 
@@ -79,56 +80,65 @@ namespace TSW2_Controller
             Log.Add("Init components");
             InitializeComponent();
 
+            Log.Add("Check Files");
             #region Dateistruktur überprüfen
-            if (!File.Exists(Tcfg.configpfad))
+            try
             {
-                if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
+                if (!File.Exists(Tcfg.configpfad))
                 {
-                    Directory.CreateDirectory(Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
-                    Log.Add("Create Dir:" + Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
+                    if (!Directory.Exists(Tcfg.configpfad.Replace(@"\Trainconfig.csv", "")))
+                    {
+                        Log.Add("Create Dir:" + Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
+                        Directory.CreateDirectory(Tcfg.configpfad.Replace(@"\Trainconfig.csv", ""));
+                    }
+                    if (File.Exists(Tcfg.configstandardpfad))
+                    {
+                        Log.Add("No TrainConfig.csv");
+                        Log.Add("Copy :" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
+                        File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
+                    }
                 }
-                if (File.Exists(Tcfg.configstandardpfad))
+                if (!File.Exists(Tcfg.controllersConfigPfad))
                 {
-                    File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, false);
-                    Log.Add("No TrainConfig.csv");
-                    Log.Add("Copy :" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
+                    if (Sprache.isGerman)
+                    {
+                        Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
+                        File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, false);
+                    }
+                    else
+                    {
+                        Log.Add("Copy :" + Tcfg.controllersstandardpfad_EN + " to " + Tcfg.controllersConfigPfad);
+                        File.Copy(Tcfg.controllersstandardpfad_EN, Tcfg.controllersConfigPfad, false);
+                    }
                 }
-            }
-            if (!File.Exists(Tcfg.controllersConfigPfad))
-            {
-                if (Sprache.isGerman)
+                if (!Directory.Exists(Tcfg.configOrdnerPfad))
                 {
-                    File.Copy(Tcfg.controllersstandardpfad_DE, Tcfg.controllersConfigPfad, false);
-                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_DE + " to " + Tcfg.controllersConfigPfad);
+                    Log.Add("Create Dir:" + Tcfg.configOrdnerPfad);
+                    Directory.CreateDirectory(Tcfg.configOrdnerPfad);
+                }
+                if (Settings.Default.selectedTrainConfig == "_Standard")
+                {
+                    Log.Add("Copy:" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
+                    File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
                 }
                 else
                 {
-                    File.Copy(Tcfg.controllersstandardpfad_EN, Tcfg.controllersConfigPfad, false);
-                    Log.Add("Copy :" + Tcfg.controllersstandardpfad_EN + " to " + Tcfg.controllersConfigPfad);
+                    if (File.Exists(Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv"))
+                    {
+                        Log.Add("Copy:" + Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv" + " to " + Tcfg.configpfad);
+                        File.Copy(Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
+                    }
+                    else
+                    {
+                        Log.Add("Copy:" + Tcfg.configpfad + " to " + Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv");
+                        File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv", true);
+                    }
                 }
             }
-            if (!Directory.Exists(Tcfg.configOrdnerPfad))
+            catch (Exception ex)
             {
-                Directory.CreateDirectory(Tcfg.configOrdnerPfad);
-                Log.Add("Create Dir:" + Tcfg.configOrdnerPfad);
-            }
-            if (Settings.Default.selectedTrainConfig == "_Standard")
-            {
-                File.Copy(Tcfg.configstandardpfad, Tcfg.configpfad, true);
-                Log.Add("Copy:" + Tcfg.configstandardpfad + " to " + Tcfg.configpfad);
-            }
-            else
-            {
-                if (File.Exists(Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv"))
-                {
-                    File.Copy(Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv", Tcfg.configpfad, true);
-                    Log.Add("Copy:" + Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv" + " to " + Tcfg.configpfad);
-                }
-                else
-                {
-                    File.Copy(Tcfg.configpfad, Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv", true);
-                    Log.Add("Copy:" + Tcfg.configpfad + " to " + Tcfg.configOrdnerPfad + Settings.Default.selectedTrainConfig + ".csv");
-                }
+                Log.ErrorException(ex);
+                Close();
             }
             #endregion
 
@@ -147,6 +157,7 @@ namespace TSW2_Controller
 
             ReadVControllers();
             ReadTrainConfig();
+
 
             timer_CheckSticks.Start();
         }
@@ -185,6 +196,7 @@ namespace TSW2_Controller
                 }
             }
 
+            ReadVControllers();//Todo: Diese Zeile ist ein "dreckiger" fix dafür, dass bei getActiveVControllers() die foreachloop eine reference copy von vControllerList macht und somit werte in dieser Liste speichert, obwohl diese nur gelesen werden sollte
             getActiveTrain();
             getActiveVControllers();
         }
@@ -1207,7 +1219,7 @@ namespace TSW2_Controller
                     string selected_vControllername = singleTrain[Tcfg.reglerName];
                     if (selected_vControllername != "")
                     {
-                        foreach (VirtualController vc in vControllerList)
+                        foreach (VirtualController vc in vControllerList.ToList())
                         {
                             if (vc.name == selected_vControllername)
                             {
