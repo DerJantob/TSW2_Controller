@@ -8,6 +8,8 @@ namespace TSW2_Controller
 {
     internal class Tcfg
     {
+        public static int arrayLength = 15;
+
         public static int zug = 0;
         public static int beschreibung = 1;
         public static int reglerName = 2;

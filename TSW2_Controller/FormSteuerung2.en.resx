@@ -214,9 +214,6 @@
   <data name="lblB_Bedingung.Text" xml:space="preserve">
     <value>Condition</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
-  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Keyboard shortcut</value>
   </data>

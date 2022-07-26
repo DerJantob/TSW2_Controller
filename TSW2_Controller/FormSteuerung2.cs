@@ -726,6 +726,7 @@ namespace TSW2_Controller
                 }
                 else if (txtR_JoyAchse.Text.Contains(",") || txtR_JoyNr.Text.Contains(",") || txtR_AnzahlStufen.Text.Contains(",") || txtR_InputUmrechnen.Text.Contains(",") || txtR_Zeitfaktor.Text.Contains(",") || txtR_LongPress.Text.Contains(",") || txtR_Sonderfaelle.Text.Contains(","))
                 {
+                    ok = false;
                     Sprache.ShowMessageBox("Du darfst kein Komma benutzen! Das würde deine Config zerstören, also versuch es nicht zu umgehen :)", "You are not allowed to enter a comma! That would break your config, so don't try to work around it :)");
                 }
                 else
@@ -765,9 +766,9 @@ namespace TSW2_Controller
                     if (txtR_Zeitfaktor.Text == "" || txtR_Zeitfaktor.Text.Any(char.IsLetter))
                     {
                         ok = false;
-                        Sprache.ShowMessageBox("Fehler bei Zeitfakrot", "Error with Time factor");
+                        Sprache.ShowMessageBox("Fehler bei Zeitfaktor", "Error with Time factor");
                     }
-                    if (txtR_LongPress.Text != "" && (txtR_LongPress.Text.Split(' ').Count() + 1 != txtR_LongPress.Text.Split(':').Count()))
+                    if ((txtR_LongPress.Text != "" && (txtR_LongPress.Text.Split(' ').Count() + 1 != txtR_LongPress.Text.Split(':').Count())) || !txtR_LongPress.Text.Contains("|"))
                     {
                         //txtT3_Zeitfaktor.Text != "" weil es leer sein darf
                         ok = false;
@@ -817,7 +818,7 @@ namespace TSW2_Controller
                     }
                     if (!bereitsVorhanden)
                     {
-                        string[] singleTrain = new string[trainConfig[0].Length];
+                        string[] singleTrain = new string[Tcfg.arrayLength];
                         singleTrain[Tcfg.zug] = selectedTrain;
                         singleTrain[Tcfg.reglerName] = selectedRegler;
                         singleTrain[Tcfg.joystickNummer] = txtR_JoyNr.Text;

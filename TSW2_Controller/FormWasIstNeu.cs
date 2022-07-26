@@ -196,6 +196,43 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.0
+            if (new Version("2.0.0").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.0" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Das Bearbeiten der Züge komplett überarbeitet:");
+                    changelog.Add("     - Benutzerdefinierte Regler:");
+                    changelog.Add("         - Schub, Bremse, AFB, Kombihebel, direkte Bremse, elektrische Bremse, ... können nun auch benutzt werden");//Todo: direkte Bremse oder indirekte Bremse?
+                    changelog.Add("         - Man kann selber Regler hinzufügen und diesen dann Tasten und Textindikatoren zuweisen.");
+                    changelog.Add("     - Das Verhalten des Reglers kann individuell angepasst werden");
+                    changelog.Add("     - Zeitfaktor finden deutlich verbessert");
+                    changelog.Add("     - Tastenkombinations-Editor verbessert");
+                    changelog.Add("");
+                    changelog.Add("- Verbessert: Die Texterkennung (Hauptsächlich dank asdf1280)");
+                    changelog.Add("- Verbessert: Widescreen support (beta)");
+                    changelog.Add("- Bugfix: Nach dem klicken auf \"Aktiv\" wurden sofort Tasten gedrückt");
+                }
+                else
+                {
+                    changelog.Add("- Completely reworked the editing of the moves:");
+                    changelog.Add("     - Custom controls:");
+                    changelog.Add("         - Throttle, brake, AFB, master controller, direct Brake, electric Brake, ... can now also be use");//Todo: direkte Bremse oder indirekte Bremse?
+                    changelog.Add("         - You can add controllers yourself and then assign keys and text indicators to them.");
+                    changelog.Add("     - The behavior of the controller can be customized");
+                    changelog.Add("     - Find time factor significantly improved");
+                    changelog.Add("     - Keyboard shortcut editor improved");
+                    changelog.Add("");
+                    changelog.Add("- Improved: Text recognition (mainly thanks to asdf1280)");
+                    changelog.Add("- Improved: Widescreen support (beta)");
+                    changelog.Add("- Bugfix: After clicking \"Activ\", the program immediately pressed keys");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
