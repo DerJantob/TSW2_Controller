@@ -205,7 +205,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Das Bearbeiten der Züge komplett überarbeitet:");
                     changelog.Add("     - Benutzerdefinierte Regler:");
-                    changelog.Add("         - Schub, Bremse, AFB, Kombihebel, direkte Bremse, elektrische Bremse, ... können nun auch benutzt werden");//Todo: direkte Bremse oder indirekte Bremse?
+                    changelog.Add("         - Schub, Bremse, AFB, Kombihebel, direkte Bremse, elektrische Bremse, ... können nun auch benutzt werden");
                     changelog.Add("         - Man kann selber Regler hinzufügen und diesen dann Tasten und Textindikatoren zuweisen.");
                     changelog.Add("     - Das Verhalten des Reglers kann individuell angepasst werden");
                     changelog.Add("     - Zeitfaktor finden deutlich verbessert");
@@ -219,7 +219,7 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Completely reworked the editing of the moves:");
                     changelog.Add("     - Custom controls:");
-                    changelog.Add("         - Throttle, brake, AFB, master controller, direct Brake, electric Brake, ... can now also be use");//Todo: direkte Bremse oder indirekte Bremse?
+                    changelog.Add("         - Throttle, brake, AFB, master controller, direct Brake, electric Brake, ... can now also be use");
                     changelog.Add("         - You can add controllers yourself and then assign keys and text indicators to them.");
                     changelog.Add("     - The behavior of the controller can be customized");
                     changelog.Add("     - Find time factor significantly improved");

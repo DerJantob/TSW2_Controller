@@ -500,5 +500,92 @@ namespace TSW2_Controller
         {
             Process.Start(Tcfg.configpfad.Replace("Trainconfig.csv", ""));
         }
+
+        private void btn_export_Click(object sender, EventArgs e)
+        {
+            string path = Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv";
+            if (File.Exists(path))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "(*.csv)|*.csv";
+                saveFileDialog.DefaultExt = "csv";
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.FileName = comboBox_TrainConfig.Text;
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    if (File.Exists(saveFileDialog.FileName) && saveFileDialog.OverwritePrompt == true)
+                    {
+                        MessageBox.Show("YAY");
+                        File.Copy(path, saveFileDialog.FileName, true);
+                    }
+                    else
+                    {
+                        File.Copy(path, saveFileDialog.FileName, false);
+                    }
+                }
+            }
+        }
+
+        private void btn_import_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "(*.csv)|*.csv";
+            openFileDialog.Multiselect = false;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                bool isOK = true;
+                using (var reader = new StreamReader(openFileDialog.FileName))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        string[] values = line.Split(',');
+                        if (values.Count() != Tcfg.arrayLength)
+                        {
+                            isOK = false;
+                        }
+                    }
+                }
+                if (isOK)
+                {
+                    if (File.Exists(Tcfg.configOrdnerPfad + openFileDialog.SafeFileName))
+                    {
+                        if (MessageBox.Show(Sprache.Translate("Überschreiben?", "Overwrite?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            File.Copy(openFileDialog.FileName, Tcfg.configOrdnerPfad + openFileDialog.SafeFileName, true);
+                        }
+                        else
+                        {
+                            isOK = false;
+                        }
+                    }
+                    else
+                    {
+                        File.Copy(openFileDialog.FileName, Tcfg.configOrdnerPfad + openFileDialog.SafeFileName, true);
+                    }
+
+                    if (isOK)
+                    {
+                        comboBox_TrainConfig.Items.Clear();
+                        string[] files = Directory.GetFiles(Tcfg.configOrdnerPfad);
+                        comboBox_TrainConfig.Items.Add("_Standard");
+                        foreach (string file in files)
+                        {
+                            comboBox_TrainConfig.Items.Add(Path.GetFileName(file).Replace(".csv", ""));
+                        }
+
+                        if (File.Exists(Tcfg.configOrdnerPfad + openFileDialog.SafeFileName))
+                        {
+                            comboBox_TrainConfig.SelectedItem = openFileDialog.SafeFileName.Replace(".csv", "");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ERROR");
+                }
+            }
+        }
     }
 }

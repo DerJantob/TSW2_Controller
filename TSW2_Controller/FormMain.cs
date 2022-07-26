@@ -196,7 +196,7 @@ namespace TSW2_Controller
                 }
             }
 
-            ReadVControllers();//Todo: Diese Zeile ist ein "dreckiger" fix dafür, dass bei getActiveVControllers() die foreachloop eine reference copy von vControllerList macht und somit werte in dieser Liste speichert, obwohl diese nur gelesen werden sollte
+            ReadVControllers();//Merken: Diese Zeile ist ein "dreckiger" fix dafür, dass bei getActiveVControllers() die foreachloop eine reference copy von vControllerList macht und somit werte in dieser Liste speichert, obwohl diese nur gelesen werden sollte
             getActiveTrain();
             getActiveVControllers();
         }
