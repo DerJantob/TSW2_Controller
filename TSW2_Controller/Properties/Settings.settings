@@ -41,7 +41,7 @@
       <Value Profile="(Default)">en</Value>
     </Setting>
     <Setting Name="selectedTrainConfig" Type="System.String" Scope="User">
-      <Value Profile="(Default)">yourConfig</Value>
+      <Value Profile="(Default)">_Standard</Value>
     </Setting>
     <Setting Name="Tastenbelegung" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
