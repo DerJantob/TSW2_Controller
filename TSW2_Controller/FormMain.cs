@@ -23,7 +23,6 @@ namespace TSW2_Controller
 {
     public partial class FormMain : Form
     {
-        //Todo: Überprüfen ob alle Configs convertiert werden!
         DirectInput input = new DirectInput();
         public static Joystick[] MainSticks;
 
@@ -758,6 +757,29 @@ namespace TSW2_Controller
                                                 }
                                                 else
                                                 {
+                                                    if (singleRow[13] != "")
+                                                    {
+                                                        try
+                                                        {
+                                                            string[] longPressArray = singleRow[13].Remove(singleRow[13].Length - 1, 1).Replace("[", "").Split(']');
+                                                            singleRow[13] = "";
+                                                            foreach (string singleLongPress in longPressArray)
+                                                            {
+                                                                int index_Gerade = singleLongPress.IndexOf("|");
+                                                                int index_doppelpnkt = singleLongPress.IndexOf(":");
+
+                                                                int erste_grenze = Convert.ToInt32(singleLongPress.Remove(index_Gerade, singleLongPress.Length - index_Gerade));
+                                                                int zweite_grenze = Convert.ToInt32(singleLongPress.Remove(0, index_Gerade + 1).Remove(singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":"), singleLongPress.Remove(0, index_Gerade + 1).Length - singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":")));
+                                                                int dauer = Convert.ToInt32(singleLongPress.Remove(0, singleLongPress.IndexOf(":") + 1));
+                                                                singleRow[13] += "[" + erste_grenze + "|" + zweite_grenze + ":" + dauer + "]" + "[" + zweite_grenze + "|" + erste_grenze + ":" + dauer + "]";
+                                                            }
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            Log.ErrorException(ex);
+                                                        }
+                                                    }
+
                                                     if (singleRow[7] == "Schub")
                                                     {
                                                         if (Sprache.isGerman)
@@ -1265,10 +1287,10 @@ namespace TSW2_Controller
                                         int index_Gerade = singleLongPress.IndexOf("|");
                                         int index_doppelpnkt = singleLongPress.IndexOf(":");
 
-                                        int untere_grenze = Convert.ToInt32(singleLongPress.Remove(index_Gerade, singleLongPress.Length - index_Gerade));
-                                        int obere_grenze = Convert.ToInt32(singleLongPress.Remove(0, index_Gerade + 1).Remove(singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":"), singleLongPress.Remove(0, index_Gerade + 1).Length - singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":")));
+                                        int erste_grenze = Convert.ToInt32(singleLongPress.Remove(index_Gerade, singleLongPress.Length - index_Gerade));
+                                        int zweite_grenze = Convert.ToInt32(singleLongPress.Remove(0, index_Gerade + 1).Remove(singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":"), singleLongPress.Remove(0, index_Gerade + 1).Length - singleLongPress.Remove(0, index_Gerade + 1).IndexOf(":")));
                                         int dauer = Convert.ToInt32(singleLongPress.Remove(0, singleLongPress.IndexOf(":") + 1));
-                                        vc.longPress.Add(new int[] { untere_grenze, obere_grenze, dauer });
+                                        vc.longPress.Add(new int[] { erste_grenze, zweite_grenze, dauer });
                                     }
                                 }
 
@@ -1790,61 +1812,70 @@ namespace TSW2_Controller
                     {
                         int ist = vc.currentSimValue;
                         int soll = vc.currentJoystickValue;
-                        int untere_grenze = singleLongPress[0];
-                        int obere_grenze = singleLongPress[1];
+                        int erste_grenze = singleLongPress[0];
+                        int zweite_grenze = singleLongPress[1];
                         int dauer = singleLongPress[2];
 
-                        if (ist <= untere_grenze && obere_grenze <= soll)
+                        if ((soll - ist < 0 && zweite_grenze - erste_grenze < 0) || (soll - ist > 0 && zweite_grenze - erste_grenze > 0))
                         {
-                            //Mehr
-                            vc.cancelScan = 1;
-                            //Der Joystick kommt an der Langdruckstelle vorbei
-                            if (ist == untere_grenze)
+                            if (soll - ist < 0 && zweite_grenze - erste_grenze < 0)
                             {
-                                //Der sim-Regler ist genau an der Grenze zur Langdruckstelle
-                                Log.Add(vc.name + ":Long press from " + untere_grenze + " to " + obere_grenze, true);
-                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), dauer);
-                                vc.currentSimValue = obere_grenze;
-                                vc.getText = VirtualController.getTextDefault;
-                                Thread.Sleep(100);
+                                (erste_grenze, zweite_grenze) = (zweite_grenze, erste_grenze);
                             }
-                            else if (ist < untere_grenze)
+
+
+                            if (ist <= erste_grenze && zweite_grenze <= soll)
                             {
-                                //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
-                                Log.Add(vc.name + ":Set value to " + untere_grenze + " insted of " + vc.currentJoystickValue + " (moving up)", true);
-                                if (vc.istStufenlos)
+                                //Mehr
+                                vc.cancelScan = 1;
+                                //Der Joystick kommt an der Langdruckstelle vorbei
+                                if (ist == erste_grenze)
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
-                                    vc.currentJoystickValue = untere_grenze;
+                                    //Der sim-Regler ist genau an der Grenze zur Langdruckstelle
+                                    Log.Add(vc.name + ":Long press from " + erste_grenze + " to " + zweite_grenze, true);
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), dauer);
+                                    vc.currentSimValue = zweite_grenze;
+                                    vc.getText = VirtualController.getTextDefault;
+                                    Thread.Sleep(100);
                                 }
-                            }
-                            vc.cancelScan = -1;
-                        }
-                        else if (soll <= untere_grenze && obere_grenze <= ist)
-                        {
-                            //Weniger
-                            vc.cancelScan = 1;
-                            //Der Joystick kommt an der Langdruckstelle vorbei
-                            if (ist == obere_grenze)
-                            {
-                                //Der sim-Regler ist genau an der Grenze zur Langdruckstelle
-                                Log.Add(vc.name + ":Long press from " + obere_grenze + " to " + untere_grenze, true);
-                                Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), dauer);
-                                vc.currentSimValue = untere_grenze;
-                                vc.getText = VirtualController.getTextDefault;
-                                Thread.Sleep(100);
-                            }
-                            else if (ist > obere_grenze)
-                            {
-                                //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
-                                Log.Add(vc.name + ":Set value to " + obere_grenze + " insted of " + vc.currentJoystickValue + " (moving down)", true);
-                                if (vc.istStufenlos)
+                                else if (ist < erste_grenze)
                                 {
-                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);
-                                    vc.currentJoystickValue = obere_grenze;
+                                    //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
+                                    Log.Add(vc.name + ":Set value to " + erste_grenze + " insted of " + vc.currentJoystickValue + " (moving up)", true);
+                                    if (vc.istStufenlos)
+                                    {
+                                        Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
+                                        vc.currentJoystickValue = erste_grenze;
+                                    }
                                 }
+                                vc.cancelScan = -1;
                             }
-                            vc.cancelScan = -1;
+                            else if (soll <= erste_grenze && zweite_grenze <= ist)
+                            {
+                                //Weniger
+                                vc.cancelScan = 1;
+                                //Der Joystick kommt an der Langdruckstelle vorbei
+                                if (ist == zweite_grenze)
+                                {
+                                    //Der sim-Regler ist genau an der Grenze zur Langdruckstelle
+                                    Log.Add(vc.name + ":Long press from " + zweite_grenze + " to " + erste_grenze, true);
+                                    Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), dauer);
+                                    vc.currentSimValue = erste_grenze;
+                                    vc.getText = VirtualController.getTextDefault;
+                                    Thread.Sleep(100);
+                                }
+                                else if (ist > zweite_grenze)
+                                {
+                                    //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
+                                    Log.Add(vc.name + ":Set value to " + zweite_grenze + " insted of " + vc.currentJoystickValue + " (moving down)", true);
+                                    if (vc.istStufenlos)
+                                    {
+                                        Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);
+                                        vc.currentJoystickValue = zweite_grenze;
+                                    }
+                                }
+                                vc.cancelScan = -1;
+                            }
                         }
                     }
                 }

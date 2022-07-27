@@ -211,6 +211,8 @@ namespace TSW2_Controller
                     changelog.Add("     - Zeitfaktor finden deutlich verbessert");
                     changelog.Add("     - Tastenkombinations-Editor verbessert");
                     changelog.Add("");
+                    changelog.Add("- Verändert:\"Länger drücken\" ist nun richtungsabhängig. 2|3:200 löst also nur noch aus, wenn ich mich von z.B. 0 nach 5 bewege und nich umgekehrt.");
+                    changelog.Add("");
                     changelog.Add("- Hinzugefügt: Import und Export von deinen TrainConfigs");
                     changelog.Add("- Verbessert: Die Texterkennung ist nun deutlich schneller (Hauptsächlich dank asdf1280)");
                     changelog.Add("- Verbessert: Die Texterkennung ist nun zuverlässiger");
@@ -226,6 +228,8 @@ namespace TSW2_Controller
                     changelog.Add("     - The behavior of the controller can be customized");
                     changelog.Add("     - Find time factor significantly improved");
                     changelog.Add("     - Keyboard shortcut editor improved");
+                    changelog.Add("");
+                    changelog.Add("- Changed:\"Long press\" is now directional. 2|3:200 only triggers, if the stick moves from e.g. 0 to 5 and not the other way around.");
                     changelog.Add("");
                     changelog.Add("- Added: Import and export of your TrainConfigs");
                     changelog.Add("- Improved: Text recognition is now much faster (mainly thanks to asdf1280)");

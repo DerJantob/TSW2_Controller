@@ -149,6 +149,12 @@
   <data name="btn_trainconfigLoeschen.Text" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="btn_export.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="btn_import.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
   <data name="wasIstNeuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 20</value>
   </data>
