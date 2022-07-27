@@ -209,21 +209,26 @@ namespace TSW2_Controller
                 if (comboBox_TrainConfig.Text == "_Standard")
                 {
                     btn_trainconfigLoeschen.Enabled = false;
+                    btn_export.Enabled = false;
+
                     btn_trainconfigHinzufuegen.Enabled = false;
                 }
                 else
                 {
                     btn_trainconfigLoeschen.Enabled = true;
+                    btn_export.Enabled = true;
                 }
             }
             else if (comboBox_TrainConfig.Text == "")
             {
                 btn_trainconfigLoeschen.Enabled = false;
+                btn_export.Enabled = false;
                 btn_trainconfigHinzufuegen.Enabled = false;
             }
             else
             {
-                btn_trainconfigLoeschen.Enabled = true;
+                btn_trainconfigLoeschen.Enabled = false;
+                btn_export.Enabled = false;
                 btn_trainconfigHinzufuegen.Enabled = true;
             }
         }
@@ -241,11 +246,13 @@ namespace TSW2_Controller
             if (comboBox_TrainConfig.Text == "_Standard")
             {
                 btn_trainconfigLoeschen.Enabled = false;
+                btn_export.Enabled = false;
                 btn_trainconfigHinzufuegen.Enabled = false;
             }
             else
             {
                 btn_trainconfigLoeschen.Enabled = true;
+                btn_export.Enabled = true;
                 btn_trainconfigHinzufuegen.Enabled = true;
             }
             btn_trainconfigHinzufuegen.Enabled = false;

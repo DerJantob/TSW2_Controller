@@ -212,7 +212,8 @@ namespace TSW2_Controller
                     changelog.Add("     - Tastenkombinations-Editor verbessert");
                     changelog.Add("");
                     changelog.Add("- Hinzugefügt: Import und Export von deinen TrainConfigs");
-                    changelog.Add("- Verbessert: Die Texterkennung (Hauptsächlich dank asdf1280)");
+                    changelog.Add("- Verbessert: Die Texterkennung ist nun deutlich schneller (Hauptsächlich dank asdf1280)");
+                    changelog.Add("- Verbessert: Die Texterkennung ist nun zuverlässiger");
                     changelog.Add("- Verbessert: Widescreen support (beta)");
                     changelog.Add("- Bugfix: Nach dem klicken auf \"Aktiv\" wurden sofort Tasten gedrückt");
                 }
@@ -227,7 +228,8 @@ namespace TSW2_Controller
                     changelog.Add("     - Keyboard shortcut editor improved");
                     changelog.Add("");
                     changelog.Add("- Added: Import and export of your TrainConfigs");
-                    changelog.Add("- Improved: Text recognition (mainly thanks to asdf1280)");
+                    changelog.Add("- Improved: Text recognition is now much faster (mainly thanks to asdf1280)");
+                    changelog.Add("- Improved: Text recognition is now more reliable");
                     changelog.Add("- Improved: Widescreen support (beta)");
                     changelog.Add("- Bugfix: After clicking \"Activ\", the program immediately pressed keys");
                 }
