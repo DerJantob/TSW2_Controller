@@ -123,16 +123,10 @@
   <data name="groupBoxT1_Regler.Text" xml:space="preserve">
     <value>Controllers</value>
   </data>
+  <data name="btnR_GetTimeFactor.Text" xml:space="preserve">
+    <value>Find</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblT1_TrainName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="lblT1_TrainName.Text" xml:space="preserve">
-    <value>Train</value>
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Controller</value>
-  </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
   </data>
@@ -199,8 +193,8 @@
   <data name="label15.Text" xml:space="preserve">
     <value>Time factor</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Buttons</value>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Controller</value>
   </data>
   <data name="btnB_Speichern.Text" xml:space="preserve">
     <value>Save</value>
@@ -244,6 +238,15 @@
   <data name="radioB_normal.Text" xml:space="preserve">
     <value>Normal button</value>
   </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Buttons</value>
+  </data>
+  <data name="lblT1_TrainName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="lblT1_TrainName.Text" xml:space="preserve">
+    <value>Train</value>
+  </data>
   <data name="btnT0_globalKeybinds.Text" xml:space="preserve">
     <value>Global keybinds</value>
   </data>
@@ -268,12 +271,6 @@
   <data name="btnT2_back.Text" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Text indicators (Press enter to add)</value>
-  </data>
-  <data name="groupBox_kombihebel.Text" xml:space="preserve">
-    <value>Master Controller</value>
-  </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
   </data>
@@ -286,14 +283,17 @@
   <data name="label12.Text" xml:space="preserve">
     <value>Throttle area</value>
   </data>
+  <data name="groupBox_kombihebel.Text" xml:space="preserve">
+    <value>Master Controller</value>
+  </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Main indicators</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Keybinds</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Text indicators (Press enter to add)</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -306,6 +306,9 @@
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Increase</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Keybinds</value>
   </data>
   <data name="btnT2_add.Text" xml:space="preserve">
     <value>Add</value>

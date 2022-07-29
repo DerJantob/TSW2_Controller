@@ -180,6 +180,9 @@
     <EmbeddedResource Include="FormZeitfaktor.resx">
       <DependentUpon>FormZeitfaktor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormZeitfaktor2.en.resx">
+      <DependentUpon>FormZeitfaktor2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormZeitfaktor2.resx">
       <DependentUpon>FormZeitfaktor2.cs</DependentUpon>
     </EmbeddedResource>

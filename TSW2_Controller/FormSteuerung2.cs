@@ -1103,7 +1103,7 @@ namespace TSW2_Controller
                         ok = false;
                         Sprache.ShowMessageBox("Fehler bei Joystick Nr.", "Error with Joy no.");
                     }
-                    if (txtB_JoystickKnopf.Text == "" || (!txtB_JoystickKnopf.Text.All(char.IsDigit) && radioB_normal.Checked) || (!FormMain.inputNames.Any(txtB_JoystickKnopf.Text.Equals) && radioB_regler.Checked))
+                    if (txtB_JoystickKnopf.Text == "" || (!FormMain.inputNames.Any(txtB_JoystickKnopf.Text.Equals) && radioB_regler.Checked))
                     {
                         ok = false;
                         if (radioB_normal.Checked)
@@ -1146,7 +1146,7 @@ namespace TSW2_Controller
 
                             singleTrain[Tcfg.joystickNummer] = txtB_JoystickNr.Text;
                             if (radioB_normal.Checked) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtB_Bedingung.Text.Replace(" ", "][") + "]"; }
-                            if (radioB_normal.Checked) { singleTrain[Tcfg.joystickInput] = "B" + txtB_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; }
+                            if (radioB_normal.Checked) { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; }
                             singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
                             singleTrain[Tcfg.tastenKombination] = txtB_Tastenkombination.Text;
                             trainConfig[i] = singleTrain;

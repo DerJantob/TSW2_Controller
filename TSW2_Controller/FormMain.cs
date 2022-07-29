@@ -229,7 +229,14 @@ namespace TSW2_Controller
 
                 foreach (VirtualController vc in activeVControllers)
                 {
-                    vc.currentSimValue = vc.currentJoystickValue;
+                    if (vc.istStufenlos)
+                    {
+                        vc.currentSimValue = vc.currentJoystickValue;
+                    }
+                    else
+                    {
+                        vc.currentSimValue = Convert.ToInt32(Math.Round(vc.currentJoystickValue * (Convert.ToDouble(vc.stufen) / 100), 0));
+                    }
                     vc.getText = 0;
                 }
             }
@@ -1780,7 +1787,7 @@ namespace TSW2_Controller
                         int diff = currentNotch - vc.currentSimValue;
                         if (diff != 0)
                         {
-                            Log.Add(vc.name + ":move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
+                            Log.Add(vc.name + ":move from " + vc.currentSimValue + " to " + currentNotch, true);
                             vc.cancelScan = 1;
                             new Thread(() =>
                             {
@@ -1816,6 +1823,12 @@ namespace TSW2_Controller
                         int zweite_grenze = singleLongPress[1];
                         int dauer = singleLongPress[2];
 
+                        if (!vc.istStufenlos)
+                        {
+                            soll = Convert.ToInt32(Math.Round(vc.currentJoystickValue * (Convert.ToDouble(vc.stufen) / 100), 0));
+                        }
+
+
                         if ((soll - ist < 0 && zweite_grenze - erste_grenze < 0) || (soll - ist > 0 && zweite_grenze - erste_grenze > 0))
                         {
                             if (soll - ist < 0 && zweite_grenze - erste_grenze < 0)
@@ -1841,7 +1854,7 @@ namespace TSW2_Controller
                                 else if (ist < erste_grenze)
                                 {
                                     //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
-                                    Log.Add(vc.name + ":Set value to " + erste_grenze + " insted of " + vc.currentJoystickValue + " (moving up)", true);
+                                    Log.Add(vc.name + ":Set value to " + erste_grenze + " insted of " + soll + " (moving up)", true);
                                     if (vc.istStufenlos)
                                     {
                                         Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
@@ -1867,7 +1880,7 @@ namespace TSW2_Controller
                                 else if (ist > zweite_grenze)
                                 {
                                     //Passe den soll wert so an, dass der sim-Regler an der Grenze stehen bleibt
-                                    Log.Add(vc.name + ":Set value to " + zweite_grenze + " insted of " + vc.currentJoystickValue + " (moving down)", true);
+                                    Log.Add(vc.name + ":Set value to " + zweite_grenze + " insted of " + soll + " (moving down)", true);
                                     if (vc.istStufenlos)
                                     {
                                         Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);

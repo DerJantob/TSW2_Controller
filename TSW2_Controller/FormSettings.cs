@@ -273,7 +273,7 @@ namespace TSW2_Controller
                     else
                     {
                         File.Create(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv").Close();
-                        File.WriteAllText(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv", "Zug,Beschreibung,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken");
+                        File.WriteAllText(Tcfg.configOrdnerPfad + comboBox_TrainConfig.Text + ".csv", "Zug,Beschreibung,ReglerName,JoystickNummer,JoystickInput,Invertieren,InputTyp,InputUmrechnen,Tastenkombination,Aktion,Art,Schritte,Specials,Zeitfaktor,Länger drücken");
                     }
                     changeConfig();
                     comboBox_TrainConfig.Items.Add(comboBox_TrainConfig.Text);

@@ -1,6 +1,6 @@
 name,increase,decrease,main indicators,masterController,throttle_area,brake_area
 Throttle,a,d,Throttle,False,,
-Brake,oem7,oem3,Brake,False,,
+Brake,oem7,oem3,Brake|Train Brake,False,,
 AFB,r,f,AFB,False,,
 Master Controller,a,d,Master Controller|Throttle/Brake,True,Power,Brake
 Direct Brake,+,oem1,Direct Brake,False,,
