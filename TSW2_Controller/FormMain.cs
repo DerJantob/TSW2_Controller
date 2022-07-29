@@ -1047,12 +1047,14 @@ namespace TSW2_Controller
                     listBox_debugInfo.Show();
                     lbl_requests.Show();
                     lbl_scantime.Show();
+                    checkBox_autoscroll.Show();
                 }
                 else
                 {
                     listBox_debugInfo.Hide();
                     lbl_requests.Hide();
                     lbl_scantime.Hide();
+                    checkBox_autoscroll.Hide();
                 }
                 #endregion
 
@@ -1683,18 +1685,12 @@ namespace TSW2_Controller
 
             if (Log.DebugInfoList.Count > listBox_debugInfo.Items.Count)
             {
-                bool autoScroll = false;
-                if (listBox_debugInfo.TopIndex == listBox_debugInfo.Items.Count - (int)(listBox_debugInfo.Height / listBox_debugInfo.ItemHeight))
-                {
-                    autoScroll = true;
-                }
-
                 for (int i = listBox_debugInfo.Items.Count; i < Log.DebugInfoList.Count; i++)
                 {
                     listBox_debugInfo.Items.Add(Log.DebugInfoList[i]);
                 }
 
-                if (autoScroll)
+                if (checkBox_autoscroll.Checked)
                 {
                     listBox_debugInfo.TopIndex = listBox_debugInfo.Items.Count - 1;
                 }
@@ -2005,20 +2001,20 @@ namespace TSW2_Controller
                                     catch
                                     {
                                         Log.Error("Could not get a number out of (removing percent method) " + result_withoutPercent);
-                                        try
-                                        {
-                                            //Isoliere die letzte Zahl
-                                            int number = Convert.ToInt32(Regex.Matches(result, @"\d+")[Regex.Matches(result, @"\d+").Count - 1].Value);
-                                            if (vc.cancelScan == 0)
-                                            {
-                                                detectedNumber = number;
-                                            }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            Log.Error("Could not get a number out of (isolating method)" + result);
-                                            Log.ErrorException(ex);
-                                        }
+                                        //try
+                                        //{
+                                        //    //Isoliere die letzte Zahl
+                                        //    int number = Convert.ToInt32(Regex.Matches(result, @"\d+")[Regex.Matches(result, @"\d+").Count - 1].Value);
+                                        //    if (vc.cancelScan == 0)
+                                        //    {
+                                        //        detectedNumber = number;
+                                        //    }
+                                        //}
+                                        //catch (Exception ex)
+                                        //{
+                                        //    Log.Error("Could not get a number out of (isolating method)" + result);
+                                        //    Log.ErrorException(ex);
+                                        //}
                                     }
                                 }
                                 if (detectedNumber != noResultValue && vc.cancelScan == 0)

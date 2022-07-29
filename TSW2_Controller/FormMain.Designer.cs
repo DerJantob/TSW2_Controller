@@ -50,6 +50,7 @@
             this.lbl_updateAvailable = new System.Windows.Forms.Label();
             this.btn_checkJoysticks = new System.Windows.Forms.Button();
             this.lbl_scantime = new System.Windows.Forms.Label();
+            this.checkBox_autoscroll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_original)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Screenshot_alternativ)).BeginInit();
             this.groupBox_ScanErgebnisse.SuspendLayout();
@@ -57,8 +58,8 @@
             // 
             // lst_inputs
             // 
-            resources.ApplyResources(this.lst_inputs, "lst_inputs");
             this.lst_inputs.FormattingEnabled = true;
+            resources.ApplyResources(this.lst_inputs, "lst_inputs");
             this.lst_inputs.Name = "lst_inputs";
             // 
             // check_active
@@ -71,9 +72,9 @@
             // 
             // comboBox_Zugauswahl
             // 
-            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Zugauswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Zugauswahl, "comboBox_Zugauswahl");
             this.comboBox_Zugauswahl.Name = "comboBox_Zugauswahl";
             this.comboBox_Zugauswahl.Sorted = true;
             this.comboBox_Zugauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBox_Zugauswahl_SelectedIndexChanged);
@@ -85,9 +86,9 @@
             // 
             // comboBox_JoystickNumber
             // 
-            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_JoystickNumber.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_JoystickNumber, "comboBox_JoystickNumber");
             this.comboBox_JoystickNumber.Name = "comboBox_JoystickNumber";
             // 
             // bgw_readScreen
@@ -99,8 +100,8 @@
             // 
             // listBox_debugInfo
             // 
-            resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
             this.listBox_debugInfo.FormattingEnabled = true;
+            resources.ApplyResources(this.listBox_debugInfo, "listBox_debugInfo");
             this.listBox_debugInfo.Name = "listBox_debugInfo";
             // 
             // lbl_resolution
@@ -146,9 +147,9 @@
             // 
             // groupBox_ScanErgebnisse
             // 
-            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_alternativeResult);
             this.groupBox_ScanErgebnisse.Controls.Add(this.lbl_originalResult);
+            resources.ApplyResources(this.groupBox_ScanErgebnisse, "groupBox_ScanErgebnisse");
             this.groupBox_ScanErgebnisse.Name = "groupBox_ScanErgebnisse";
             this.groupBox_ScanErgebnisse.TabStop = false;
             // 
@@ -181,10 +182,19 @@
             resources.ApplyResources(this.lbl_scantime, "lbl_scantime");
             this.lbl_scantime.Name = "lbl_scantime";
             // 
+            // checkBox_autoscroll
+            // 
+            resources.ApplyResources(this.checkBox_autoscroll, "checkBox_autoscroll");
+            this.checkBox_autoscroll.Checked = true;
+            this.checkBox_autoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_autoscroll.Name = "checkBox_autoscroll";
+            this.checkBox_autoscroll.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox_autoscroll);
             this.Controls.Add(this.lbl_scantime);
             this.Controls.Add(this.btn_checkJoysticks);
             this.Controls.Add(this.lbl_updateAvailable);
@@ -235,6 +245,7 @@
         private System.Windows.Forms.ListBox listBox_debugInfo;
         private System.Windows.Forms.Button btn_checkJoysticks;
         private System.Windows.Forms.Label lbl_scantime;
+        private System.Windows.Forms.CheckBox checkBox_autoscroll;
     }
 }
 

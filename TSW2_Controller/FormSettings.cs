@@ -523,7 +523,6 @@ namespace TSW2_Controller
 
                     if (File.Exists(saveFileDialog.FileName) && saveFileDialog.OverwritePrompt == true)
                     {
-                        MessageBox.Show("YAY");
                         File.Copy(path, saveFileDialog.FileName, true);
                     }
                     else
