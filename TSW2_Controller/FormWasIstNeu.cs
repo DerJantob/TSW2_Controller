@@ -227,7 +227,7 @@ namespace TSW2_Controller
                     changelog.Add("I have made a new tutorial:");
                     changelog.Add("https://youtu.be/Sej1L0p_myo");
                     changelog.Add("");
-                    changelog.Add("- Completely reworked the editing of the moves:");
+                    changelog.Add("- Completely reworked the editing of the trains:");
                     changelog.Add("     - Custom controls:");
                     changelog.Add("         - Throttle, brake, AFB, master controller, direct Brake, electric Brake, ... can now also be use");
                     changelog.Add("         - You can add controllers yourself and then assign keys and text indicators to them.");
