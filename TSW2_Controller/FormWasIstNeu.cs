@@ -203,6 +203,9 @@ namespace TSW2_Controller
 
                 if (Settings.Default.Sprache == "de-DE")
                 {
+                    changelog.Add("Es gibt ein neues tutorial:");
+                    changelog.Add("https://youtu.be/Sej1L0p_myo");
+                    changelog.Add("");
                     changelog.Add("- Das Bearbeiten der Züge komplett überarbeitet:");
                     changelog.Add("     - Benutzerdefinierte Regler:");
                     changelog.Add("         - Schub, Bremse, AFB, Kombihebel, direkte Bremse, elektrische Bremse, ... können nun auch benutzt werden");
@@ -221,6 +224,9 @@ namespace TSW2_Controller
                 }
                 else
                 {
+                    changelog.Add("I have made a new tutorial:");
+                    changelog.Add("https://youtu.be/Sej1L0p_myo");
+                    changelog.Add("");
                     changelog.Add("- Completely reworked the editing of the moves:");
                     changelog.Add("     - Custom controls:");
                     changelog.Add("         - Throttle, brake, AFB, master controller, direct Brake, electric Brake, ... can now also be use");
@@ -263,7 +269,6 @@ namespace TSW2_Controller
 
         private void richTextBox_Output_ContentsResized(object sender, ContentsResizedEventArgs e)
         {
-            ((RichTextBox)sender).Height = e.NewRectangle.Height + 5;
             ((RichTextBox)sender).Width = e.NewRectangle.Width + 5;
         }
     }
