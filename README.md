@@ -42,7 +42,7 @@ If that doesn't help you, just open a new issue
 Video tutorial:
 
 [<img src="/Screenshots/TSW2_Controller_Tutorial_2.0.0_Thumbnail.png" width="400"/>](https://youtu.be/Sej1L0p_myo)
-## Screenshots
+## Screenshots (outdated)
 
 <img src="/Screenshots/mainEN.png" width="300"/> <img src="/Screenshots/mainDE.png" width="300"/>
 
