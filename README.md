@@ -1,5 +1,5 @@
 
-# TSW2_Controller [Dev. paused ~21.07.]
+# TSW2_Controller
 
 TSW2_Controller allows you to control TSW2 with your joystick. It reads your screen to get the current state of the simulator and synchronize it to your joystick. That way, they don't end up having mismatching positions.
 
