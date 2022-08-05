@@ -28,6 +28,7 @@ namespace TSW2_Controller
         public List<int[]> longPress = new List<int[]>();
         public bool waitToFinishMovement;
         public bool istStufenlos = false;
+        public bool toleranceMem = false;
 
 
         public static string firstLine = "name,increase,decrease,main indicators,masterController,throttle_area,brake_area";

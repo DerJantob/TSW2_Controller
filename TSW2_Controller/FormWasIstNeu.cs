@@ -247,6 +247,29 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.1
+            if (new Version("2.0.1").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.1" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Bugfix: Langsame Joystickbewegung wurde ignoriert");
+                    changelog.Add("- Hinzugefügt: Knopf zum entfernen eines Reglers");
+                    changelog.Add("- Kleine Verbesserung: Mehr Debuginfos");
+                    changelog.Add("- Kleine Verbesserung: Texterkennung");
+                }
+                else
+                {
+                    changelog.Add("- Bugfix: Slow joystick movement was ignored");
+                    changelog.Add("- Added: Button to remove a controller");
+                    changelog.Add("- Small improvement: more debuginfos");
+                    changelog.Add("- Small improvement: Text recognition");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }

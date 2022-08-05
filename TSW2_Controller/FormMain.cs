@@ -49,28 +49,6 @@ namespace TSW2_Controller
 
 
 
-
-        //Soll später weg
-        //string[] defaultDE_schubIndexe = { "Fahrschalter", "Geschwindigkeitswähler", "Leistungsregler", "Fahrstufenschalter", "Leistungshebel", "Kombihebel", "Leistung/Bremse" };
-        //string[] defaultDE_bremsIndexe = { "Führerbremsventil", "Zugbremse", "Fahrerbremsventil" };
-        //string[] defaultDE_kombihebel_schubIndexe = { "Leistung" };
-        //string[] defaultDE_kombihebel_bremsIndexe = { "Bremsleistung", "Bremse" };
-        //
-        //string[] defaultEN_schubIndexe = { "Throttle", "Master Controller" };
-        //string[] defaultEN_bremsIndexe = { "Train Brake" };
-        //string[] defaultEN_kombihebel_schubIndexe = { "Power" };
-        //string[] defaultEN_kombihebel_bremsIndexe = { "Brake" };
-        //
-        //string[] throttleConfig; //{Aktiver Indikator,Art,Schritte,Specials,Zeit,längerDrücken,Beschreibung}
-        //string[] brakeConfig; //{Aktiver Indikator,Art,Schritte,Specials,Zeit,LängerDrücken,Beschreibung}
-
-        //List<string> schubIndexe = new List<string>();
-        //List<string> bremsIndexe = new List<string>();
-        //List<string> kombihebel_schubIndexe = new List<string>();
-        //List<string> kombihebel_bremsIndexe = new List<string>();
-        //soll später weg
-
-
         public FormMain()
         {
             checkVersion();
@@ -1730,6 +1708,7 @@ namespace TSW2_Controller
                     if (Math.Abs(diff) > 1 && vc.waitToFinishMovement == false)
                     {
                         Log.Add(vc.name + ":move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
+                        vc.toleranceMem = false;
                         vc.cancelScan = 1;
                         new Thread(() =>
                         {
@@ -1766,10 +1745,10 @@ namespace TSW2_Controller
                         }).Start();
                         vc.currentSimValue = vc.currentJoystickValue;
                     }
-                    else if (Math.Abs(diff) == 1 && vc.waitToFinishMovement == false)
+                    else if (Math.Abs(diff) == 1 && vc.waitToFinishMovement == false && vc.toleranceMem == false)
                     {
                         Log.Add(vc.name + ":No movement because of tolerance of +-1");
-                        vc.currentSimValue = vc.currentJoystickValue;
+                        vc.toleranceMem = true;
                     }
                 }
                 else
@@ -1917,6 +1896,8 @@ namespace TSW2_Controller
                 string result = GetText(Screenshot(true));
                 stopwatch.Stop();
 
+                string tmp = result;
+
                 string second_result = "";
 
                 lbl_originalResult.Invoke((MethodInvoker)delegate { lbl_originalResult.Text = result; });
@@ -1936,13 +1917,14 @@ namespace TSW2_Controller
 
                         if (vc.cancelScan == 0)
                         {
+                            if (tmp != "") { Log.Add("1. input:" + tmp, true); tmp = ""; }
                             //Finde den Indikator vom gelesenen Text
                             string indicator = GetBestMainIndicator(result, vc);
 
                             if (indicator == "")
                             {
                                 //Falls kein Indikator gefunden und die 2. Zeile noch nicht gelesen wurde, lese die 2. Zeile
-                                if (second_result == "") { second_result = GetText(Screenshot(false)); lbl_alternativeResult.Invoke((MethodInvoker)delegate { lbl_alternativeResult.Text = second_result; }); }
+                                if (second_result == "") { second_result = GetText(Screenshot(false)); Log.Add("2. input:" + second_result, true); lbl_alternativeResult.Invoke((MethodInvoker)delegate { lbl_alternativeResult.Text = second_result; }); }
                                 //Überprüfe das 2. Ergebnis
                                 result = second_result;
                                 indicator = GetBestMainIndicator(result, vc);
@@ -1984,7 +1966,7 @@ namespace TSW2_Controller
                                 {
                                     //Kein SpecialCase gefunden
                                     int indexOfPercent = result.IndexOf("%");
-                                    string result_withoutPercent = "";
+                                    string result_withoutPercent = result;
 
                                     if (indexOfPercent != -1)
                                     {
