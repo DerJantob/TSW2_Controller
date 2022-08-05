@@ -21,7 +21,7 @@ I have included a lot of trains, but configured them to match my "thrustmaster t
 
 **If you are using a different joystick, or are using a different language, you have to edit the controllers!**
 
-If you want to know how to do that, look into the `Tutorials` folder, or watch the video.
+If you want to know how to do that, look into the `Tutorials`(outdated) folder, or watch the video.
 
 You must also **have HUD enabled**, as the program uses the displayed text to read out the current state of the simulator.
 ## Installation / Download
@@ -41,8 +41,8 @@ If that doesn't help you, just open a new issue
 
 Video tutorial:
 
-[<img src="/Screenshots/TSW2_Controller_Tutorial_Moment.png" width="400"/>](https://www.youtube.com/watch?v=OWzzWSfhy1s)
-## Screenshots
+[<img src="/Screenshots/TSW2_Controller_Tutorial_2.0.0_Thumbnail.png" width="400"/>](https://youtu.be/Sej1L0p_myo)
+## Screenshots (outdated)
 
 <img src="/Screenshots/mainEN.png" width="300"/> <img src="/Screenshots/mainDE.png" width="300"/>
 

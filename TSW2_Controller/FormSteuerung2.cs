@@ -286,7 +286,7 @@ namespace TSW2_Controller
             if (selectedTrain == Tcfg.nameForGlobal)
             {
                 tabControl_ReglerKnopf.SelectedIndex = 1;
-                btnT1_Controller_Add.Enabled = false;
+                //btnT1_Controller_Add.Enabled = false;
             }
             if (tabControl_ReglerKnopf.SelectedIndex == 1)
             {
@@ -483,6 +483,7 @@ namespace TSW2_Controller
                 }
 
                 panel_Regler.Enabled = true;
+                btnT1_Controller_Remove.Enabled = true;
             }
         }
         private void btnT1_back_Click(object sender, EventArgs e)
@@ -690,24 +691,33 @@ namespace TSW2_Controller
             if (formZeitfaktor2.DialogResult != DialogResult.Cancel) { formZeitfaktor2.ShowDialog(); }
             txtR_Zeitfaktor.Text = formZeitfaktor2.resultString;
         }
+        private void btnT1_Controller_Remove_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedController();
+        }
         private void listBoxT1_ControllerList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
-                if (MessageBox.Show(Sprache.Translate("Möchtest du wirklich " + listBoxT1_ControllerList.SelectedItem.ToString() + " löschen?", "Do you really want to delete " + listBoxT1_ControllerList.SelectedItem.ToString() + "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                RemoveSelectedController();
+            }
+        }
+        private void RemoveSelectedController()
+        {
+            if (MessageBox.Show(Sprache.Translate("Möchtest du wirklich " + listBoxT1_ControllerList.SelectedItem.ToString() + " löschen?", "Do you really want to delete " + listBoxT1_ControllerList.SelectedItem.ToString() + "?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                for (int i = 0; i < trainConfig.Count; i++)
                 {
-                    for (int i = 0; i < trainConfig.Count; i++)
+                    string[] singleTrain = trainConfig[i];
+                    if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.reglerName] == listBoxT1_ControllerList.SelectedItem.ToString())
                     {
-                        string[] singleTrain = trainConfig[i];
-                        if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.reglerName] == listBoxT1_ControllerList.SelectedItem.ToString())
-                        {
-                            trainConfig.RemoveAt(i);
-                        }
+                        trainConfig.RemoveAt(i);
                     }
-                    listBoxT1_ControllerList.Items.Remove(listBoxT1_ControllerList.SelectedItem);
-                    ReglerSpeichern(true);
-                    panel_Regler.Enabled = false;
                 }
+                listBoxT1_ControllerList.Items.Remove(listBoxT1_ControllerList.SelectedItem);
+                ReglerSpeichern(true);
+                panel_Regler.Enabled = false;
+                btnT1_Controller_Remove.Enabled = false;
             }
         }
         private void btnR_Speichern_Click(object sender, EventArgs e)
