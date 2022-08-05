@@ -683,7 +683,7 @@ namespace TSW2_Controller
 
                                 Settings.Default.Save();
                             }
-                            if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0 || true)
+                            if (new Version(prevVersion.ToString()).CompareTo(new Version("2.0.0")) < 0)
                             {
                                 Log.Add("2.0.0", false, 1);
                                 List<string> schubIndexe = new List<string>();
