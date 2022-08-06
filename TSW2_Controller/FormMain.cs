@@ -2039,6 +2039,7 @@ namespace TSW2_Controller
                 VirtualController vc = virtualController;
                 double bestMatchDistance = 0;
                 string bestMatchWord = "";
+                int maxwordlength = 0;
 
                 //Gehe alle Indikatoren durch
                 foreach (string indicator in vc.mainIndicators)
@@ -2046,8 +2047,11 @@ namespace TSW2_Controller
                     if (ContainsWord(result, indicator))
                     {
                         //Indikator 1 zu 1 gefunden
-                        bestMatchWord = indicator;
-                        break;
+                        if (indicator.Length > maxwordlength)
+                        {
+                            bestMatchWord = indicator;
+                            maxwordlength = indicator.Length;
+                        }
                     }
                     else
                     {
