@@ -277,11 +277,11 @@ namespace TSW2_Controller
 
                 if (Settings.Default.Sprache == "de-DE")
                 {
-                    changelog.Add("- Kleine Verbesserung: Texterkennung");
+                    changelog.Add("- Kleine Verbesserung: Texterkennung bevorzugt nun den längsten Indikator");
                 }
                 else
                 {
-                    changelog.Add("- Small improvement: Text recognition");
+                    changelog.Add("- Small improvement: Text recognition now prefers the longest indicator");
                 }
 
                 changelog.Add("----------------------------------------");
