@@ -189,7 +189,7 @@ namespace TSW2_Controller
                 Log.Add("Active = true");
                 Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add(string.Join(",", train), false, 1); }
                 Log.Add("");
-                Log.Add("Textindicators:");
+                Log.Add("Textindicators:");//Todo: Hier die Textindikatoren der Regler anzeigen
                 Log.Add("   Throttle/Brake:");
                 Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
                 Log.Add("       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
@@ -1834,6 +1834,10 @@ namespace TSW2_Controller
                                     {
                                         Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.increaseKey), 10);
                                         vc.currentJoystickValue = erste_grenze;
+                                        if (erste_grenze - ist == 1)
+                                        {
+                                            vc.currentSimValue -= 1;
+                                        }
                                     }
                                 }
                                 vc.cancelScan = -1;
@@ -1860,6 +1864,11 @@ namespace TSW2_Controller
                                     {
                                         Keyboard.HoldKey(Keyboard.ConvertStringToKey(vc.decreaseKey), 10);
                                         vc.currentJoystickValue = zweite_grenze;
+
+                                        if (ist - zweite_grenze == 1)
+                                        {
+                                            vc.currentSimValue += 1;
+                                        }
                                     }
                                 }
                                 vc.cancelScan = -1;
@@ -1924,7 +1933,12 @@ namespace TSW2_Controller
                             if (indicator == "")
                             {
                                 //Falls kein Indikator gefunden und die 2. Zeile noch nicht gelesen wurde, lese die 2. Zeile
-                                if (second_result == "") { second_result = GetText(Screenshot(false)); Log.Add("2. input:" + second_result, true); lbl_alternativeResult.Invoke((MethodInvoker)delegate { lbl_alternativeResult.Text = second_result; }); }
+                                if (second_result == "")
+                                {
+                                    second_result = GetText(Screenshot(false));
+                                    if (second_result != "") { Log.Add("2. input:" + second_result, true); }
+                                    lbl_alternativeResult.Invoke((MethodInvoker)delegate { lbl_alternativeResult.Text = second_result; });
+                                }
                                 //Überprüfe das 2. Ergebnis
                                 result = second_result;
                                 indicator = GetBestMainIndicator(result, vc);
@@ -1936,15 +1950,18 @@ namespace TSW2_Controller
 
                             if (indicator != "")
                             {
+                                Log.Add(vc.name + ":Found Indicator (" + indicator + ")");
                                 //Wenn ein Indikator gefunden
                                 int factor = 1;
+
+                                //Entferne den Indikator
+                                result = result.Replace(indicator, "");
+
                                 if (ContainsBrakingArea(result, vc))
                                 {
                                     //Bremsbereich
                                     factor = -1;
                                 }
-                                //Entferne den Indikator
-                                result = result.Remove(0, result.IndexOf(indicator) + indicator.Length).Trim();
 
                                 int detectedNumber = noResultValue;
                                 int wordlength = 0;
