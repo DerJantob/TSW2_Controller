@@ -189,13 +189,37 @@ namespace TSW2_Controller
                 Log.Add("Active = true");
                 Log.Add("Active Train:"); foreach (string[] train in activeTrain) { Log.Add(string.Join(",", train), false, 1); }
                 Log.Add("");
-                Log.Add("Textindicators:");//Todo: Hier die Textindikatoren der Regler anzeigen
-                Log.Add("   Throttle/Brake:");
-                Log.Add("       Throttle/MasterController:" + string.Join(",", Settings.Default.SchubIndexe.Cast<string>().ToArray()));
-                Log.Add("       Brake:" + string.Join(",", Settings.Default.BremsIndexe.Cast<string>().ToArray()));
-                Log.Add("   MasterController:");
-                Log.Add("       Throttle area:" + string.Join(",", Settings.Default.Kombihebel_SchubIndexe.Cast<string>().ToArray()));
-                Log.Add("       Braking area:" + string.Join(",", Settings.Default.Kombihebel_BremsIndexe.Cast<string>().ToArray()));
+
+                if (activeVControllers.Count > 0)
+                {
+                    Log.Add("VControllers:");
+                    foreach (VirtualController vc in activeVControllers)
+                    {
+                        Log.Add(vc.name + ":", false, 1);
+                        Log.Add("Main Indicators:", false, 2);
+                        foreach (string indicator in vc.mainIndicators)
+                        {
+                            Log.Add(indicator, false, 3);
+                        }
+
+                        Log.Add("Throttle area:", false, 2);
+                        foreach (string indicator in vc.textindicators_throttlearea)
+                        {
+                            Log.Add(indicator, false, 3);
+                        }
+
+                        Log.Add("Brake area:", false, 2);
+                        foreach (string indicator in vc.textindicators_brakearea)
+                        {
+                            Log.Add(indicator, false, 3);
+                        }
+                    }
+                }
+                else
+                {
+                    Log.Add("No VControllers found");
+                }
+
                 Log.Add("");
                 Log.Add("KeyLayout:" + string.Join(",", Settings.Default.Tastenbelegung.Cast<string>().ToArray()));
                 Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
