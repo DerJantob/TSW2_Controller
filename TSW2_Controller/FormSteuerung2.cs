@@ -1201,14 +1201,8 @@ namespace TSW2_Controller
 
                 for (int i = 0; i < splitted.Count(); i += 3)
                 {
-                    if (i < splitted.Count() - 3)
-                    {
-                        tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2] + "_");
-                    }
-                    else
-                    {
-                        tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2]);
-                    }
+                    tastenkombiliste.Add(splitted[i] + "_" + splitted[i + 1] + "_" + splitted[i + 2]);
+
 
                     splitted[i + 1] = splitted[i + 1].Replace("[", "").Replace("]", "");
                     splitted[i + 2] = splitted[i + 2].Replace("[", "").Replace("]", "");
@@ -1218,7 +1212,6 @@ namespace TSW2_Controller
                     if (splitted[i + 1].Contains("down")) { listBoxT3_Output.Items.Add(Sprache.Translate(splitted[i] + " gedrückt halten, danach " + splitted[i + 2] + "ms warten", "hold down " + splitted[i] + ", then wait " + splitted[i + 2] + "ms")); }
                     if (splitted[i + 1].Contains("up")) { listBoxT3_Output.Items.Add(Sprache.Translate(splitted[i] + " loslassen, danach " + splitted[i + 2] + "ms warten", "release " + splitted[i] + ", then wait " + splitted[i + 2] + "ms")); }
                 }
-                tastenkombiliste[0] = "_" + tastenkombiliste[0];
             }
 
             tabControl_main.SelectedIndex = 3;
@@ -1253,25 +1246,26 @@ namespace TSW2_Controller
 
                 if (radioT3_einmalDruecken.Checked)
                 {
-                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[press]_[" + txtT3_Wartezeit.Text + "]");
+                    tastenkombiliste.Insert(insertIndex, txtT3_Taste.Text + "_[press]_[" + txtT3_Wartezeit.Text + "]");
                     listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " kurz drücken, danach " + txtT3_Wartezeit.Text + "ms warten", txtT3_Taste.Text + " short press, then wait " + txtT3_Wartezeit.Text + "ms"));
                 }
                 else if (radioT3_Halten.Checked)
                 {
-                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[hold" + txtT3_Haltezeit.Text + "]_[" + txtT3_Wartezeit.Text + "]");
+                    tastenkombiliste.Insert(insertIndex, txtT3_Taste.Text + "_[hold" + txtT3_Haltezeit.Text + "]_[" + txtT3_Wartezeit.Text + "]");
                     listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " für " + txtT3_Haltezeit.Text + "ms halten, danach " + txtT3_Wartezeit.Text + "ms warten", "hold " + txtT3_Taste.Text + " for " + txtT3_Haltezeit.Text + "ms, then wait " + txtT3_Wartezeit.Text + "ms"));
                 }
                 else if (radioT3_Druecken.Checked)
                 {
-                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[down]_[" + txtT3_Wartezeit.Text + "]");
+                    tastenkombiliste.Insert(insertIndex, txtT3_Taste.Text + "_[down]_[" + txtT3_Wartezeit.Text + "]");
                     listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " gedrückt halten, danach " + txtT3_Wartezeit.Text + "ms warten", "press " + txtT3_Taste.Text + " down, then wait " + txtT3_Wartezeit.Text + "ms"));
                 }
                 else if (radioT3_Loslassen.Checked)
                 {
-                    tastenkombiliste.Insert(insertIndex, "_" + txtT3_Taste.Text + "_[up]_[" + txtT3_Wartezeit.Text + "]");
+                    tastenkombiliste.Insert(insertIndex, txtT3_Taste.Text + "_[up]_[" + txtT3_Wartezeit.Text + "]");
                     listBoxT3_Output.Items.Insert(insertIndex, Sprache.Translate(txtT3_Taste.Text + " loslassen, danach " + txtT3_Wartezeit.Text + "ms warten", "release " + txtT3_Taste.Text + ", then wait " + txtT3_Wartezeit.Text + "ms"));
                 }
                 listBoxT3_Output.SelectedIndex = insertIndex;
+                radioT3_einmalDruecken.Checked = true;
             }
             else
             {
@@ -1281,11 +1275,14 @@ namespace TSW2_Controller
         private void btnT3_Fertig_Click(object sender, EventArgs e)
         {
             string combined = "";
-            foreach (string single in tastenkombiliste)
+            if (tastenkombiliste.Count != 0)
             {
-                combined += single;
+                foreach (string single in tastenkombiliste)
+                {
+                    combined += single + "_";
+                }
+                combined = combined.Remove(combined.Length - 1, 1);
             }
-            combined = combined.Remove(0, 1);
             txtB_Tastenkombination.Text = combined;
             tabControl_main.SelectedIndex = 1;
         }
@@ -1461,7 +1458,10 @@ namespace TSW2_Controller
             //Wenn man im "Aktion" Feld eine Taste drückt finde passenden Namen zur Taste
             //PreviewKeyDown um auch tab-Taste zu erlauben
             ((TextBox)sender).Text = Keyboard.ConvertKeyToString(e.KeyCode);
-            SelectNextControl((Control)sender, true, false, true, true);
+            if (((TextBox)sender).Name != "txtT3_Taste")
+            {
+                SelectNextControl((Control)sender, true, false, true, true);
+            }
         }
         private void txt_Aktion_MouseDown(object sender, MouseEventArgs e)
         {
