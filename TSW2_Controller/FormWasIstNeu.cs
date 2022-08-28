@@ -287,6 +287,27 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.3
+            if (new Version("2.0.3").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.3" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Verbesserung: Texterkennung vom Bremsbereich");
+                    changelog.Add("- Fix: Tastenkombination-Editor Probleme");
+                    changelog.Add("- Fix: Strg wurde bei dem Befehl \"kurz drücken\" nicht mehr losgelassen");
+                }
+                else
+                {
+                    changelog.Add("- Improvement: Text recognition of the brake area");
+                    changelog.Add("- Fix: Issues with the keyboard shortcut editor");
+                    changelog.Add("- Fix: When using the \"short press\" command on the crtl key, it would get pressed infinitely");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
