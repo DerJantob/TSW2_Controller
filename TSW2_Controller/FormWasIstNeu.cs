@@ -308,6 +308,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.3
+            if (new Version("2.0.4").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.4" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Fix: Eingabe eines negativen Zeitfaktors verhindern");
+                }
+                else
+                {
+                    changelog.Add("- Fix: Prevent entry of negative time factor");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }

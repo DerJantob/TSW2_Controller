@@ -773,7 +773,7 @@ namespace TSW2_Controller
                         ok = false;
                         Sprache.ShowMessageBox("Fehler bei Sonderfälle umrechnen", "Error with Convert special cases");
                     }
-                    if (txtR_Zeitfaktor.Text == "" || txtR_Zeitfaktor.Text.Any(char.IsLetter))
+                    if (txtR_Zeitfaktor.Text == "" || txtR_Zeitfaktor.Text.Any(char.IsLetter) || txtR_Zeitfaktor.Text.Contains("-"))
                     {
                         ok = false;
                         Sprache.ShowMessageBox("Fehler bei Zeitfaktor", "Error with Time factor");
