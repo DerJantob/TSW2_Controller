@@ -1979,7 +1979,7 @@ namespace TSW2_Controller
                                 int factor = 1;
 
                                 //Entferne den Indikator
-                                result = result.Replace(indicator, "");
+                                result = result.Remove(0,result.IndexOf(indicator)+indicator.Length);
 
                                 if (ContainsBrakingArea(result, vc))
                                 {
@@ -2024,20 +2024,20 @@ namespace TSW2_Controller
                                     catch
                                     {
                                         Log.Error("Could not get a number out of (removing percent method) " + result_withoutPercent);
-                                        //try
-                                        //{
-                                        //    //Isoliere die letzte Zahl
-                                        //    int number = Convert.ToInt32(Regex.Matches(result, @"\d+")[Regex.Matches(result, @"\d+").Count - 1].Value);
-                                        //    if (vc.cancelScan == 0)
-                                        //    {
-                                        //        detectedNumber = number;
-                                        //    }
-                                        //}
-                                        //catch (Exception ex)
-                                        //{
-                                        //    Log.Error("Could not get a number out of (isolating method)" + result);
-                                        //    Log.ErrorException(ex);
-                                        //}
+                                        try
+                                        {
+                                            //Isoliere die letzte Zahl
+                                            int number = Convert.ToInt32(Regex.Matches(result, @"\d+")[Regex.Matches(result, @"\d+").Count - 1].Value);
+                                            if (vc.cancelScan == 0)
+                                            {
+                                                detectedNumber = number;
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Log.Error("Could not get a number out of (isolating method)" + result);
+                                            Log.ErrorException(ex);
+                                        }
                                     }
                                 }
                                 if (detectedNumber != noResultValue && vc.cancelScan == 0)

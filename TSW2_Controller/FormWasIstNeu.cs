@@ -308,7 +308,7 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
-            #region 2.0.3
+            #region 2.0.4
             if (new Version("2.0.4").CompareTo(version) > 0)
             {
                 changelog.Add("v2.0.4" + "\n");
@@ -316,10 +316,14 @@ namespace TSW2_Controller
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Fix: Eingabe eines negativen Zeitfaktors verhindern");
+                    changelog.Add("- Verbesserung: Hinweis zum Speichern von Änderungen beim Wechseln und Bearbeiten von Reglern.");
+                    changelog.Add("- Verbesserung: Jede Zahl in Kombination mit Indikator wird gelesen");
                 }
                 else
                 {
                     changelog.Add("- Fix: Prevent entry of negative time factor");
+                    changelog.Add("- Improvement: prompt to save changes when switching and editing controllers.");
+                    changelog.Add("- Improvement: Every number in combination with indicator gets detected");
                 }
 
                 changelog.Add("----------------------------------------");

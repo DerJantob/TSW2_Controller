@@ -34,6 +34,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnT1_back = new System.Windows.Forms.Button();
             this.groupBoxT1_Regler = new System.Windows.Forms.GroupBox();
+            this.btnT1_Controller_Remove = new System.Windows.Forms.Button();
             this.listBoxT1_ControllerList = new System.Windows.Forms.ListBox();
             this.comboBoxT1_Controllers = new System.Windows.Forms.ComboBox();
             this.btnT1_Controller_Add = new System.Windows.Forms.Button();
@@ -137,7 +138,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtT3_Taste = new System.Windows.Forms.TextBox();
             this.listBoxT3_Output = new System.Windows.Forms.ListBox();
-            this.btnT1_Controller_Remove = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -191,6 +191,13 @@
             this.groupBoxT1_Regler.Name = "groupBoxT1_Regler";
             this.groupBoxT1_Regler.TabStop = false;
             // 
+            // btnT1_Controller_Remove
+            // 
+            resources.ApplyResources(this.btnT1_Controller_Remove, "btnT1_Controller_Remove");
+            this.btnT1_Controller_Remove.Name = "btnT1_Controller_Remove";
+            this.btnT1_Controller_Remove.UseVisualStyleBackColor = true;
+            this.btnT1_Controller_Remove.Click += new System.EventHandler(this.btnT1_Controller_Remove_Click);
+            // 
             // listBoxT1_ControllerList
             // 
             this.listBoxT1_ControllerList.FormattingEnabled = true;
@@ -234,6 +241,7 @@
             this.tabControl_ReglerKnopf.Name = "tabControl_ReglerKnopf";
             this.tabControl_ReglerKnopf.SelectedIndex = 0;
             this.tabControl_ReglerKnopf.SelectedIndexChanged += new System.EventHandler(this.tabControl_ReglerKnopf_SelectedIndexChanged);
+            this.tabControl_ReglerKnopf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tabControl_ReglerKnopf_KeyPress);
             // 
             // tabPage4
             // 
@@ -938,13 +946,6 @@
             resources.ApplyResources(this.listBoxT3_Output, "listBoxT3_Output");
             this.listBoxT3_Output.Name = "listBoxT3_Output";
             this.listBoxT3_Output.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT3_Output_KeyDown);
-            // 
-            // btnT1_Controller_Remove
-            // 
-            resources.ApplyResources(this.btnT1_Controller_Remove, "btnT1_Controller_Remove");
-            this.btnT1_Controller_Remove.Name = "btnT1_Controller_Remove";
-            this.btnT1_Controller_Remove.UseVisualStyleBackColor = true;
-            this.btnT1_Controller_Remove.Click += new System.EventHandler(this.btnT1_Controller_Remove_Click);
             // 
             // FormSteuerung2
             // 

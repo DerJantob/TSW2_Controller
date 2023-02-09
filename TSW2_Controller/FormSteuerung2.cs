@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace TSW2_Controller
         List<string[]> customController = new List<string[]>();
         string selectedTrain = "";
         string selectedRegler = "";
+        int configIsBeeingChanged = 0;
 
         public FormSteuerung2()
         {
@@ -427,68 +429,105 @@ namespace TSW2_Controller
                 listBoxT1_ControllerList.Items.Add(comboBoxT1_Controllers.Text);
             }
         }
-
+        private void tabControl_ReglerKnopf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            configIsBeeingChanged = 1;
+        }
         private void listBoxT1_ControllerList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResetKonfiguration(false);
-            if (listBoxT1_ControllerList.SelectedItem != null)
+            bool cancel = false;
+            if (configIsBeeingChanged != 0)
             {
-                foreach (string[] singleTrain in trainConfig)
+                if (configIsBeeingChanged == -1)
                 {
-                    if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.reglerName] == listBoxT1_ControllerList.SelectedItem.ToString())
+                    configIsBeeingChanged = 1;
+                    cancel = true;
+                }
+                else
+                {
+                    if (MessageBox.Show(Sprache.Translate("Weiter ohne zu speichern?", "Continue without saving?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        txtR_JoyNr.Text = singleTrain[Tcfg.joystickNummer];
-                        txtR_JoyAchse.Text = singleTrain[Tcfg.joystickInput];
-                        txtR_AnzahlStufen.Text = singleTrain[Tcfg.schritte];
-                        txtR_LongPress.Text = singleTrain[Tcfg.laengerDruecken].Replace("[", "").Replace("]", " ").TrimEnd(' ');
-                        txtR_Sonderfaelle.Text = singleTrain[Tcfg.specials].Replace(" ", "_").Replace("[", "").Replace("]", " ").TrimEnd(' '); ;
-                        txtR_Zeitfaktor.Text = singleTrain[Tcfg.zeitfaktor];
-                        txtR_InputUmrechnen.Text = singleTrain[Tcfg.inputUmrechnen].Replace("[", "").Replace("]", " ").TrimEnd(' '); ;
+                        configIsBeeingChanged = 0;
+                    }
+                    else
+                    {
+                        cancel = true;
+                        configIsBeeingChanged = -1;
+                        listBoxT1_ControllerList.SelectedItem = selectedRegler;
+                    }
+                }
+            }
 
-                        if (singleTrain[Tcfg.art] == "Stufenlos")
+            if (!cancel)
+            {
+                configIsBeeingChanged = 0;
+                ResetKonfiguration(false);
+                if (listBoxT1_ControllerList.SelectedItem != null)
+                {
+                    foreach (string[] singleTrain in trainConfig)
+                    {
+                        if (singleTrain[Tcfg.zug] == selectedTrain && singleTrain[Tcfg.reglerName] == listBoxT1_ControllerList.SelectedItem.ToString())
                         {
-                            radioR_Stufenlos.Checked = true;
-                        }
-                        else
-                        {
-                            radioR_Stufen.Checked = true;
-                        }
+                            txtR_JoyNr.Text = singleTrain[Tcfg.joystickNummer];
+                            txtR_JoyAchse.Text = singleTrain[Tcfg.joystickInput];
+                            txtR_AnzahlStufen.Text = singleTrain[Tcfg.schritte];
+                            txtR_LongPress.Text = singleTrain[Tcfg.laengerDruecken].Replace("[", "").Replace("]", " ").TrimEnd(' ');
+                            txtR_Sonderfaelle.Text = singleTrain[Tcfg.specials].Replace(" ", "_").Replace("[", "").Replace("]", " ").TrimEnd(' '); ;
+                            txtR_Zeitfaktor.Text = singleTrain[Tcfg.zeitfaktor];
+                            txtR_InputUmrechnen.Text = singleTrain[Tcfg.inputUmrechnen].Replace("[", "").Replace("]", " ").TrimEnd(' '); ;
 
-                        if (singleTrain[Tcfg.reglerName].Split('|').Count() > 0)
-                        {
-                            dataGridView1.Rows.Clear();
-                            string[] split = singleTrain[Tcfg.invertieren].Split('|');
-                            for (int i = 0; i < split.Count() - 1; i += 2)
+                            if (singleTrain[Tcfg.art] == "Stufenlos")
                             {
-                                dataGridView1.Rows.Add(new string[] { split[i], split[i + 1] });
+                                radioR_Stufenlos.Checked = true;
                             }
-                            ReadDataGrid();
+                            else
+                            {
+                                radioR_Stufen.Checked = true;
+                            }
+
+                            if (singleTrain[Tcfg.reglerName].Split('|').Count() > 0)
+                            {
+                                dataGridView1.Rows.Clear();
+                                string[] split = singleTrain[Tcfg.invertieren].Split('|');
+                                for (int i = 0; i < split.Count() - 1; i += 2)
+                                {
+                                    dataGridView1.Rows.Add(new string[] { split[i], split[i + 1] });
+                                }
+                                ReadDataGrid();
+                            }
                         }
                     }
-                }
-                selectedRegler = listBoxT1_ControllerList.Text;
+                    selectedRegler = listBoxT1_ControllerList.Text;
 
-                radioR_Stufen.Enabled = true;
-                foreach (VirtualController vc in virtualControllerList)
-                {
-                    if (selectedRegler == vc.name)
+                    radioR_Stufen.Enabled = true;
+                    foreach (VirtualController vc in virtualControllerList)
                     {
-                        if (vc.isMasterController)
+                        if (selectedRegler == vc.name)
                         {
-                            radioR_Stufen.Enabled = false;
-                            radioR_Stufenlos.Checked = true;
+                            if (vc.isMasterController)
+                            {
+                                radioR_Stufen.Enabled = false;
+                                radioR_Stufenlos.Checked = true;
+                            }
+                            break;
                         }
-                        break;
                     }
-                }
 
-                panel_Regler.Enabled = true;
-                btnT1_Controller_Remove.Enabled = true;
+                    panel_Regler.Enabled = true;
+                    btnT1_Controller_Remove.Enabled = true;
+                }
             }
         }
         private void btnT1_back_Click(object sender, EventArgs e)
         {
-            tabControl_main.SelectedIndex = 0;
+            if (configIsBeeingChanged != 0)
+            {
+                if (MessageBox.Show(Sprache.Translate("Weiter ohne zu speichern?", "Continue without saving?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    configIsBeeingChanged = 0;
+                    tabControl_main.SelectedIndex = 0;
+                }
+            }
         }
 
         private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
@@ -543,12 +582,12 @@ namespace TSW2_Controller
                     JoyStateStart.Add(joyInputs);
                 }
 
-                int counter = 0;
+                Stopwatch timeout = new Stopwatch();
+                timeout.Start();
                 while (wait)
                 {
                     try
                     {
-
                         JoyStateCurrent.Clear();
                         for (int i = 0; i < FormMain.MainSticks.Length; i++)
                         {
@@ -588,12 +627,12 @@ namespace TSW2_Controller
                     {
                         Log.ErrorException(ex);
                     }
-                    counter++;
-                    if (counter > 500)
+                    if (timeout.ElapsedMilliseconds > 5000)
                     {
                         wait = false;
                     }
                 }
+                timeout.Stop();
                 return new string[] { "/", "/" };
             }
         }
@@ -697,7 +736,7 @@ namespace TSW2_Controller
         }
         private void listBoxT1_ControllerList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete && MessageBox.Show(Sprache.Translate("Möchtest du diesen Regler wirklich entfernen?", "Do you really want to remove this controller?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 RemoveSelectedController();
             }
@@ -723,6 +762,7 @@ namespace TSW2_Controller
         private void btnR_Speichern_Click(object sender, EventArgs e)
         {
             ReglerSpeichern();
+            configIsBeeingChanged = 0;
         }
         private void ReglerSpeichern(bool justWriteFile = false)
         {
@@ -784,6 +824,7 @@ namespace TSW2_Controller
                         ok = false;
                         Sprache.ShowMessageBox("Fehler bei Länger drücken", "Error with Long press");
                     }
+                    txtR_LongPress.Text = txtR_LongPress.Text.Replace("=", ":");
                 }
                 #endregion
 
