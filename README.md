@@ -46,9 +46,9 @@ Video tutorial:
 
 <img src="/Screenshots/main.png" width="300"/>
 
-<img src="/Screenshots/settings.png"/>
+<img src="/Screenshots/settings.png" width="300"/>
 
-<img src="/Screenshots/controls_controller.png"/> <img src="/Screenshots/controls_buttons.png"/>
+<img src="/Screenshots/controls_controller.png" width="400"/> <img src="/Screenshots/controls_buttons.png" width="400"/>
 ## Contributing
 
 Contributions are always welcome!
