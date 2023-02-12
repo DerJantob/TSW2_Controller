@@ -520,13 +520,19 @@ namespace TSW2_Controller
         }
         private void btnT1_back_Click(object sender, EventArgs e)
         {
+            bool cancel = false;
             if (configIsBeeingChanged != 0)
             {
-                if (MessageBox.Show(Sprache.Translate("Weiter ohne zu speichern?", "Continue without saving?"), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Sprache.Translate("Weiter ohne zu speichern?", "Continue without saving?"), "", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
-                    configIsBeeingChanged = 0;
-                    tabControl_main.SelectedIndex = 0;
+                    cancel = true;
                 }
+            }
+
+            if(!cancel)
+            {
+                configIsBeeingChanged = 0;
+                tabControl_main.SelectedIndex = 0;
             }
         }
 
