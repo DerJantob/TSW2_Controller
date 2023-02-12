@@ -42,11 +42,13 @@ If that doesn't help you, just open a new issue
 Video tutorial:
 
 [<img src="/Screenshots/TSW2_Controller_Tutorial_2.0.0_Thumbnail.png" width="400"/>](https://youtu.be/Sej1L0p_myo)
-## Screenshots (outdated)
+## Screenshots
 
-<img src="/Screenshots/mainEN.png" width="300"/> <img src="/Screenshots/mainDE.png" width="300"/>
+<img src="/Screenshots/main.png" width="300"/>
 
-<img src="/Screenshots/settings.png"/> <img src="/Screenshots/editButtons.png"/>
+<img src="/Screenshots/settings.png"/>
+
+<img src="/Screenshots/controls_controller.png"/> <img src="/Screenshots/controls_buttons.png"/>
 ## Contributing
 
 Contributions are always welcome!
