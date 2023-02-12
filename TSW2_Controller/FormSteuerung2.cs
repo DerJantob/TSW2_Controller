@@ -16,6 +16,8 @@ namespace TSW2_Controller
 {
     public partial class FormSteuerung2 : Form
     {
+        private FormMain _FormMain;
+
         List<string[]> trainConfig = new List<string[]>();
         List<VirtualController> virtualControllerList = new List<VirtualController>();
         List<string[]> customController = new List<string[]>();
@@ -23,16 +25,22 @@ namespace TSW2_Controller
         string selectedRegler = "";
         int configIsBeeingChanged = 0;
 
-        public FormSteuerung2()
+        public FormSteuerung2(FormMain formMain)
         {
             InitializeComponent();
 
-            FormMain formMain = new FormMain();
-            trainConfig = formMain.trainConfig;
+            _FormMain = formMain;
+
+            trainConfig = _FormMain.trainConfig;
 
             comboBoxT0_Zugauswahl.Items.Add(Tcfg.nameForGlobal);
             comboBoxT0_Zugauswahl.Items.AddRange(formMain.trainNames.ToArray());
             comboBoxT0_Zugauswahl.SelectedItem = Tcfg.nameForGlobal;
+
+            if(_FormMain.selectedTrain != "")
+            {
+                comboBoxT0_Zugauswahl.SelectedItem = _FormMain.selectedTrain;
+            }
 
             lblB_Bedingung.Hide();
             txtB_Bedingung.Hide();
@@ -284,6 +292,7 @@ namespace TSW2_Controller
         private void btnT0_edit_Click(object sender, EventArgs e)
         {
             selectedTrain = comboBoxT0_Zugauswahl.Text;
+            _FormMain.selectedTrain= selectedTrain;
             ResetKonfiguration();
             if (selectedTrain == Tcfg.nameForGlobal)
             {

@@ -47,6 +47,8 @@ namespace TSW2_Controller
 
         bool globalIsDeactivated = false;
 
+        public string selectedTrain = "";
+
 
 
         public FormMain()
@@ -149,6 +151,7 @@ namespace TSW2_Controller
         #region Zugauswahl
         private void comboBox_Zugauswahl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            selectedTrain = comboBox_Zugauswahl.Text;
             check_active.Checked = false;
             Log.Add(comboBox_Zugauswahl.Text + " selected");
 
@@ -278,15 +281,24 @@ namespace TSW2_Controller
         {
             Log.Add("Going to settings:");
             check_active.Checked = false;
-            FormSettings formSettings = new FormSettings();
+            FormSettings formSettings = new FormSettings(this);
             formSettings.Location = this.Location;
             formSettings.ShowDialog();
             Log.Add("Leaving settings");
+            string tmp_selTrain = selectedTrain;
 
             loadSettings();
 
             ReadVControllers();
             ReadTrainConfig();
+
+            if (tmp_selTrain != "")
+            {
+                if (comboBox_Zugauswahl.Items.Contains(tmp_selTrain))
+                {
+                    comboBox_Zugauswahl.SelectedItem = tmp_selTrain;
+                }
+            }
         }
         #endregion
         #region Joysticks überprüfen
@@ -338,7 +350,7 @@ namespace TSW2_Controller
         #region lbl Update verfügbar
         private void lbl_updateAvailable_Click(object sender, EventArgs e)
         {
-            FormSettings formSettings = new FormSettings();
+            FormSettings formSettings = new FormSettings(this);
             formSettings.Location = this.Location;
             formSettings.CheckGitHubNewerVersion();
             formSettings.ShowDialog();
@@ -1979,7 +1991,7 @@ namespace TSW2_Controller
                                 int factor = 1;
 
                                 //Entferne den Indikator
-                                result = result.Remove(0,result.IndexOf(indicator)+indicator.Length);
+                                result = result.Remove(0, result.IndexOf(indicator) + indicator.Length);
 
                                 if (ContainsBrakingArea(result, vc))
                                 {

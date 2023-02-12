@@ -318,12 +318,14 @@ namespace TSW2_Controller
                     changelog.Add("- Fix: Eingabe eines negativen Zeitfaktors verhindern");
                     changelog.Add("- Verbesserung: Hinweis zum Speichern von Änderungen beim Wechseln und Bearbeiten von Reglern.");
                     changelog.Add("- Verbesserung: Jede Zahl in Kombination mit Indikator wird gelesen");
+                    changelog.Add("- Verbesserung: Dropdownmenü im Hauptfenster synchronisiert mit dem in den Einstellungen");
                 }
                 else
                 {
                     changelog.Add("- Fix: Prevent entry of negative time factor");
                     changelog.Add("- Improvement: prompt to save changes when switching and editing controllers.");
                     changelog.Add("- Improvement: Every number in combination with indicator gets detected");
+                    changelog.Add("- Improvement: Synchronized the dropdown menu in the main window with the one in the settings.");
                 }
 
                 changelog.Add("----------------------------------------");

@@ -20,10 +20,13 @@ namespace TSW2_Controller
 {
     public partial class FormSettings : Form
     {
+        private FormMain _FormMain;
         public static string newestVersion = "";
-        public FormSettings()
+        public FormSettings(FormMain formMain)
         {
             InitializeComponent();
+
+            _FormMain = formMain;
 
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -362,7 +365,7 @@ namespace TSW2_Controller
         private void btn_steuerung_Click(object sender, EventArgs e)
         {
             Log.Add("Going to controls");
-            FormSteuerung2 formSteuerung2 = new FormSteuerung2();
+            FormSteuerung2 formSteuerung2 = new FormSteuerung2(_FormMain);
             formSteuerung2.Location = this.Location;
             formSteuerung2.ShowDialog();
             Log.Add("Leaving controls");
