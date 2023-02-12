@@ -312,6 +312,7 @@ namespace TSW2_Controller
         }
         private void btnT0_Add_Click(object sender, EventArgs e)
         {
+            _FormMain.selectedTrain = comboBoxT0_Zugauswahl.Text;
             ComboBox cb = comboBoxT0_Zugauswahl;
             cb.Text = cb.Text.Replace(",", "");
             if (!cb.Items.Contains(cb.Text))
