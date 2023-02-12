@@ -1695,6 +1695,33 @@
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnT0_back.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnT0_back.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 80</value>
+  </data>
+  <data name="btnT0_back.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 23</value>
+  </data>
+  <data name="btnT0_back.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnT0_back.Text" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="&gt;&gt;btnT0_back.Name" xml:space="preserve">
+    <value>btnT0_back</value>
+  </data>
+  <data name="&gt;&gt;btnT0_back.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnT0_back.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;btnT0_back.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnT0_globalKeybinds.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1720,7 +1747,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_globalKeybinds.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnT0_Delete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1747,7 +1774,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_Delete.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnT0_Add.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1774,7 +1801,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_Add.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnT0_edit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1801,7 +1828,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnT0_edit.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1831,7 +1858,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="comboBoxT0_Zugauswahl.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 22</value>
@@ -1852,7 +1879,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;comboBoxT0_Zugauswahl.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2458,7 +2485,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabPage5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>639, 322</value>
+    <value>639, 106</value>
   </data>
   <data name="tabPage5.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2836,7 +2863,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabPage6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>639, 322</value>
+    <value>639, 106</value>
   </data>
   <data name="tabPage6.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>

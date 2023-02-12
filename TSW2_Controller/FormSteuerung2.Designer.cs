@@ -138,6 +138,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtT3_Taste = new System.Windows.Forms.TextBox();
             this.listBoxT3_Output = new System.Windows.Forms.ListBox();
+            this.btnT0_back = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -609,6 +610,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnT0_back);
             this.tabPage1.Controls.Add(this.btnT0_globalKeybinds);
             this.tabPage1.Controls.Add(this.btnT0_Delete);
             this.tabPage1.Controls.Add(this.btnT0_Add);
@@ -947,6 +949,13 @@
             this.listBoxT3_Output.Name = "listBoxT3_Output";
             this.listBoxT3_Output.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT3_Output_KeyDown);
             // 
+            // btnT0_back
+            // 
+            resources.ApplyResources(this.btnT0_back, "btnT0_back");
+            this.btnT0_back.Name = "btnT0_back";
+            this.btnT0_back.UseVisualStyleBackColor = true;
+            this.btnT0_back.Click += new System.EventHandler(this.btnT0_back_Click);
+            // 
             // FormSteuerung2
             // 
             resources.ApplyResources(this, "$this");
@@ -1092,5 +1101,6 @@
         private System.Windows.Forms.ListBox listBoxT3_Output;
         private System.Windows.Forms.Button btnR_GetTimeFactor;
         private System.Windows.Forms.Button btnT1_Controller_Remove;
+        private System.Windows.Forms.Button btnT0_back;
     }
 }

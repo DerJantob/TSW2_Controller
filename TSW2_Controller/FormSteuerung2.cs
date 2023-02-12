@@ -52,7 +52,7 @@ namespace TSW2_Controller
             tabControl_main.Appearance = TabAppearance.FlatButtons;
             tabControl_main.ItemSize = new Size(0, 1);
             tabControl_main.SizeMode = TabSizeMode.Fixed;
-            tabControl_main.Size = new Size(313, 104);
+            tabControl_main.Size = new Size(313, 130);
         }
 
         #region Allgemeines
@@ -60,7 +60,7 @@ namespace TSW2_Controller
         {
             if (tabControl_main.SelectedIndex == 0)
             {
-                tabControl_main.Size = new Size(313, 104);
+                tabControl_main.Size = new Size(313, 130);
             }
             else if (tabControl_main.SelectedIndex == 2)
             {
@@ -377,6 +377,10 @@ namespace TSW2_Controller
             selectedTrain = "";
             resetControllerBearbeiten();
             tabControl_main.SelectedIndex = 2;
+        }
+        private void btnT0_back_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
         #endregion
 
