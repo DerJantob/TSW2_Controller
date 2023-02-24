@@ -1361,10 +1361,8 @@ namespace TSW2_Controller
                 bool[] buttons;
                 int[] joyInputs = new int[8];
 
-                JoystickState state = new JoystickState();
-
                 //Bekomme alle Infos über den mit id ausgewählten Stick
-                state = stick.GetCurrentState();
+                JoystickState state = stick.GetCurrentState();
 
                 joyInputs[0] = state.X;
                 joyInputs[1] = state.Y;
