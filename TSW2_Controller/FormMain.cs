@@ -1178,14 +1178,7 @@ namespace TSW2_Controller
 
             foreach (string[] str in trainConfig)
             {
-                bool alreadyExists = false;
-                foreach (string tN in trainNames)
-                {
-                    if (str[0] == tN)
-                    {
-                        alreadyExists = true;
-                    }
-                }
+                bool alreadyExists = trainNames.Contains(str[0]);
 
                 if (!alreadyExists && str[0] != "Zug" && str[0] != Tcfg.nameForGlobal)
                 {
