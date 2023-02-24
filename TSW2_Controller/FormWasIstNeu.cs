@@ -331,6 +331,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.5
+            if (new Version("2.0.5").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.5" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Verbesserung: Kleine Code Optimierungen.");
+                }
+                else
+                {
+                    changelog.Add("- Improvement: Small code cleanup.");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
