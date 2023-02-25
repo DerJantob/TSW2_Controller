@@ -121,6 +121,8 @@ namespace TSW2_Controller
             }
             #endregion
 
+            TCengine.DefaultPageSegMode = PageSegMode.SingleLine;
+
             lbl_originalResult.Text = "";
             lbl_alternativeResult.Text = "";
             lbl_updateAvailable.Text = "";
