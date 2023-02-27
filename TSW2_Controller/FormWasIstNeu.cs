@@ -338,10 +338,12 @@ namespace TSW2_Controller
 
                 if (Settings.Default.Sprache == "de-DE")
                 {
+                    changelog.Add("- Verbesserung: Texterkennung deutlich verbessert.");
                     changelog.Add("- Verbesserung: Kleine Code Optimierungen.");
                 }
                 else
                 {
+                    changelog.Add("- Improvement: Text recognition significantly improved.");
                     changelog.Add("- Improvement: Small code cleanup.");
                 }
 

@@ -54,6 +54,7 @@ namespace TSW2_Controller
         public FormMain()
         {
             checkVersion();
+
             checkLanguageSetting();
 
             Log.Add("Init components");
@@ -509,13 +510,15 @@ namespace TSW2_Controller
                     Color inv = bmpScreenshot.GetPixel(x, y);
 
                     //Farbanpassung um möglichst nur die Schrift zu erkennen
-                    if (inv.R + inv.G + inv.G < 500)
+                    if (inv.R + inv.G + inv.G < 500 || !(Math.Abs(inv.R - inv.G) <=2 && Math.Abs(inv.G - inv.B) <= 2))
                     {
                         inv = Color.FromArgb(0, 0, 0, 0);
                     }
 
+                    if (inv.R > 0) { inv = Color.FromArgb(255, 255, 255); };
+
                     //invertier das Bild
-                    inv = Color.FromArgb(255, (255 - inv.R), (255 - inv.G), (255 - inv.B));
+                    inv = Color.FromArgb(255, (255-inv.R), (255-inv.G), (255-inv.B));
                     bmpScreenshot.SetPixel(x, y, inv);
                 }
             }
