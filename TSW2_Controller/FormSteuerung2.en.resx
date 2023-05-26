@@ -247,6 +247,9 @@
   <data name="lblT1_TrainName.Text" xml:space="preserve">
     <value>Train</value>
   </data>
+  <data name="btnT0_back.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="btnT0_globalKeybinds.Text" xml:space="preserve">
     <value>Global keybinds</value>
   </data>
