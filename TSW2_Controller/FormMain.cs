@@ -503,24 +503,22 @@ namespace TSW2_Controller
                 g.CopyFromScreen(x1, y2, 0, 0, new Size(width, height));
             }
 
-            for (int y = 0; (y <= (bmpScreenshot.Height - 1)); y++)
+            for (int y = 0; y <= (bmpScreenshot.Height - 1); y++)
             {
-                for (int x = 0; (x <= (bmpScreenshot.Width - 1)); x++)
+                for (int x = 0; x <= (bmpScreenshot.Width - 1); x++)
                 {
                     Color inv = bmpScreenshot.GetPixel(x, y);
 
                     //Farbanpassung um möglichst nur die Schrift zu erkennen
                     //          Helligkeit          ||                      RGB-Werte alle fast gleich
-                    if (inv.R + inv.G + inv.G < 500 || !(Math.Abs(inv.R - inv.G) <=2 && Math.Abs(inv.G - inv.B) <= 2))
+                    if (inv.R + inv.G + inv.G < 400 || !(Math.Abs(inv.R - inv.G) <= 15 && Math.Abs(inv.G - inv.B) <= 15))
                     {
-                        inv = Color.FromArgb(0, 0, 0, 0);
+                        bmpScreenshot.SetPixel(x, y, Color.Gray); //Grau funktioniert besser als Weiß
+                        continue;
                     }
 
-                    if (inv.R > 0) { inv = Color.FromArgb(255, 255, 255); };
-
                     //invertier das Bild
-                    inv = Color.FromArgb(255, (255-inv.R), (255-inv.G), (255-inv.B));
-                    bmpScreenshot.SetPixel(x, y, inv);
+                    bmpScreenshot.SetPixel(x, y, Color.FromArgb(inv.ToArgb() ^ 0xffffff));
                 }
             }
 
