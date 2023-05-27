@@ -347,6 +347,7 @@ namespace TSW2_Controller
                     changelog.Add("- Improvement: Text recognition significantly improved.");
                     changelog.Add("- Improvement: Small code cleanup.");
                     changelog.Add("- Bugfix: Issues with configuration when using multiple joysticks.");
+                    changelog.Add("- Bugfix: Translation error.");
                 }
 
                 changelog.Add("----------------------------------------");
