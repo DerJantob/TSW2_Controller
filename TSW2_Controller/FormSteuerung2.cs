@@ -168,7 +168,7 @@ namespace TSW2_Controller
                 string textOutput = "";
                 try
                 {
-                    for (int o = 0; i < FormMain.inputNames.Count(); o++)
+                    for (int o = 0; o < FormMain.inputNames.Count(); o++)
                     {
                         if (FormMain.inputNames[o] == txtR_JoyAchse.Text && i.ToString() == txtR_JoyNr.Text)
                         {
@@ -198,7 +198,7 @@ namespace TSW2_Controller
                         }
 
 
-                        if (txtR_InputUmrechnen.Text.Length >= 3 && txtR_JoyAchse.Text == FormMain.inputNames[o])
+                        if (txtR_InputUmrechnen.Text.Length >= 3 && txtR_JoyAchse.Text == FormMain.inputNames[o] && i.ToString() == txtR_JoyNr.Text)
                         {
                             try
                             {
@@ -243,13 +243,13 @@ namespace TSW2_Controller
                                     }
                                 }
                             }
-                            catch
+                            catch(Exception ex)
                             {
-
+                                Log.ErrorException(ex);
                             }
                         }
 
-                        if (txtR_JoyAchse.Text == FormMain.inputNames[o])
+                        if (txtR_JoyAchse.Text == FormMain.inputNames[o] && i.ToString() == txtR_JoyNr.Text)
                         {
                             if (radioR_Stufen.Checked)
                             {
@@ -258,20 +258,23 @@ namespace TSW2_Controller
                                     joyInputs[o] = Convert.ToInt32(Math.Round(joyInputs[o] * (Convert.ToDouble(txtR_AnzahlStufen.Text) / 100), 0));
                                     textOutput += "-> " + joyInputs[o];
                                 }
-                                catch
+                                catch (Exception ex)
                                 {
-
+                                    Log.ErrorException(ex);
                                 }
                             }
                         }
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    Log.ErrorException(ex);
                 }
 
-                lblR_ReglerStand.Text = textOutput;
+                if (textOutput != "")
+                {
+                    lblR_ReglerStand.Text = textOutput;
+                }
             }
             for (int o = listBox_ShowJoystickStates.Items.Count - counter; o >= 0; o--)
             {
