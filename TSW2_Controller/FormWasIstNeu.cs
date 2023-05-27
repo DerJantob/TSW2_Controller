@@ -340,11 +340,13 @@ namespace TSW2_Controller
                 {
                     changelog.Add("- Verbesserung: Texterkennung deutlich verbessert.");
                     changelog.Add("- Verbesserung: Kleine Code Optimierungen.");
+                    changelog.Add("- Bugfix: Probleme bei der Konfiguration, wenn man mehrere Joysticks benutzt.");
                 }
                 else
                 {
                     changelog.Add("- Improvement: Text recognition significantly improved.");
                     changelog.Add("- Improvement: Small code cleanup.");
+                    changelog.Add("- Bugfix: Issues with configuration when using multiple joysticks.");
                 }
 
                 changelog.Add("----------------------------------------");
