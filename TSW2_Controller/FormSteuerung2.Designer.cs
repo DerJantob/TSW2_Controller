@@ -165,12 +165,12 @@
             // 
             // tabPage2
             // 
-            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Controls.Add(this.btnT1_back);
             this.tabPage2.Controls.Add(this.groupBoxT1_Regler);
             this.tabPage2.Controls.Add(this.listBox_ShowJoystickStates);
             this.tabPage2.Controls.Add(this.tabControl_ReglerKnopf);
             this.tabPage2.Controls.Add(this.lblT1_TrainName);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -183,12 +183,12 @@
             // 
             // groupBoxT1_Regler
             // 
-            resources.ApplyResources(this.groupBoxT1_Regler, "groupBoxT1_Regler");
             this.groupBoxT1_Regler.Controls.Add(this.btnT1_Controller_Remove);
             this.groupBoxT1_Regler.Controls.Add(this.listBoxT1_ControllerList);
             this.groupBoxT1_Regler.Controls.Add(this.comboBoxT1_Controllers);
             this.groupBoxT1_Regler.Controls.Add(this.btnT1_Controller_Add);
             this.groupBoxT1_Regler.Controls.Add(this.btnT1_editController);
+            resources.ApplyResources(this.groupBoxT1_Regler, "groupBoxT1_Regler");
             this.groupBoxT1_Regler.Name = "groupBoxT1_Regler";
             this.groupBoxT1_Regler.TabStop = false;
             // 
@@ -201,17 +201,17 @@
             // 
             // listBoxT1_ControllerList
             // 
-            resources.ApplyResources(this.listBoxT1_ControllerList, "listBoxT1_ControllerList");
             this.listBoxT1_ControllerList.FormattingEnabled = true;
+            resources.ApplyResources(this.listBoxT1_ControllerList, "listBoxT1_ControllerList");
             this.listBoxT1_ControllerList.Name = "listBoxT1_ControllerList";
             this.listBoxT1_ControllerList.SelectedIndexChanged += new System.EventHandler(this.listBoxT1_ControllerList_SelectedIndexChanged);
             this.listBoxT1_ControllerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT1_ControllerList_KeyDown);
             // 
             // comboBoxT1_Controllers
             // 
-            resources.ApplyResources(this.comboBoxT1_Controllers, "comboBoxT1_Controllers");
             this.comboBoxT1_Controllers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxT1_Controllers.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT1_Controllers, "comboBoxT1_Controllers");
             this.comboBoxT1_Controllers.Name = "comboBoxT1_Controllers";
             // 
             // btnT1_Controller_Add
@@ -230,30 +230,29 @@
             // 
             // listBox_ShowJoystickStates
             // 
-            resources.ApplyResources(this.listBox_ShowJoystickStates, "listBox_ShowJoystickStates");
             this.listBox_ShowJoystickStates.FormattingEnabled = true;
+            resources.ApplyResources(this.listBox_ShowJoystickStates, "listBox_ShowJoystickStates");
             this.listBox_ShowJoystickStates.Name = "listBox_ShowJoystickStates";
             // 
             // tabControl_ReglerKnopf
             // 
-            resources.ApplyResources(this.tabControl_ReglerKnopf, "tabControl_ReglerKnopf");
             this.tabControl_ReglerKnopf.Controls.Add(this.tabPage4);
             this.tabControl_ReglerKnopf.Controls.Add(this.tabPage3);
+            resources.ApplyResources(this.tabControl_ReglerKnopf, "tabControl_ReglerKnopf");
             this.tabControl_ReglerKnopf.Name = "tabControl_ReglerKnopf";
             this.tabControl_ReglerKnopf.SelectedIndex = 0;
             this.tabControl_ReglerKnopf.SelectedIndexChanged += new System.EventHandler(this.tabControl_ReglerKnopf_SelectedIndexChanged);
-            this.tabControl_ReglerKnopf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tabControl_ReglerKnopf_KeyPress);
+            this.tabControl_ReglerKnopf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl_ReglerKnopf_KeyDown);
             // 
             // tabPage4
             // 
-            resources.ApplyResources(this.tabPage4, "tabPage4");
             this.tabPage4.Controls.Add(this.panel_Regler);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // panel_Regler
             // 
-            resources.ApplyResources(this.panel_Regler, "panel_Regler");
             this.panel_Regler.Controls.Add(this.btnR_GetTimeFactor);
             this.panel_Regler.Controls.Add(this.progressBar_Joystick);
             this.panel_Regler.Controls.Add(this.label11);
@@ -282,6 +281,7 @@
             this.panel_Regler.Controls.Add(this.txtR_Zeitfaktor);
             this.panel_Regler.Controls.Add(this.label15);
             this.panel_Regler.Controls.Add(this.txtR_JoyAchse);
+            resources.ApplyResources(this.panel_Regler, "panel_Regler");
             this.panel_Regler.Name = "panel_Regler";
             // 
             // btnR_GetTimeFactor
@@ -293,9 +293,9 @@
             // 
             // progressBar_Joystick
             // 
-            resources.ApplyResources(this.progressBar_Joystick, "progressBar_Joystick");
             this.progressBar_Joystick.BackColor = System.Drawing.SystemColors.Control;
             this.progressBar_Joystick.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.progressBar_Joystick, "progressBar_Joystick");
             this.progressBar_Joystick.Maximum = 200;
             this.progressBar_Joystick.Name = "progressBar_Joystick";
             this.progressBar_Joystick.Value = 50;
@@ -307,8 +307,8 @@
             // 
             // pictureBox2
             // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.BackColor = System.Drawing.Color.DodgerBlue;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
@@ -321,8 +321,8 @@
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -399,7 +399,6 @@
             // 
             // dataGridView1
             // 
-            resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
@@ -407,16 +406,15 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Joystick,
             this.Output});
+            resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.Name = "dataGridView1";
             // 
             // Joystick
             // 
-            resources.ApplyResources(this.Joystick, "Joystick");
             this.Joystick.Name = "Joystick";
             // 
             // Output
             // 
-            resources.ApplyResources(this.Output, "Output");
             this.Output.Name = "Output";
             this.Output.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -473,7 +471,6 @@
             // 
             // tabPage3
             // 
-            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Controls.Add(this.btnB_Speichern);
             this.tabPage3.Controls.Add(this.btnB_entfernen);
             this.tabPage3.Controls.Add(this.lblB_Bedingung);
@@ -492,6 +489,7 @@
             this.tabPage3.Controls.Add(this.txtB_JoystickKnopf);
             this.tabPage3.Controls.Add(this.radioB_regler);
             this.tabPage3.Controls.Add(this.radioB_normal);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -556,8 +554,8 @@
             // 
             // comboBoxB_KnopfAuswahl
             // 
-            resources.ApplyResources(this.comboBoxB_KnopfAuswahl, "comboBoxB_KnopfAuswahl");
             this.comboBoxB_KnopfAuswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxB_KnopfAuswahl, "comboBoxB_KnopfAuswahl");
             this.comboBoxB_KnopfAuswahl.Name = "comboBoxB_KnopfAuswahl";
             this.comboBoxB_KnopfAuswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxB_KnopfAuswahl_SelectedIndexChanged);
             // 
@@ -612,7 +610,6 @@
             // 
             // tabPage1
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Controls.Add(this.btnT0_back);
             this.tabPage1.Controls.Add(this.btnT0_globalKeybinds);
             this.tabPage1.Controls.Add(this.btnT0_Delete);
@@ -620,6 +617,7 @@
             this.tabPage1.Controls.Add(this.btnT0_edit);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.comboBoxT0_Zugauswahl);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -665,25 +663,24 @@
             // 
             // comboBoxT0_Zugauswahl
             // 
-            resources.ApplyResources(this.comboBoxT0_Zugauswahl, "comboBoxT0_Zugauswahl");
             this.comboBoxT0_Zugauswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT0_Zugauswahl, "comboBoxT0_Zugauswahl");
             this.comboBoxT0_Zugauswahl.Name = "comboBoxT0_Zugauswahl";
             this.comboBoxT0_Zugauswahl.Sorted = true;
             // 
             // tabControl_main
             // 
-            resources.ApplyResources(this.tabControl_main, "tabControl_main");
             this.tabControl_main.Controls.Add(this.tabPage1);
             this.tabControl_main.Controls.Add(this.tabPage2);
             this.tabControl_main.Controls.Add(this.tabPage5);
             this.tabControl_main.Controls.Add(this.tabPage6);
+            resources.ApplyResources(this.tabControl_main, "tabControl_main");
             this.tabControl_main.Name = "tabControl_main";
             this.tabControl_main.SelectedIndex = 0;
             this.tabControl_main.SelectedIndexChanged += new System.EventHandler(this.tabControl_main_SelectedIndexChanged);
             // 
             // tabPage5
             // 
-            resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Controls.Add(this.btnT2_defaultSettings);
             this.tabPage5.Controls.Add(this.btnT2_back);
             this.tabPage5.Controls.Add(this.panel_main);
@@ -692,6 +689,7 @@
             this.tabPage5.Controls.Add(this.btnT2_Save);
             this.tabPage5.Controls.Add(this.label17);
             this.tabPage5.Controls.Add(this.comboBoxT2_Reglerauswahl);
+            resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -711,18 +709,18 @@
             // 
             // panel_main
             // 
-            resources.ApplyResources(this.panel_main, "panel_main");
             this.panel_main.Controls.Add(this.groupBox2);
             this.panel_main.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.panel_main, "panel_main");
             this.panel_main.Name = "panel_main";
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.checkboxT2_Kombihebel);
             this.groupBox2.Controls.Add(this.groupBox_kombihebel);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.comboBoxT2_mainIndicator);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -735,11 +733,11 @@
             // 
             // groupBox_kombihebel
             // 
-            resources.ApplyResources(this.groupBox_kombihebel, "groupBox_kombihebel");
             this.groupBox_kombihebel.Controls.Add(this.label13);
             this.groupBox_kombihebel.Controls.Add(this.comboBoxT2_brakearea);
             this.groupBox_kombihebel.Controls.Add(this.label12);
             this.groupBox_kombihebel.Controls.Add(this.comboBoxT2_throttlearea);
+            resources.ApplyResources(this.groupBox_kombihebel, "groupBox_kombihebel");
             this.groupBox_kombihebel.Name = "groupBox_kombihebel";
             this.groupBox_kombihebel.TabStop = false;
             // 
@@ -750,8 +748,8 @@
             // 
             // comboBoxT2_brakearea
             // 
-            resources.ApplyResources(this.comboBoxT2_brakearea, "comboBoxT2_brakearea");
             this.comboBoxT2_brakearea.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_brakearea, "comboBoxT2_brakearea");
             this.comboBoxT2_brakearea.Name = "comboBoxT2_brakearea";
             this.comboBoxT2_brakearea.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Indicators_SelectedIndexChanged);
             this.comboBoxT2_brakearea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
@@ -763,8 +761,8 @@
             // 
             // comboBoxT2_throttlearea
             // 
-            resources.ApplyResources(this.comboBoxT2_throttlearea, "comboBoxT2_throttlearea");
             this.comboBoxT2_throttlearea.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_throttlearea, "comboBoxT2_throttlearea");
             this.comboBoxT2_throttlearea.Name = "comboBoxT2_throttlearea";
             this.comboBoxT2_throttlearea.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Indicators_SelectedIndexChanged);
             this.comboBoxT2_throttlearea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
@@ -776,19 +774,19 @@
             // 
             // comboBoxT2_mainIndicator
             // 
-            resources.ApplyResources(this.comboBoxT2_mainIndicator, "comboBoxT2_mainIndicator");
             this.comboBoxT2_mainIndicator.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_mainIndicator, "comboBoxT2_mainIndicator");
             this.comboBoxT2_mainIndicator.Name = "comboBoxT2_mainIndicator";
             this.comboBoxT2_mainIndicator.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Indicators_SelectedIndexChanged);
             this.comboBoxT2_mainIndicator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Indicators_KeyPress);
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.txtT2_decrease);
             this.groupBox1.Controls.Add(this.txtT2_increase);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label9);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -846,15 +844,14 @@
             // 
             // comboBoxT2_Reglerauswahl
             // 
-            resources.ApplyResources(this.comboBoxT2_Reglerauswahl, "comboBoxT2_Reglerauswahl");
             this.comboBoxT2_Reglerauswahl.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxT2_Reglerauswahl, "comboBoxT2_Reglerauswahl");
             this.comboBoxT2_Reglerauswahl.Name = "comboBoxT2_Reglerauswahl";
             this.comboBoxT2_Reglerauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxT2_Reglerauswahl_SelectedIndexChanged);
             this.comboBoxT2_Reglerauswahl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxT2_Reglerauswahl_KeyPress);
             // 
             // tabPage6
             // 
-            resources.ApplyResources(this.tabPage6, "tabPage6");
             this.tabPage6.Controls.Add(this.btnT3_Fertig);
             this.tabPage6.Controls.Add(this.btnT3_Hinzufügen);
             this.tabPage6.Controls.Add(this.label18);
@@ -868,6 +865,7 @@
             this.tabPage6.Controls.Add(this.label19);
             this.tabPage6.Controls.Add(this.txtT3_Taste);
             this.tabPage6.Controls.Add(this.listBoxT3_Output);
+            resources.ApplyResources(this.tabPage6, "tabPage6");
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
@@ -953,8 +951,8 @@
             // 
             // listBoxT3_Output
             // 
-            resources.ApplyResources(this.listBoxT3_Output, "listBoxT3_Output");
             this.listBoxT3_Output.FormattingEnabled = true;
+            resources.ApplyResources(this.listBoxT3_Output, "listBoxT3_Output");
             this.listBoxT3_Output.Name = "listBoxT3_Output";
             this.listBoxT3_Output.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT3_Output_KeyDown);
             // 

@@ -37,7 +37,7 @@ namespace TSW2_Controller
             comboBoxT0_Zugauswahl.Items.AddRange(formMain.trainNames.ToArray());
             comboBoxT0_Zugauswahl.SelectedItem = Tcfg.nameForGlobal;
 
-            if(_FormMain.selectedTrain != "")
+            if (_FormMain.selectedTrain != "")
             {
                 comboBoxT0_Zugauswahl.SelectedItem = _FormMain.selectedTrain;
             }
@@ -243,7 +243,7 @@ namespace TSW2_Controller
                                     }
                                 }
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 Log.ErrorException(ex);
                             }
@@ -266,7 +266,7 @@ namespace TSW2_Controller
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Log.ErrorException(ex);
                 }
@@ -295,7 +295,7 @@ namespace TSW2_Controller
         private void btnT0_edit_Click(object sender, EventArgs e)
         {
             selectedTrain = comboBoxT0_Zugauswahl.Text;
-            _FormMain.selectedTrain= selectedTrain;
+            _FormMain.selectedTrain = selectedTrain;
             ResetKonfiguration();
             if (selectedTrain == Tcfg.nameForGlobal)
             {
@@ -446,7 +446,7 @@ namespace TSW2_Controller
                 listBoxT1_ControllerList.Items.Add(comboBoxT1_Controllers.Text);
             }
         }
-        private void tabControl_ReglerKnopf_KeyPress(object sender, KeyPressEventArgs e)
+        private void tabControl_ReglerKnopf_KeyDown(object sender, KeyEventArgs e)
         {
             configIsBeeingChanged = 1;
         }
@@ -546,7 +546,7 @@ namespace TSW2_Controller
                 }
             }
 
-            if(!cancel)
+            if (!cancel)
             {
                 configIsBeeingChanged = 0;
                 tabControl_main.SelectedIndex = 0;
@@ -555,17 +555,41 @@ namespace TSW2_Controller
 
         private void tabControl_ReglerKnopf_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectedTrain == Tcfg.nameForGlobal)
+            bool cancel = true;
+            if (configIsBeeingChanged == 1)
             {
-                tabControl_ReglerKnopf.SelectedIndex = 1;
+                if (MessageBox.Show(Sprache.Translate("Weiter ohne zu speichern?", "Continue without saving?"), "", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                {
+                    cancel = true;
+                    configIsBeeingChanged = -1;
+                    if (tabControl_ReglerKnopf.SelectedIndex==0)
+                    {
+                        tabControl_ReglerKnopf.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        tabControl_ReglerKnopf.SelectedIndex = 0;
+                    }
+                }
             }
-            if (tabControl_ReglerKnopf.SelectedIndex == 0)
+            else if(configIsBeeingChanged==-1)
             {
-                groupBoxT1_Regler.Visible = true;
+                configIsBeeingChanged = 1;
             }
-            else
+            if(!cancel)
             {
-                groupBoxT1_Regler.Visible = false;
+                if (selectedTrain == Tcfg.nameForGlobal)
+                {
+                    tabControl_ReglerKnopf.SelectedIndex = 1;
+                }
+                if (tabControl_ReglerKnopf.SelectedIndex == 0)
+                {
+                    groupBoxT1_Regler.Visible = true;
+                }
+                else
+                {
+                    groupBoxT1_Regler.Visible = false;
+                }
             }
         }
 
@@ -892,7 +916,7 @@ namespace TSW2_Controller
                     }
                     if (!bereitsVorhanden)
                     {
-                        string[] singleTrain = new string[Tcfg.arrayLength];
+                        string[] singleTrain = Enumerable.Repeat("", Tcfg.arrayLength).ToArray();
                         singleTrain[Tcfg.zug] = selectedTrain;
                         singleTrain[Tcfg.reglerName] = selectedRegler;
                         singleTrain[Tcfg.joystickNummer] = txtR_JoyNr.Text;
@@ -1152,6 +1176,7 @@ namespace TSW2_Controller
         private void btnB_Speichern_Click(object sender, EventArgs e)
         {
             Buttons_Speichern();
+            configIsBeeingChanged = 0;
             comboBoxB_KnopfAuswahl.Items.Add(comboBoxB_KnopfAuswahl.Text);
         }
         private void Buttons_Speichern(bool justWriteFile = false)
@@ -1229,7 +1254,7 @@ namespace TSW2_Controller
 
                     if (!bereitsVorhanden)
                     {
-                        string[] singleTrain = new string[trainConfig[0].Count()];
+                        string[] singleTrain = Enumerable.Repeat("", trainConfig[0].Count()).ToArray();
                         singleTrain[Tcfg.zug] = selectedTrain;
                         singleTrain[Tcfg.beschreibung] = comboBoxB_KnopfAuswahl.Text.ToString();
                         singleTrain[Tcfg.joystickNummer] = txtB_JoystickNr.Text;
