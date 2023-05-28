@@ -341,6 +341,7 @@ namespace TSW2_Controller
                     changelog.Add("- Verbesserung: Texterkennung deutlich verbessert.");
                     changelog.Add("- Verbesserung: Kleine Code Optimierungen.");
                     changelog.Add("- Bugfix: Probleme bei der Konfiguration, wenn man mehrere Joysticks benutzt.");
+                    changelog.Add("- Bugfix: Joystick als Knopf hat nicht den Rohwert vom Joystick benutzt.");
                 }
                 else
                 {
@@ -348,6 +349,7 @@ namespace TSW2_Controller
                     changelog.Add("- Improvement: Small code cleanup.");
                     changelog.Add("- Bugfix: Issues with configuration when using multiple joysticks.");
                     changelog.Add("- Bugfix: Translation error.");
+                    changelog.Add("- Bugfix: Joystick as button didn't use raw values.");
                 }
 
                 changelog.Add("----------------------------------------");

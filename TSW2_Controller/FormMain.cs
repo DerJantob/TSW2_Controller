@@ -1480,19 +1480,26 @@ namespace TSW2_Controller
             }
         }
 
-        public int GetJoystickStateByName(string id, string input)
+        public int GetRawJoystickStateByName(string id, string input)
         {
-            foreach (object[] obyJstk in joystickStates)
+            int[] joyInputs = new int[8];
+            Joystick stick = MainSticks[Convert.ToInt32(id)];
+            JoystickState state = stick.GetCurrentState();
+
+            joyInputs[0] = state.X;
+            joyInputs[1] = state.Y;
+            joyInputs[2] = state.Z;
+            joyInputs[3] = state.PointOfViewControllers[0] + 1;
+            joyInputs[4] = state.RotationX;
+            joyInputs[5] = state.RotationY;
+            joyInputs[6] = state.RotationZ;
+            joyInputs[7] = state.Sliders[0];
+
+            for (int i = 0; i < inputNames.Count(); i++)
             {
-                if ((int)obyJstk[0] == Convert.ToInt32(id))
+                if (inputNames[i]==input)
                 {
-                    for (int i = 0; i < ((string[])obyJstk[2]).Length; i++)
-                    {
-                        if (((string[])obyJstk[2])[i] == input)
-                        {
-                            return ((int[])obyJstk[1])[i];
-                        }
-                    }
+                    return joyInputs[i];
                 }
             }
             return 0;
@@ -1518,7 +1525,7 @@ namespace TSW2_Controller
                     {
                         if (activeTrain[i][Tcfg.joystickInput] == inputNames[o])
                         {
-                            int joyButtonValue = GetJoystickStateByName(activeTrain[i][Tcfg.joystickNummer], inputNames[o]);
+                            int joyButtonValue = GetRawJoystickStateByName(activeTrain[i][Tcfg.joystickNummer], inputNames[o]);
                             string[] convert = activeTrain[i][Tcfg.inputTyp].Replace("Button", "").Replace("[", "").Split(']');
 
 
