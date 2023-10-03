@@ -1,9 +1,16 @@
 
-# TSW2_Controller
+# TSW_Controller
 
-TSW2_Controller allows you to control TSW2 with your joystick. It reads your screen to get the current state of the simulator and synchronize it to your joystick. That way, they don't end up having mismatching positions.
+TSW_Controller allows you to control TrainSimWorld with your joystick. It reads your screen to get the current state of the simulator and synchronize it to your joystick. That way, they don't end up having mismatching positions.
 
 I was bothered by the fact that you can't use a joystick as an input device in TSW2, so I wrote my own program to solve the problem. Since I was quite happy with the result, I thought why not publish the program so that others can use it as well.  And now here we are
+## Supported Versions
+
+- ❓ Train Sim World 2020
+- ✅ Train Sim World 2
+- ✅ Train Sim World 3
+- ❌ Train Sim World 4
+
 ## Features
 
 - Translate movement from joystick to game
