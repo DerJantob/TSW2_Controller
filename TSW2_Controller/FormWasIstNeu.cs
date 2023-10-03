@@ -363,7 +363,7 @@ namespace TSW2_Controller
                 if (Settings.Default.Sprache == "de-DE")
                 {
                     changelog.Add("- Hinzugefügt: Unterstützt nun TSW4");
-                    changelog.Add("- Hinzugefügt: Einstellung um TSW 2020/2/3 wieder aktivieren");
+                    changelog.Add("- Hinzugefügt: Einstellung um TSW 2020/2/3 wieder zu aktivieren");
                 }
                 else
                 {
