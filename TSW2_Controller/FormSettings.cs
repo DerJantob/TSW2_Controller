@@ -46,6 +46,7 @@ namespace TSW2_Controller
             {
                 check_showDebug.Checked = Settings.Default.showDebug;
                 check_ShowScan.Checked = Settings.Default.showScanResult;
+                check_OlderTSWVersion.Checked = Settings.Default.OlderTSWVersion;
 
 
                 string resName = Settings.Default.res.Width.ToString() + "x" + Settings.Default.res.Height.ToString();
@@ -358,6 +359,7 @@ namespace TSW2_Controller
 
             Settings.Default.showDebug = check_showDebug.Checked;
             Settings.Default.showScanResult = check_ShowScan.Checked;
+            Settings.Default.OlderTSWVersion = check_OlderTSWVersion.Checked;
             Settings.Default.Save();
             Close();
         }

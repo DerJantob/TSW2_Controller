@@ -6,10 +6,12 @@ TSW_Controller allows you to control TrainSimWorld with your joystick. It reads 
 I was bothered by the fact that you can't use a joystick as an input device in TSW2, so I wrote my own program to solve the problem. Since I was quite happy with the result, I thought why not publish the program so that others can use it as well.  And now here we are
 ## Supported Versions
 
-- ❓ Train Sim World 2020
-- ✅ Train Sim World 2
+- ✅ Train Sim World 4
+
+Must be activated in Settings:
 - ✅ Train Sim World 3
-- ❌ Train Sim World 4
+- ✅ Train Sim World 2
+- ✅ Train Sim World 2020
 
 ## Features
 

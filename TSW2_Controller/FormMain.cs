@@ -480,13 +480,26 @@ namespace TSW2_Controller
         public Bitmap Screenshot(bool normal)
         {
             //Breite und Höhe des ScanFensters
-            int width = ConvertHeight(513); //ConvertHeight to prevent image strechd
+            int width = ConvertHeight(513); //ConvertHeight to prevent image strech
             int height = ConvertHeight(30);
             //Startposition vom oberen Fenster
             int x1 = ConvertWidth(2560) - ConvertHeight(513) - ConvertHeight(127); //=1920
-            int y1 = ConvertHeight(458);
+            int y1;
             //Angepasste Höhe fürs untere Fenster
-            int y2 = ConvertHeight(530);
+            int y2;
+
+            if (Settings.Default.OlderTSWVersion)
+            {
+                //TSW 2020/2/3
+                y1 = ConvertHeight(458);
+                y2 = ConvertHeight(530);
+            }
+            else
+            {
+                //TSW 4
+                y1 = ConvertHeight(483);
+                y2 = ConvertHeight(535);
+            }
 
 
             Bitmap bmpScreenshot = new Bitmap(width, height);
