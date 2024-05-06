@@ -27,12 +27,15 @@ namespace TSW2_Controller
 
         public FormSteuerung2(FormMain formMain)
         {
+            Log.Add("Init FormSteuerung");
             InitializeComponent();
 
             _FormMain = formMain;
 
             trainConfig = _FormMain.trainConfig;
 
+
+            Log.Add("fill comboboxT0_Zugauswahl");
             comboBoxT0_Zugauswahl.Items.Add(Tcfg.nameForGlobal);
             comboBoxT0_Zugauswahl.Items.AddRange(formMain.trainNames.ToArray());
             comboBoxT0_Zugauswahl.SelectedItem = Tcfg.nameForGlobal;
@@ -41,6 +44,7 @@ namespace TSW2_Controller
             {
                 comboBoxT0_Zugauswahl.SelectedItem = _FormMain.selectedTrain;
             }
+
 
             lblB_Bedingung.Hide();
             txtB_Bedingung.Hide();
@@ -53,6 +57,7 @@ namespace TSW2_Controller
             tabControl_main.ItemSize = new Size(0, 1);
             tabControl_main.SizeMode = TabSizeMode.Fixed;
             tabControl_main.Size = new Size(313, 130);
+            Log.Add("finished init FormSteuerung");
         }
 
         #region Allgemeines
@@ -77,6 +82,7 @@ namespace TSW2_Controller
         }
         private void ReadControllersFile()
         {
+            Log.Add("Reading Controller file");
             comboBoxT1_Controllers.Items.Clear();
             virtualControllerList.Clear();
             if (File.Exists(Tcfg.controllersConfigPfad))
@@ -103,6 +109,7 @@ namespace TSW2_Controller
                     }
                 }
             }
+            Log.Add("Finished reading Controller file");
         }
 
         private void txt_OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
@@ -112,177 +119,184 @@ namespace TSW2_Controller
 
         private void timer_CheckJoysticks_Tick(object sender, EventArgs e)
         {
-            int counter = 1;
-            int topIndex = listBox_ShowJoystickStates.TopIndex;
-            for (int i = 0; i < FormMain.MainSticks.Length; i++)
+            try
             {
-                int[] joyInputs = new int[8];
-
-                JoystickState state = new JoystickState();
-
-                state = FormMain.MainSticks[i].GetCurrentState();
-
-                joyInputs[0] = state.X;
-                joyInputs[1] = state.Y;
-                joyInputs[2] = state.Z;
-                joyInputs[3] = state.PointOfViewControllers[0] + 1;
-                joyInputs[4] = state.RotationX;
-                joyInputs[5] = state.RotationY;
-                joyInputs[6] = state.RotationZ;
-                joyInputs[7] = state.Sliders[0];
-
-
-                for (int o = 0; o < state.Buttons.Count(); o++)
+                int counter = 1;
+                int topIndex = listBox_ShowJoystickStates.TopIndex;
+                for (int i = 0; i < FormMain.MainSticks.Length; i++)
                 {
-                    if (state.Buttons[o] == true)
-                    {
+                    int[] joyInputs = new int[8];
 
-                        if (counter <= listBox_ShowJoystickStates.Items.Count)
-                        {
-                            listBox_ShowJoystickStates.Items[counter - 1] = Sprache.Translate("Nr:", "No:") + i + " B" + o;
-                        }
-                        else
-                        {
-                            listBox_ShowJoystickStates.Items.Add(Sprache.Translate("Nr:", "No:") + i + " B" + o);
-                        }
-                        counter++;
-                    }
-                }
-                for (int o = 0; o < joyInputs.Length; o++)
-                {
-                    if (joyInputs[o] != 0)
-                    {
-                        //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        if (counter <= listBox_ShowJoystickStates.Items.Count)
-                        {
-                            listBox_ShowJoystickStates.Items[counter - 1] = Sprache.Translate("Nr:", "No:") + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o];
-                        }
-                        else
-                        {
-                            listBox_ShowJoystickStates.Items.Add(Sprache.Translate("Nr:", "No:" + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]));
-                        }
-                        counter++;
-                    }
-                }
+                    JoystickState state = new JoystickState();
 
-                string textOutput = "";
-                try
-                {
-                    for (int o = 0; o < FormMain.inputNames.Count(); o++)
+                    state = FormMain.MainSticks[i].GetCurrentState();
+
+                    joyInputs[0] = state.X;
+                    joyInputs[1] = state.Y;
+                    joyInputs[2] = state.Z;
+                    joyInputs[3] = state.PointOfViewControllers[0] + 1;
+                    joyInputs[4] = state.RotationX;
+                    joyInputs[5] = state.RotationY;
+                    joyInputs[6] = state.RotationZ;
+                    joyInputs[7] = state.Sliders[0];
+
+
+                    for (int o = 0; o < state.Buttons.Count(); o++)
                     {
-                        if (FormMain.inputNames[o] == txtR_JoyAchse.Text && i.ToString() == txtR_JoyNr.Text)
+                        if (state.Buttons[o] == true)
                         {
-                            textOutput = joyInputs[o].ToString() + " ";
-                            for (int j = 0; j < customController.Count; j++)
+
+                            if (counter <= listBox_ShowJoystickStates.Items.Count)
                             {
-                                if (j + 1 > customController.Count - 1)
-                                {
-                                    joyInputs[o] = Convert.ToInt32(customController[j][1]);
-                                    textOutput += "-> " + joyInputs[o].ToString() + " ";
-                                    break;
-                                }
-                                else
-                                {
-                                    if (joyInputs[o] >= Convert.ToInt32(customController[j][0]) && joyInputs[o] < Convert.ToInt32(customController[j + 1][0]))
-                                    {
-                                        double steigung = (Convert.ToDouble(customController[j + 1][1]) - Convert.ToDouble(customController[j][1])) / (Convert.ToDouble(customController[j + 1][0]) - Convert.ToDouble(customController[j][0]));
+                                listBox_ShowJoystickStates.Items[counter - 1] = Sprache.Translate("Nr:", "No:") + i + " B" + o;
+                            }
+                            else
+                            {
+                                listBox_ShowJoystickStates.Items.Add(Sprache.Translate("Nr:", "No:") + i + " B" + o);
+                            }
+                            counter++;
+                        }
+                    }
+                    for (int o = 0; o < joyInputs.Length; o++)
+                    {
+                        if (joyInputs[o] != 0)
+                        {
+                            //Zeige den Joystick-Wert nur, wenn er != 0 ist
+                            if (counter <= listBox_ShowJoystickStates.Items.Count)
+                            {
+                                listBox_ShowJoystickStates.Items[counter - 1] = Sprache.Translate("Nr:", "No:") + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o];
+                            }
+                            else
+                            {
+                                listBox_ShowJoystickStates.Items.Add(Sprache.Translate("Nr:", "No:" + i + " " + FormMain.inputNames[o] + "  " + joyInputs[o]));
+                            }
+                            counter++;
+                        }
+                    }
 
-                                        joyInputs[o] = Convert.ToInt32(Math.Round(((joyInputs[o] - Convert.ToDouble(customController[j + 1][0])) * steigung) + Convert.ToDouble(customController[j + 1][1]), 0));
+                    string textOutput = "";
+                    try
+                    {
+                        for (int o = 0; o < FormMain.inputNames.Count(); o++)
+                        {
+                            if (FormMain.inputNames[o] == txtR_JoyAchse.Text && i.ToString() == txtR_JoyNr.Text)
+                            {
+                                textOutput = joyInputs[o].ToString() + " ";
+                                for (int j = 0; j < customController.Count; j++)
+                                {
+                                    if (j + 1 > customController.Count - 1)
+                                    {
+                                        joyInputs[o] = Convert.ToInt32(customController[j][1]);
                                         textOutput += "-> " + joyInputs[o].ToString() + " ";
                                         break;
                                     }
-                                }
-                            }
-
-                            progressBar_Joystick.Value = joyInputs[o] + 100;
-                        }
-
-
-                        if (txtR_InputUmrechnen.Text.Length >= 3 && txtR_JoyAchse.Text == FormMain.inputNames[o] && i.ToString() == txtR_JoyNr.Text)
-                        {
-                            try
-                            {
-                                string[] umrechnen = txtR_InputUmrechnen.Text.Split(' ');
-
-                                foreach (string single_umrechnen in umrechnen)
-                                {
-                                    if (single_umrechnen.Contains("|"))
-                                    {
-                                        int von = Convert.ToInt32(single_umrechnen.Remove(single_umrechnen.IndexOf("|"), single_umrechnen.Length - single_umrechnen.IndexOf("|")));
-
-                                        string temp_bis = single_umrechnen.Remove(0, single_umrechnen.IndexOf("|") + 1);
-                                        int index = temp_bis.IndexOf("=");
-                                        int bis = Convert.ToInt32(temp_bis.Remove(index, temp_bis.Length - index));
-                                        int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, single_umrechnen.IndexOf("=") + 1));
-
-                                        if (von <= joyInputs[o] && joyInputs[o] <= bis)
-                                        {
-                                            joyInputs[o] = entsprechendeNummer;
-                                            textOutput += "-> " + joyInputs[o] + " ";
-                                            break;
-                                        }
-                                        else if (von >= joyInputs[o] && joyInputs[o] >= bis)
-                                        {
-                                            joyInputs[o] = entsprechendeNummer;
-                                            textOutput += "-> " + joyInputs[o] + " ";
-                                            break;
-                                        }
-                                    }
                                     else
                                     {
-                                        int index = single_umrechnen.IndexOf("=");
-                                        int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
-                                        int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
-
-                                        if (joyInputs[o] == gesuchteNummer)
+                                        if (joyInputs[o] >= Convert.ToInt32(customController[j][0]) && joyInputs[o] < Convert.ToInt32(customController[j + 1][0]))
                                         {
-                                            joyInputs[o] = entsprechendeNummer;
-                                            textOutput += "-> " + joyInputs[o] + " ";
+                                            double steigung = (Convert.ToDouble(customController[j + 1][1]) - Convert.ToDouble(customController[j][1])) / (Convert.ToDouble(customController[j + 1][0]) - Convert.ToDouble(customController[j][0]));
+
+                                            joyInputs[o] = Convert.ToInt32(Math.Round(((joyInputs[o] - Convert.ToDouble(customController[j + 1][0])) * steigung) + Convert.ToDouble(customController[j + 1][1]), 0));
+                                            textOutput += "-> " + joyInputs[o].ToString() + " ";
                                             break;
                                         }
                                     }
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                Log.ErrorException(ex);
-                            }
-                        }
 
-                        if (txtR_JoyAchse.Text == FormMain.inputNames[o] && i.ToString() == txtR_JoyNr.Text)
-                        {
-                            if (radioR_Stufen.Checked)
+                                progressBar_Joystick.Value = joyInputs[o] + 100;
+                            }
+
+
+                            if (txtR_InputUmrechnen.Text.Length >= 3 && txtR_JoyAchse.Text == FormMain.inputNames[o] && i.ToString() == txtR_JoyNr.Text)
                             {
                                 try
                                 {
-                                    joyInputs[o] = Convert.ToInt32(Math.Round(joyInputs[o] * (Convert.ToDouble(txtR_AnzahlStufen.Text) / 100), 0));
-                                    textOutput += "-> " + joyInputs[o];
+                                    string[] umrechnen = txtR_InputUmrechnen.Text.Split(' ');
+
+                                    foreach (string single_umrechnen in umrechnen)
+                                    {
+                                        if (single_umrechnen.Contains("|"))
+                                        {
+                                            int von = Convert.ToInt32(single_umrechnen.Remove(single_umrechnen.IndexOf("|"), single_umrechnen.Length - single_umrechnen.IndexOf("|")));
+
+                                            string temp_bis = single_umrechnen.Remove(0, single_umrechnen.IndexOf("|") + 1);
+                                            int index = temp_bis.IndexOf("=");
+                                            int bis = Convert.ToInt32(temp_bis.Remove(index, temp_bis.Length - index));
+                                            int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, single_umrechnen.IndexOf("=") + 1));
+
+                                            if (von <= joyInputs[o] && joyInputs[o] <= bis)
+                                            {
+                                                joyInputs[o] = entsprechendeNummer;
+                                                textOutput += "-> " + joyInputs[o] + " ";
+                                                break;
+                                            }
+                                            else if (von >= joyInputs[o] && joyInputs[o] >= bis)
+                                            {
+                                                joyInputs[o] = entsprechendeNummer;
+                                                textOutput += "-> " + joyInputs[o] + " ";
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            int index = single_umrechnen.IndexOf("=");
+                                            int gesuchteNummer = Convert.ToInt32(single_umrechnen.Remove(index, single_umrechnen.Length - index));
+                                            int entsprechendeNummer = Convert.ToInt32(single_umrechnen.Remove(0, index + 1));
+
+                                            if (joyInputs[o] == gesuchteNummer)
+                                            {
+                                                joyInputs[o] = entsprechendeNummer;
+                                                textOutput += "-> " + joyInputs[o] + " ";
+                                                break;
+                                            }
+                                        }
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     Log.ErrorException(ex);
                                 }
                             }
+
+                            if (txtR_JoyAchse.Text == FormMain.inputNames[o] && i.ToString() == txtR_JoyNr.Text)
+                            {
+                                if (radioR_Stufen.Checked)
+                                {
+                                    try
+                                    {
+                                        joyInputs[o] = Convert.ToInt32(Math.Round(joyInputs[o] * (Convert.ToDouble(txtR_AnzahlStufen.Text) / 100), 0));
+                                        textOutput += "-> " + joyInputs[o];
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Log.ErrorException(ex);
+                                    }
+                                }
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Log.ErrorException(ex);
-                }
+                    catch (Exception ex)
+                    {
+                        Log.ErrorException(ex);
+                    }
 
-                if (textOutput != "")
+                    if (textOutput != "")
+                    {
+                        lblR_ReglerStand.Text = textOutput;
+                    }
+                }
+                for (int o = listBox_ShowJoystickStates.Items.Count - counter; o >= 0; o--)
                 {
-                    lblR_ReglerStand.Text = textOutput;
+                    listBox_ShowJoystickStates.Items[listBox_ShowJoystickStates.Items.Count - o - 1] = "";
+                }
+                if (listBox_ShowJoystickStates.Items.Count > topIndex)
+                {
+                    listBox_ShowJoystickStates.TopIndex = topIndex;
                 }
             }
-            for (int o = listBox_ShowJoystickStates.Items.Count - counter; o >= 0; o--)
+            catch (Exception ex)
             {
-                listBox_ShowJoystickStates.Items[listBox_ShowJoystickStates.Items.Count - o - 1] = "";
-            }
-            if (listBox_ShowJoystickStates.Items.Count > topIndex)
-            {
-                listBox_ShowJoystickStates.TopIndex = topIndex;
+                Log.ErrorException(ex);
             }
         }
         private void hilfeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -294,9 +308,14 @@ namespace TSW2_Controller
         #region Zugauswahl
         private void btnT0_edit_Click(object sender, EventArgs e)
         {
+            Log.Add("edit button pressed");
             selectedTrain = comboBoxT0_Zugauswahl.Text;
             _FormMain.selectedTrain = selectedTrain;
+            Log.Add("Selected train: " + selectedTrain);
+
             ResetKonfiguration();
+            Log.Add("reset config");
+
             if (selectedTrain == Tcfg.nameForGlobal)
             {
                 tabControl_ReglerKnopf.SelectedIndex = 1;
@@ -312,9 +331,11 @@ namespace TSW2_Controller
             }
             tabControl_main.SelectedIndex = 1;
             panel_Regler.Enabled = false;
+            Log.Add("finished edit button");
         }
         private void btnT0_Add_Click(object sender, EventArgs e)
         {
+            Log.Add("Add button clicked.");
             _FormMain.selectedTrain = comboBoxT0_Zugauswahl.Text;
             ComboBox cb = comboBoxT0_Zugauswahl;
             cb.Text = cb.Text.Replace(",", "");
@@ -333,10 +354,13 @@ namespace TSW2_Controller
                 resetControllerBearbeiten(false);
             }
             //panel_main.Enabled = true;
+            Log.Add("finished add button");
         }
         private void btnT0_Delete_Click(object sender, EventArgs e)
         {
+            Log.Add("Delete button clicked.");
             selectedTrain = comboBoxT0_Zugauswahl.Text;
+            Log.Add("Selected train: " + selectedTrain);
 
             if (selectedTrain != "")
             {
@@ -375,6 +399,7 @@ namespace TSW2_Controller
                     MessageBox.Show(counter + Sprache.Translate(" Einträge gelöscht!", " entries deleted!"));
                 }
             }
+            Log.Add("Finished delete button");
         }
         private void btnT0_globalKeybinds_Click(object sender, EventArgs e)
         {
@@ -562,7 +587,7 @@ namespace TSW2_Controller
                 {
                     cancel = true;
                     configIsBeeingChanged = -1;
-                    if (tabControl_ReglerKnopf.SelectedIndex==0)
+                    if (tabControl_ReglerKnopf.SelectedIndex == 0)
                     {
                         tabControl_ReglerKnopf.SelectedIndex = 1;
                     }
@@ -572,11 +597,11 @@ namespace TSW2_Controller
                     }
                 }
             }
-            else if(configIsBeeingChanged==-1)
+            else if (configIsBeeingChanged == -1)
             {
                 configIsBeeingChanged = 1;
             }
-            if(!cancel)
+            if (!cancel)
             {
                 if (selectedTrain == Tcfg.nameForGlobal)
                 {

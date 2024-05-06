@@ -4,20 +4,18 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tesseract;
 using SharpDX.DirectInput;
 using System.IO;
 using TSW2_Controller.Properties;
 using System.Reflection;
-using System.Net;
 using Octokit;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using Microsoft.VisualBasic.Devices;
 
 namespace TSW2_Controller
 {
@@ -53,6 +51,7 @@ namespace TSW2_Controller
 
         public FormMain()
         {
+            LogUserInfo();
             checkVersion();
 
             checkLanguageSetting();
@@ -140,8 +139,20 @@ namespace TSW2_Controller
             ReadVControllers();
             ReadTrainConfig();
 
-
+            Log.Add("Start main timer");
             timer_CheckSticks.Start();
+        }
+
+        private void LogUserInfo()
+        {
+            Log.Add("KeyBinds:" + string.Join(",", Settings.Default.Tastenbelegung.Cast<string>().ToArray()));
+            Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
+            Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
+            Log.Add("Language:" + Settings.Default.Sprache);
+            Log.Add("WindowsLanguage:" + InputLanguage.CurrentInputLanguage.Culture.Name);
+            Log.Add("KeyboardLayout:" + InputLanguage.CurrentInputLanguage.LayoutName);
+            Log.Add("OperatingSystem: " + new ComputerInfo().OSFullName);
+            Log.Add("");
         }
 
         #region UI
@@ -225,15 +236,6 @@ namespace TSW2_Controller
                 {
                     Log.Add("No VControllers found");
                 }
-
-                Log.Add("");
-                Log.Add("KeyLayout:" + string.Join(",", Settings.Default.Tastenbelegung.Cast<string>().ToArray()));
-                Log.Add("version:" + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString().Remove(Assembly.GetExecutingAssembly().GetName().Version.ToString().Length - 2, 2));
-                Log.Add("Resolution:" + Settings.Default.res.Width + "x" + Settings.Default.res.Height);
-                Log.Add("Language:" + Settings.Default.Sprache);
-                Log.Add("WindowsLanguage:" + InputLanguage.CurrentInputLanguage.Culture.Name);
-                Log.Add("KeyboardLayout:" + InputLanguage.CurrentInputLanguage.LayoutName);
-                Log.Add("");
 
                 foreach (VirtualController vc in activeVControllers)
                 {
@@ -1176,6 +1178,7 @@ namespace TSW2_Controller
                         if (counter > 0)
                         {
                             //Skip first line
+
                             VirtualController vc = new VirtualController();
                             vc.InsertFileArray(values);
                             vControllerList.Add(vc);
@@ -1183,6 +1186,10 @@ namespace TSW2_Controller
                         counter++;
                     }
                 }
+            }
+            else
+            {
+                Log.Add("Controllers config file not found.");
             }
         }
 
@@ -1510,7 +1517,7 @@ namespace TSW2_Controller
 
             for (int i = 0; i < inputNames.Count(); i++)
             {
-                if (inputNames[i]==input)
+                if (inputNames[i] == input)
                 {
                     return joyInputs[i];
                 }
@@ -1613,60 +1620,68 @@ namespace TSW2_Controller
 
         private void ShowJoystickData()
         {
-            //Welcher Joystick wurde ausgewählt
-            int selectedJoystickIndex = Convert.ToInt32(comboBox_JoystickNumber.SelectedItem);
-
-            //Wähle von allen Joysticks nur den ausgewählten aus
-            if (selectedJoystickIndex < joystickStates.Count)
+            try
             {
-                int counter = 1;
-                int topIndex = lst_inputs.TopIndex;
+                //Welcher Joystick wurde ausgewählt
+                int selectedJoystickIndex = Convert.ToInt32(comboBox_JoystickNumber.SelectedItem);
 
-                object[] selectedJoystick = (object[])joystickStates[Convert.ToInt32(selectedJoystickIndex)];
-                for (int i = 0; i < ((bool[])selectedJoystick[3]).Length; i++)
+                //Wähle von allen Joysticks nur den ausgewählten aus
+                if (selectedJoystickIndex < joystickStates.Count)
                 {
-                    if (((bool[])selectedJoystick[3])[i])
+                    int counter = 1;
+                    int topIndex = lst_inputs.TopIndex;
+
+                    object[] selectedJoystick = (object[])joystickStates[Convert.ToInt32(selectedJoystickIndex)];
+                    for (int i = 0; i < ((bool[])selectedJoystick[3]).Length; i++)
                     {
-                        //Zeige den gedrückten Button
-                        if (counter <= lst_inputs.Items.Count)
+                        if (((bool[])selectedJoystick[3])[i])
                         {
-                            lst_inputs.Items[counter - 1] = "B" + i;
+                            //Zeige den gedrückten Button
+                            if (counter <= lst_inputs.Items.Count)
+                            {
+                                lst_inputs.Items[counter - 1] = "B" + i;
+                            }
+                            else
+                            {
+                                lst_inputs.Items.Add("B" + i);
+                            }
+                            counter++;
                         }
-                        else
+                    }
+                    for (int i = 0; i < ((int[])selectedJoystick[1]).Length; i++)
+                    {
+                        if (((int[])selectedJoystick[1])[i] != 0)
                         {
-                            lst_inputs.Items.Add("B" + i);
+                            //Zeige den Joystick-Wert nur, wenn er != 0 ist
+                            if (counter <= lst_inputs.Items.Count)
+                            {
+                                lst_inputs.Items[counter - 1] = ((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i];
+                            }
+                            else
+                            {
+                                lst_inputs.Items.Add(((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i]);
+                            }
+                            counter++;
                         }
-                        counter++;
+                    }
+                    for (int o = lst_inputs.Items.Count - counter; o >= 0; o--)
+                    {
+                        lst_inputs.Items[lst_inputs.Items.Count - o - 1] = "";
+                    }
+                    if (lst_inputs.Items.Count > topIndex)
+                    {
+                        lst_inputs.TopIndex = topIndex;
                     }
                 }
-                for (int i = 0; i < ((int[])selectedJoystick[1]).Length; i++)
+                else
                 {
-                    if (((int[])selectedJoystick[1])[i] != 0)
-                    {
-                        //Zeige den Joystick-Wert nur, wenn er != 0 ist
-                        if (counter <= lst_inputs.Items.Count)
-                        {
-                            lst_inputs.Items[counter - 1] = ((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i];
-                        }
-                        else
-                        {
-                            lst_inputs.Items.Add(((string[])selectedJoystick[2])[i] + "  " + ((int[])selectedJoystick[1])[i]);
-                        }
-                        counter++;
-                    }
-                }
-                for (int o = lst_inputs.Items.Count - counter; o >= 0; o--)
-                {
-                    lst_inputs.Items[lst_inputs.Items.Count - o - 1] = "";
-                }
-                if (lst_inputs.Items.Count > topIndex)
-                {
-                    lst_inputs.TopIndex = topIndex;
+                    if (lst_inputs.Items.Count > 0) { lst_inputs.Items.Clear(); }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                if (lst_inputs.Items.Count > 0) { lst_inputs.Items.Clear(); }
+                Log.ErrorException(ex);
+                Close();
             }
         }
         #endregion
@@ -1677,10 +1692,19 @@ namespace TSW2_Controller
             //Lösche alle Infos über die Joysticks
             joystickStates.Clear();
 
-            for (int i = 0; i < MainSticks.Length; i++)
+
+
+            try
             {
-                //Speichere die Infos von jedem einzelnen Joystick
-                stickHandle(MainSticks[i], i);
+                for (int i = 0; i < MainSticks.Length; i++)
+                {
+                    //Speichere die Infos von jedem einzelnen Joystick
+                    stickHandle(MainSticks[i], i);
+                }
+            }
+            catch (Exception ex)
+            { 
+                Log.ErrorException(ex);
             }
 
             //Zeige dem Nutzer Infos über die Joysticks
