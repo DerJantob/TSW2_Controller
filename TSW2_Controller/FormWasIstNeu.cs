@@ -374,6 +374,33 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.7
+            if (new Version("2.0.7").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.7" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Verbesserung: Kleine Verbesserungen der Stabilität");
+                    changelog.Add("- Verbesserung: Kleine Verbesserungen des Loggings");
+                    changelog.Add("- Verbesserung: Beim Zeitfaktor finden ist es nicht mehr problematisch auf 100% zu treffen");
+                    changelog.Add("- Bugfix: Beim erstellen von einem neuen Zug wurde die Option der Regler nicht angezeigt");
+                    changelog.Add("");
+                    changelog.Add("- Hinzugefügt: Knöpfe unterstützen nun das gedrückt halten von STRG, CTRL und SHIFT + Taste");
+                }
+                else
+                {
+                    changelog.Add("- Improvement: Minor stability improvements");
+                    changelog.Add("- Improvement: Minor logging improvements");
+                    changelog.Add("- Improvement: Reaching 100% is no longer problematic when determining the time factor");
+                    changelog.Add("- Bugfix: When creating a new train, the option for the controllers was not displayed");
+                    changelog.Add("");
+                    changelog.Add("- Added: Buttons now support holding down CTRL, STRG, and SHIFT + key");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
