@@ -334,6 +334,12 @@ namespace TSW2_Controller
                         endText = endText.Remove(0, endText.IndexOf(indicator) + indicator.Length).Trim();
                     }
                     endNumber = convertTextToNumber(endText);
+
+                    if(endNumber == 100)
+                    {
+                        endNumber = -99999;
+                        break;
+                    }
                 }
                 if (endNumber == -99999)
                 {
@@ -412,6 +418,11 @@ namespace TSW2_Controller
                             endText = endText.Remove(0, endText.IndexOf(indicator) + indicator.Length).Trim();
                         }
                         endNumber = convertTextToNumber(endText);
+                        if (endNumber == 100)
+                        {
+                            endNumber = -99999;
+                            break;
+                        }
                     }
                     if (endNumber == -99999)
                     {
@@ -493,6 +504,11 @@ namespace TSW2_Controller
                             endText = endText.Remove(0, endText.IndexOf(indicator) + indicator.Length).Trim();
                         }
                         endNumber = convertTextToNumber(endText);
+                        if (endNumber == 100)
+                        {
+                            endNumber = -99999;
+                            break;
+                        }
                     }
                     if (endNumber == -99999)
                     {
