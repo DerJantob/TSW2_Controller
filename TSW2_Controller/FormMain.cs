@@ -1605,13 +1605,51 @@ namespace TSW2_Controller
                         //on Press
                         Log.Add("\"" + activeTrain[i][Tcfg.beschreibung] + "\" is getting pressed", true);
                         if (activeTrain[i][Tcfg.tastenKombination] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.tastenKombination]); }
-                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
+
+                        string aktion = activeTrain[i][Tcfg.aktion];
+                        if (aktion.Contains("["))
+                        {
+                            // Präfix extrahieren (ersten 5 Zeichen, z. B. "[100]")
+                            string prefix = aktion.Substring(0, 5);
+
+                            // Textteil extrahieren (alles nach dem Präfix)
+                            string actionText = aktion.Substring(5).Trim();
+                            
+                            if (prefix[1] == '1') { Keyboard.KeyDown(Keyboard.ConvertStringToKey("ctrl")); }
+                            if (prefix[2] == '1') { Keyboard.KeyDown(Keyboard.ConvertStringToKey("shift")); }
+                            if (prefix[3] == '1') { Keyboard.KeyDown(Keyboard.ConvertStringToKey("alt")); }
+
+                            Keyboard.KeyDown(Keyboard.ConvertStringToKey(actionText));
+
+                        }
+                        else if (aktion != "") { Keyboard.KeyDown(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     else
                     {
                         //on release
                         Log.Add("\"" + activeTrain[i][Tcfg.beschreibung] + "\" is getting released", true);
-                        if (activeTrain[i][Tcfg.aktion] != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
+
+                        string aktion = activeTrain[i][Tcfg.aktion];
+                        if (aktion.Contains("["))
+                        {
+                            // Präfix extrahieren (ersten 5 Zeichen, z. B. "[100]")
+                            string prefix = aktion.Substring(0, 5);
+
+                            // Textteil extrahieren (alles nach dem Präfix)
+                            string actionText = aktion.Substring(5).Trim();
+
+                            Keyboard.KeyUp(Keyboard.ConvertStringToKey(actionText));
+
+                            Thread.Sleep(20);
+
+                            if (prefix[1] == '1') { Keyboard.KeyUp(Keyboard.ConvertStringToKey("ctrl")); }
+                            if (prefix[2] == '1') { Keyboard.KeyUp(Keyboard.ConvertStringToKey("shift")); }
+                            if (prefix[3] == '1') { Keyboard.KeyUp(Keyboard.ConvertStringToKey("alt")); }
+
+
+
+                        }
+                        else if (aktion != "") { Keyboard.KeyUp(Keyboard.ConvertStringToKey(activeTrain[i][Tcfg.aktion])); }
                     }
                     previouslyPressedButtons[i] = currentlyPressedButtons[i];
                 }
@@ -1703,7 +1741,7 @@ namespace TSW2_Controller
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 Log.ErrorException(ex);
             }
 

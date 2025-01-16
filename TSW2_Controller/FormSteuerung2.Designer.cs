@@ -139,6 +139,9 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtT3_Taste = new System.Windows.Forms.TextBox();
             this.listBoxT3_Output = new System.Windows.Forms.ListBox();
+            this.checkboxB_STRG = new System.Windows.Forms.CheckBox();
+            this.checkboxB_SHIFT = new System.Windows.Forms.CheckBox();
+            this.checkboxB_ALT = new System.Windows.Forms.CheckBox();
             this.tabPage2.SuspendLayout();
             this.groupBoxT1_Regler.SuspendLayout();
             this.tabControl_ReglerKnopf.SuspendLayout();
@@ -471,6 +474,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.checkboxB_ALT);
+            this.tabPage3.Controls.Add(this.checkboxB_SHIFT);
+            this.tabPage3.Controls.Add(this.checkboxB_STRG);
             this.tabPage3.Controls.Add(this.btnB_Speichern);
             this.tabPage3.Controls.Add(this.btnB_entfernen);
             this.tabPage3.Controls.Add(this.lblB_Bedingung);
@@ -956,6 +962,24 @@
             this.listBoxT3_Output.Name = "listBoxT3_Output";
             this.listBoxT3_Output.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxT3_Output_KeyDown);
             // 
+            // checkboxB_STRG
+            // 
+            resources.ApplyResources(this.checkboxB_STRG, "checkboxB_STRG");
+            this.checkboxB_STRG.Name = "checkboxB_STRG";
+            this.checkboxB_STRG.UseVisualStyleBackColor = true;
+            // 
+            // checkboxB_SHIFT
+            // 
+            resources.ApplyResources(this.checkboxB_SHIFT, "checkboxB_SHIFT");
+            this.checkboxB_SHIFT.Name = "checkboxB_SHIFT";
+            this.checkboxB_SHIFT.UseVisualStyleBackColor = true;
+            // 
+            // checkboxB_ALT
+            // 
+            resources.ApplyResources(this.checkboxB_ALT, "checkboxB_ALT");
+            this.checkboxB_ALT.Name = "checkboxB_ALT";
+            this.checkboxB_ALT.UseVisualStyleBackColor = true;
+            // 
             // FormSteuerung2
             // 
             resources.ApplyResources(this, "$this");
@@ -1102,5 +1126,8 @@
         private System.Windows.Forms.Button btnR_GetTimeFactor;
         private System.Windows.Forms.Button btnT1_Controller_Remove;
         private System.Windows.Forms.Button btnT0_back;
+        private System.Windows.Forms.CheckBox checkboxB_ALT;
+        private System.Windows.Forms.CheckBox checkboxB_SHIFT;
+        private System.Windows.Forms.CheckBox checkboxB_STRG;
     }
 }

@@ -321,6 +321,11 @@ namespace TSW2_Controller
                 tabControl_ReglerKnopf.SelectedIndex = 1;
                 //btnT1_Controller_Add.Enabled = false;
             }
+            else
+            {
+                tabControl_ReglerKnopf.SelectedIndex = 0;
+            }
+
             if (tabControl_ReglerKnopf.SelectedIndex == 1)
             {
                 groupBoxT1_Regler.Hide();
@@ -353,6 +358,10 @@ namespace TSW2_Controller
             {
                 resetControllerBearbeiten(false);
             }
+
+            tabControl_ReglerKnopf.SelectedIndex = 0;
+            groupBoxT1_Regler.Show();
+
             //panel_main.Enabled = true;
             Log.Add("finished add button");
         }
@@ -1148,9 +1157,26 @@ namespace TSW2_Controller
                 {
                     txtB_JoystickNr.Text = singleTrain[Tcfg.joystickNummer];
                     txtB_JoystickKnopf.Text = singleTrain[Tcfg.joystickInput];
-                    txtB_Aktion.Text = singleTrain[Tcfg.aktion];
                     txtB_Tastenkombination.Text = singleTrain[Tcfg.tastenKombination];
                     txtB_Bedingung.Text = singleTrain[Tcfg.inputTyp].Replace("Button", "").Replace("[", "").Replace("]", " ").TrimEnd(' ');
+
+                    if (singleTrain[Tcfg.aktion].Contains("["))
+                    {
+                        string value = singleTrain[Tcfg.aktion];
+                        string prefix = value.Substring(0, 5);
+                        txtB_Aktion.Text = value.Substring(5);
+
+                        checkboxB_STRG.Checked = prefix[1] == '1';
+                        checkboxB_SHIFT.Checked = prefix[2] == '1';
+                        checkboxB_ALT.Checked = prefix[3] == '1';
+                    }
+                    else
+                    {
+                        txtB_Aktion.Text = singleTrain[Tcfg.aktion];
+                        checkboxB_STRG.Checked = false;
+                        checkboxB_SHIFT.Checked = false;
+                        checkboxB_ALT.Checked = false;
+                    }
 
                     if (singleTrain[Tcfg.inputTyp].Contains("["))
                     {
@@ -1271,7 +1297,15 @@ namespace TSW2_Controller
                             singleTrain[Tcfg.joystickNummer] = txtB_JoystickNr.Text;
                             if (radioB_normal.Checked) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtB_Bedingung.Text.Replace(" ", "][") + "]"; }
                             if (radioB_normal.Checked) { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; }
-                            singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
+                            if (checkboxB_ALT.Checked || checkboxB_SHIFT.Checked || checkboxB_STRG.Checked)
+                            {
+                                string prefix = "[" + (checkboxB_STRG.Checked ? "1" : "0") + (checkboxB_SHIFT.Checked ? "1" : "0") + (checkboxB_ALT.Checked ? "1" : "0") + "]";
+                                singleTrain[Tcfg.aktion] = prefix + txtB_Aktion.Text;
+                            }
+                            else
+                            {
+                                singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
+                            }
                             singleTrain[Tcfg.tastenKombination] = txtB_Tastenkombination.Text;
                             trainConfig[i] = singleTrain;
                         }
@@ -1285,7 +1319,15 @@ namespace TSW2_Controller
                         singleTrain[Tcfg.joystickNummer] = txtB_JoystickNr.Text;
                         if (radioB_normal.Checked) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtB_Bedingung.Text.Replace(" ", "][") + "]"; }
                         if (radioB_normal.Checked) { singleTrain[Tcfg.joystickInput] = "B" + txtB_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; }
-                        singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
+                        if (checkboxB_STRG.Checked || checkboxB_SHIFT.Checked || checkboxB_ALT.Checked)
+                        {
+                            string prefix = "[" + (checkboxB_STRG.Checked ? "1" : "0") + (checkboxB_SHIFT.Checked ? "1" : "0") + (checkboxB_ALT.Checked ? "1" : "0") + "]";
+                            singleTrain[Tcfg.aktion] = prefix + txtB_Aktion.Text;
+                        }
+                        else
+                        {
+                            singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
+                        }
                         singleTrain[Tcfg.tastenKombination] = txtB_Tastenkombination.Text;
                         trainConfig.Add(singleTrain);
                     }
