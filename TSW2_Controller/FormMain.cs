@@ -704,7 +704,7 @@ namespace TSW2_Controller
                                         //Aktion
                                         single[8] = convertKey(single[8]);
 
-                                        //Tastenkombination
+                                        //Makro
                                         string[] tc = single[7].Split('_');
                                         if (tc.Count() >= 3)
                                         {
@@ -1604,7 +1604,7 @@ namespace TSW2_Controller
                     {
                         //on Press
                         Log.Add("\"" + activeTrain[i][Tcfg.beschreibung] + "\" is getting pressed", true);
-                        if (activeTrain[i][Tcfg.tastenKombination] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.tastenKombination]); }
+                        if (activeTrain[i][Tcfg.makro] != "") { Keyboard.ProcessAktion(activeTrain[i][Tcfg.makro]); }
 
                         string aktion = activeTrain[i][Tcfg.aktion];
                         if (aktion.Contains("["))

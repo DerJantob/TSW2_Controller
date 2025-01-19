@@ -288,7 +288,7 @@ namespace TSW2_Controller
                     txtT1_JoystickNr.Text = singleTrain[Tcfg.joystickNummer];
                     txtT1_JoystickKnopf.Text = singleTrain[Tcfg.joystickInput].Replace("B", "");
                     txtT1_Aktion.Text = singleTrain[Tcfg.aktion];
-                    txtT1_Tastenkombination.Text = singleTrain[Tcfg.tastenKombination];
+                    txtT1_Tastenkombination.Text = singleTrain[Tcfg.makro];
                     if (t1IsJoyButton)
                     {
                         txtT1_Bedingung.Text = singleTrain[Tcfg.inputTyp].Replace("Button", "").Replace("[", "").Replace("]", " ").TrimEnd(' ');
@@ -357,7 +357,7 @@ namespace TSW2_Controller
                         if (!t1IsJoyButton) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtT1_Bedingung.Text.Replace(" ", "][") + "]"; }
                         if (!t1IsJoyButton) { singleTrain[Tcfg.joystickInput] = "B" + txtT1_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtT1_JoystickKnopf.Text; }
                         singleTrain[Tcfg.aktion] = txtT1_Aktion.Text;
-                        singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
+                        singleTrain[Tcfg.makro] = txtT1_Tastenkombination.Text;
                         trainConfig[i] = singleTrain;
                         ersetzt = true;
                         MessageBox.Show(Sprache.Translate("Ersetzt","Relpaced"));
@@ -373,7 +373,7 @@ namespace TSW2_Controller
                     if (!t1IsJoyButton) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtT1_Bedingung.Text.Replace(" ", "][") + "]"; }
                     if (!t1IsJoyButton) { singleTrain[Tcfg.joystickInput] = "B" + txtT1_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtT1_JoystickKnopf.Text; }
                     singleTrain[Tcfg.aktion] = txtT1_Aktion.Text;
-                    singleTrain[Tcfg.tastenKombination] = txtT1_Tastenkombination.Text;
+                    singleTrain[Tcfg.makro] = txtT1_Tastenkombination.Text;
                     trainConfig.Add(singleTrain);
                     comboBoxT1_KnopfAuswahl.Items.Add(comboBoxT1_KnopfAuswahl.Text);
                     MessageBox.Show(Sprache.Translate("Hinzugefügt","Added"));
@@ -662,7 +662,7 @@ namespace TSW2_Controller
             {
                 if (singleTrain[Tcfg.zug] == selectedTrain)
                 {
-                    if ((singleTrain[Tcfg.tastenKombination] == "Schub" && radioT3_Schub.Checked) || (singleTrain[Tcfg.tastenKombination] == "Bremse" && radioT3_Bremse.Checked) || (singleTrain[Tcfg.tastenKombination] == "Kombihebel" && radioT3_Kombihebel.Checked))
+                    if ((singleTrain[Tcfg.makro] == "Schub" && radioT3_Schub.Checked) || (singleTrain[Tcfg.makro] == "Bremse" && radioT3_Bremse.Checked) || (singleTrain[Tcfg.makro] == "Kombihebel" && radioT3_Kombihebel.Checked))
                     {
                         txtT3_JoyNr.Text = singleTrain[Tcfg.joystickNummer];
                         txtT3_JoyAchse.Text = singleTrain[Tcfg.joystickInput];
@@ -779,7 +779,7 @@ namespace TSW2_Controller
                 for (int i = 0; i < trainConfig.Count; i++)
                 {
                     string[] singleTrain = trainConfig[i];
-                    if (singleTrain[Tcfg.zug] == selectedTrain && ((singleTrain[Tcfg.tastenKombination] == "Schub" && radioT3_Schub.Checked) || (singleTrain[Tcfg.tastenKombination] == "Bremse" && radioT3_Bremse.Checked) || (singleTrain[Tcfg.tastenKombination] == "Kombihebel" && radioT3_Kombihebel.Checked)))
+                    if (singleTrain[Tcfg.zug] == selectedTrain && ((singleTrain[Tcfg.makro] == "Schub" && radioT3_Schub.Checked) || (singleTrain[Tcfg.makro] == "Bremse" && radioT3_Bremse.Checked) || (singleTrain[Tcfg.makro] == "Kombihebel" && radioT3_Kombihebel.Checked)))
                     {
                         if (txtT3_JoyAchse.Text == "" && txtT3_JoyNr.Text == "" && txtT3_AnzahlStufen.Text == "" && txtT3_JoyUmrechnen.Text == "" && txtT3_Zeitfaktor.Text == "" && txtT3_LongPress.Text == "" && txtT3_Sonderfaelle.Text == "")
                         {
@@ -822,7 +822,7 @@ namespace TSW2_Controller
                     if (checkT3_Invertiert.Checked) { singleTrain[Tcfg.invertieren] = "1"; } else { singleTrain[Tcfg.invertieren] = "0"; }
                     if (checkT3_andererJoyModus.Checked) { singleTrain[Tcfg.inputTyp] = "1"; } else { singleTrain[Tcfg.inputTyp] = "0"; }
 
-                    if (radioT3_Schub.Checked) { singleTrain[Tcfg.tastenKombination] = "Schub"; } else if (radioT3_Bremse.Checked) { singleTrain[Tcfg.tastenKombination] = "Bremse"; } else { singleTrain[Tcfg.tastenKombination] = "Kombihebel"; }
+                    if (radioT3_Schub.Checked) { singleTrain[Tcfg.makro] = "Schub"; } else if (radioT3_Bremse.Checked) { singleTrain[Tcfg.makro] = "Bremse"; } else { singleTrain[Tcfg.makro] = "Kombihebel"; }
 
                     trainConfig.Add(singleTrain);
 

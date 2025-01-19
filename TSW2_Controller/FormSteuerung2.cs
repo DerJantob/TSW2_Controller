@@ -1,5 +1,6 @@
 ﻿using SharpDX.DirectInput;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,6 +49,7 @@ namespace TSW2_Controller
 
             lblB_Bedingung.Hide();
             txtB_Bedingung.Hide();
+            comboBoxB_import.Hide();
             lblR_KnopfNr.Text = Sprache.Translate("KnopfNr.", "Button no.");
 
             dataGridView1.Size = new Size(254, 205);
@@ -440,7 +442,7 @@ namespace TSW2_Controller
             txtB_Bedingung.Text = "";
             txtB_JoystickKnopf.Text = "";
             txtB_JoystickNr.Text = "";
-            txtB_Tastenkombination.Text = "";
+            txtB_Makro.Text = "";
 
             comboBoxB_KnopfAuswahl.Text = "";
 
@@ -624,6 +626,10 @@ namespace TSW2_Controller
                 {
                     groupBoxT1_Regler.Visible = false;
                 }
+            }
+            else
+            {
+                configIsBeeingChanged = 0;
             }
         }
 
@@ -1157,7 +1163,7 @@ namespace TSW2_Controller
                 {
                     txtB_JoystickNr.Text = singleTrain[Tcfg.joystickNummer];
                     txtB_JoystickKnopf.Text = singleTrain[Tcfg.joystickInput];
-                    txtB_Tastenkombination.Text = singleTrain[Tcfg.tastenKombination];
+                    txtB_Makro.Text = singleTrain[Tcfg.makro];
                     txtB_Bedingung.Text = singleTrain[Tcfg.inputTyp].Replace("Button", "").Replace("[", "").Replace("]", " ").TrimEnd(' ');
 
                     if (singleTrain[Tcfg.aktion].Contains("["))
@@ -1236,7 +1242,7 @@ namespace TSW2_Controller
             {
                 bool ok = true;
                 #region Eingabeüberprüfung
-                if (comboBoxB_KnopfAuswahl.Text.Contains(",") || txtB_Aktion.Text.Contains(",") || txtB_Bedingung.Text.Contains(",") || txtB_JoystickKnopf.Text.Contains(",") || txtB_Tastenkombination.Text.Contains(","))
+                if (comboBoxB_KnopfAuswahl.Text.Contains(",") || txtB_Aktion.Text.Contains(",") || txtB_Bedingung.Text.Contains(",") || txtB_JoystickKnopf.Text.Contains(",") || txtB_Makro.Text.Contains(","))
                 {
                     ok = false;
                     Sprache.ShowMessageBox("Du darfst kein Komma benutzen! Das würde deine Config zerstören, also versuch es nicht zu umgehen :)", "You are not allowed to enter a comma! That would break your config, so don't try to work around it :)");
@@ -1271,15 +1277,15 @@ namespace TSW2_Controller
                         ok = false;
                         Sprache.ShowMessageBox("Fehler bei Bedingung", "Error with Condition");
                     }
-                    if (txtB_Aktion.Text == "" && txtB_Tastenkombination.Text == "")
+                    if (txtB_Aktion.Text == "" && txtB_Makro.Text == "")
                     {
                         ok = false;
-                        Sprache.ShowMessageBox("Keine Aktion oder Tastenkombination", "No action or keyboard shortcut");
+                        Sprache.ShowMessageBox("Keine Aktion oder Makro", "No action or macro");
                     }
-                    if (txtB_Tastenkombination.Text != "" && !(txtB_Tastenkombination.Text.Split('_').Count() == 3 || txtB_Tastenkombination.Text.Split('_').Count() % 3 == 0))
+                    if (txtB_Makro.Text != "" && !(txtB_Makro.Text.Split('_').Count() == 3 || txtB_Makro.Text.Split('_').Count() % 3 == 0))
                     {
                         ok = false;
-                        Sprache.ShowMessageBox("Fehler bei Tastenkombination", "Error with keyboard shortcut");
+                        Sprache.ShowMessageBox("Fehler bei Makro", "Error with macro");
                     }
                 }
                 #endregion
@@ -1306,7 +1312,7 @@ namespace TSW2_Controller
                             {
                                 singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
                             }
-                            singleTrain[Tcfg.tastenKombination] = txtB_Tastenkombination.Text;
+                            singleTrain[Tcfg.makro] = txtB_Makro.Text;
                             trainConfig[i] = singleTrain;
                         }
                     }
@@ -1318,7 +1324,7 @@ namespace TSW2_Controller
                         singleTrain[Tcfg.beschreibung] = comboBoxB_KnopfAuswahl.Text.ToString();
                         singleTrain[Tcfg.joystickNummer] = txtB_JoystickNr.Text;
                         if (radioB_normal.Checked) { singleTrain[Tcfg.inputTyp] = "Button"; } else { singleTrain[Tcfg.inputTyp] = "Button[" + txtB_Bedingung.Text.Replace(" ", "][") + "]"; }
-                        if (radioB_normal.Checked) { singleTrain[Tcfg.joystickInput] = "B" + txtB_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; }
+                        if (radioB_normal.Checked) { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text.Contains("B") ? txtB_JoystickKnopf.Text : "B" + txtB_JoystickKnopf.Text; } else { singleTrain[Tcfg.joystickInput] = txtB_JoystickKnopf.Text; }
                         if (checkboxB_STRG.Checked || checkboxB_SHIFT.Checked || checkboxB_ALT.Checked)
                         {
                             string prefix = "[" + (checkboxB_STRG.Checked ? "1" : "0") + (checkboxB_SHIFT.Checked ? "1" : "0") + (checkboxB_ALT.Checked ? "1" : "0") + "]";
@@ -1328,7 +1334,7 @@ namespace TSW2_Controller
                         {
                             singleTrain[Tcfg.aktion] = txtB_Aktion.Text;
                         }
-                        singleTrain[Tcfg.tastenKombination] = txtB_Tastenkombination.Text;
+                        singleTrain[Tcfg.makro] = txtB_Makro.Text;
                         trainConfig.Add(singleTrain);
                     }
                 }
@@ -1349,11 +1355,11 @@ namespace TSW2_Controller
         }
         private void btnB_Editor_Click(object sender, EventArgs e)
         {
-            resetTastenkombination();
+            resetMakro();
 
-            if (txtB_Tastenkombination.Text != "" && (txtB_Tastenkombination.Text.Split('_').Count() == 3 || txtB_Tastenkombination.Text.Split('_').Count() % 3 == 0))
+            if (txtB_Makro.Text != "" && (txtB_Makro.Text.Split('_').Count() == 3 || txtB_Makro.Text.Split('_').Count() % 3 == 0))
             {
-                string[] splitted = txtB_Tastenkombination.Text.Split('_');
+                string[] splitted = txtB_Makro.Text.Split('_');
 
                 for (int i = 0; i < splitted.Count(); i += 3)
                 {
@@ -1372,9 +1378,9 @@ namespace TSW2_Controller
 
             tabControl_main.SelectedIndex = 3;
         }
-        #region Tastenkombination
+        #region Makro
         List<string> tastenkombiliste = new List<string>();
-        private void resetTastenkombination()
+        private void resetMakro()
         {
             listBoxT3_Output.Items.Clear();
             txtT3_Haltezeit.Text = "0";
@@ -1439,7 +1445,7 @@ namespace TSW2_Controller
                 }
                 combined = combined.Remove(combined.Length - 1, 1);
             }
-            txtB_Tastenkombination.Text = combined;
+            txtB_Makro.Text = combined;
             tabControl_main.SelectedIndex = 1;
         }
         private void listBoxT3_Output_KeyDown(object sender, KeyEventArgs e)
@@ -1771,5 +1777,78 @@ namespace TSW2_Controller
             }
         }
         #endregion
+
+        private void btnB_import_Click(object sender, EventArgs e)
+        {
+            comboBoxB_import.Show();
+            comboBoxB_import.Items.Clear();
+
+            foreach (var item in comboBoxT0_Zugauswahl.Items)
+            {
+                comboBoxB_import.Items.Add(item);
+            }
+            //comboBoxB_import.SelectedItem = Tcfg.nameForGlobal;
+            comboBoxB_import.DroppedDown = true;
+        }
+
+        private void comboBoxB_import_DropDownClosed(object sender, EventArgs e)
+        {
+            comboBoxB_import.Hide();
+            if (comboBoxB_import.SelectedItem.ToString() != "")
+            {
+                if (MessageBox.Show(Sprache.Translate("Möchtest du alle Knöpfe von " + comboBoxB_import.SelectedItem.ToString() + " einfügen?", "Do you want to import all buttons from " + comboBoxB_import.SelectedItem.ToString() + "?"), Sprache.Translate("Importieren?", "Import?"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    string import_train = comboBoxB_import.SelectedItem.ToString();
+                    int counter = 0;
+                    List<string> skipList = new List<string>();
+
+                    foreach (string[] singleTrain in trainConfig.ToList())
+                    {
+                        if (singleTrain[Tcfg.zug] == import_train && singleTrain[Tcfg.inputTyp].Contains("Button"))
+                        {
+                            if (!comboBoxB_KnopfAuswahl.Items.Contains(singleTrain[Tcfg.beschreibung]))
+                            {
+                                string[] edit_singleTrain = singleTrain.ToArray();
+
+                                edit_singleTrain[Tcfg.zug] = selectedTrain;
+
+                                trainConfig.Add(edit_singleTrain);
+                                comboBoxB_KnopfAuswahl.Items.Add(edit_singleTrain[Tcfg.beschreibung]);
+                                counter++;
+                            }
+                            else
+                            {
+                                skipList.Add(singleTrain[Tcfg.beschreibung]);
+                            }
+
+                        }
+                    }
+
+                    string[] line = new string[trainConfig.Count];
+                    for (int i = 0; i < trainConfig.Count; i++)
+                    {
+                        string combined = "";
+                        foreach (string s in trainConfig[i])
+                        {
+                            combined += s + ",";
+                        }
+                        combined = combined.Remove(combined.Length - 1);
+                        line[i] = combined;
+                    }
+
+                    File.WriteAllLines(Tcfg.configpfad, line);
+
+                    string skipedEntriesText = "";
+
+                    foreach (string item in skipList)
+                    {
+                        skipedEntriesText += "\n"+item;
+                    }
+
+                    Sprache.ShowMessageBox(Convert.ToString(counter) + " Einträge importiert.\n\nÜbersprungene Einträge:"+skipedEntriesText, Convert.ToString(counter) + " entries imported.\n\nSkipped entries:"+skipedEntriesText);
+                }
+            }
+            comboBoxB_import.Text = "";
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace TSW2_Controller
         public static int invertieren = 5;
         public static int inputTyp = 6;
         public static int inputUmrechnen = 7;
-        public static int tastenKombination = 8;
+        public static int makro = 8;
         public static int aktion = 9;
         public static int art = 10;
         public static int schritte = 11;
