@@ -1794,7 +1794,7 @@ namespace TSW2_Controller
         private void comboBoxB_import_DropDownClosed(object sender, EventArgs e)
         {
             comboBoxB_import.Hide();
-            if (comboBoxB_import.SelectedItem.ToString() != "")
+            if (comboBoxB_import.SelectedItem != null && !string.IsNullOrEmpty(comboBoxB_import.SelectedItem.ToString()))
             {
                 if (MessageBox.Show(Sprache.Translate("Möchtest du alle Knöpfe von " + comboBoxB_import.SelectedItem.ToString() + " einfügen?", "Do you want to import all buttons from " + comboBoxB_import.SelectedItem.ToString() + "?"), Sprache.Translate("Importieren?", "Import?"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
