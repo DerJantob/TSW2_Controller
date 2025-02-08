@@ -34,7 +34,6 @@ BR182 MRCE,,Bremse,0,JoyY,0,,,,,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][
 BR182 MRCE,Nach lösen drücken,,0,JoyY,,Button[<0],,,oem3,,,,,
 BR185,,Schub,0,JoyZ,-100|100|100|0,,[1|5=5],,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:600][5|0:600]
 BR185,,Bremse,0,JoyY,0,,,,,Stufen,9,[14=1][Lösen=0][Fahrend=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],160,
-BR185,Nach lösen drücken,,0,JoyY,,Button[<0],,,oem3,,,,,
 BR403/406,,Schub,0,JoyZ,-100|100|100|0,,[1=5][2=5][3=5][4=5],,,Stufenlos,,[Umgehung=0][Aus=0][Min.=5][Max.=100],53,[0|5:700][5|0:700]
 BR403/406,,Bremse,0,JoyY,0,,,,,Stufen,9,[14=1][Lösen=0][Umgehung=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volles Anlegen=9],335,
 BR403/406,AFB hoch,,0,Sldr,0,,,,r,,,,,
@@ -47,3 +46,33 @@ BR442,,Kombihebel,0,JoyZ,-100|100|0|0|100|-100,,[1|5=5][-5|-1=-5],,,Stufenlos,,[
 BR766 Dosto,,Schub,0,JoyZ,-100|100|100|0,,[1|5=5],,,Stufenlos,,[Aus=0][Min.=5][Max.=100],53,[0|5:600][5|0:600]
 BR766 Dosto,,Bremse,0,JoyY,0,,,,,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],148,
 BR766 Dosto,Nach lösen drücken,,0,JoyY,,Button[<0],,,oem3,,,,,
+BR193,,Kombihebel,0,JoyZ,-100|100|0|0|100|-100,,,,,Stufenlos,,[Aus=0][0=1],116|116,[1|0:200][-1|0:200]
+BR193,,Bremse,0,JoyY,-100|0|0|0|100|100,,,,,Stufen,9,[Fahrstellung=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Vollbremsung=9],172,
+BR193,Bremse lÃ¶sen,,0,JoyY,,Button[<0],,,oem3,,,,,
+BR187,,Kombihebel,0,JoyZ,-100|100|-1|11|0|0|100|-100,,,,,Stufenlos,,,50|56,[0|-1:250][0|1:300]
+BR187,,Bremse,0,JoyY,-100|0|0|0|0|0|100|100,,,,,Stufen,9,[Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],132,
+BR187,Nach lösen drücken,,0,JoyY,,Button[<0],,,oem3,,,,,
+BR401,,Schub,0,JoyZ,-100|100|100|0,,,,,Stufenlos,,[Aus=0][Min.=5][Min=5][Max=100][Max.=100],43,[0|5:500][5|0:500]
+BR401,,Bremse,0,JoyY,-100|-100|0|0|100|100,,[1|5=5],,,Stufen,9,[Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Vollbremsung=9],145,
+BR401,Nach lösen drücken,,0,JoyY,,Button[<0],,,oem3,,,,,
+TGV,,Kombihebel,0,JoyZ,-100|100|0|0|100|-100,,,,,Stufenlos,,[Aus=0][Minimale Leistung=5][Max. Leistung=100][Minimale Bremse=-5][Max. Bremse=-100],180|180,[0|5:80][5|0:80][-5|0:80][0|-5:80]
+TGV,Bremse anlegen,,0,JoyY,,Button[>0],,,oem7,,,,,
+TGV,Bremse lösen,,0,JoyY,,Button[<0],,,oem3,,,,,
+BR401,,Schub,0,JoyZ,-100|100|100|0,,[0|5=0],,,Stufenlos,,[Aus=0][Min.=5][Max.=100],43,[0|5:360][5|0:360]
+BR401,,Bremse,0,JoyY,-100|-100|0|0|100|100,,,,,Stufen,9,[14=1][Lösen=0][Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Vollbremsung=9],150,
+BR628,,Schub,0,JoyZ,-100|100|-99|93|0|57|99|7|100|0,,,,,Stufen,7,[Aus=0],230,
+BR628,Bremse anziehen,,0,Sldr,,Button[>0],,,oem7,,,,,
+BR628,Bremse lösen,,0,Sldr,,Button[<0],,,oem3,,,,,
+BR143,Mehr Schub,,0,Sldr,,Button[>0],,,r,,,,,
+BR143,Weniger Schub,,0,Sldr,,Button[<0],,,f,,,,,
+4024,,Kombihebel,0,JoyZ,-100|100|0|0|100|-100,,[1|9=10][-1|-9=-10],,,Stufenlos,,[Minimale Leistung=10][Minimale Bremse=-10],56|83,[0|10:400][10|0:400][0|-10:400][-10|0:400]
+BR612,,Schub,0,JoyZ,-100|100|-1|64|0|38|100|0,,,,,Stufen,4,[Aus=2][Leistung verringern=3][Leistung halten=4][Dynamische Bremse verringern=1][Dynamische Bremse halten=0],300,
+BR612,Mehr Schub,,0,JoyZ,,Button[=-100],,,a,,,,,
+BR612,Weniger Schub,,0,JoyZ,,Button[=100],,,d,,,,,
+BR612,,Bremse,0,JoyY,-100|0|0|0|100|100,,,,,Stufen,9,[Fahren=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Volle Leistung=9],138,[0|1:300][1|0:300]
+BR403/406,Bremse anlegen,,0,Sldr,,Button[>0],,,oem7,,,,,
+BR403/406,Bremse lösen,,0,Sldr,,Button[<0],,,oem3,,,,,
+BR193,,Kombihebel,0,JoyZ,-100|100|0|0|100|-100,,,,,Stufenlos,,[Aus=0][0=1],115|115,[1|0:200][-1|0:200]
+BR193,,Bremse,0,JoyY,-100|0|0|0|100|100,,,,,Stufen,9,[Fahrstellung=0][1A=1][1B=2][2=3][3=4][4=5][5=6][6=7][7=8][Vollbremsung=9],172,
+BR193,Bremse lösen,,0,JoyY,,Button[<0],,,oem3,,,,,
+BR185,Nach lösen drücken,,0,JoyY,,Button[<0],,,oem3,,,,,
