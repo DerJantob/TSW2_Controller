@@ -387,6 +387,14 @@ namespace TSW2_Controller
                     changelog.Add("- Bugfix: Beim erstellen von einem neuen Zug wurde die Option der Regler nicht angezeigt");
                     changelog.Add("");
                     changelog.Add("- Hinzugefügt: Knöpfe unterstützen nun das gedrückt halten von STRG, CTRL und SHIFT + Taste");
+                    changelog.Add("");
+                    changelog.Add("");
+                    changelog.Add("Ja, es gibt mal wieder ein kleines Update :)");
+                    changelog.Add("Zugegeben, viel hat sich hier zuletzt nicht getan, und auch dieses Update ist eher klein. Aber ich habe mich nochmal kurz drangesetzt und ein paar Dinge überarbeitet.");
+                    changelog.Add("Diese Gelegenheit möchte ich aber nutzen, um mich bei euch zu bedanken. Als ich mit dem Projekt angefangen habe, hatte ich nie vor, es zu veröffentlichen – und jetzt hat das Programm über 2.000 Downloads!");
+                    changelog.Add("Besonders danke ich denen, die mich sogar mit einer Spende unterstützt haben. Ich hätte nie gedacht, dass jemand für mein Programm Geld ausgeben geben würden, und dennoch gab es einige, die es getan haben. Vielen, vielen Dank!");
+                    changelog.Add("Ich weiß, das Programm ist nicht perfekt und nicht immer ganz einfach zu bedienen. Ich programmiere das Ganze ja nur hobbymäßig.");
+                    changelog.Add("Aber vielleicht konnte es für einige von euch die Erfahrung mit TSW ein wenig verbessern – und eins der vielen unerfüllten Versprechen von DTG ausgleichen. (Ich meine ich habe das Programm TSW2_Controller genannt, weil ich nie gedacht hätte, dass es für TSW3 noch benötigt werde... und TSW4... und TSW5... und wer weiß wie lange noch)");
                 }
                 else
                 {
@@ -396,6 +404,15 @@ namespace TSW2_Controller
                     changelog.Add("- Bugfix: When creating a new train, the option for the controllers was not displayed");
                     changelog.Add("");
                     changelog.Add("- Added: Buttons now support holding down CTRL, STRG, and SHIFT + key");
+                    changelog.Add("");
+                    changelog.Add("");
+                    changelog.Add("Yes, there's a small update again :)");
+                    changelog.Add("Admittedly, not much has happened here lately, and this update is rather small as well. But I took some time to make a few adjustments.");
+                    changelog.Add("I also want to take this opportunity to thank you all. When I started this project, I never intended to release it – and now the program has over 2,000 downloads!");
+                    changelog.Add("A special thanks to those who even supported me with a donation. I never expected anyone to spend money on my program, yet some of you did. Thank you so much!");
+                    changelog.Add("I know the program isn’t perfect and not always easy to use. After all, I’m just coding this as a hobby.");
+                    changelog.Add("But maybe it has improved the TSW experience for some of you – and made up for one of DTG's many unfulfilled promises. (I mean, I originally named it TSW2_Controller because I never thought it would still be needed for TSW3... and TSW4... and TSW5... and who knows how much longer.)");
+
                 }
 
                 changelog.Add("----------------------------------------");

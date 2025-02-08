@@ -1838,6 +1838,8 @@ namespace TSW2_Controller
 
                     File.WriteAllLines(Tcfg.configpfad, line);
 
+                    configIsBeeingChanged = 0;
+
                     string skipedEntriesText = "";
 
                     foreach (string item in skipList)
