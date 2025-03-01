@@ -4,6 +4,9 @@
 TSW_Controller allows you to control TrainSimWorld with your joystick. It reads your screen to get the current state of the simulator and synchronize it to your joystick. That way, they don't end up having mismatching positions.
 
 I was bothered by the fact that you can't use a joystick as an input device in TSW2, so I wrote my own program to solve the problem. Since I was quite happy with the result, I thought why not publish the program so that others can use it as well.  And now here we are
+
+Unfortunately, I named the program TSW2_Controller, assuming it wouldn't be needed for TSW3... Well, let's take a look at the supported versions:
+
 ## Supported Versions
 
 - ✅ Train Sim World 5
@@ -24,7 +27,7 @@ Must be activated in Settings:
 - Supports English and German
 - Auto updater
 
-Upcoming features or bugfixes can be seen under [`Projects`](https://github.com/DerJantob/TSW2_Controller/projects)
+Upcoming features or bugfixes can be seen under [`Projects`](https://github.com/DerJantob/TSW2_Controller/projects) (Very inactive)
 ## Important!
 
 I have included a lot of trains, but configured them to match my "thrustmaster t flight hotas x" and the German language

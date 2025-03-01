@@ -387,6 +387,7 @@ namespace TSW2_Controller
                     changelog.Add("- Bugfix: Beim erstellen von einem neuen Zug wurde die Option der Regler nicht angezeigt");
                     changelog.Add("");
                     changelog.Add("- Hinzugefügt: Knöpfe unterstützen nun das gedrückt halten von STRG, CTRL und SHIFT + Taste");
+                    changelog.Add("- Hinzugefügt: Man kann jetzt auch Knöpfe von anderen Zügen importieren");
                     changelog.Add("");
                     changelog.Add("");
                     changelog.Add("Ja, es gibt mal wieder ein kleines Update :)");
@@ -404,6 +405,7 @@ namespace TSW2_Controller
                     changelog.Add("- Bugfix: When creating a new train, the option for the controllers was not displayed");
                     changelog.Add("");
                     changelog.Add("- Added: Buttons now support holding down CTRL, STRG, and SHIFT + key");
+                    changelog.Add("- Added: You can now import buttons from other trains");
                     changelog.Add("");
                     changelog.Add("");
                     changelog.Add("Yes, there's a small update again :)");
