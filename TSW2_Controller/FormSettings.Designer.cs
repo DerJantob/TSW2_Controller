@@ -98,12 +98,12 @@
             // 
             // comboBox_resolution
             // 
+            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
             this.comboBox_resolution.FormattingEnabled = true;
             this.comboBox_resolution.Items.AddRange(new object[] {
             resources.GetString("comboBox_resolution.Items"),
             resources.GetString("comboBox_resolution.Items1"),
             resources.GetString("comboBox_resolution.Items2")});
-            resources.ApplyResources(this.comboBox_resolution, "comboBox_resolution");
             this.comboBox_resolution.Name = "comboBox_resolution";
             // 
             // progressBar_updater
@@ -113,8 +113,8 @@
             // 
             // comboBox_TrainConfig
             // 
-            this.comboBox_TrainConfig.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_TrainConfig, "comboBox_TrainConfig");
+            this.comboBox_TrainConfig.FormattingEnabled = true;
             this.comboBox_TrainConfig.Name = "comboBox_TrainConfig";
             this.comboBox_TrainConfig.SelectedIndexChanged += new System.EventHandler(this.comboBox_TrainConfig_SelectedIndexChanged);
             this.comboBox_TrainConfig.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_TrainConfig_KeyPress);
@@ -141,12 +141,12 @@
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.btn_export);
             this.groupBox3.Controls.Add(this.btn_import);
             this.groupBox3.Controls.Add(this.comboBox_TrainConfig);
             this.groupBox3.Controls.Add(this.btn_trainconfigHinzufuegen);
             this.groupBox3.Controls.Add(this.btn_trainconfigLoeschen);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
@@ -166,71 +166,71 @@
             // 
             // menuStrip1
             // 
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wasIstNeuToolStripMenuItem,
             this.sucheNachUpdatesToolStripMenuItem,
             this.spracheToolStripMenuItem,
             this.hilfeToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // wasIstNeuToolStripMenuItem
             // 
-            this.wasIstNeuToolStripMenuItem.Name = "wasIstNeuToolStripMenuItem";
             resources.ApplyResources(this.wasIstNeuToolStripMenuItem, "wasIstNeuToolStripMenuItem");
+            this.wasIstNeuToolStripMenuItem.Name = "wasIstNeuToolStripMenuItem";
             this.wasIstNeuToolStripMenuItem.Click += new System.EventHandler(this.wasIstNeuToolStripMenuItem_Click);
             // 
             // sucheNachUpdatesToolStripMenuItem
             // 
+            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem, "sucheNachUpdatesToolStripMenuItem");
             this.sucheNachUpdatesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sucheNachUpdatesToolStripMenuItem1});
             this.sucheNachUpdatesToolStripMenuItem.Name = "sucheNachUpdatesToolStripMenuItem";
-            resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem, "sucheNachUpdatesToolStripMenuItem");
             // 
             // sucheNachUpdatesToolStripMenuItem1
             // 
-            this.sucheNachUpdatesToolStripMenuItem1.Name = "sucheNachUpdatesToolStripMenuItem1";
             resources.ApplyResources(this.sucheNachUpdatesToolStripMenuItem1, "sucheNachUpdatesToolStripMenuItem1");
+            this.sucheNachUpdatesToolStripMenuItem1.Name = "sucheNachUpdatesToolStripMenuItem1";
             this.sucheNachUpdatesToolStripMenuItem1.Click += new System.EventHandler(this.sucheNachUpdatesToolStripMenuItem1_Click);
             // 
             // spracheToolStripMenuItem
             // 
+            resources.ApplyResources(this.spracheToolStripMenuItem, "spracheToolStripMenuItem");
             this.spracheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deutschToolStripMenuItem,
             this.englischToolStripMenuItem});
             this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
-            resources.ApplyResources(this.spracheToolStripMenuItem, "spracheToolStripMenuItem");
             // 
             // deutschToolStripMenuItem
             // 
-            this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
             resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
+            this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
             this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
             // 
             // englischToolStripMenuItem
             // 
-            this.englischToolStripMenuItem.Name = "englischToolStripMenuItem";
             resources.ApplyResources(this.englischToolStripMenuItem, "englischToolStripMenuItem");
+            this.englischToolStripMenuItem.Name = "englischToolStripMenuItem";
             this.englischToolStripMenuItem.Click += new System.EventHandler(this.englischToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
             // 
+            resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.informationsdateiErstellenToolStripMenuItem,
             this.zurConfigGehenToolStripMenuItem});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-            resources.ApplyResources(this.hilfeToolStripMenuItem, "hilfeToolStripMenuItem");
             // 
             // informationsdateiErstellenToolStripMenuItem
             // 
-            this.informationsdateiErstellenToolStripMenuItem.Name = "informationsdateiErstellenToolStripMenuItem";
             resources.ApplyResources(this.informationsdateiErstellenToolStripMenuItem, "informationsdateiErstellenToolStripMenuItem");
+            this.informationsdateiErstellenToolStripMenuItem.Name = "informationsdateiErstellenToolStripMenuItem";
             this.informationsdateiErstellenToolStripMenuItem.Click += new System.EventHandler(this.informationsdateiErstellenToolStripMenuItem_Click);
             // 
             // zurConfigGehenToolStripMenuItem
             // 
-            this.zurConfigGehenToolStripMenuItem.Name = "zurConfigGehenToolStripMenuItem";
             resources.ApplyResources(this.zurConfigGehenToolStripMenuItem, "zurConfigGehenToolStripMenuItem");
+            this.zurConfigGehenToolStripMenuItem.Name = "zurConfigGehenToolStripMenuItem";
             this.zurConfigGehenToolStripMenuItem.Click += new System.EventHandler(this.zurConfigGehenToolStripMenuItem_Click);
             // 
             // checkBox_deleteLogsAutomatically
@@ -239,10 +239,10 @@
             this.checkBox_deleteLogsAutomatically.Name = "checkBox_deleteLogsAutomatically";
             this.checkBox_deleteLogsAutomatically.UseVisualStyleBackColor = true;
             // 
-            // checkBox_OlderTSWVersion
+            // check_OlderTSWVersion
             // 
-            resources.ApplyResources(this.check_OlderTSWVersion, "checkBox_OlderTSWVersion");
-            this.check_OlderTSWVersion.Name = "checkBox_OlderTSWVersion";
+            resources.ApplyResources(this.check_OlderTSWVersion, "check_OlderTSWVersion");
+            this.check_OlderTSWVersion.Name = "check_OlderTSWVersion";
             this.check_OlderTSWVersion.UseVisualStyleBackColor = true;
             // 
             // FormSettings

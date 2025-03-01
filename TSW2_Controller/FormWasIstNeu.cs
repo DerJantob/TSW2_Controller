@@ -420,6 +420,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.8
+            if (new Version("2.0.8").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.8" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Fix: Tippfehler behoben");
+                }
+                else
+                {
+                    changelog.Add("- Fixed: Typo corrected");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
