@@ -21,7 +21,7 @@ namespace TSW2_Controller
         public static Keys increaseBrake = Keys.Oem7;
         public static Keys decreaseThrottle = Keys.D;
         public static Keys decreaseBrake = Keys.Oem3;
-
+        private static bool debugMode = false;
         private static List<object[]> keyList = new List<object[]>();
 
         public static void initKeylist()
@@ -135,101 +135,111 @@ namespace TSW2_Controller
         }
 
         public static void HoldKey(Keys key, int duration)
-        {
-            if (key != Keys.ShiftKey)
+        {if (!debugMode)
             {
-                keybd_event(key, 0, 0, 0);
-                System.Threading.Thread.Sleep(duration);
-                keybd_event(key, 0, KEY_UP_EVENT, 0);
-            }
-            else
-            {
-                ShiftEmulator.HoldKey();
-                System.Threading.Thread.Sleep(duration);
-                ShiftEmulator.ReleaseKey();
+                if (key != Keys.ShiftKey)
+                {
+                    keybd_event(key, 0, 0, 0);
+                    System.Threading.Thread.Sleep(duration);
+                    keybd_event(key, 0, KEY_UP_EVENT, 0);
+                }
+                else
+                {
+                    ShiftEmulator.HoldKey();
+                    System.Threading.Thread.Sleep(duration);
+                    ShiftEmulator.ReleaseKey();
+                }
             }
         }
 
         public static void KeyDown(Keys key)
         {
-            if (key != Keys.ShiftKey)
+            if (!debugMode)
             {
-                keybd_event(key, 0, 0, 0);
-            }
-            else
-            {
-                ShiftEmulator.HoldKey();
+                if (key != Keys.ShiftKey)
+                {
+                    keybd_event(key, 0, 0, 0);
+                }
+                else
+                {
+                    ShiftEmulator.HoldKey();
+                }
             }
         }
 
         public static void KeyUp(Keys key)
         {
-            if (key != Keys.ShiftKey)
+            if (!debugMode)
             {
-                keybd_event(key, 0, KEY_UP_EVENT, 0);
-            }
-            else
-            {
-                ShiftEmulator.ReleaseKey();
+                if (key != Keys.ShiftKey)
+                {
+                    keybd_event(key, 0, KEY_UP_EVENT, 0);
+                }
+                else
+                {
+                    ShiftEmulator.ReleaseKey();
+                }
             }
         }
 
         public static void ProcessAktion(string input)
-        {
-            string[] inputarray = input.Split('_');
-
-            if (inputarray.Length >= 3)
+        {if (!debugMode)
             {
-                for (int i = 0; i < inputarray.Length; i += 3)
+                string[] inputarray = input.Split('_');
+
+                if (inputarray.Length >= 3)
                 {
-                    if (inputarray[i + 1] == "[press]")
+                    for (int i = 0; i < inputarray.Length; i += 3)
                     {
-                        //SendKeys.Send(inputarray[i]);
-                        Keyboard.HoldKey(ConvertStringToKey(inputarray[i]), 0);
-                    }
-                    else if (inputarray[i + 1] == "[down]")
-                    {
-                        KeyDown(ConvertStringToKey(inputarray[i]));
-                    }
-                    else if (inputarray[i + 1] == "[up]")
-                    {
-                        KeyUp(ConvertStringToKey(inputarray[i]));
-                    }
-                    else if (inputarray[i + 1].Contains("[hold"))
-                    {
-                        int time = 0;
-                        string s = inputarray[i + 1];
-                        s = s.Replace("[hold", "").Replace("]", "");
-
-                        try
+                        if (inputarray[i + 1] == "[press]")
                         {
-                            time = Convert.ToInt32(s);
+                            //SendKeys.Send(inputarray[i]);
+                            Keyboard.HoldKey(ConvertStringToKey(inputarray[i]), 0);
                         }
-                        catch { }
-
-                        HoldKey(ConvertStringToKey(inputarray[i]), time);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error:" + inputarray[i + 1]);
-                    }
-
-                    if (inputarray[i + 2].Contains("[") && inputarray[i + 2].Contains("]"))
-                    {
-                        int time = 0;
-                        string s = inputarray[i + 2];
-                        s = s.Replace("[", "").Replace("]", "");
-                        try
+                        else if (inputarray[i + 1] == "[down]")
                         {
-                            time = Convert.ToInt32(s);
+                            KeyDown(ConvertStringToKey(inputarray[i]));
                         }
-                        catch
+                        else if (inputarray[i + 1] == "[up]")
                         {
-                            MessageBox.Show("Error:" + inputarray[i + 2]);
+                            KeyUp(ConvertStringToKey(inputarray[i]));
                         }
-                        Thread.Sleep(time);
-                    }
+                        else if (inputarray[i + 1].Contains("[hold"))
+                        {
+                            int time = 0;
+                            string s = inputarray[i + 1];
+                            s = s.Replace("[hold", "").Replace("]", "");
 
+                            try
+                            {
+                                time = Convert.ToInt32(s);
+                            }
+                            catch { }
+
+                            HoldKey(ConvertStringToKey(inputarray[i]), time);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error:" + inputarray[i + 1]);
+                        }
+
+                        if (inputarray[i + 2].Contains("[") && inputarray[i + 2].Contains("]"))
+                        {
+                            int time = 0;
+                            string s = inputarray[i + 2];
+                            s = s.Replace("[", "").Replace("]", "");
+                            try
+                            {
+                                time = Convert.ToInt32(s);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Error:" + inputarray[i + 2]);
+                            }
+                            Thread.Sleep(time);
+                        }
+
+                    }
                 }
             }
         }
