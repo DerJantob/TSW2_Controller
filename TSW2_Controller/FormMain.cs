@@ -1818,8 +1818,9 @@ namespace TSW2_Controller
                     //Stufenlos
                     //Differenz berechnen
                     int diff = vc.currentJoystickValue - vc.currentSimValue;
-                    if (Math.Abs(diff) > 1 && vc.waitToFinishMovement == false)
+                    if ((Math.Abs(diff) > 1|| vc.forceMove==true) && vc.waitToFinishMovement == false)
                     {
+                        vc.forceMove = false;
                         Log.Add(vc.name + ":move from " + vc.currentSimValue + " to " + vc.currentJoystickValue, true);
                         vc.toleranceMem = false;
                         vc.cancelScan = 1;
@@ -1949,7 +1950,7 @@ namespace TSW2_Controller
                                         vc.currentJoystickValue = erste_grenze;
                                         if (erste_grenze - ist == 1)
                                         {
-                                            vc.currentSimValue -= 1;
+                                            vc.forceMove = true;
                                         }
                                     }
                                 }
@@ -1980,7 +1981,7 @@ namespace TSW2_Controller
 
                                         if (ist - zweite_grenze == 1)
                                         {
-                                            vc.currentSimValue += 1;
+                                            vc.forceMove = true;
                                         }
                                     }
                                 }

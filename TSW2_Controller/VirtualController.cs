@@ -15,6 +15,7 @@ namespace TSW2_Controller
         public string[] textindicators_throttlearea;
         public string[] textindicators_brakearea;
         public bool isMasterController = false;
+        public bool forceMove = false;
 
         public int[] timefactor;
         public int currentJoystickValue;

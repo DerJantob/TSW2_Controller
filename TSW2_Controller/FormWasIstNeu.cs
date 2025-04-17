@@ -437,6 +437,23 @@ namespace TSW2_Controller
                 changelog.Add("----------------------------------------");
             }
             #endregion
+            #region 2.0.9
+            if (new Version("2.0.9").CompareTo(version) > 0)
+            {
+                changelog.Add("v2.0.9" + "\n");
+
+                if (Settings.Default.Sprache == "de-DE")
+                {
+                    changelog.Add("- Bugfix: Probleme bei Verwendung mehrerer \"Länger drücken\" hintereinander");
+                }
+                else
+                {
+                    changelog.Add("- Bugfix: Problems with using multiple \"Long press\" in a row");
+                }
+
+                changelog.Add("----------------------------------------");
+            }
+            #endregion
 
             return changelog;
         }
