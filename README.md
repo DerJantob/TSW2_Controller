@@ -9,6 +9,7 @@ Unfortunately, I named the program TSW2_Controller, assuming it wouldn't be need
 
 ## Supported Versions
 
+- ✅ Train Sim World 6
 - ✅ Train Sim World 5
 - ✅ Train Sim World 4
 
