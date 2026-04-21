@@ -1,3 +1,20 @@
+# ⚠️ Projekt eingestellt / Project discontinued
+
+**Wichtiger Hinweis:** Die Entwicklung von TSW_Controller wurde eingestellt und das Programm wird nicht mehr weiterentwickelt.
+
+Ein riesiges Dankeschön an alle, die mich auf dieser Reise begleitet haben! Danke für eure Unterstützung, die vielen Fehlermeldungen, euer Feedback und natürlich ein ganz besonderer Dank an alle, die das Projekt sogar mit einer Spende unterstützt haben. Es hat mir unglaublich viel Spaß gemacht, an diesem Tool zu basteln und zu sehen, dass es von so vielen genutzt wurde. Ich hoffe, ich konnte eure Gameplay-Erfahrung in TSW ein Stück weit verbessern – schade eigentlich, dass DTG das nie selbst in die Hand genommen hat.
+
+Macht’s gut und danke für alles!
+
+---
+
+**Important Note:** Development of TSW_Controller has been discontinued, and the program will no longer be updated.
+
+A huge thank you to everyone who joined me on this journey! Thanks for your support, the many bug reports, your feedback, and of course a very special thanks to everyone who even supported the project with a donation. I had a lot of fun tinkering with this tool and seeing it being used by so many people. I hope I was able to improve the TSW gameplay experience a bit for you – it’s a shame DTG never took care of this themselves.
+
+Take care and thanks for everything!
+
+---
 
 # TSW_Controller
 
